@@ -1,0 +1,40 @@
+<div class="w915">
+    
+    <h3 class="headTitle">Your Profile</h3>
+    <p>Here you can change your SITTI profile.</p>
+    <form class="editProfile" action="profile.php" method="post" enctype="application/x-www-form-urlencoded">
+        <div class="row">
+            <label>Name</label>
+            <input name="name" type="text" class="inputText" id="name" value="{$rs.name|stripslashes|strip_tags|htmlentities|htmlspecialchars}" />
+        </div>
+        <div class="row">
+            <label>E-Mail</label>
+            {$rs.email|stripslashes|strip_tags|htmlentities}
+           
+        </div>
+        <div class="row">
+            <label>Telephone Number</label>
+            <input name="telepon" type="text" class="inputText" id="telepon" value="{$rs.phone|stripslashes|strip_tags|htmlentities|htmlspecialchars}" />
+        </div>
+        <div class="row">
+            <label>Mobile Phone Number</label>
+            <input name="handphone" type="text" class="inputText" id="handphone" value="{$rs.mobile|stripslashes|strip_tags|htmlentities|htmlspecialchars}" />
+        </div>
+        <div class="row">
+            <label style="float:left;">Address</label>
+            <textarea name="alamat" class="inputText" id="alamat">{$rs.address|stripslashes|strip_tags|htmlentities|htmlspecialchars}</textarea>
+        </div>
+     	<div class="row">
+     	<a href="?password=1">Change Password</a>
+     	</div>
+        <div class="row">
+            <input name="save" type="hidden" value="1">
+            <input name="token" type="hidden" value="{token}">
+            <input type="submit" class="submitButton" value="Save Changes" />
+            <p class="error">{$msg}</p>
+        </div>
+		
+    </form>
+
+  
+</div>

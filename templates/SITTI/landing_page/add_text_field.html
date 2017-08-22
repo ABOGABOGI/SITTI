@@ -1,0 +1,36 @@
+<!--<a href="modif_template_landing.php" target="_blank">Lihat Halaman Modif</a> |-->
+
+
+<form class="registerForm" method="post" action="modif_template_save.php?do=saveTextField">
+    <div class="row">
+        <h3 class="title">Merubah Masukan Teks</h3>
+        <label style="width:130px;">Masukan Teks 1</label>
+        <input type="text" name="textDefault1" value="{$list.defaultField1}">
+    </div>
+    <div class="row">
+        <label style="width:130px;">Masukan Teks 2</label>
+        <input type="text" name="textDefault2" value="{$list.defaultField2}">
+    </div>
+    <div class="row">
+        <h3 class="title">Tambah Masukan Teks</h3>
+        <label style="width:130px;">Masukan Teks 3</label>
+        <input type="text" name="text1" value="{$list.additional1}">
+    </div>
+    <div class="row">
+        <label style="width:130px;">Masukan Teks 4</label>
+        <input type="text" name="text2" value="{$list.additional2}">
+    </div>
+    <div class="row">
+        <label style="width:130px;">Masukan Teks 5</label>
+        <input type="text" name="text3" value="{$list.additional3}">
+    </div>
+    <div class="row">
+        <label style="width:130px;">E-mail Anda</label>
+        <input type="text" name="email">
+    </div>
+    <div class="row">
+        <label style="width:130px"></label>
+        <!--<a class="submitButton" href="modif_template.php?r=layout">EDIT HALAMAN</a>-->
+        <input type="submit" class="submitButton" value="PREVIEW" name="preview">
+    </div>
+</form>

@@ -1,0 +1,19 @@
+<h1>Slot : {$slotName}</h1>
+<table width="650" border="0" cellspacing="0" cellpadding="0" class="list zebra" >
+                  <tr class="head2">
+                    <td width="37">Tanggal</td>
+                    <td width="73">Impressi</td>
+                    <td width="79">Klik</td>
+                    <td width="79">CTR</td>
+                    <td width="79">Perkiraan Perolehan</td>
+                  </tr>
+                  {section name=i loop=$pages}
+                  <tr>
+                    <td>{$pages[i].tgl}</td>
+                    <td>{$pages[i].jum_imp|number_format}</td>
+                    <td>{$pages[i].jum_klik|number_format}</td>
+                    <td>{$pages[i].ctr}%</td>
+                    <td>Rp. {$pages[i].pub_share|number_format}</td>
+                  </tr>
+                  {/section}
+                </table>

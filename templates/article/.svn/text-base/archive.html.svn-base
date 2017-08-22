@@ -1,0 +1,7 @@
+<p><span class="style1">{$CATEGORY_NAME}</span><br />
+{section name=i loop=$list}
+
+<p><span class="style2"><a class="artikel" href="article.php?id={$list[i].id}">{$list[i].title|strtoupper|stripslashes}</a></span><br />
+<span class="testi">{$list[i].posted} on {$list[i].time}</span></p>
+{/section}
+<p>{$page}</p>

@@ -1,0 +1,41 @@
+
+       
+                <h3 class="headTitle">LAPORAN</h3>
+                <form action="beranda.php" method="get" enctype="application/x-www-form-urlencoded" name="form1">
+                  Pilih Kampanye : 
+                  <input name="laporan" type="hidden" value="1">
+                  <select name="c" id="c">
+                  {section name=i loop=$campaign}
+                    <option value="{$campaign[i].ox_campaign_id}">{$campaign[i].name|stripslashes|strip_tags}</option>
+                   {/section}
+                  </select>
+                  
+                  <input type="submit" name="GO" id="GO" value="LIHAT">
+                </form>
+                <p>&nbsp;</p>
+                <p>
+Inilah laporan SITTI Anda.<br>
+Data impressi dan klik diupdate setiap 1 jam.</p>
+                <table width="650" border="0" cellspacing="0" cellpadding="0" class="list zebra" >
+                  <tr class="head">
+                    <td width="200">Judul Iklan</td>
+                    <td>Impressi<a onmouseover="tooltip.show('Berapa kali iklan Anda dilihat atau dibuka');" onmouseout="tooltip.hide();"  class="helpIcon" style=" float:right; margin:-3px 0 0 0;">&nbsp;</a></td>
+                    <td>Klik<a onmouseover="tooltip.show('Berapa kali iklan Anda diklik. Jumlah klik inilah yang akan dipotong dari budget total Anda');" onmouseout="tooltip.hide();"  class="helpIcon" style=" float:right; margin:-3px 0 0 0;">&nbsp;</a></td>
+                    <td>CTR %<a onmouseover="tooltip.show('Perbandingan berapa kali iklan Anda dilihat dan diklik. Semakin besar semakin baik.');" onmouseout="tooltip.hide();"  class="helpIcon" style=" float:right; margin:-3px 0 0 0;">&nbsp;</a></td>
+                   
+                  </tr>
+                  {section name=i loop=$list}
+                  <tr>
+                    <td>{$list[i].judul|stripslashes|strip_tags}</td>
+                    <td>{$list[i].stats.impressions|number_format}</td>
+                    <td>{$list[i].stats.clicks|number_format}</td>
+                    <td>{$list[i].stats.ctr} %</td>
+                    
+                  </tr>
+                 {/section}
+                 
+                </table>
+					{$paging}
+            
+           
+  

@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		{$meta}
+        <link rel="stylesheet" type="text/css" href="css/tips-basic.css">
+    	<script type="text/javascript"> 
+		{literal}
+      	$(document).ready(function(){
+      		$("a.homesitti").hover(
+				function(){
+					$("#demotip").stop(true,true).fadeIn();
+				},
+				function(){
+					$("#demotip").stop(true,true).fadeOut();
+				}
+			)
+	   	});
+		{/literal}
+	  </script>
+	</head>
+	<body style="width: 952px;margin:0 auto;padding:0;">
+	<div class="wrap relative">
+		<div id="body">
+		 <div id="top">
+			<div id="logoCilent" style="text-align:center;">
+				<img src="images/ver2/Sitti-logo.png">
+			</div>
+		 <div id="topmenu">
+		 </div>
+		</div>
+		    <div id="content">
+            	<div id="headerBlock2">
+               		<div class="backhome">
+                    <div style="position: absolute; top: -56px; left: -41px; display: none;" id="demotip">http://www.sitti.co.id</div>
+                   		<a href="http://www.sitti.co.id" class="homesitti"></a>
+					</div>
+                </div>
+                <div id="backwell">
+                	<div class="submenu">
+                		<div class="textwell">
+                			<p style="font-size:16px;">Selamat datang di SITTI SOCWAVE!</p>
+                			<p>Dapatkan gambaran tentang percakapan di Twitter secara <em>real-time</em> disini.</p>
+                			<p style="font-size:12px;"><em>Apakah <em>brand</em> Anda menjadi bahan perbincangan di linimasa Twitter?<br />
+              				Kata-kata kunci apakah yang paling relevan terhadap <em>brand</em>/kategori Anda?<br />
+               				Siapa pengguna Twitter yang paling berpengaruh?</em></p>
+               				<p>Dengan informasi ini, kampanye iklan Anda bisa menjadi lebih terarah dan tepat sasaran!</p>
+                            
+                		</div>
+                        <a style="display: inline-block;" href="#" class="clickHere" id="nextButton">Masuk</a>
+               		 </div>
+                </div>
+		    </div>
+		</div>
+		
+		<div id="bgContact"></div>
+		<div id="contact" class="box box-shadow absolute round12">
+			<div id="exitContact" class="exit_contact"></div>
+			<h4 id="msgContact" style="margin: 0 0 10px;"></h4>
+			<a id="linkContact" class="clickHere" href="#" style="display: inline-block;"></a>
+		</div>
+		<div id="nextBrand" class="box box-shadow absolute round12">
+		<form>
+			<div id="exitContact" class="exit_contact"></div>
+			<h4 id="brandCat" style="margin: 0 0 10px;">Your Brand is</h4>
+			<input id="field" type="text"></input>
+			<a id="nextButton" class="clickHere" href="#" style="display: inline-block;">Next</a>
+		</form>
+		</div>
+		<div id="contactUs" class="box box-shadow absolute round12">
+		<form id="formContact">
+			<div id="exitContact" class="exit_contact"></div>
+			<img width="202" src="images/ver2/contacthead.png" style="margin-bottom: 7px;"></img>
+			<p id="contactSubtext">Contact us for the complete result</p>
+			<input type="hidden" name="field" value=""/>
+			<input type="text" name="name" value="Your Name" no="Your Name" />
+			<input type="text" name="email" value="Your Email Address" no="Your Email Address"/>
+			<input type="text" name="telp" value="Your Phone Number" no="Your Phone Number"/>
+			<input type="hidden" name="tipe" value=""/>
+			<textarea name="message">Message</textarea>
+			<input type="button" id="submitButton" class="clickHere" style="display: inline-block;" value="Submit">
+		</form>
+		</div>
+		<div id="wcBridge" class="box box-shadow absolute round12">
+		<form>
+			<div id="exitContact" class="exit_contact"></div>
+			<h4 style="margin: 0 0 10px;">You are about to advertise with SITTI using the most relevant keyword to your category.</h4>
+			<a id="helpButton" class="clickHere" href="#" style="display: inline-block;">Let us help</a>
+			<a id="nextButton2" class="clickHere" href="javascript:JumpToSimulationPage()" target="_blank" style="display: inline-block;">Next</a>
+		</form>
+		</div>
+		{$footer}
+	</body>
+</html>

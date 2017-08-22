@@ -1,0 +1,227 @@
+{literal}
+<script>
+	var n_page = 0;
+	var curr_page = 0;
+    // When the document loads do everything inside here ...
+    $(document).ready(function(){
+
+        // When a link is clicked
+        $("a.tab").click(function () {
+
+
+            // switch all tabs off
+            $(".active").removeClass("active");
+
+            // switch this tab on
+            $(this).addClass("active");
+
+            // slide all content up
+            $(".contentTab").slideUp();
+
+            // slide this content up
+            var content_show = $(this).attr("title");
+            $("#"+content_show).slideDown();
+
+        });
+
+    });
+
+
+    function search_words(){
+        //alert("yey");
+        if(document.getElementById('q').value.length>0){
+            $("#content_1").html("<span style='text-align:center;'><img src='images/loader.gif'/></span>");
+            $("#content_1").load("uji_sitti2.php?q="+escape(document.getElementById('q').value)+"&t=1");
+        }
+    }
+	function open_tab(id,keyword){
+		hideAll();
+		//alert(id+" - "+keyword);
+		if(keyword.length>0){
+           /* $("#content_1").html("<span style='text-align:center;'><img src='images/loader.gif'/></span>");
+            $("#content_1").load("uji_sitti3.php?q="+escape(keyword)+"&t=1");
+			*/
+			$("#"+id).show();
+        }
+	}
+	function prepare_tabs(){
+		//we generate the tab based on the keywords input
+		var str = $('#q').val();
+		var arr = str.split('\n');
+		var n_len = arr.length;
+		if(n_len>10){
+			n_len = 10;
+		}
+		var strHTML = "";
+		for(var i=0;i<n_len;i++){
+			strHTML += "<li><a title='content_"+i+"' class='tab' onclick='open_tab(\"content_"+i+"\",\""+arr[i]+"\")'>"+escape($.trim(arr[i]))+"</a></li>";
+		}
+		$("ul.tabs").html(strHTML);
+		for(var i=0;i<10;i++){
+			$("#content_"+i).hide();
+			if(i<n_len){
+				$("#content_"+i).html("<span style='text-align:center;'><img src='images/loader.gif'/></span>");
+           	 	$("#content_"+i).load("uji_sitti3.php?q="+escape($.trim(arr[i]))+"&t=1&c="+i);
+			}
+		}
+		open_tab('content_0',escape($.trim(arr[0])));
+		//alert($("ul.tabs").html());
+	}
+	function sesudah(){
+		getPage(curr_page+1);	
+	}
+	function sebelum(){
+		getPage(curr_page-1);	
+	}
+	function getPage(n){
+		
+		if($('#q').val().length==0){alert("Please enter your keywords first");return false;}
+		if(n==0){
+			$("#tabbed_box_1 div.tabbed_area").html("");	
+			n=1;
+			n_page=0;
+			curr_page=1;
+		}
+		hideResults();
+		//alert(n+">"+n_page);
+		if(n>n_page){
+			if(n-1>0){
+				//alert($('input:checkbox:checked').val());
+			}
+			var str = $('#q').val();
+			var arr = str.split('\n');
+			var n_len = arr.length;
+			var str = "";
+			for(var i=0;i<n_len;i++){
+				if(i>0){
+					str+=",";
+				}
+				str+=escape($.trim(arr[i]));
+			}
+			//alert($.param(arr));
+			//alert($("#tabbed_box_1 div.tabbed_area").html());
+			if(n_page>0){
+				$("#page_"+(n-1)).hide();
+			}
+			//var strHTML = $("#tabbed_box_1 div.tabbed_area").html()+'<div id="page_'+n+'" class="contentTab"></div>';
+			var strHTML = '<div id="page_'+n+'" class="contentTab"></div>';
+			$("#tabbed_box_1 div.tabbed_area").append(strHTML);
+			//$("#tabbed_box_1 div.tabbed_area").html(strHTML);
+			$("#page_"+n).html("<span style='text-align:center;'><img src='images/loader.gif'/></span>");
+        	$("#page_"+n).load("uji_sitti4.php?q="+escape(str)+"&t=1&c="+i+"&start="+((n-1)*100),function(data){$("#page_"+n).html(data)});
+			n_page = n;
+			$("#sesudah").show();
+			if(n_page>1){
+				$("#sebelum").show();
+			}
+			$("#copysuggest").show();
+		}else{
+			//alert("yey");
+			if(n-1==0){
+				n=1;
+				$("#sebelum").hide();
+			}else{
+				$("#sebelum").show();
+			}
+			
+			$("#page_"+n).show();
+			//alert($("#page_"+n).html());
+		}
+		//alert(n);
+		curr_page = n;
+	}
+	function hideResults(){
+		for(var i=1;i<=n_page;i++){
+			//$("#content_"+i).hide();
+			$("#page_"+i).hide();
+		}
+	}
+	function hideAll(){
+		for(var i=0;i<10;i++){
+			//$("#content_"+i).hide();
+			$(".contentTab").hide();
+		}
+	}
+    function gotoRegister(){
+        document.location = "index.php?registration=1";
+    }
+	function Simulasi(){
+		document.location = "index.php?simulation=1";
+	}
+	function keywordClicked(obj){return false;}
+</script>
+{/literal}
+<h3 class="headTitle">SITTI Ad Campaign Counters</h3>
+
+<h3 class="blue">Define Your Ad Keywords</h3>
+<p>Now you can simulate a campaign with the SITTI Ad Cost Estimation Tool<br />
+ Enter the keywords that best fit the brand, trademark or product that you want to advertise on SITTI. 
+ </p>
+ <form action="index.php" method="post" enctype="application/x-www-form-urlencoded">
+<div class="row">
+
+<textarea  name="q" rows="10"  id="q"></textarea> <br /><br />
+<a style="margin:0" class="submitButton" onclick="getPage(0)" >Display the Associated Keywords</a>
+</div>
+
+<div class="row" id="copysuggest">
+    
+    <div>
+
+        <span>According to SITTI, these words are the most associated to your keyword.</span>
+        <div id="tabbed_box_1" class="tabbed_box">
+            <div class="tabbed_area">
+                <!--<ul class="tabs">
+                    <li><a title="content_1" class="tab">Daftar Kata</a></li>
+                    
+                </ul>-->
+                <!--
+                 <div id="content_0" class="contentTab">
+                </div>
+                <div id="content_1" class="contentTab">
+                </div>
+                <div id="content_2" class="contentTab">
+                </div>
+                 <div id="content_3" class="contentTab">
+                </div>
+                 <div id="content_4" class="contentTab">
+                </div>
+                 <div id="content_5" class="contentTab">
+                </div>
+                 <div id="content_6" class="contentTab">
+                </div>
+                 <div id="content_7" class="contentTab">
+                </div>
+                 <div id="content_8" class="contentTab">
+                </div>
+                 <div id="content_9" class="contentTab">
+                </div>
+                 <div id="content_10" class="contentTab">
+                </div>
+                -->
+                
+            </div>
+            <div id="sebelum"><a href="javascript:void(0);" onclick="sebelum();return false;">Previous 100 Words &larr;</a></div>
+            <div id="sesudah"><a href="javascript:void(0);" onclick="sesudah();return false;">Next 100 Words &rarr;</a></div>
+            <div class="row noBorder" style="padding:0 0 15px 0;">
+
+            	<label style="width:300px;"><strong>How many days do you want to run this campaign?</strong></label>
+                <input style="width:50px" type="text" class="inputText" value="7" id="hari" name="hari"/> days.
+
+            </div>
+            <div>
+            <input type="hidden" name="simulation" id="simulation" value="1"/>
+                <input type="submit" value="Estimation Cost of My Campaign are?" class="submitButton"/>
+            </div>
+        </div>
+    </div>
+
+</div>
+</form>
+
+<script>
+$("#sesudah").hide();
+$("#sebelum").hide();
+$("#copysuggest").hide();
+hideAll();
+</script>

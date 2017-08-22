@@ -1,0 +1,52 @@
+<script type="text/javascript">
+<!--
+var detail_campaign_url = "report.php?t=konversi&campaign=";
+{literal}
+
+function detailPPACampaign(campaign_id) {
+  var url = detail_campaign_url + campaign_id;
+  $.ajax({
+    url:  url,
+    type: 'GET',
+    success: function(data) {
+      $("#content_konversi").html(data);
+    },
+    error: function(data) {
+      alert('Tidak ada data untuk campaign tersebut');
+    }
+  });
+}
+
+{/literal}
+-->
+</script>
+<p><a href="javascript:;" onClick="onTab('#konversi','nav11');">Laporan</a> | <a href="javascript:;" onClick="centerPopup();loadPopupKonversi();return false;">Setting</a></p>
+<div id="content_konversi">
+{if $list}
+<div id="tableKonversi">
+ <table cellspacing="0" cellpadding="0" border="0" class="list zebra">
+  <tr class="head2">
+    <td width="25">No</td>
+    <td>Kampanye</td>
+    <td>Jumlah Konversi</td>
+    {*}
+    <td>Total Nilai</td>
+  	{/*}
+  </tr>
+  {section name=kampanye loop=$list}
+  <tr>
+    <td>{$smarty.section.kampanye.iteration}</td>
+    <td><a href="javascript:" onClick="detailPPACampaign({$list[kampanye].campaign_id});">{$list[kampanye].name}</a></td>
+    <td>{$list[kampanye].jum_konversi}</td>
+    {*}
+    <td>{if $list[kampanye].nilai_konversi > 0}{$list[kampanye].nilai_konversi|number_format}{else}{$list[kampanye].nilai_komisi|number_format}{/if}</td>
+  	{/*}
+  </tr>
+  {/section}
+</table>
+</div>
+{else}
+<p>Tidak ditemukan kampanye konversi.</p>
+{/if}
+</div>
+{if $popup_ppa}{$popup_ppa}{/if}

@@ -1,0 +1,20 @@
+<p>Anda akan di redirect ke situs PayPal sesaat lagi</p>
+<form action="{$path_url_paypal}" method="post" id="PayPalForm">
+<input type="hidden" name="item_name" value="Voucher SITTI USD">
+<input type="hidden" name="amount" value="{$amount}">
+<input type="hidden" name="item_number" value="SITTIUSD">
+<input type="hidden" name="cmd" value="_xclick">
+<input type="hidden" name="no_note" value="1">
+<input type="hidden" name="business" value="{$sitti_paypal_credential}">
+<input type="hidden" name="currency_code" value="USD">
+<input type="hidden" name="custom" value="{$transaction_id}">
+<input type="hidden" name="return" value="{$path_return_paypal_confirm}">
+<input type="hidden" name="cancel_return" value="{$path_return_paypal_cancel}">
+<input type="hidden" name="rm" value="2">
+</form>
+
+<script type="text/javascript">
+{literal}
+document.getElementById("PayPalForm").submit();
+{/literal}
+</script>

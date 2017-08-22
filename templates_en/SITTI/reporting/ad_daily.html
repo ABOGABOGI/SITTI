@@ -1,0 +1,203 @@
+<script type="text/javascript" src="js/jquery_swfobject.js"></script>
+<script>
+var iklan_id = "{$iklan_id}";
+var item_links_block = "<div style=\"float: right; display: inline;\"><a class=\"submitButton\" href=\"beranda.php?PerformaIklan={$campaign_id}\">Back</a> | <a class=\"submitButton\" href=\"{secureurl url='beranda.php' edit_iklan=1 id=$iklan_id}\">Edit Ads</a></div>";
+</script>
+
+{literal}
+<script><!--
+var f4=[];
+	 $(document).ready(function(){
+			$("#PerformaIklan .shorter span#link").html(item_links_block);
+      $("#tanggalAwalBeranda,#tanggalAkhirBeranda").datepicker();
+			
+      $("#tanggalAkhirBeranda").bind('change', function () {
+        if ($('#tanggalAwalBeranda').val() == '') {
+          alert('Start Date cannot be empty');
+          $('#tanggalAwalBeranda').val('');
+        }
+        else
+        {
+          var tgl_awal = $('#tanggalAwalBeranda').datepicker("getDate");
+          var tgl_akhir = $('#tanggalAkhirBeranda').datepicker("getDate");
+          interval = DayDiff(tgl_awal, tgl_akhir);
+
+          if (interval < 0) {
+            alert('End Date must be latter than Start Date');
+            $("#tanggalAwalBeranda,#tanggalAkhirBeranda").val('');
+          } 
+
+          if (interval > 30) {
+            alert('Day Span must not exceed 31 days');
+            $("#tanggalAwalBeranda,#tanggalAkhirBeranda").val('');
+          }
+          
+        }
+      });
+
+      $('#tanggalAwalBeranda').bind('change', function() {
+        if ($("#tanggalAkhirBeranda").val() != '') {
+          var tgl_awal = $('#tanggalAwalBeranda').datepicker("getDate");
+          var tgl_akhir = $('#tanggalAkhirBeranda').datepicker("getDate");
+          interval = DayDiff(tgl_awal, tgl_akhir);
+
+          if (interval < 0) {
+            alert('Start Date must be earlier than End Date');
+            $("#tanggalAwalBeranda,#tanggalAkhirBeranda").val('');
+          }
+
+          if (interval > 30) {
+            alert('Day Span must not exceed 31 days');
+            $("#tanggalAwalBeranda,#tanggalAkhirBeranda").val('');
+          }
+
+        }
+      });
+
+      $('#custom').hide();
+			$('.pilihHariBeranda').hide();
+
+			 //data geo
+			 $.get('report.php',{t:104,id:iklan_id,cache:false}, function(data) {
+				
+				f4 = eval(data);
+					
+					p_geo(f4);
+				});
+     });
+
+    function wiz_dirty(){
+    }
+    function updateCodeField(){
+       // alert("yey");
+    	//$('#custom').hide();
+    	//alert($('#rtype').val());
+    	
+    	 if ($('#rtype').val() == 6){
+             $('.pilihHariBeranda').show();
+         }else{
+             $('.pilihHariBeranda').hide();
+         }
+    	
+    }
+    function p_geo(feeds){
+    	var _series = [];
+    	var _plots = [];
+    	var _data = [];
+    	var nn = feeds.length;
+    	for(i=0;i<nn;i++){
+    		_series.push({name:feeds[i].kota});
+    		_plots.push(feeds[i].stats);
+    		_data.push([feeds[i].city,parseFloat(feeds[i].jum)]);
+    	}
+    	
+    	
+    	/*var n_total=0;
+    	for(i=0;i<_series.length;i++){
+    		var dd = _plots[i];
+    		var tt = 0;
+    		for(j=0;j<dd.length;j++){
+    			tt+=eval(dd[j]['imp']);
+    			n_total+=eval(dd[j]['imp']);
+    		}
+    		
+    		_data.push([_series[i].name,parseFloat(tt)]);
+    	}
+    	for(i=0;i<_data.length;i++){
+    		var num = parseFloat(_data[i][1]/n_total*100);
+    		_data[i][1] = parseFloat(num.toFixed(1));
+    	}
+    	*/
+    	chart = new Highcharts.Chart({
+    					chart: {
+    						renderTo: 'geo1',
+    						plotBackgroundColor: null,
+    						plotBorderWidth: null,
+    						plotShadow: true
+    					},
+    					title: {
+    						text: 'Click per City Distribution'
+    					},
+    					tooltip: {
+    						formatter: function() {
+    							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+    						}
+    					},
+    					plotOptions: {
+    						pie: {
+    							allowPointSelect: true,
+    							cursor: 'pointer',
+    							size:'50%',
+    							dataLabels: {
+    								enabled: true,
+    								color: '#000000',
+    								connectorColor: '#000000',
+    								formatter: function() {
+    									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+    								}
+    							},showInLegend: true
+    						}
+    					},
+    				    series: [{
+    						type: 'pie',
+    						name: 'Click Distribution',
+    						data: _data
+    					}],
+    					exporting:{enabled:false},
+    					credits:{enabled:false}
+    				});
+    }
+--></script>
+{/literal}
+
+<div class="rangkuman">
+  <div class="col_best_list">
+    <p><strong class="titleSukses">Ads Name</strong> <span class="f18 bold green">{$iklan.nama|stripslashes|strip_tags}</span></p>
+  </div>
+</div>
+<div id="geo1"></div>
+<div class="titleBerandaZen">
+  <div class="goSubmit">
+    <input type="button" class="submitButton" value="GO" onclick="show_detail('{$iklan_id}','{$sittiID}',document.getElementById('rtype').value,{$campaign_id},document.getElementById('tanggalAwalBeranda').value,document.getElementById('tanggalAkhirBeranda').value);return false;"/>
+  </div>
+  <div id="custom">
+    <div class="pilihHariBeranda">
+      <input id="tanggalAwalBeranda" type="text">
+      <span>s/d</span>
+      <input id="tanggalAkhirBeranda" type="text">
+    </div>
+  </div>
+  <div class="pilihWaktu">
+    <select name="rtype" id="rtype" onchange="wiz_dirty(); updateCodeField()">
+      <option value="0">Today</option>
+      <option value="1">Yesterday</option>
+      <option value="2">Last 3 Days</option>
+      <option value="3">Last 7 Days</option>
+      <option value="4">Last 14 Days</option>
+      <option value="5">Last 30 Days</option>
+      <option value="6">Custom</option>
+    </select>
+  </div>
+  <a class="refreshIcon" href="javascript:void(0);"  onmouseover="tooltip.show('Page Refresh');" onmouseout="tooltip.hide();" onClick="show_detail('{$iklan_id}','{$sittiID}',5,0,0)">&nbsp;</a> <a class="tambahIcon" onmouseover="tooltip.show('Back to Home');" onmouseout="tooltip.hide();"  href="#">&nbsp;</a>
+  <!-- <a class="pdf" onmouseover="tooltip.show('Export ke PDF');" onmouseout="tooltip.hide();"  href="#">&nbsp;</a>
+                     -->
+  <a class="excel" id="exportcsv" onmouseover="tooltip.show('Export to CSV');" onmouseout="tooltip.hide();"  href="report.php?t=601&csv=1&id={$iklan_id}" target="_blank">&nbsp;</a> </div>
+<table border="0" cellspacing="0" cellpadding="0" class="list zebra">
+  <tr class="head2">
+    <td align="center">Date</td>
+    <td align="center"><a href="#" class="shortTitle">Impression<img
+			class="shotIcon" src="images/short_up.png" /></a></td>
+    <td align="center"><a href="#" class="shortTitle">Click<img
+			class="shotIcon" src="images/short_down.png" /></a></td>
+    <td align="center"><a href="#" class="shortTitle">CTR % <img
+			class="shotIcon" src="images/short_down.png" /></a></td>
+  </tr>
+  {section name=i loop=$list}
+  <tr>
+    <td align="center">{$list[i].tanggal}</td>
+    <td align="center">{$list[i].imp|number_format}</td>
+    <td align="center">{$list[i].click|number_format}</td>
+    <td align="center">{$list[i].ctr} %</td>
+  </tr>
+  {/section}
+</table>

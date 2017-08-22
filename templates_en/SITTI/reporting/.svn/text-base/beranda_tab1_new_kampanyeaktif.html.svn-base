@@ -1,0 +1,48 @@
+{if is_array($campaign_list)}
+<span style=" float:right">Last Update : {$campaign_list[0].last_update|date_format:"%e %B %Y"}</span>
+ <table cellspacing="0" cellpadding="0" border="0" class="list zebra">
+  <tbody><tr class="head2 oddRow">
+    <td>Campaign</td>
+    {*<td>Daily Budget</td>*}
+    <td>Impression</td>
+    <td>Click</td>
+    <td>CTR</td>
+  </tr>
+  {section name=i loop=$campaign_list} 
+  <tr>
+  	<td><a href="beranda.php?PerformaIklan={$campaign_list[i].campaign_id}">{$campaign_list[i].campaign_name}</a></td>
+    {*<td>Rp. {$campaign_list[i].budget_dailies|number_format} / days</td>*}
+    <td>{$campaign_list[i].imp|number_format}
+    {if $campaign_list[i].imp_change > 0}
+    <span style="padding-left:10px;"><img src="images/ppc/arrow_up.png" onmouseout="tooltip.hide();" onmouseover="tooltip.show('{$campaign_list[i].imp_change|number_format:2}%');" /></span>
+    {elseif $campaign_list[i].imp_change < 0}
+    <span style="padding-left:10px;"><img src="images/ppc/arrow_down.png" onmouseout="tooltip.hide();" onmouseover="tooltip.show('{$campaign_list[i].imp_change|number_format:2}%');" /></span>
+    {else}
+    <span style="padding-left:10px;"><img src="images/ppc/green.gif" /></span>
+    {/if}
+    </td>
+    <td>{$campaign_list[i].click|number_format}
+    {if $campaign_list[i].klik_change > 0}
+    <span style="padding-left:10px;"><img src="images/ppc/arrow_up.png" onmouseout="tooltip.hide();" onmouseover="tooltip.show('{$campaign_list[i].klik_change|number_format:2}%');" /></span>
+    {elseif $campaign_list[i].klik_change < 0}
+    <span style="padding-left:10px;"><img src="images/ppc/arrow_down.png" onmouseout="tooltip.hide();" onmouseover="tooltip.show('{$campaign_list[i].klik_change|number_format:2}%');" /></span>
+    {else}
+    <span style="padding-left:10px;"><img src="images/ppc/green.gif" /></span>
+    {/if}
+    </td>
+    <td>{$campaign_list[i].ctr}%
+    {if $campaign_list[i].ctr_change > 0}
+    <span style="padding-left:10px;"><img src="images/ppc/arrow_up.png" onmouseout="tooltip.hide();" onmouseover="tooltip.show('{$campaign_list[i].ctr_change|number_format:2}%');" /></span>
+    {elseif $campaign_list[i].ctr_change < 0}
+    <span style="padding-left:10px;"><img src="images/ppc/arrow_down.png" onmouseout="tooltip.hide();" onmouseover="tooltip.show('{$campaign_list[i].ctr_change|number_format:2}%');" /></span>
+    {else}
+    <span style="padding-left:10px;"><img src="images/ppc/green.gif" /></span>
+    {/if}
+    </td>
+   </tr>
+   {/section}
+</tbody>
+</table>
+{else}
+<p>The campaign conversions is not found.</p>
+{/if}

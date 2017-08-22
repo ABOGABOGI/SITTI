@@ -1,0 +1,55 @@
+{literal}
+<script type="text/javascript"> 
+//disabling enter key
+function stopRKey(evt) { 
+  var evt = (evt) ? evt : ((event) ? event : null); 
+  var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null); 
+  if ((evt.keyCode == 13) && (node.type=="text"))  {return false;} 
+} 
+document.onkeypress = stopRKey; 
+</script>
+{/literal}
+
+<script type="text/javascript">
+var id = {$iklan_id};
+{literal}
+function backToEditPage(){
+	document.location='beranda.php?edit_iklan=1&id='+id;
+	return false;
+}
+{/literal}
+</script>
+
+
+<h3 class="headTitle">Delete Keywords</h3>
+<p><strong>Warning : Deleting keywords will impact to your Ads rank.</strong></p>
+{if $msg}<span class="errorMessage">{$msg}</span>{/if}
+<form class="registerForm" action="beranda.php" method="post" enctype="application/x-www-form-urlencoded"> 
+
+<!-- table keywords -->
+<table width="650" border="0" cellspacing="0" cellpadding="0" class="list zebra" >
+                  <tr class="head">
+                    <td width="20">No.</td>
+                    <td>Keywords</td>
+                    <td>&nbsp;</td>
+                  </tr>
+                  {section name=i loop=$list}
+                  {if $list[i].keyword}
+                  <tr>
+                    <td>{$smarty.section.i.iteration}</td>
+                    <td>{$list[i].keyword|trim|stripslashes|strip_tags}</td>
+                    <td><a onmouseover="tooltip.show('Delete Keyword');" onmouseout="tooltip.hide();"  class="deletePage" href="beranda.php?hapus_keyword=1&k={$list[i].keyword|stripslashes|strip_tags}&id={$iklan_id}">&nbsp;</a></td>
+                  </tr>
+                  {/if}
+    			{/section}
+</table>
+<!-- end of table keywords -->
+    <div class="row">
+        
+        <input type="button" value="Back" class="submitButton" onclick="backToEditPage()"/>
+    </div>
+  <input name="id" type="hidden" id="id" value="{$rs.id|stripslashes|strip_tags}" />
+  <input name="c" type="hidden" id="c" value="{$rs.ox_campaign_id|stripslashes|strip_tags}" />
+  <input name="edit_iklan" type="hidden" value="1"/>
+  <input name="do" type="hidden" value="update" />
+</form>

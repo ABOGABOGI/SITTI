@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>SITTI Platform</title>
+<link href="css/sitti.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" language="javascript" src="js/iepngfix_tilebg.js"></script>
+<script type="text/javascript" language="javascript" src="js/drop_table.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+</head>
+
+<body onload="init()">
+{if $takeOut}<div class="cLabel"><a href="http://www.sitti.co.id/UtakAtik/index.html"></a></div>{/if}
+	<div class="wrapper">
+	
+        	<a class="logoLogin" href="index.php">&nbsp;</a>
+        <div class="loginBlock">
+               <h3 class="f18 blue">Masukkan Email Anda</h3>
+               <form class="login" action="lupa.php" method="post" enctype="application/x-www-form-urlencoded">
+                    <div class="rowLogin">
+                    <label>E-mail</label>
+                    <input name="sitti_email" type="text" class="inputText" id="sitti_email" maxlength="50" autocomplete="off"/>
+                    </div>
+                     <div class="rowLogin">
+                    {$CAPTCHA}
+	
+		{if $CaptchaError} <span class="error">{$CaptchaError}</span>{/if}
+                    </div>
+                
+                    <div class="rowMessageLogin" style="margin:0 0 15px 0;">
+                        {if $msg}
+                       
+                        <span class="sukses">{$msg}</span> 
+                        {elseif $er}
+                        
+                        <span class="error">{$er}</span>
+                        
+                        {/if}
+                    
+                    </div>
+                    <div class="rowLogin2"><input name="check" type="hidden" value="1" />
+                    <input type="submit" class="submitButton" value="KIRIM" />
+                     <a class="signup" href="daftar.php">Belum punya Akun? <span class="blue"> Klik Disini</span></a>
+                    </div>
+                    
+               </form>
+        </div>
+    </div>
+ </body>
+ </html>

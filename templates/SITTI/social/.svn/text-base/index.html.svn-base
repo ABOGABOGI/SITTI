@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		{$meta}
+	</head>
+	<body style="width: 952px;margin:0 auto;padding:0;">
+	<div class="wrap relative">
+		<div class="bubble absolute" style="top:0;right:0;display:block;cursor:pointer;">
+			<span class="bubble-text">Your comments are welcome</span><br/>
+			<span class="bubble-minitext">click here</span>
+		</div>
+		<div id="body">
+		    {$header}
+		    {$topmenu}
+		    <div id="content">
+		       	{$main}
+		    </div>
+		</div>
+		
+		<div id="bgContact"></div>
+		<div id="contact" class="box box-shadow absolute round12">
+			<div id="exitContact" class="exit_contact"></div>
+			<h4 id="msgContact" style="margin: 0 0 10px;"></h4>
+			<a id="linkContact" class="clickHere" href="#" style="display: inline-block;"></a>
+		</div>
+		<div id="nextBrand" class="box box-shadow absolute round12">
+		<form>
+			<div id="exitContact" class="exit_contact"></div>
+			<h4 id="brandCat" style="margin: 0 0 10px;">Your Brand is</h4>
+			<input id="field" type="text"></input>
+			<a id="nextButton" class="clickHere" href="#" style="display: inline-block;">Next</a>
+		</form>
+		</div>
+		<div id="contactUs" class="box box-shadow absolute round12">
+		<form id="formContact">
+			<div id="exitContact" class="exit_contact"></div>
+			<img width="202" src="images/ver2/contacthead.png" style="margin-bottom: 7px;"></img>
+			<p id="contactSubtext">Contact us for the complete result</p>
+			<input type="hidden" name="field" value=""/>
+			<input type="text" name="name" value="Your Name" no="Your Name" />
+			<input type="text" name="email" value="Your Email Address" no="Your Email Address"/>
+			<input type="text" name="telp" value="Your Phone Number" no="Your Phone Number"/>
+			<input type="hidden" name="tipe" value=""/>
+			<textarea name="message">Message</textarea>
+			<input type="button" id="submitButton" class="clickHere" style="display: inline-block;" value="Submit">
+		</form>
+		</div>
+		<div id="wcBridge" class="box box-shadow absolute round12">
+		<form>
+			<div id="exitContact" class="exit_contact"></div>
+			<h4 style="margin: 0 0 10px;">You are about to advertise with SITTI using the most relevant keyword to your category.</h4>
+			<a id="helpButton" class="clickHere" href="#" style="display: inline-block;">Let us help</a>
+			<a id="nextButton2" class="clickHere" href="javascript:JumpToSimulationPage()" style="display: inline-block;">Next</a>
+		</form>
+		</div>
+		{$footer}
+	</body>
+</html>

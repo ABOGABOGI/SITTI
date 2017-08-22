@@ -1,0 +1,60 @@
+{literal}
+<script>
+$(document).ready(function(){
+	function DayDiff(date1, date2) {
+		return (date2.getTime() - date1.getTime()) / 1000 / 60 / 60 / 24;
+	}
+	
+	$("#tanggalAwal,#tanggalAkhir").datepicker();
+
+    $('#tanggalAwal').bind('change', function () {
+        $('#tanggalAkhir').val('');     
+    });       
+       
+    $('#tanggalAkhir').bind('change', function () {
+        var tgl_awal = $('#tanggalAwal').datepicker("getDate");
+        var tgl_akhir = $('#tanggalAkhir').datepicker("getDate");
+        interval = DayDiff(tgl_awal, tgl_akhir);
+        
+        if (interval<=0){
+			$('#tanggalAkhir').val('');
+		}
+    });
+});
+</script>
+{/literal}
+{if $msg}<span class="errorMessage">{$msg}</span>{/if}
+        	<div class="w915">
+                <h3 class="headTitle">Ubah Kampanye/Program</h3>
+                <p><strong>Kampanye iklan adalah kumpulan beberapa alternatif iklan dalam satu tema. Misalnya, Anda membuat kampanye iklan "Promo Akhir Tahun", isi iklan-iklan tesebut dapat berisikan jasa atau barang yang ingin Anda iklankan seperti iklan promo baju, iklan promo sepatu, dan seterusnya.</strong></p>
+            	<form class="registerForm" action="beranda.php" method="POST" enctype="application/x-www-form-urlencoded">
+            	<div class="row">
+                	<label style="width:120px; float:left;">Nama Kampanye/Program</label>
+                    <input type="text" name="name" class="inputText" style="float:left;" value="{$rs.name|trim|stripslashes|strip_tags}"/><a onmouseover="tooltip.show('Beri nama kampanye iklan supaya mudah dikenali');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+                </div>
+            	<div class="row">
+               	  <label style="width:120px; float:left;">Deskripsi</label>
+                    <textarea name="deskripsi" cols="40" rows="10" id="deskripsi" style="float:left;">{$rs.description|trim|stripslashes|strip_tags}</textarea><a onmouseover="tooltip.show('Deskripsi adalah catatan tambahan untuk memperjelas maksud dan tujuan kampanye iklan SITTI');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+                </div>
+            	<div class="row">
+                    <label style="width:120px; float:left;">Mulai</label> 
+                    <input type="text" name="tanggalAwal" id="tanggalAwal" value="{$rs.campaign_start}" maxlength="12" style="float:left;"/>
+                        <a onmouseover="tooltip.show('Tanggal kampanye akan di aktifasi');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+                </div>
+            	<div class="row">
+                	<label style="width:120px; float:left;">Selesai</label> 
+					<input type="text" name="tanggalAkhir" id="tanggalAkhir" value="{$rs.campaign_end}" maxlength="12" style="float:left;"/>	
+                        <a onmouseover="tooltip.show('Tanggal kampanye akan non-aktifkan');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+                </div>
+                <div class="row">
+                    
+                	<input type="submit" value="Simpan" class="submitButton" />
+                	<input name="do" type="hidden" id="do" value="update_campaign" />
+                	<input name="token" type="hidden" id="token" value="{token}" />
+                	<input name="id" type="hidden" id="id" value="{$rs.ox_campaign_id}" />
+                	<br /><br />
+                    <font color="red" style="font-size:10px;"> Semua Wajib Diisi, Kecuali Deskripsi.</font>
+                </div>
+                </form>
+            </div>
+            

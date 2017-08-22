@@ -1,0 +1,131 @@
+<link href="../css/tab.css" rel="stylesheet" type="text/css" />
+<link href="admin.css" rel="stylesheet" type="text/css" />
+
+{literal}
+<style>
+		body{
+			background-color:#FFF;
+			font-size:12px;
+			font-family:arial;
+			text-align:left;
+			margin:0; padding:0;
+			color:#000;
+		}
+		.row2{
+			width:115px;
+			padding:7px 0;
+			display:inline-block;
+		}
+		.row2 label{
+			width:auto;
+		}
+		.blue{
+			color:#0080AB;
+		}
+		input[type=submit].submitButton, a.submitButton,input[type=button].submitButton{
+			background:#0080AB;
+			height:30px; padding:5px 15px;
+			text-transform:uppercase;
+			text-shadow:1px 1px 1px #000000;
+			color:#FFF;
+			text-align:center;
+			border:none;
+			-moz-border-radius:8px;
+			-webkit-border-radius:8px;
+			border-radius:8px;
+			cursor:pointer;
+			text-decoration:none;
+		}
+		input[type=submit]:hover,a.submitButton:hover,input[type=button]:hover{
+			background: #09F;
+		}
+		.frameKeyword{
+			padding:15px;
+			background-color:#FFF;
+		}
+	</style>
+{/literal}
+<script type="text/javascript" src="../js/jquery.js"></script>
+<div class="frameKeyword"> 
+	<strong style="font-size:14px;">Daftar Keyword :</strong>
+  <table width="100%" cellspacing="0" cellpadding="0" class="addlist zebra">
+    {section name=i loop=$keyword}
+    <tr>
+      <td><span style="color:#000; font-size:12px;">{$keyword[i]}</span></td>
+      <td><a href="index.php?s=sitti&r=list&do=keyword_list&remove={$keyword[i]}&id={$rs.id}" class="deletePage" style="font-size:12px;">Hapus</a></td>
+    </tr>
+    {/section}
+  </table>
+  <!-- tambah keyword -->
+  {literal}
+  <script>
+
+            // When the document loads do everything inside here ...
+            $(document).ready(function(){
+				
+                // When a link is clicked
+                $("a.tab").click(function () {
+					
+
+                    // switch all tabs off
+                    $(".active").removeClass("active");
+
+                    // switch this tab on
+                    $(this).addClass("active");
+
+                    // slide all content up
+                    $(".contentTab").slideUp();
+
+                    // slide this content up
+                    var content_show = $(this).attr("title");
+                    $("#"+content_show).slideDown();
+
+                });
+
+            });
+			
+			function search_words(){
+				//alert("yey");
+				if(document.getElementById('q').value.length>0){
+					$("#content_1").html("<span style='text-align:center;'><img src='../images/loader.gif'/></span>");
+					$("#content_2").html("<span style='text-align:center;'><img src='../images/loader.gif'/></span>");
+					$("#content_1").load("../uji_sitti.php?q="+escape(document.getElementById('q').value)+"&t=1");
+					$("#content_2").load("../uji_sitti.php?q="+escape(document.getElementById('q').value)+"&t=2");
+					//$('.toggle').show();
+					//$('a.toggleLink').html(showText);
+					//is_visible = true;
+				}
+			}
+			function gotoRegister(){
+				document.location = "index.php?registration=1";
+			}
+        </script>
+  {/literal}
+  <div style="padding:30px 0 0 0">
+  <input type="text" class="inputText" id="q" name="q" onchange="search_words();"/>
+  <a style="margin:0 0 0 20px" class="submitButton" onclick="search_words()" >Tampilkan Saran Kata</a>
+  <form action="index.php" method="post" enctype="application/x-www-form-urlencoded">
+    <div class="toggle"> <span>Kata-kata yang paling berhubungan menurut SITTI</span>
+      <div id="tabbed_box_1" class="tabbed_box">
+        <div class="tabbed_area">
+          <ul class="tabs">
+            <li><a title="content_1" class="tab">SITTI Data</a></li>
+            <li><a title="content_2" class="tab">Web Data</a></li>
+          </ul>
+          <div id="content_1" class="contentTab"> </div>
+          <div style="display: none;" id="content_2" class="contentTab"> </div>
+        </div>
+        <p><strong class="blue"> * Sitti Data</strong><br />
+          Kata berhubungan yang diambil dari media cetak atau media offline </p>
+        <p> <strong class="blue">* Web Data</strong><br />
+          Kata berhubungan yang diambil dari internet seperti website dan blog </p>
+      </div>
+    </div>
+    <input name="Save" type="submit" value="Update Keyword" />
+    <input name="s" type="hidden" id="s" value="sitti" />
+    <input name="r" type="hidden" id="r" value="list" />
+    <input name="do" type="hidden" id="do" value="keyword_list" />
+    <input name="id" type="hidden" id="id" value="{$rs.id}" />
+  </form>
+  </div>
+</div>

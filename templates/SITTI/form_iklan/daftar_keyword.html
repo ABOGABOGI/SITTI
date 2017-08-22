@@ -1,0 +1,25 @@
+<table width="650" border="0" cellspacing="0" cellpadding="0" class="list zebra" >
+                  <tr class="head">
+                    <td width="20">No.</td>
+                    <td>Kata Kunci</td>
+                    <td>Rata - Rata CPC</td>
+                    <td>Tawaran Anda</td>
+                    <td>Budget/Hari</td>
+                    <td>Total Budget</td>
+                    <td width="50">Remove</td>
+                  </tr>
+                  {section name=i loop=$list}
+                  {if $list[i].keyword}
+                  <tr>
+                    <td>{$smarty.section.i.iteration}</td>
+                    <td>{$list[i].keyword|trim|stripslashes|strip_tags}</td>
+                    <td>{$list[i].max_cpc|number_format}<input name="cpc[]" type="hidden" value="{$list[i].max_cpc|number_format}"/></td>
+                    <td><input name="keyword[]" type="hidden" value="{$list[i].keyword|stripslashes|strip_tags|mysql_escape_string}"/>
+                      <input name="bid[]" type="text" value="{if $liar[i].bid eq ''}{$MINIMUM_BID}{else}{$list[i].bid|number_format}{/if}"  class="inputPoint"/></td>
+                    <td><input name="budget[]" type="text" value="{$list[i].budget|number_format}" class="inputPoint"/></td>
+                    <td><input name="total[]" type="text" value="{$list[i].total|number_format}" class="inputPoint"/></td>
+                    <td><div align="center"><a onmouseover="tooltip.show('Hapus Keyword ini?');" onmouseout="tooltip.hide();"  href="javascript:;" class="remove" onclick="deleteKeyword('{$list[i].keyword|stripslashes|strip_tags|mysql_escape_string}');">&nbsp;</a></div></td>
+                  </tr>
+                  {/if}
+                    {/section}
+                </table>

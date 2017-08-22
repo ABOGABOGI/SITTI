@@ -1,0 +1,32 @@
+<script type="text/javascript" src="js/jquery_swfobject.js"></script>
+{literal}
+<script>
+$(document).ready(
+		function() {
+			//$("#grafik1").flash({swf:'chart.swf',width:'100%',height:193});
+		}
+	);
+</script>
+{/literal}
+<div id="grafik1" class="grafik"></div>
+                    <div class="titleBerandaZen">
+                   	 <a class="tambahIcon" onmouseover="tooltip.show('Pindahkan ke Beranda');" onmouseout="tooltip.hide();"  href="#">&nbsp;</a>
+                    <!-- sementara di hide <a class="pdf" onmouseover="tooltip.show('Export ke PDF');" onmouseout="tooltip.hide();"  href="#">&nbsp;</a>
+                     <a class="excel" onmouseover="tooltip.show('Export ke Excel');" onmouseout="tooltip.hide();"  href="#">&nbsp;</a>-->
+                   </div>
+                    <table width="713" border="0" cellspacing="0" cellpadding="0" class="list zebra">
+                      <tr class="head2">
+                        <td width="30" align="center">No.</td>
+                        <td>Ad Name</td>
+                        <td>Click Source Location</td>
+                        <td align="center"><a href="#" class="shortTitle">CTR <img class="shotIcon" src="images/short_up.png" /></a></td>
+                        <td align="center"><a href="#" class="shortTitle">CTR % <img class="shotIcon" src="images/short_down.png" /></a></td>
+                      </tr>
+                      <tr>
+                        <td align="center">{$list[i].no}</td>
+                        <td>Advertising Promo Lebaran</td>
+                        <td>Bandung</td>
+                        <td align="center">{$list[i].clicks|number_format}</td>
+                        <td align="center">{$list[i].ctr} %</td>
+                      </tr>
+                    </table>

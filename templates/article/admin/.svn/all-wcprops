@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/sittiweb/!svn/ver/67/branches/phase03-03/templates/article/admin
+END
+edit.html
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/sittiweb/!svn/ver/67/branches/phase03-03/templates/article/admin/edit.html
+END
+manage.html
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/sittiweb/!svn/ver/67/branches/phase03-03/templates/article/admin/manage.html
+END
+new.html
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/sittiweb/!svn/ver/67/branches/phase03-03/templates/article/admin/new.html
+END

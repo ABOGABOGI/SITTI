@@ -1,0 +1,53 @@
+
+<strong>EDIT IKLAN</strong><br>
+<br>
+<form name="form1" method="post" action="index.php">
+  Advertiser ID : {$rs.advertiser_id}
+  <br>
+  <br>
+  <table width="100%" border="0" class="addlist zebra" cellspacing="0" cellpadding="10">
+    <tr>
+      <td width="42%"><table width="100%" border="0" cellspacing="0" cellpadding="10">
+        <tr>
+          <td width="88%"><strong>Nama</strong><br>
+            <input name="nama" type="text" id="nama" value="{$rs.nama|stripslashes|strip_tags}" maxlength="30"></td>
+        </tr>
+        <tr>
+          <td><strong>Judul</strong><br>
+            <input name="judul" type="text" id="judul" value="{$rs.judul|stripslashes|strip_tags}" size="50" maxlength="30"></td>
+        </tr>
+        <tr>
+          <td><strong>Category</strong><br>
+            <input name="category" type="text" id="baris1" value="{$rs.category|stripslashes|strip_tags}" size="50" maxlength="30" readonly="readonly"></td>
+        </tr>
+        <tr>
+          <td><strong>Baris 1</strong><br>
+            <input name="baris1" type="text" id="baris1" value="{$rs.baris1|stripslashes|strip_tags}" size="50" maxlength="30"></td>
+        </tr>
+        <tr>
+          <td><strong>Baris 2</strong><br>
+            <input name="baris2" type="text" id="baris2" value="{$rs.baris2|stripslashes|strip_tags}" size="50" maxlength="30"></td>
+        </tr>
+        <tr>
+          <td><strong>URL Tujuan</strong><br>
+            <input name="urlLink" type="text" id="urlLink" value="{$rs.urlLink|stripslashes|strip_tags}" size="50"></td>
+        </tr>
+        <tr>
+          <td><strong>Tampilan URL</strong><br>
+            <input name="urlName" type="text" id="urlName" value="{$rs.urlName|stripslashes|strip_tags}" maxlength="30"></td>
+        </tr>
+        <tr>
+          <td><input type="submit" name="Update" id="Update" value="Update">
+            <input name="s" type="hidden" id="s" value="sitti">
+            <input name="r" type="hidden" id="r" value="list">
+            <input name="do" type="hidden" id="do" value="update">
+             <input name="st" type="hidden" id="start" value="{$start}" />
+            <input name="id" type="hidden" id="id" value="{$rs.id}"></td>
+        </tr>
+      </table></td>
+      <td width="58%" valign="top" bgcolor="#FFFFFF">
+      <iframe src="index.php?s=sitti&r=list&do=keyword_list&id={$rs.id}" width="100%" height="450" border="0"></iframe>
+     </td>
+    </tr>
+  </table>
+</form>

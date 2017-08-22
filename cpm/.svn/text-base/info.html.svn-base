@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>SITTI - Platform Iklan Kontekstual Berbahasa Indonesia, Iklan Kontekstual, Bahasa Indonesia</title>
+<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="icon" type="image/gif" href="images/animated_favicon.gif">
+
+<link rel="stylesheet" type="text/css" href="css/sitti.css" />
+<style type="text/css">
+	strong{ font-size:14px;}
+	.term{
+		background:url(images/bg_popup.png) no-repeat;
+		padding:85px 20px 0 20px;
+		text-align:left;
+		text-align:center;
+		font-size:14px;
+		width:470px;
+		margin:100px auto 0 auto;
+		height:300px;
+		text-shadow:0 1px 0 #fff;
+	}
+</style>
+</head>
+
+<body style="width:960px"><div align="center" class="term">
+	<h2 class="blue">Inilah Hadiah Akhir Tahun Anda Dari SITTI!</h2>
+
+<p>Kami ucapkan terima kasih, karena bersama Anda, SITTI berhasil ‘naik kelas’ menuju titik awal
+
+komersialisasi.</p>
+<p>
+Dan sebagai salah satu klien pertama yang mempercayakan brand/campaign Anda
+
+kepada SITTI, kami memberikan kado akhir tahun berupa kredit iklan senilai <span class="green bold">Rp. 250.000</span></p>
+      <p style="margin:35px 0 0 0"><a class="submitButton" style="text-shadow:none;" href="#">Klik Disini Untuk Redeem!</a></p>
+</div>
+</body>
+</html>

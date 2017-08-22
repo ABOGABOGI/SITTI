@@ -1,0 +1,25 @@
+{literal}
+<style type="text/css">
+html {
+    color: #343434;
+    font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    line-height: 18px;
+}
+</style>
+{/literal}
+<html>
+<h2 class="blue">Klik BCA</h2>
+<p><img src="images/bank_klik_bca.jpg" />
+<ol>
+        <li>Click the &quot;Top Up&quot; button below;</li>
+        <li>Choose KlikBCA as your payment method;</li>
+        <li>Fill in the required fields; your amount of Top Up and KlikBCA ID;</li>
+        <li>Log in to KlikBCA website;</li>
+        <li>Go to menu " e-Commerce Payments " and select the category "Others" and then select "Indomog;</li>
+        <li>Confirm your SITTI Top Up transaction;</li>
+        <li>You will get an Confirmation SMS / Email from KlikBCA;</li>
+        <li>The balance will appear on your account;</li>
+        <li>If you don't do the confirmation in the next 60 minutes in the KlikBCA website, the TOP UP request form the SITTI website would be canceled;</li>
+        <li>Should you have any problem with your Top Up process, please send an email to <a href="mailto:billing@sitti.co.id">billing@SITTI.co.id</a>. Please include the Transaction Code in the Email. </li>
+</ol>        

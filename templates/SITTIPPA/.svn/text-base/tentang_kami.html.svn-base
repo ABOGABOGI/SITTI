@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>SITTI - Platform Iklan Kontekstual Berbahasa Indonesia, Iklan Kontekstual, Bahasa Indonesia</title>
+        <link href="css/sitti.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" language="javascript" src="js/iepngfix_tilebg.js"></script>
+        <script type="text/javascript" language="javascript" src="js/drop_table.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <link type="text/css" href="js/themes/hot-sneaks/ui.all.css" rel="stylesheet" />
+		<script type="text/javascript" src="js/iepngfix_tilebg.js"></script>
+        <script type="text/javascript" src="js/drop_table.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/ui/ui.core.js"></script>
+        <script type="text/javascript" src="js/ui/ui.datepicker.js"></script>
+        <script type="text/javascript" src="js/ui/i18n/ui.datepicker-id.js"></script>
+        <script type="text/javascript" src="js/flash.js"></script>
+        {literal}
+		<script type="text/javascript">
+		
+          $(document).ready(function(){
+            $(".closeDialog").click(function(){
+				$("#kotakdialog").hide("slow");
+			});
+          });
+		 
+        </script>
+		<script type="text/javascript">
+            $(document).ready(function() {	
+                //When page loads...
+                $(".tab_content").hide(); //Hide all content
+                $("ul.tabjs li:first").addClass("active").show(); //Activate first tab
+                $(".tab_content:first").show(); //Show first tab content
+				
+				
+            
+            });
+            $(document).ready(function(){
+                $("#tanggalAwalBeranda,#tanggalAkhirBeranda,#tanggalAwalAkun,#tanggalAkhirAkun,#tanggalAwalPenempatan,#tanggalAkhirPenempatan,#tanggalAwalKatakunci,#tanggalAkhirKatakunci,#tanggalAwalTujuan,#tanggalAkhirTujuan,#tanggalAwalPeforma,#tanggalAkhirPeforma,#tanggalAwalGeografis,#tanggalAkhirGeografis,#tanggalAwalPenagihan,#tanggalAkhirPenagihan").datepicker();
+            });
+            function onPhraseClicked(obj){
+				//alert(obj.value);
+				$("input[name=keywords\\[\\]]").removeAttr("checked");
+				$("input[name=keywords\\[\\]]").attr("disabled","true");
+            }
+        </script>
+{/literal}
+        <link rel="shortcut icon" href="images/favicon.ico">
+        <link rel="icon" type="image/gif" href="images/animated_favicon.gif">
+
+    </head>
+
+    <body onload="init()">
+      {if $takeOut}<div class="cLabel"><a href="http://www.sitti.co.id/UtakAtik/index.html"></a></div>{/if}
+	 {if $broadcast}
+	
+     <div id="kotakdialog" title="Pesan Hari Ini">
+     	<div class="isiDialog">
+       {$broadcast}
+        </div>
+	<a class="closeDialog" onmouseover="tooltip.show('Tutup Kotak Dialog');" onmouseout="tooltip.hide();"  href="#">&nbsp;</a>
+    </div>
+	{/if}
+    <table  border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr>
+    <td>
+        <div class="wrapper">
+			
+            <div class="header">
+             {if $isLogin}
+                <a class="logo" href="beranda.php">&nbsp;</a>
+                <a class="slogan" href="beranda.php">&nbsp;</a>
+               
+             {else}
+                <a class="logo" href="beranda.php">&nbsp;</a>
+                <a class="slogan" href="beranda.php">&nbsp;</a>
+                
+             {/if}
+            </div>
+<!--             {if $msg}
+            <div class="messageBoxLogin" align="right">
+               
+               
+                <span class="sukses">{$msg}</span> 
+                {elseif $er}
+                
+                <span class="error">Anda tidak berhasil masuk. Periksa nama akun dan kata sandi anda.</span>
+                
+              
+            </div>
+              {/if}-->
+            {if $isLogin}
+			<div class="navigationBarAllLogin">
+			<div class="navigationRight">
+                <ul class="menu navigation" id="menu">
+                    <li style="margin:0 29px 0 0"><a class="dropdown" href="profile.php">Profile Saya</a>
+                    	{*<ul>
+                            <li><a href="profile.php?modify=1">Ganti Profil</a>
+    <!--                            <ul>
+                                    <li><a href="profile.php?bank=1">Daftar Rekening Bank</a></li>
+                                    <li><a href="profile.php?cc=1">Daftar Kartu Kredit</a></li>
+                                </ul>-->
+                            </li>
+                            <li><a href="refer.php">Refer Teman</a></li>
+                  			<li><a href="pembayaran.php">Pembayaran</a></li>
+                        </ul>*}
+                    </li>
+                    <li style="margin:0 29px 0 0"><a href="beranda.php">Laporan</a></li>
+                    <!--li><a href="pembayaran.php">Top Up</a></li-->
+                    <li style="margin:0 29px 0 0"><a target="_blank" href="http://sitti.zendesk.com/anonymous_requests/new">Kontak</a></li>
+                </ul>
+                <script type="text/javascript">var menu=new menu.dd("menu");menu.init("menu","menuhover");</script>
+             <a class="btnKeluar" href="index.php?logout=1"></a>
+              <a alt="http://twitter.com/sittiID" class="twitterAtas" href="http://twitter.com/sittiID" target="_blank"></a>
+             <a alt="http://www.facebook.com/SITTI.ID" class="fbAtas" href="http://www.facebook.com/SITTI.ID" target="_blank"></a>
+             </div>
+			
+            </div>
+            {else}
+            
+            <div class="navigationBarAll">
+            	<div class="navigationRight">
+                <ul class="navigation">
+                    <li><a href="tentang_kami.php">Tentang</a></li>
+                    <li><a href="uji_sitti.php">Simulasi</a></li>
+                     <li><a href="career.php">Karir</a></li>
+                    <li><a target="_blank" href="http://sitti.zendesk.com/anonymous_requests/new">Kontak Kami</a></li>
+                </ul>
+               		 <a class="daftarSITTI" href="index.php?registration=1">Daftar di SITTI</a>
+                    <form class="regForm" action="{$LOGIN_URL}" method="post" enctype="application/x-www-form-urlencoded">
+                	<input name="username" type="text" value="E-mail Anda" onfocus="blank(this)" onblur="unblank(this)" autocomplete="off">
+                    <input name="password" type="password" value="Kata Sandi" onfocus="blank(this)" onblur="unblank(this)" autocomplete="off">
+                    <input name="role" type="hidden" value="1" />
+                    <input type="submit" value="&nbsp;" />
+               		 </form>
+                    
+               </div>
+            </div>
+          
+            {/if}
+             {if $isLogin}
+         <div class="topUserMenu">
+         	<div class="topUserMenu-right">
+         	
+         	<div class="tum_info">
+         	<span class="namaPemilik">Nama Pemilik Akun</span>
+         	<span class="namaUser">{$info.name|strip_tags}</span>
+         	<span class="namaUser">{$info.sittiID}</span>
+         	</div>  	
+         	
+         	<a class="tum_buat" href="buat.php{if $is_ppa}?ad_ppa=true{/if}{if $is_cpm}?ad_banner=true{/if}"></a>
+         	<a class="tum_kampanye" href="beranda.php?buat_campaign=1"></a>
+         	
+         	</div>
+         </div>
+         {/if}   
+          <div class="blockContent">   
+            <div class="content">
+                <div class="colLeft" style="width:650px;">
+                	<h3 class="headTitle">Tentang SITTI 359</h3>
+ <p><strong>Meningkatkan jumlah pengunjung ke situs/blog Anda, mendorong penjualan atau sekedar menciptakan kesadaran atas merek dagang usaha Anda, Sitti memudahkan segalanya. </strong><br />
+  &nbsp;<br />
+
+            Sitti memiliki berbagai platform iklan kontekstual dalam bahasa Indonesia yang memudahkan pemasang iklan untuk menempatkan iklannya di situs berbahasa Indonesia yang isinya sesuai dengan pesan iklan/produknya (relevan), sehingga iklan tersebut dibaca oleh orang yang tepat pada saat yang tepat (akurat), dapat diukur dan dipertanggung jawabkan.<br />
+  &nbsp;<br />
+            Dengan Sitti pemasang iklan dengan mudah mampu mengukur keberhasilan iklan yang dipasang dengan hasil yang dicapai secara riil. Mulai dari jumlah klik ke situs Anda, penyajian informasi yang disesuaikan dengan pengunjung situs Anda dan tentunya yang paling penting membuat pengunjung situs Anda menghubungi atau menelepon Anda.<br />
+  &nbsp;<br />
+            Jika bisnis atau perusahaan Anda membutuhkan pasar Indonesia yang berbahasa Indonesia, beriklanlah lewat kami. Hanya butuh 15 menit untuk mendaftar dan iklan Anda langsung bekerja. <a href="index.php?registration=1">Klik disini untuk mendaftar!</a><br />
+  &nbsp;<br />
+  <strong>Laporan</strong><br />
+
+            Sitti memonitor kampanye iklan Anda 24 jam setiap hari dan menyajikan laporan berkala setiap hari/minggu yang isinya meliputi:<br />
+            a.&nbsp;&nbsp; Impressi : Jumlah atau berapa kali iklan2 yang terpasang muncul di halaman pemilik-pemilik situs/blog <br />
+            b.&nbsp;&nbsp; Klik : Jumlah atau berapa kali iklan2 yang terpasang diklik oleh pengguna/pengunjung situs/blog (user)<br />
+            c.&nbsp;&nbsp;&nbsp; CTR : Jumlah persentase iklan tersebut diklik dibandingkan dengan jumlah impresinya.<br />
+
+            d.&nbsp;&nbsp; Tautan untuk melihat laporan yang lebih rinci<br />
+            e.&nbsp;&nbsp; Pilihan untuk melakukan perbaikan atau edit dan penghapusan dari suatu iklan/kampanye yang sudah dibuat. </p>
+
+
+				</div>
+                {if $contentID eq "1" or $contentID eq "2" or $contentID eq "3"}
+                <div class="w242">
+                    <ul class="navUser">
+                        <li><a href="index.php?id=1">Latar Belakang</a></li>
+                        <li><a href="index.php?id=2">Visi dan Misi</a></li>
+                        <li><a href="index.php?id=3">Video Presentasi</a></li>
+                    </ul>
+                </div>
+                {/if}
+				<!--  colom kanan beranda -->
+                
+				 <div class="bottomContent"> </div>
+            </div>
+         </div>
+           
+        </div>
+     </td>
+  </tr>
+</table>
+        <div class="footer">
+            <div class="wrapper">
+                <ul class="navFoot">
+                    <li><a href="tentang_kami.php">Tentang Kami</a>|</li>
+                    <li><a href="term.html" target="_blank"> Syarat dan Ketentuan</a>|</li>
+                    <li><a href="privasi.html" target="_blank">Kebijakan Privasi</a>|</li>
+                    <li><a href="http://blog.belajarsitti.com/" target="_blank">Blog</a>|</li>
+                    <li><a href="http://sittizen.sitti.co.id/" target="_blank"> Jadi SITTIZEN</a>|</li>
+                    <li><a href="http://sitti.zendesk.com/anonymous_requests/new" target="_blank">Kontak Kami</a></li>
+                </ul>
+                <p class="copyRight">
+                    Email: beriklan@sitti.zendesk.com<br />
+                    © 2010 SITTI
+                </p>
+            </div>
+        </div>
+ {literal}
+		 <script type="text/javascript">
+        function blank(a) { if(a.value == a.defaultValue) a.value = ""; }
+        function unblank(a) { if(a.value == "") a.value = a.defaultValue; }
+        </script> 
+
+        <script type="text/javascript">
+
+{/literal}
+    </body>
+</html>

@@ -1,0 +1,23 @@
+<p><strong>ADVERTISER</strong>S</p><br>
+<br/>
+{if $msg}<div style="color:#cc0000;">{$msg}</div>{/if}
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="list zebra">
+  <tr class="head">
+    <td><strong>SittiID - Email</strong></td>
+    <td><strong>Name</strong></td>
+    <td><strong>Address</strong></td>
+    <td><strong>Phone</strong></td>
+  </tr>
+  {section name=i loop=$list}
+  <tr>
+    <td>{$list[i].sittiID} - {$list[i].email|stripslashes|strip_tags}</td>
+    <td>{$list[i].name|stripslashes|strip_tags}</td>
+    <td>{$list[i].address|stripslashes|strip_tags}</td>
+    <td>{$list[i].phone|stripslashes|strip_tags}<br />
+    {$list[i].mobile|stripslashes|strip_tags}</td>
+  </tr>
+  {/section}
+</table>
+<p>{$paging}</p>
+<br />
+*) displaying 100 accounts per page.

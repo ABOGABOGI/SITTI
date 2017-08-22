@@ -1,0 +1,40 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="addlist zebra">
+  <tr>
+    <td width="100%"><strong>Daily Performance</strong></td>
+  </tr>
+</table>
+<form id="form1" name="form1" method="get" action="">
+  Pilih Tanggal : 
+  <select name="d" id="d">
+  {section name=i loop=$date_list}
+    <option value="{$date_list[i]}">{$date_list[i]}</option>
+   {/section}
+  </select>
+  <input name="s" type="hidden" value="report2" />
+  <input name="r" type="hidden" value="ad_daily" />
+  <input type="submit" name="button" id="button" value="GO" />
+<br />
+  *) hanya menampilkan tanggal 7 hari terakhir.
+</form>
+<p>&nbsp;</p>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="list zebra">
+  <tr>
+ 	<td width="25%"><strong>Iklan</strong></td>
+    <td width="15%"><strong>Advertiser</strong></td>
+    <td width="29%"><strong>Impression</strong></td>
+    <td width="20%"><strong>Click</strong></td>
+    <td width="20%"><strong>CTR</strong></td>
+   
+  </tr>
+  {section name=i loop=$list}
+  <tr>
+  <td>{$list[i].judul|stripslashes|strip_tags}<sup>{$list[i].iklan_id}</sup><br/>{$list[i].baris1|stripslashes|strip_tags}<br/>{$list[i].baris2|stripslashes|strip_tags}<br/><a href="{$list[i].urlLink|stripslashes|strip_tags}" target="_blank">{$list[i].urlName|stripslashes|strip_tags}</a></td>
+    <td>{$list[i].sittiID|stripslashes|strip_tags|trim}</td>
+    <td>{$list[i].t_view|number_format}</td>
+    <td>{$list[i].t_click|number_format}</td>
+    <td>{$list[i].ctr} %</td>
+ 
+  </tr>
+  {/section}
+</table>
+<p>{$paging}</p>

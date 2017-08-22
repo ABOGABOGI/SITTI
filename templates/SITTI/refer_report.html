@@ -1,0 +1,26 @@
+<div class="w915">
+                <h3 class="f18 blue">Laporan Referral</h3>
+                <p><strong>Ajak teman Anda bergabung dengan SITTI lewat link di bawah ini: </strong></p>
+                <form>
+                	<div class="row">
+                    	<label>Referral Link</label>
+                  <input type="text" class="inputText" name="referral_link" autocomplete="off" value="{$WebsiteURL}adv_referral.php?refid={$refid}" style="width:339px;"/>
+                  <p style="margin-top:20px; margin-bottom:0px;">Dapatkan banner untuk promosi SITTI Affiliate di <a target="_blank" href="ban_affiliate.html">sini</a></p>
+				  </div>
+                </form>
+  				  <p>Teman Anda yang telah bergabung:</p>
+                  <table cellspacing="0" cellpadding="0" border="0" style="margin:5px 0 0;" class="list zebra" id="t1">
+	<tbody><tr class="head2">
+		<td>Adevtiser ID</td>
+		<td align="center">Nama</td>
+		<td align="center">Bonus Afilliasi</td>
+			</tr>																																																																																																																																																																																																																																																	
+		{section name=i loop=$referred_list}
+		  <tr id="row_RWssIF7x8Dc."> 
+			<td>{$referred_list[i].referred_id}</td>
+			<td>{$referred_list[i].referred_name}</td>
+			<td>{$referred_list[i].income}</td>
+		  </tr>
+		{/section}
+</tbody></table>
+            </div> 

@@ -1,0 +1,263 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/sittiweb/!svn/ver/1104/branches/phase03-03/com/SITTI
+END
+SITTIPublisherProfile.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/sittiweb/!svn/ver/648/branches/phase03-03/com/SITTI/SITTIPublisherProfile.php
+END
+SITTICampaign.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/sittiweb/!svn/ver/1102/branches/phase03-03/com/SITTI/SITTICampaign.php
+END
+ReferReportPage.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/sittiweb/!svn/ver/1016/branches/phase03-03/com/SITTI/ReferReportPage.php
+END
+SITTIHomepage.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/sittiweb/!svn/ver/700/branches/phase03-03/com/SITTI/SITTIHomepage.php
+END
+SITTINotification.php
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/sittiweb/!svn/ver/222/branches/phase03-03/com/SITTI/SITTINotification.php
+END
+SITTIPaypal.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/sittiweb/!svn/ver/710/branches/phase03-03/com/SITTI/SITTIPaypal.php
+END
+SITTIAdStatus.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/sittiweb/!svn/ver/941/branches/phase03-03/com/SITTI/SITTIAdStatus.php
+END
+SITTINewsletter.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/sittiweb/!svn/ver/67/branches/phase03-03/com/SITTI/SITTINewsletter.php
+END
+SITTIInvoice.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/sittiweb/!svn/ver/67/branches/phase03-03/com/SITTI/SITTIInvoice.php
+END
+SITTIAccount.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/sittiweb/!svn/ver/1033/branches/phase03-03/com/SITTI/SITTIAccount.php
+END
+SITTIPublisher.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/sittiweb/!svn/ver/648/branches/phase03-03/com/SITTI/SITTIPublisher.php
+END
+SITTIBannerManager.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/sittiweb/!svn/ver/648/branches/phase03-03/com/SITTI/SITTIBannerManager.php
+END
+SITTIProfile.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/sittiweb/!svn/ver/648/branches/phase03-03/com/SITTI/SITTIProfile.php
+END
+SITTIBilling2.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/sittiweb/!svn/ver/675/branches/phase03-03/com/SITTI/SITTIBilling2.php
+END
+SITTIAdvertiser.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/sittiweb/!svn/ver/1104/branches/phase03-03/com/SITTI/SITTIAdvertiser.php
+END
+SITTIMailer.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/sittiweb/!svn/ver/1084/branches/phase03-03/com/SITTI/SITTIMailer.php
+END
+SITTISocial.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/sittiweb/!svn/ver/864/branches/phase03-03/com/SITTI/SITTISocial.php
+END
+SITTIActionLog.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/sittiweb/!svn/ver/637/branches/phase03-03/com/SITTI/SITTIActionLog.php
+END
+SITTITest.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/sittiweb/!svn/ver/844/branches/phase03-03/com/SITTI/SITTITest.php
+END
+SITTIAdvertiserDashboard.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/sittiweb/!svn/ver/942/branches/phase03-03/com/SITTI/SITTIAdvertiserDashboard.php
+END
+SITTIApp.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/sittiweb/!svn/ver/67/branches/phase03-03/com/SITTI/SITTIApp.php
+END
+SITTIBilling.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/sittiweb/!svn/ver/1086/branches/phase03-03/com/SITTI/SITTIBilling.php
+END
+SITTIDelivery.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/sittiweb/!svn/ver/67/branches/phase03-03/com/SITTI/SITTIDelivery.php
+END
+SITTIFeedback.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/sittiweb/!svn/ver/419/branches/phase03-03/com/SITTI/SITTIFeedback.php
+END
+SITTISimulation.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/sittiweb/!svn/ver/1008/branches/phase03-03/com/SITTI/SITTISimulation.php
+END
+SITTIseo.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/sittiweb/!svn/ver/1027/branches/phase03-03/com/SITTI/SITTIseo.php
+END
+SITTIKloutData.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/sittiweb/!svn/ver/1010/branches/phase03-03/com/SITTI/SITTIKloutData.php
+END
+SITTIOptin.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/sittiweb/!svn/ver/577/branches/phase03-03/com/SITTI/SITTIOptin.php
+END
+SITTIEditKeyword.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/sittiweb/!svn/ver/911/branches/phase03-03/com/SITTI/SITTIEditKeyword.php
+END
+SITTIBeranda.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/sittiweb/!svn/ver/1022/branches/phase03-03/com/SITTI/SITTIBeranda.php
+END
+SITTIPromo.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/sittiweb/!svn/ver/391/branches/phase03-03/com/SITTI/SITTIPromo.php
+END
+SITTIInventory.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/sittiweb/!svn/ver/1048/branches/phase03-03/com/SITTI/SITTIInventory.php
+END
+SITTIAddKeyword.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/sittiweb/!svn/ver/708/branches/phase03-03/com/SITTI/SITTIAddKeyword.php
+END
+SITTIPPASandbox.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/sittiweb/!svn/ver/353/branches/phase03-03/com/SITTI/SITTIPPASandbox.php
+END
+SITTIReferral.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/sittiweb/!svn/ver/303/branches/phase03-03/com/SITTI/SITTIReferral.php
+END
+SITTIIpaymu.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/sittiweb/!svn/ver/793/branches/phase03-03/com/SITTI/SITTIIpaymu.php
+END
+SITTIPublisherDashboard.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/sittiweb/!svn/ver/336/branches/phase03-03/com/SITTI/SITTIPublisherDashboard.php
+END
+SITTICreateAd.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/sittiweb/!svn/ver/1099/branches/phase03-03/com/SITTI/SITTICreateAd.php
+END
+SITTIAdCreation.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/sittiweb/!svn/ver/286/branches/phase03-03/com/SITTI/SITTIAdCreation.php
+END
+SITTIReporting.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/sittiweb/!svn/ver/936/branches/phase03-03/com/SITTI/SITTIReporting.php
+END
+SITTIPPAManager.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/sittiweb/!svn/ver/352/branches/phase03-03/com/SITTI/SITTIPPAManager.php
+END
+ReferFriendPage.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/sittiweb/!svn/ver/67/branches/phase03-03/com/SITTI/ReferFriendPage.php
+END
+SITTIVoucher.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/sittiweb/!svn/ver/67/branches/phase03-03/com/SITTI/SITTIVoucher.php
+END

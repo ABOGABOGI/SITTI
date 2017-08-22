@@ -1,0 +1,66 @@
+
+<table width="760" border="0" cellspacing="0" cellpadding="0" id="content">
+<tr>
+  <td height="34"><a href="index.php">Dashboard</a> - <a href="?s=article">Article</a> - Manage</td>
+</tr>
+        <tr>
+          
+          <td width="533" valign="top"><table width="760" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+                <td colspan="3"><img src="images/spacer.gif" width="3" height="3" /></td>
+              </tr>
+              <tr>
+                <td width="8" valign="top"><img src="images/contentbrdr1.gif" width="8" height="9" /></td>
+                <td width="742" style="background:url(images/contentbrdrlinetop.gif) repeat-x top"><img src="images/spacer.gif" width="1" height="1" /></td>
+                <td width="8" valign="top"><img src="images/contentbrdr2.gif" width="8" height="9" /></td>
+            </tr>
+              <tr>
+                <td height="126" style="background:url(images/contentbrdrlineleft.gif) repeat-y left">&nbsp;</td>
+                <td valign="top"><p><strong>ARTICLES</strong><br />
+                  <br />
+                </p>
+                  <form id="form2" name="form2" method="get" action="">
+                    Browse by Category :
+                    <select name="categoryID" id="categoryID">
+                      <option value="1">News</option>
+                      <option value="2">Press Release</option>
+                    </select>                  
+                                    <input type="submit" name="button" id="button" value="GO" />
+                                    <input name="s" type="hidden" id="s" value="article" />
+                  </form>
+                  [ <a href="?s=article&amp;r=new">New Article</a> ] <br />
+                  <table width="100%" border="0" cellspacing="0" cellpadding="5">
+                    <tr>
+                      <td width="56%"><strong>Title</strong></td>
+                      <td width="13%"><strong>Posted</strong></td>
+                      <td width="14%"><strong>Category</strong></td>
+                      <td width="27%"><strong>Status</strong></td>
+                      <td width="17%"><strong>Action</strong></td>
+                    </tr>
+                    {section name=i loop=$list}
+                    <tr>
+                      <td>{$list[i].title|stripslashes}</td>
+                      <td>{$list[i].posted_date}</td>
+                       <td>{if $list[i].categoryID eq '1'}News{elseif $list[i].categoryID eq '2'}Press Releases{else}Other{/if}</td>
+                       <td>Published</td>
+                      <td><a href="?s=article&amp;r=edit&amp;id={$list[i].id}">Edit</a>&nbsp;<a href="?s=article&amp;r=delete&amp;id={$list[i].id}">Delete</a>                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="4"><hr size="1" /></td>
+                    </tr>
+                    {/section}
+                </table>
+                {$page}</td>
+                <td width="8" style="background:url(images/contentbrdrlineright.gif) repeat-y right">&nbsp;</td>
+            </tr>
+              <tr style="background:url(images/contentbrdr3-grad-bottom.gif) repeat-x bottom">
+                <td width="8" height="56" valign="bottom" style="background:url(images/contentbrdrlineleft.gif) repeat-y left"><img src="images/contentbrdr4-grad.gif" width="8" height="80" border="0" /></td>
+                <td valign="top" ><form action="" method="post" enctype="multipart/form-data" name="form1" id="form1">
+                  <br />
+                </form>
+                </td>
+                <td width="8" valign="bottom" style="background:url(images/contentbrdrlineright.gif) repeat-y right"><img src="images/contentbrdr3-grad.gif" width="8" height="80" /></td>
+            </tr>
+            </table>          </td>
+        </tr>
+</table>

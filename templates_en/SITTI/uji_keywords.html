@@ -1,0 +1,5 @@
+{section name=i loop=$list}
+<div class="row2"><input name="keywords[]" type="checkbox" id="keywords[]" value="{$list[i]|stripslashes}" onclick="keywordClicked(this);"/><label>{$list[i]|stripslashes}</label></div>
+{sectionelse}
+<div>Related words not found.</div>
+{/section}

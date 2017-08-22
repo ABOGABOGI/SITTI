@@ -1,0 +1,15 @@
+<script>
+/** {$pub.name|stripslashes} **/
+var sitti_pub_id = "{$pub.sittiID}";
+var sitti_ad_width = "{$pub.width}";
+var sitti_ad_height = "{$pub.height}";
+var sitti_ad_type = "{$pub.type}";
+var sitti_ad_number = "{$pub.number}";
+var sitti_ad_name = "{$pub.name|stripslashes}";
+var sitti_dep_id = "{$pub.dep_id}";
+</script>
+{if $DEV_MODE}
+<script src="{$DELIVERY_URL}sittiad.devel.js"></script> 
+{else}
+<script src="{$DELIVERY_URL}sittiad.b1.js"></script> 
+{/if}

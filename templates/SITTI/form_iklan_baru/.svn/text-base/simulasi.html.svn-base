@@ -1,0 +1,435 @@
+<script type="text/javascript" src="js/jquery.numberformatter-1.1.0.js"></script>
+<script>
+var n_slots = {$n_slots};
+var MINIMUM_BID = {$MINIMUM_BID};
+var n_kosong = 0;//jumlah data yang belum tersedia
+{literal}
+var dt = new Object();
+var empty_slot = [];
+for(var i=0;i<n_slots;i++){
+	empty_slot.push(0);
+}
+function toggle_drop(keyword,slot){
+	//alert(keyword+" --> "+slot);
+	$("#key_"+slot).html(keyword);
+	$.ajax({
+  	url: 'simulasi.php',
+  	dataType: 'json',
+  	data: {'k':keyword},
+  	success: function(d){
+		
+		var max_imp = d.imp;
+		var max_ctr = d.ctr;
+		var bid = d.avg_cpc;
+		var max_bid = d.max_bid;
+		var min_bid = d.min_bid;
+		var status = d.status
+		$("#imp_kosong"+slot).hide();
+		$("#click_kosong"+slot).hide();
+
+		/*
+		if(max_imp==0){
+			n_kosong+=1;
+			if(n_kosong>n_slots){
+				n_kosong=n_slots;
+			}
+		}else{
+			
+			if($("#imp_"+slot).css('display')=="none"){
+				
+				n_kosong-=1;
+			}
+		}
+		
+		*/
+		if(max_imp==0){
+			if(empty_slot[slot]==0){
+				n_kosong+=1;
+				empty_slot[slot] = 1;
+			}
+			if(n_kosong>n_slots){
+				n_kosong=n_slots;
+			}
+		}else{
+			if($("#imp_"+slot).css('display')=="none"){
+					n_kosong-=1;
+					empty_slot[slot] = 0;
+			}
+		}
+		$("#imp_"+slot).show();
+		$("#click_"+slot).show();
+		if(bid<min_bid){
+			bid = min_bid;
+		}
+		if(bid<MINIMUM_BID){
+			bid = MINIMUM_BID;
+		}
+		$("#avg_cpc_"+slot).val(bid);
+		//alert("maximp:"+max_imp+" -- maxctr:"+max_ctr+" -- bid:"+bid+" -- maxbid:"+max_bid);
+		var est_ctr = ctr(bid,min_bid,d.max_bid,d.ctr);
+		var est_imp = Math.ceil(imp(bid,min_bid,max_bid,max_imp,est_ctr,max_ctr));
+		var est_click = Math.ceil((est_ctr * est_imp)/100);
+		if(est_imp==null){
+			est_imp=0;
+		}
+		if(est_click==null){
+			est_click=0;
+		}
+		var hari = eval($("#hari").val());
+		//alert("ctr:"+est_ctr+" -- imp:"+est_imp+" -- click:"+est_click);
+  		//$("#imp_"+slot).html(est_imp).format({format:"#,###", locale:"en"});
+		if(est_imp==0){
+			$("#imp_"+slot).html(0);
+			$("#imp_"+slot).hide();
+			$("#imp_kosong"+slot).show();
+		}else{
+  			$("#imp_"+slot).html(est_imp);
+		}
+		//$("#imp_"+slot).html(est_imp);
+  		//$("#imp2_"+slot).html(est_imp*hari).format({format:"#,###", locale:"en"});
+		$("#imp2_"+slot).html(est_imp*hari);
+  		//$("#click_"+slot).html(est_click).format({format:"#,###", locale:"en"});
+		//$("#click_"+slot).html(est_click);
+		if(est_imp==0){
+  			$("#click_"+slot).html(0);
+  			$("#click_"+slot).hide();
+  			$("#click_kosong"+slot).show();
+  		}else{
+  			$("#click_"+slot).html(est_click);
+  		}
+  		//$("#click2_"+slot).html(est_click*hari).format({format:"#,###", locale:"en"});
+		$("#click2_"+slot).html(est_click*hari);
+		
+		dt["click_"+slot] = est_click;
+		dt["click2_"+slot] = est_click*hari;
+		dt["maxbid_"+slot] = d.max_bid;
+		dt["maxctr_"+slot] = d.ctr;
+		dt["maximp_"+slot] = max_imp;
+		dt["minbid_"+slot] = min_bid;
+		dt["ctr_"+slot] = est_ctr;
+  		$("#ctr_"+slot).html(est_ctr);
+  		$("#budget_"+slot).val(eval(bid*est_click));
+  		//$("#cpc_"+slot).val(eval(d.max_bid));
+  		$("#cpc_"+slot).val(eval(d.avg_cpc));
+  		//alert($("#cpc_"+slot).val());
+  		dt['avg_cpc_'+slot] = eval($("#avg_cpc_"+slot).val());
+  		dt['budget_'+slot] = eval($("#budget_"+slot).val());
+  		//$.data("avg_cpc_"+slot,eval($("#avg_cpc_"+slot).val()));
+  		//$.data("budget_"+slot,eval($("#budget_"+slot).val()));
+  		updateTotalBudget();
+  		if(n_kosong>0&&n_kosong==n_slots){
+  			$("#k2").show();
+  			$("#k1").hide();
+  			$("#closure1").hide();
+  			$("#closure2").show();
+  		}else if(n_kosong!=0){
+		 	$("#k1").show();
+		 	$("#k2").hide();
+		 	$("#closure1").show();
+	 		$("#closure2").hide();
+	 	}else{
+	 		$("#closure1").show();
+	 		$("#closure2").hide();
+  	 	}
+  	}
+	 	
+	});
+	
+	
+}
+function imp(bid,minbid,maxbid,max_imp,est_ctr,max_ctr){
+	/*var _imp = 0;
+	if(bid>=minbid&&maxbid>0&&est_ctr>0){
+		if(bid<=maxbid){
+			_imp = max_imp * (1 + ((maxbid - bid)/maxbid));
+		}else{
+			_imp = max_imp * ((max_ctr/est_ctr));
+		}
+	}
+	return _imp;
+	*/
+	//imp tidak dihitung ulang lagi
+	return max_imp;
+}
+function ctr(bid,minbid,maxbid,maxctr){
+	/*
+	var _ctr = 0;
+	if(bid>=minbid&&maxbid>0){
+		_ctr = (bid/maxbid)*maxctr;
+	}
+	return _ctr;
+	*/
+	//ctr tidak dihitung ulang lagi
+	return maxctr;
+}
+function updateTotalBudget(){
+	var n_total = 0;
+	var ck = 0;
+	var imp = 0;
+	var hari = eval($("#hari").val());
+	for(var i=0;i<n_slots;i++){
+		var the_val = $("#budget_"+i).val();
+		var the_ck = $("#click_"+i).html();
+		var the_imp = $("#imp_"+i).html();
+		if(the_val != ""){
+			n_total+=eval(the_val);
+			ck+=eval(the_ck);
+			imp+=eval(the_imp);
+			//populate total anggaran
+			$("#price_"+i).html(eval($("#avg_cpc_"+i).val())).format({format:"#,###", locale:"en"});
+		}
+	}
+	
+	$("#subdailyck").html(ck).format({format:"#,###", locale:"en"});
+	$("#subdailyimp").html(imp).format({format:"#,###", locale:"en"});
+
+	$("#totalck").html(ck*hari).format({format:"#,###", locale:"en"});
+	$("#totalimp").html(imp*hari).format({format:"#,###", locale:"en"});
+	
+	$("#estimate_1").html(n_total).format({format:"#,###", locale:"en"});
+	updateTotalPrice();
+}
+function updateTotalPrice(){
+	var n_total = 0;
+	var ck = 0;
+	var imp = 0;
+	for(var i=0;i<n_slots;i++){
+		var the_val = $("#budget_"+i).val();
+		if(the_val != ""){
+			
+			//populate total anggaran
+			var hari = eval($("#hari").val());
+			if(hari==null){hari=0;
+				$("#hari").val(0);
+			}
+			var harga = eval(the_val);
+			$("#subtotal_"+i).html(hari*harga).format({format:"#,###", locale:"en"});
+			n_total+=(hari*harga);
+			var est_click = eval($("#click_"+i).html());
+			var est_imp = eval($("#imp_"+i).html());
+			ck+=eval(est_click);
+			imp+=eval(est_imp);
+			$("#click2_"+i).html(eval(est_click*hari));
+			$("#imp2_"+i).html(eval(est_imp*hari));
+		}
+	}
+	$("#totalprice").html(n_total).format({format:"#,###", locale:"en"});
+	$("#total_harga").html(n_total).format({format:"#,###", locale:"en"});
+	
+	$("#totalck").html(ck*hari).format({format:"#,###", locale:"en"});
+	$("#totalimp").html(imp*hari).format({format:"#,###", locale:"en"});
+}
+function recalculate(slot,d){
+	var hari = eval($("#hari").val());
+	if(d['avg_cpc_'+slot]!=$("#avg_cpc_"+slot).val()){
+		dt['avg_cpc_'+slot] = eval($("#avg_cpc_"+slot).val());
+		
+		var cpc = eval($("#avg_cpc_"+slot).val());
+		//alert("maximp:"+d['maximp_'+slot]+" -- maxctr:"+d['maxctr_'+slot]+" -- bid:"+cpc+" -- maxbid"+d['maxbid_'+slot]);
+		var est_ctr = ctr(cpc,d['minbid_'+slot],d['maxbid_'+slot],d['maxctr_'+slot]);
+		
+		var est_imp = Math.ceil(imp(cpc,d['minbid_'+slot],d['maxbid_'+slot],d['maximp_'+slot],est_ctr,d['maxctr_'+slot]));
+		var est_click = Math.ceil((est_ctr * est_imp) / 100);
+		var click = Math.ceil(eval(est_click));
+		//alert("ctr:"+est_ctr+" -- imp:"+est_imp+" -- click:"+est_click);
+		$("#click_"+slot).html(eval(est_click));
+		$("#imp_"+slot).html(eval(est_imp));
+
+		
+		$("#click2_"+slot).html(eval(est_click*hari));
+		$("#imp2_"+slot).html(eval(est_imp*hari));
+		
+		$("#budget_"+slot).val(eval(cpc*click));
+		dt['budget_'+slot] = eval($("#budget_"+slot).val());
+		
+		
+		
+	}else if(d['budget_'+slot]!=$("#budget_"+slot).val()){
+		//var click = eval($("#click_"+slot).html());
+		var click = eval(d["click_"+slot]);
+		var budget = eval($("#budget_"+slot).val());
+		dt['budget_'+slot] = budget;
+		$("#avg_cpc_"+slot).val(Math.floor(eval(budget/click)));
+		dt['avg_cpc_'+slot] = eval($("#avg_cpc_"+slot).val());
+		
+	}else{
+		//do nothing
+	}
+	updateTotalBudget();
+	
+}
+function getCsv(){
+	var str="\"No\";\"Keyword\";\"Average CPC\";\"Perkiraan Klik\";\"Perkiraan Impresi\";\"Durasi\";\"Perkiraan Anggaran Total\"\n";
+	for(var i=0;i<n_slots;i++){
+		var keyword = $("#key_"+i).html();
+		var cpc = $("#avg_cpc_"+i).val();
+		var ck = $("#click_"+i).html();
+		var imp = $("#imp_"+i).html();
+		var hari = $("#hari_"+i).val();
+		var budget = eval($("#budget_"+i).val() * hari);
+		str += "\""+(i+1)+"\";"+"\""+keyword+"\""+";"+"\""+cpc+"\""+";"+"\""+ck+"\""+";"+"\""+imp+"\""+";\""+hari+"\";"+"\""+budget+"\""+"\n";
+	}
+	$("#fcsv").val(escape(str));
+	$("#frmcsv").submit();
+}
+
+var avg_cpc_val = 0;
+$(function() {
+	$('input.avg_cpc').focus(function() {
+		avg_cpc_val = parseInt($(this).val());
+	});
+
+	$('input.avg_cpc').change(function() {
+		if ( parseInt($(this).val()) < parseInt(MINIMUM_BID) ) {
+			$(this).val(avg_cpc_val);
+			alert('Minimal nilai tawaran adalah Rp. ' + MINIMUM_BID);
+		}
+	});
+});
+
+{/literal}
+ </script>
+              <div style="width:900px;">
+				<h3 class="headTitle">Penghitung Kampanye SITTI</h3>
+                <p>Inilah perkiraan biaya kampanye SITTI Anda untuk kata-kata kunci yang Anda pilih, gunakanlah halaman ini untuk memperkirakan anggaran kampanye Anda. Angka-angka yang tercantum pada simulasi ini hanya merupakan perkiraan, hasil sebenarnya mungkin akan berbeda.</p>
+                <form action="buat.php" method="post" enctype="application/x-www-form-urlencoded">
+                <table border="0" cellspacing="0" cellpadding="0" class="list zebra">
+                  <tr>
+                    <td colspan="7"><h3 class="blue noMargin">Perkiraan Anggaran Harian</h3></td>
+                  </tr>
+                  <tr class="head">
+                    <td>No</td>
+                    <td>Kata Kunci</td>
+                    <td>Tawaran Anda*</td>
+                    <td>Perkiraan Klik</td>
+                    <td><span onmouseover="tooltip.show('Data diambil dari data penyedia iklan SITTI berdasarkan halaman aktif per hari');" onmouseout="tooltip.hide();">Perkiraan Impressi</span></td>
+                    <td>Perkiraan Anggaran Total</td>
+                  </tr>
+                  {section name=i loop=$main_key}
+                  <tr>
+                    <td>{$main_key[i].no}</td>
+                    <td>
+                    	<div class="row noBorder" style="padding:0">
+                    	<select id="daily_{$smarty.section.i.index}" name="daily_{$smarty.section.i.index}" onchange="toggle_drop(this.value,{$smarty.section.i.index});return false;">
+                    	{section name=j loop=$main_key[i].list}
+                    		<option value="{$main_key[i].list[j]|stripslashes|strip_tags|trim}">{$main_key[i].list[j]|stripslashes|strip_tags|trim}</option>
+                    	{/section}
+                    	</select>
+                        </div>
+                    </td>
+                    <td>
+                    	<input style="width:50px" type="text" class="inputText avg_cpc" name="avg_cpc_{$smarty.section.i.index}" id="avg_cpc_{$smarty.section.i.index}" onChange="" />
+                    </td>
+                    <td><span id="click_{$smarty.section.i.index}" name="click_{$smarty.section.i.index}">0</span>
+                     <span id="click_kosong{$smarty.section.i.index}" name="click_kosong{$smarty.section.i.index}" style="display:none;">Tidak Ada Data**</span>
+                    </td>
+                    <td>
+                    <span id="imp_{$smarty.section.i.index}" name="imp_{$smarty.section.i.index}">0</span>
+                    <span id="imp_kosong{$smarty.section.i.index}" name="imp_kosong{$smarty.section.i.index}" style="display:none;">Tidak Ada Data**</span>
+                    <input type="hidden" name="cpc_{$smarty.section.i.index}" id="cpc_{$smarty.section.i.index}" value="0"/>
+                    </td>
+                   
+                    <td>
+                    	<input id="budget_{$smarty.section.i.index}" name="budget_{$smarty.section.i.index}" style="width:50px; float:left;" type="text" class="inputText" readonly="readonly"/>
+                    	<a href="javascript:;" onClick="recalculate({$smarty.section.i.index},dt);return false;" class="refreshIcon" style="float:left; margin:5px 5px 0 10px;">&nbsp;</a>
+                    </td>
+                  </tr>
+                  {/section}
+                 
+                  <tr class="total" style="background-color:#c8d9e4">
+                    <td colspan="2">Total Perkiraan Biaya Harian</td>
+                    <td></td>
+                    <td><span id="subdailyck" name="subdailyck" style="font-weight:bold;">0</span></td>
+                    <td><span id="subdailyimp" name="subdailyimp" style="font-weight:bold;">0</span></td>
+                    <td><strong>Rp. <span id="estimate_1" name="estimate_1">0</span></strong></td>
+                  </tr>
+                  </tr>
+                </table>
+                <br /><br />
+                <div id="k0">* Anda dapat mengubah tawaran Anda untuk mendapatkan peringkat iklan dan jumlah perkiraan klik yang lebih baik. Minimal nilai tawaran adalah Rp. {$MINIMUM_BID}</div>
+                <div id="k1">** SITTI tidak memiliki data yang cukup untuk menghasilkan simulasi untuk kata kunci ini</div>
+                <div id="k2">** SITTI tidak memiliki data yang cukup untuk menghasilkan simulasi untuk kampanye iklan ini</div>
+                 <table border="0" cellspacing="0" cellpadding="0" class="list zebra" style="margin-top:30px;">
+                 	<tr>
+                    	<td>
+               				 <h3 class="blue noMargin">Durasi Kampanye Anda</h3>
+                         </td>
+                    </tr>
+                    <tr>
+                    	<td>
+               				 <input style="width:50px" type="text" class="inputText" id="hari" name="hari" value="{$hari|stripslashes|strip_tags|number_format}" onchange="updateTotalPrice();return false;"/> Hari
+                   </td>
+                   </tr>
+                </table>
+                
+                <table border="0" cellspacing="0" cellpadding="0" class="list zebra" style="margin-top:30px;">
+                  <tr>
+                    <td colspan="6"><h3 class="blue noMargin">Perkiraan Total Anggaran Iklan Anda</h3></td>
+                  </tr>
+                  <tr class="head">
+                    <td>No</td>
+                    <td>Kata Kunci</td>
+                    <td>Tawaran Anda</td>
+                    <td>Perkiraan Klik</td>
+                    <td><span onmouseover="tooltip.show('Data diambil dari data penyedia iklan SITTI berdasarkan halaman aktif per hari');" onmouseout="tooltip.hide();">Perkiraan Impressi</span></td>
+                    <td>Perkiraan Anggaran Total</td>
+                  </tr>
+                   {section name=i loop=$main_key}
+                  <tr>
+                    <td>{$main_key[i].no}</td>
+                    <td>
+                    	<div class="row noBorder" style="padding:0">
+                    	
+                    	<span id="key_{$smarty.section.i.index}" name="key_{$smarty.section.i.index}"></span>
+                    	
+                        </div>
+                    </td>
+                    <td>
+                    	<span id="price_{$smarty.section.i.index}" name="price_{$smarty.section.i.index}"></span>
+                    </td>
+                    <td><span id="click2_{$smarty.section.i.index}" name="click2_{$smarty.section.i.index}"></span></td>
+                    <td><span id="imp2_{$smarty.section.i.index}" name="imp2_{$smarty.section.i.index}"></span></td>
+                   
+                    <td>
+                    	<span id="subtotal_{$smarty.section.i.index}" name="subtotal_{$smarty.section.i.index}"></span>
+                    </td>
+                  </tr>
+                  {/section}
+                  <tr>
+                  <td colspan="3"></td>
+                  
+                  <td><span id="totalck" name="totalck" style="font-weight:bold;">0</span></td>
+                  <td><span id="totalimp" name="totalimp" style="font-weight:bold;">0</span></td>
+                  <td><span id="totalprice" name="totalprice" style="font-weight:bold;">0</span></td>
+                  </tr>
+                </table>
+                	<div style=" background:#C8D9E4; border: dashed 1px #ccc; padding:10px; margin:30px 0 0 0; height:50px;" id="closure1">
+               	    <p style="float:left;" class="f14">Perkiraan Total Anggaran untuk Kampanye ini adalah <span class="f18 green bold">Rp. </span><span class="f18 green bold" id="total_harga" name="total_harga">0</span></p>
+                    </div>
+                    <div id="closure2" style=" background:#C8D9E4; border: dashed 1px #ccc; padding:10px; margin:30px 0 0 0; height:50px;">SITTI tidak memiliki data yang cukup untuk menghasilkan simulasi untuk kampanye iklan ini</div>
+                   <div style="margin:30px 0 0 0; height:50px;">
+                   <input type="hidden" name="detil" id="detil" value="1"/>
+                   <input name="token" type="hidden" value="{token}">
+                   <input type="hidden" name="slots" id="slots" value="{$n_slots}"/>
+                    <a href="buat.php?edit=1" class="submitButton">Kembali</a><span style="float:right"><input type="submit" value="Lanjut" class="submitButton"/></span>
+                    </div>
+                    </form>
+                </div>
+             
+                
+
+<script>
+{literal}
+for(var i=0;i<n_slots;i++){
+	toggle_drop($('#daily_'+i).val(),i);
+}
+$("#k1").hide();
+$("#k2").hide();
+{/literal}
+</script>
+<script>
+updateTotalBudget();
+</script>
+<div style="margin:10px 0; background-color:#e5eff4;" class="quote">
+                <strong><span style="color:#C00">PERINGATAN: Penggunaan iklan SITTI tidak boleh melanggar persyaratan dan peraturan hukum yang<br/>berlaku umum di Indonesia atau negara lain yang bersangkutan. Untuk lebih jelas lihat <a target="_blank" href="term.html" style="color:#C00; text-decoration:underline;"><span >Syarat dan Ketentuan</span></a></span></strong>
+ 					</div>

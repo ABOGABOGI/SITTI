@@ -1,0 +1,105 @@
+<script type="text/javascript">
+{if $update_ppa_profile}
+var update_ppa = true;
+{/if}
+{literal}
+$(function() {
+	
+	$("#ppa_konfigurasi").validate( {
+		rules: {
+			alamaturl: {
+				required: true,
+				url: true
+			}
+		}
+	});
+	
+	/*$("#alamaturl").change( function() {
+		if ( $("#ppa_konfigurasi").validate().element( "#alamaturl" ) ) {
+			$.get("buat.php?ad_ppa=1", { test_url: 'true', url: $(this).val() }, function(data) {
+				if (data == '1')  {
+					//$("#checkout_url, #payment_url").attr('disabled', '');
+					//$("#checkout_script").val(checkout_script);
+					//$("#payment_script").val(payment_script);
+				}
+			});
+		}
+	});*/
+
+	if (typeof update_ppa != 'undefined')
+	{
+		$("form#ppa_konfigurasi").submit( function(event) {
+			event.preventDefault();
+			$.post("buat.php?ad_ppa=true&save_ppa_profile=true", $("form#ppa_konfigurasi").serialize(), function(data) {
+				disablePopup();
+			});
+		});
+
+	}
+
+});
+
+{/literal}
+</script>
+<div id="popupKonversi" class="popupBox containerKonversi" style="height:360px">
+	<a class="popupClose" href="javascript:;" onClick="disablePopup();">x</a>
+	<form method="post" action="buat.php?ad_ppa=true" name="ppa_konfigurasi" id="ppa_konfigurasi">
+	<div class="konversi">
+		<h1 class="blue">Kami Konfigurasi Website Anda</h1>
+		<p>Untuk program Pay Per Aquisiton (PPA), SITTI memerlukan beberapa informasi penting mengenai mekanisme kerja situs Anda. Informasi ini hanya perlu Anda berikan 1 kali untuk setiap akun baru.
+		</p>
+		<div class="row">
+		<h3 class="blue">API Key</h3>
+		<input type="text" name="api_key" id="api_key" size="50" maxlength="50" value="{$api_key}" onClick="this.select()" onFocus="this.select()" style="background:#EFEFEF;" readonly="readonly">
+		<h3 class="blue">Jenis Situs</h3>
+			<select name="jenis_situs">
+				<option value="ecommerce" {if $jenis_site eq 'ecommerce'}selected="selected"{/if}>E-Commerce</option>
+				<option value="directory" {if $jenis_site eq 'directory'}selected="selected"{/if}>Directory</option>
+				<option value="lainlain" {if $jenis_site eq 'lainlain'}selected="selected"{/if}>Lain-lain</option>
+			</select>
+		<h3 class="blue">Alamat/URL situs Anda</h3>
+		<input type="text" id="alamaturl" name="alamaturl" size="75" value="{$url_site}" />
+		{*
+		<a onclick="CopyToClipboard();" class="submitButton" style="margin:0">copy</a>
+		<h3 class="blue">Script Untuk Landing Page</h3>
+		<textarea id="landing_script" name='landing_url' rows="10" name="q" style="width: 509px; height: 85px;">{$landing_script}</textarea>
+		<h3 class="blue">Script Untuk Halaman Checkout</h3>
+		<textarea id="checkout_script" name='checkout_url' rows="10" name="q" style="width: 509px; height: 166px;">{$checkout_script}</textarea>
+		<h3 class="blue">Script Untuk Halaman Pembayaran Sukses</h3>
+		<textarea id="payment_script" name="payment_url" rows="10" name="q" style="width: 509px; height: 85px;">{$payment_script}</textarea>
+		*}
+		</div>
+		<div style="margin-top:10px">
+		<input type="submit" value="Simpan" name="simpan_konfigurasi_konversi" id='simpan_konfigurasi_konversi' class="submitButton"></div>
+	</div>
+	</form>
+</div>
+<!--div id="popupKonversi2" class="popupBox containerKonversi">
+	<a class="popupClose">x</a>
+	<form method="post" action="buat.php?ad_ppa=true" name="ppa_konfigurasi" id="ppa_konfigurasi">
+	<div class="konversi">
+		<h1 class="blue">Kami Konfigurasi Website Anda</h1>
+		<p>Untuk program Pay Per Aquisiton (PPA), SITTI memerlukan beberapa informasi penting mengenai mekanisme kerja situs Anda. Informasi ini hanya perlu Anda berikan 1 kali untuk setiap akun baru.
+		</p>
+		<div class="row">
+		<h3 class="blue">Jenis Situs</h3>
+			<select name="jenis_situs">
+				<option value="ecommerce" selected="selected">E-Commerce</option>
+				<option value="directory">Directory</option>
+				<option value="lainlain">Lain-lain</option>
+			</select>
+		<h3 class="blue">Alamat/URL situs Anda</h3>
+		<input type="text" value="" id="alamaturl" name="alamaturl" size="75" />
+		<h3 class="blue">Script Untuk Landing Page</h3>
+		<textarea id="landing_script" name='landing_url' rows="10" name="q" style="width: 509px; height: 166px;">{$landing_script}</textarea>
+		<h3 class="blue">Script Untuk Halaman Checkout</h3>
+		<textarea id="checkout_script" name='checkout_url' rows="10" name="q" style="width: 509px; height: 166px;">{$checkout_script}</textarea>
+		<h3 class="blue">Script Untuk Halaman Pembayaran Sukses</h3>
+		<textarea id="payment_script" name="payment_url" rows="10" name="q" style="width: 509px; height: 166px;">{$payment_script}</textarea>
+		</div>
+		<div style="margin-top:10px">
+		<input type="submit" value="Simpan" name="simpan_konfigurasi_konversi" id='simpan_konfigurasi_konversi' class="submitButton"></div>
+	</div>
+	</form>
+</div-->
+<div id="backgroundPopup"></div>

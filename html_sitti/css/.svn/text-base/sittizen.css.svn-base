@@ -1,0 +1,176 @@
+/* åß
+	SITTI 2010
+*/
+/*@import url("ui_lib/ui.all.css");*/
+.f20{
+	font-size:20px;
+}
+.headerZen{
+	height:80px;
+	padding:90px 10px 40px 10px;
+}
+a.logoZen{
+	background:url(../images/logo_zen.png) no-repeat;
+	width:390px; height:80px;
+	float:left;
+	text-decoration:none;
+	margin:0 0 0 0;
+}
+.sloganZen{
+	background:url(../images/slogan_zen.png) no-repeat;
+	width:420px; height:32px;
+	float:right;
+	margin:40px 0 0 0;
+	text-decoration:none;
+}
+.bodyZen{
+	width:960px;
+	margin:0 auto;
+	color:#FFF;
+}
+.borderLeftHome,.borderRightHome{
+	background:url(../images/bg_zen_home_left.png) no-repeat;
+	width:30px; height:416px;
+	float:left;
+	display:block;
+	margin:0 0 50px 0;
+}
+.borderRightHome{
+	background:url(../images/bg_zen_home_right.png) no-repeat;
+}
+.contentHome{
+	background:url(../images/bg_zen_home.png) repeat-x;
+	width:900px;
+	height:416px;
+	display:block;
+	float:left;
+	margin:0 0 50px 0;
+	font-size:14px;
+}
+.colLeftZenHome{
+	background:url(../images/bg_zen_shd.png) right no-repeat;
+	width:600px;
+	float:left;
+	height:400px;
+}
+.colRightZenHome{
+	height:400px;
+	width:300px;
+	float:left;
+	text-align:center;
+}
+.contentZenHome{
+	padding:50px 50px 0 30px;
+	line-height:22px;
+}
+.contentZenHome strong,.helpZen strong{
+	color:#00ccff;
+}
+.contentZenHome h1{
+	font-size:16px;
+	color:#FFF;
+}
+.bodyZen a{
+	text-shadow:none;
+	text-decoration:none;
+	color:#00ccff;
+}
+.bodyZen a:hover{
+	text-decoration:underline;
+}
+.formloginZen{
+	margin:0 -25px 0 0;
+}
+.loginZen{
+	background: url(../images/login_zen_title.png) no-repeat;
+	width:215px; height:53px;
+	text-decoration:none;
+	display:block;
+	margin:0 auto;
+}
+.rowZen{
+	text-align:center;
+	padding:10px 0;
+}
+.rowZen label{
+	display:block;
+	padding:7px;
+}
+input[type=text].inputZen,input[type=text].inputZen:focus, select.inputZen, select.inputZen:focus{
+	background:url(../images/bg_zen_input.png) no-repeat;
+	width:247px; height:25px;
+	padding:5px;
+	display:block;
+	border:none;
+	color:#006699;
+	font-size:14px;
+	margin:0 auto;
+}
+select.inputZen,select.inputZen:focus{
+	height:35px;
+	width:256px;
+	padding:8px;
+}
+input[type=submit].submitZen{
+	background: url(../images/bg_zen_submit.png) no-repeat;
+	width:272px; height:48px;
+	padding:5px;
+	display:block;
+	border:none;
+	margin:0 auto;
+	color:#FFF;
+	cursor:pointer;
+	font-size:12px;
+	font-weight:bold;
+	text-shadow:1px 1px 5px #000;
+}
+input[type=submit].submitZen:hover{
+	background: url(../images/bg_zen_submit_hover.png) no-repeat;
+}
+option{
+	outline:none;
+}
+/*-----------regZen-------------*/
+
+.borderLeftzen,.borderRightzen{
+	background:url(../images/bg1_zen_left.png) no-repeat;
+	width:25px; height:524px;
+	display:block; float:left;
+}
+.borderRightzen{
+	background:url(../images/bg1_zen_right.png) no-repeat;
+}
+.contentZen{
+	background:url(../images/bg1_zen.png) repeat-x;
+	width:910px; height:524px;
+	float:left;
+}
+.contentZenText{
+	padding:40px 10px 0 30px;
+	font-size:14px;
+	line-height:22px;
+}
+.contentZenText label{
+	float:left;
+}
+.colLeftZen{
+	width:420px;
+	background:url(../images/bg_zen_shd.png) right no-repeat;
+	float:left;
+	padding:20px 0 0 0;
+}
+.colRightZen{
+	width:420px;
+	float:left;
+	padding:20px 0 0 30px;
+}
+.helpZen{
+	background:url(../images/bg_zen_note.png) no-repeat;
+	width:402px; height:117px;
+	margin:48px 0 0 -48px;
+	clear:both;
+	position:absolute;
+	font-size:12px;
+	line-height:18px;
+	padding:15px 20px 0 50px;
+}

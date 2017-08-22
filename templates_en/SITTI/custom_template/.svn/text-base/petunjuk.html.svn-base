@@ -1,0 +1,156 @@
+<html>
+    <head>
+        <title>Petunjuk Edit Halaman</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+        <link rel="icon" type="image/gif" href="images/animated_favicon.gif">
+        {literal}
+<style type="text/css">
+ 
+		html,
+		body {
+			margin: 0px 0px 0px 0px ;
+			padding: 0px 0px 0px 0px ;
+			}
+ 
+		#site-body-container {}
+ 
+		#site-body-content {
+				padding:0;
+			}
+ 
+		#site-bottom-bar {
+			background:url(images/bg_tabber.gif) repeat-x #3B5998 ;
+			border-top: 1px solid #009cff ;
+			bottom: 0px ;
+			font-family: verdana, arial ;
+			font-size: 11px ;
+			height: 30px ;
+			padding:5px 0;
+			position: fixed ;
+			width: 100% ;
+			z-index: 1000 ;
+			}
+ 
+		#site-bottom-bar-frame {
+			height: 30px ;
+			margin: 0px 10px 0px 10px ;
+			position: relative ;
+			}
+ 
+		#site-bottom-bar-content {
+			padding: 3px 0px 0px 0px ;
+			text-align:center;
+			}
+ 
+		#menu-root {
+			background-color: #000 ;
+			border: 1px solid #D0D0D0 ;
+			color: #000000 ;
+			display: inline ;
+			height: 22px ;
+			line-height: 22px ;
+			text-align: center ;
+			text-decoration: none ;
+			padding:5px 10px;
+			-moz-border-radius:5px;
+			}
+ 
+		#menu-root:hover {
+			background-color: #666666 ;
+			border-color: #000000 ;
+			color: #FFFFFF ;
+			}
+ 
+ 
+		/* -------------------------------------------------- */
+		/* -- IE 6 FIXED POSITION HACK ---------------------- */
+		/* -------------------------------------------------- */
+ 
+		html,
+		body,
+		#site-body-container {
+			_height: 100% ;
+			_overflow: hidden ;
+			_width: 100% ;
+			}
+ 
+		#site-body-container {
+			_overflow-y: scroll ;
+			_overflow-x: hidden ;
+			_position: relative ;
+			}
+ 
+		/* To make up for scroll-bar. */
+		#site-bottom-bar {
+			_bottom: -1px ;
+			_position: absolute ;
+			_right: 16px ;
+			}
+ 
+		/* To make up for overflow left. */
+		#site-bottom-bar-frame {
+			_margin-left: 26px ;
+			}
+ 
+	</style>
+    {/literal}
+    </head>
+    <body bgcolor="#000" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+        <!-- Save for Web Slices (help.psd) -->
+ 
+	<div id="site-body-container">
+		<div id="site-body-content">
+		 <table id="Table_01" width="970" border="0" cellpadding="0" cellspacing="0" align="center">
+            <tr>
+                <td colspan="2">
+                <img src="images/help_01.jpg" width="970" height="104" alt=""></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                <img src="images/help_02.jpg" width="970" height="167" alt=""></td>
+            </tr>
+            <tr>
+                <td>
+                <img src="images/help_03.jpg" width="505" height="499" alt=""></td>
+                <td>
+                <img src="images/help_04.jpg" width="465" height="499" alt=""></td>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+                <td align="right">
+
+                </td>
+            </tr>
+        </table>
+		</div>
+	</div>
+	<div id="site-bottom-bar" class="fixed-position">
+		<div id="site-bottom-bar-frame">
+			<div id="site-bottom-bar-content">
+                     <a id="menu-root" href="javascript:kembali()" style="color:white; text-decoration:none"><< KEMBALI</a>
+
+                     <a id="menu-root" href="modif_template.php" style="color:white; text-decoration:none"> LANJUT KE RANCANG HALAMAN >></a>
+			</div>
+		</div>
+	</div>
+ 
+ 
+	<!-- ------- -->
+	<!-- ------- -->
+ 
+
+
+        <!-- End Save for Web Slices -->
+    </body>
+</html>
+
+{literal}
+<script>
+    function kembali(){
+        //document.location = "modif_template_petunjuk.php?url=kembali";
+        document.location = "beranda.php?buat_iklan=1&step=2";
+    }
+</script>
+{/literal}

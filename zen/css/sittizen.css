@@ -1,0 +1,255 @@
+/* åß
+	SITTI 2010
+*/
+/*@import url("ui_lib/ui.all.css");*/
+.f20{
+	font-size:20px;
+}
+.headerZen{
+	height:80px;
+	padding:60px 10px 60px 10px;
+	position:relative;
+}
+a.logoZen{
+	/*background:url(../images/logo_zen_beta.png) no-repeat;*/
+	height: 176px;
+    left: 0;
+    margin: 0;
+    position: absolute;
+    text-decoration: none;
+    top: 0;
+    width: 330px;
+	background: url(../images/new/logo_sitti_beta.png) no-repeat;
+	
+}
+.sloganZen{
+	/*background:url(../images/slogan_zen.png) no-repeat;*/
+	width:420px; height:32px;
+	float:right;
+	margin:40px 0 0 0;
+	text-decoration:none;
+}
+.bodyZen{
+	width:960px;
+	margin:0 auto;
+	color:#FFF;
+}
+.borderLeftHome,.borderRightHome{
+	background:url(../images/bg_zen_home_left.png) no-repeat;
+	width:30px; height:416px;
+	float:left;
+	display:block;
+	margin:0 0 50px 0;
+}
+.borderRightHome{
+	background:url(../images/bg_zen_home_right.png) no-repeat;
+}
+.contentHome{
+	background:url(../images/bg_zen_home.png) repeat-x;
+	width:940px;
+	height:416px;
+	display:block;
+	float:left;
+	margin:0 0 50px 0;
+	font-size:14px;
+}
+.colLeftZenHome{
+/*	background:url(../images/bg_zen_shd.png) right no-repeat;*/
+	width:600px;
+	float:left;
+	height:400px;
+}
+.colRightZenHome{
+	height:400px;
+	width:300px;
+	float:left;
+	padding:20px 0 0 0;
+}
+.contentZenHome{
+	background:url(../images/sittizenchart.jpg) no-repeat 10px 29px;
+	padding:30px 50px 0 20px;
+	line-height:22px;
+	height:365px;
+}
+.contentZenHome strong,.helpZen strong{
+	color:#00ccff;
+}
+.contentZenHome h1{
+	font-size:16px;
+	color:#FFF;
+}
+.bodyZen a{
+	text-shadow:none;
+	text-decoration:none;
+	color:#00ccff;
+}
+.bodyZen a:hover{
+	text-decoration:underline;
+}
+.formloginZen{
+	margin:0 -25px 0 0;
+}
+.loginZen{
+	background: url(../images/login_zen_title.png) no-repeat;
+	width:215px; height:53px;
+	text-decoration:none;
+	display:block;
+	margin:0 auto;
+}
+.rowZen{
+	text-align:center;
+}
+.aLeft{
+	text-align:left;
+}
+.rowZen label{
+	display:block;
+	padding:7px;
+}
+input[type=text].inputZen,input[type=text].inputZen:focus, select.inputZen, select.inputZen:focus,input[type=password].inputZen,input[type=password].inputZen:focus{
+	background:url(../images/bg_zen_input.png) no-repeat;
+	width:247px; height:25px;
+	padding:5px;
+	display:block;
+	border:none;
+	color:#006699;
+	font-size:14px;
+	margin:0 auto;
+}
+input[type=text].inputZen2,input[type=password].inputZen2{
+	background:url(../images/bg_zen_input2.png) no-repeat;
+	width:320px; height:25px;
+	padding:5px;
+	display:block;
+	border:none;
+	color:#006699;
+	font-size:14px;
+	margin:0;
+}
+input[type=text].inputZen2:focus,input[type=password].inputZen2:focus{
+	border:none;
+}
+select.inputZen,select.inputZen:focus{
+	height:35px;
+	width:256px;
+	padding:8px;
+}
+input[type=submit].submitZen{
+	background: url(../images/bg_zen_submit.png) no-repeat;
+	width:272px; height:48px;
+	padding:5px;
+	display:block;
+	border:none;
+	margin:0 auto;
+	color:#FFF;
+	cursor:pointer;
+	font-size:12px;
+	font-weight:bold;
+	text-shadow:1px 1px 5px #000;
+}
+input[type=submit].submitZen2{
+	background: url(../images/bg_zen_submit2.png) no-repeat;
+	width:175px; height:48px;
+	padding:5px;
+	display:block;
+	border:none;
+	margin:0 auto;
+	color:#FFF;
+	cursor:pointer;
+	font-size:12px;
+	font-weight:bold;
+	text-shadow:1px 1px 5px #000;
+}
+input[type=submit].submitZen:hover{
+	background: url(../images/bg_zen_submit_hover.png) no-repeat;
+}
+input[type=submit].submitZen2:hover{
+	background: url(../images/bg_zen_submit2_hover.png) no-repeat;
+}
+option{
+	outline:none;
+}
+/*--------------------------------Login Stlye------------------------------*/
+.loginBlock,.forgotBlock{
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	border-radius:15px;
+	-moz-box-shadow:0 2px 5px rgba(0, 0, 0, 0.7);
+	-webkit-box-shadow:0 2px 5px rgba(0, 0, 0, 0.7);
+	box-shadow:0 2px 5px rgba(0, 0, 0, 0.7);
+	behavior: url(ie-css3.htc);
+	width:500px;
+	min-height:165px;
+	overflow:hidden;
+	margin:27px auto 0 auto;
+	background: url(../images/bg_login4.gif) bottom repeat-x #FFF;
+	padding:30px;
+	border:#FFF solid 4px;
+}
+.loginBlock h3,.forgotBlock h3{
+	margin:0 0 20px 0;
+	color:#000;
+	text-shadow:none;
+}
+.loginBlock input[type=text],.loginBlock input[type=password],.rowLogin,.forgotBlock input[type=text],.forgotBlock input[type=password]{
+	width:200px;
+	height:20px;
+}
+.rowLogin select{
+	width:230px;
+	height:20px;
+}
+/*-----------regZen-------------*/
+
+.borderLeftzen,.borderRightzen{
+	background:url(../images/bg1_zen_left.png) no-repeat;
+	width:25px; height:524px;
+	display:block; float:left;
+}
+.borderRightzen{
+	background:url(../images/bg1_zen_right.png) no-repeat;
+}
+.contentZen{
+	background:url(../images/bg1_zen.png) repeat-x;
+	width:910px; height:524px;
+	float:left;
+}
+.contentZenText{
+	padding:40px 10px 0 30px;
+	font-size:14px;
+	line-height:22px;
+}
+.contentZenText label{
+	float:left;
+}
+.colLeftZen{
+	width:420px;
+	background:url(../images/bg_zen_shd.png) right no-repeat;
+	float:left;
+	padding:20px 0 0 0;
+}
+.colRightZen{
+	width:420px;
+	float:left;
+	padding:20px 0 0 30px;
+}
+.formLeft{
+	height:273px;
+}
+.helpZen{
+	background:url(../images/bg_zen_note.png) no-repeat;
+	width:402px; height:117px;
+	margin:0 0 0 -38px;
+	clear:both;
+	position:absolute;
+	font-size:12px;
+	line-height:18px;
+	padding:15px 20px 0 50px;
+}
+.tutorialIklan{
+	padding:0 0 20px 0;
+}
+.tutorialIklan dt{
+	padding:15px 20px;
+	font-weight:bold;
+}

@@ -1,0 +1,41 @@
+
+       
+                <h3 class="headTitle">REPORT</h3>
+                <form action="beranda.php" method="get" enctype="application/x-www-form-urlencoded" name="form1">
+                  Choose Campaign : 
+                  <input name="laporan" type="hidden" value="1">
+                  <select name="c" id="c">
+                  {section name=i loop=$campaign}
+                    <option value="{$campaign[i].ox_campaign_id}">{$campaign[i].name|stripslashes|strip_tags}</option>
+                   {/section}
+                  </select>
+                  
+                  <input type="submit" name="GO" id="GO" value="LIHAT">
+                </form>
+                <p>&nbsp;</p>
+                <p>
+This is Your SITTI report<br>
+Data impressions and click updated every 1 hour.</p>
+                <table width="650" border="0" cellspacing="0" cellpadding="0" class="list zebra" >
+                  <tr class="head">
+                    <td width="200">Ad Title</td>
+                    <td>Impression<a onmouseover="tooltip.show('How many times your ad is viewed or opened');" onmouseout="tooltip.hide();"  class="helpIcon" style=" float:right; margin:-3px 0 0 0;">&nbsp;</a></td>
+                    <td>Click<a onmouseover="tooltip.show('How many times your ad is clicked. Number of clicks this will be deducted from your total budget');" onmouseout="tooltip.hide();"  class="helpIcon" style=" float:right; margin:-3px 0 0 0;">&nbsp;</a></td>
+                    <td>CTR %<a onmouseover="tooltip.show('Comparison of the number of times your ad is seen and clicked. The bigger the better.');" onmouseout="tooltip.hide();"  class="helpIcon" style=" float:right; margin:-3px 0 0 0;">&nbsp;</a></td>
+                   
+                  </tr>
+                  {section name=i loop=$list}
+                  <tr>
+                    <td>{$list[i].judul|stripslashes|strip_tags}</td>
+                    <td>{$list[i].stats.impressions|number_format}</td>
+                    <td>{$list[i].stats.clicks|number_format}</td>
+                    <td>{$list[i].stats.ctr} %</td>
+                    
+                  </tr>
+                 {/section}
+                 
+                </table>
+					{$paging}
+            
+           
+  

@@ -1,0 +1,149 @@
+<script type="text/javascript" src="js/jquery_swfobject.js"></script>
+{literal}
+<script>
+var f3 = [];
+$(document).ready(function() {
+		//kampanye
+       $.get('report.php',{t:103,n:10,cache:false}, function(data) {
+			f3 = eval(data);
+			if (f3 != null && f3.length > 0) {
+				_chart3(f3);
+			} else {
+				$("#katakunciChartKataKunci").hide();	
+			}
+		});
+	});
+function togglec3(){
+	try{
+		_chart3(f3);
+	}catch(e){}
+}
+function _chart3(feeds){
+	try{
+		var _titles = {'imp':'Impression','click':'Click Count','ctr':'CTR Percentages'};
+		var _data = [];
+		for(var i=0;i<feeds.length;i++){
+			//_cat.push(feeds[i].kata);	
+			
+			_data.push({name:feeds[i].kata,data:[parseFloat(feeds[i][$('#cc3').val()])]}); 
+		}
+		
+		chart = new Highcharts.Chart({
+					chart: {
+						renderTo: 'g3',
+						defaultSeriesType: 'column'
+					},
+					exporting:{enabled:false},
+					title: {
+						text: 'Best Keywords by ' + _titles[$('#cc3').val()]
+					},
+					subtitle: {
+						text: ' '
+					},
+					xAxis: {
+						categories: [
+							'Keyword'
+						]
+					},
+					yAxis: {
+						min: 0,
+						title: {
+							text: 'Count'
+						}
+					},
+					legend: {
+						layout: 'vertical',
+						backgroundColor: '#FFFFFF',
+						align: 'left',
+						verticalAlign: 'top',
+						x: 70,
+						y: 70,
+						floating: true,
+						shadow: true
+					},
+					credits:{enabled:false},
+					tooltip: {
+						formatter: function() {
+							return ''+
+								'Total : '+ this.y +'';
+						}
+					},
+					plotOptions: {
+						column: {
+							pointPadding: 0.2,
+							borderWidth: 0
+						}
+					},
+				     series: _data
+				});
+	}catch(e){}
+ }
+</script>
+{/literal}
+
+<div>
+ <table border="0" cellspacing="0" cellpadding="0" class="list zebra">
+  <tr class="head2">
+    <td>Number of Keywords</td>
+  </tr>
+  <tr>
+    <td><span class="f18 bold green">{$report.total_keyword|number_format} words</span></td>
+  </tr>
+</table>
+</div>
+
+<div id="katakunciChartKataKunci">
+	<div class="shortGrafik">
+	<span> View by : </span>
+	<select id='cc3' onchange="togglec3()">
+	<option value="imp">Impression</option>
+	<option value="click">Click</option>
+	<option value="ctr">CTR</option>
+	</select>
+	</div>
+
+	<div id="grafikBlock">
+		<div id="g3"> </div>
+	</div>
+
+</div>			
+    <div class="titleBerandaZen">
+     <a class="tambahIcon" onmouseover="tooltip.show('Move to Beranda');" onmouseout="tooltip.hide();"  href="#">&nbsp;</a>
+     <!--  sementara di hide <a class="pdf" onmouseover="tooltip.show('Export ke PDF');" onmouseout="tooltip.hide();"  href="#">&nbsp;</a>
+     --><a class="excel" onmouseover="tooltip.show('Export to CSV');" onmouseout="tooltip.hide();"  href="report.php?t=4&csv=1&st={$start}" target="_blank">&nbsp;</a>
+   </div>
+   <table border="0" cellspacing="0" cellpadding="0" class="list zebra">
+	<tr class="head2">
+		<td width="250">Keywords</td>
+        <td width="250">Used</td>
+		<td align="center"><a href="#" class="shortTitle">Impression<img
+			class="shotIcon" src="images/short_up.png" /></a></td>
+		<td align="center"><a href="#" class="shortTitle">Click<img
+			class="shotIcon" src="images/short_down.png" /></a></td>
+		<td align="center"><a href="#" class="shortTitle">CTR % <img
+			class="shotIcon" src="images/short_down.png" /></a></td>
+            <td align="center"><a href="#" class="shortTitle">CPC Average<img
+			class="shotIcon" src="images/short_down.png" /></a></td>
+		<td align="center"><a href="#" class="shortTitle">Top 5 CPC Average<img
+			class="shotIcon" src="images/short_down.png" /></a></td>
+	</tr>
+	{section name=i loop=$top_key}
+	<tr>
+		<td style="width:250px;"><div style="width:250px;">{$top_key[i].keyword|stripslashes|strip_tags}</div></td>
+        <td align="center">{if $top_key[i].status eq '0'}<span class="green">Yes</span><span class="scoreGreen"><img src="images/green.gif" /></span>{else}<span class="red">No</span><span class="scoreRed"><img src="images/red.gif" /></span>{/if}</td>
+		<td align="center">{$top_key[i].imp|number_format}</td>
+		<td align="center">{$top_key[i].click|number_format}
+		{if $top_key[i].klik_change > 0 && $top_key[i].status eq '0'}
+	    <span style="padding-left:10px;"><img src="images/ppc/arrow_up.png" onmouseout="tooltip.hide();" onmouseover="tooltip.show('{$top_key[i].klik_change|number_format:2}%');" /></span>
+	    {elseif $top_key[i].klik_change < 0 && $top_key[i].status eq '0'}
+	    <span style="padding-left:10px;"><img src="images/ppc/arrow_down.png" onmouseout="tooltip.hide();" onmouseover="tooltip.show('{$top_key[i].klik_change|number_format:2}%');" /></span>
+	    {/if}
+		</td>
+		<td align="center">{$top_key[i].ctr} %</td>
+        <td align="center">{$top_key[i].avg_cpc|round}</td>
+        <td align="center">{$top_key[i].avg_top5_cpc|round}</td>
+	</tr>
+	{/section}
+</table>
+
+{$paging}

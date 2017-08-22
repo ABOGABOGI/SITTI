@@ -1,0 +1,26 @@
+<p><strong>PENDING PUBLISHERS</strong></p><br>
+<br/>
+{if $msg}<div style="color:#cc0000;">{$msg}</div>{/if}
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="list zebra">
+  <tr class="head">
+    <td><strong>Tanggal Daftar</strong></td>
+    <td><strong>SittiID - Email</strong></td>
+    <td><strong>Website</strong></td>
+    <td><strong>Jenis Situs</strong></td>
+    <td><strong>Jenis Aplikasi</strong></td>
+    <td><strong>Estimasi Pengunjung</strong></td>
+    <td><strong>Approval</strong></td>
+  </tr>
+  {section name=i loop=$list}
+  <tr>
+    <td>{$list[i].tanggal_daftar}</td>
+    <td>{$list[i].sittiID} - {$list[i].email|stripslashes|strip_tags}</td>
+    <td>{$list[i].website|stripslashes|strip_tags}</td>
+    <td>{$list[i].jenis_situs|stripslashes|strip_tags}</td>
+    <td>{$list[i].jenis_aplikasi|stripslashes|strip_tags}</td>
+    <td>{$list[i].jumlah_visitor|stripslashes|strip_tags}</td>
+    <td><a href="?s=publisher&approve=1&id={$list[i].id}&st={$start}" class="publish">Approve</a>  <a class="unpublish" href="?s=publisher&approve=0&id={$list[i].id}&st={$start}">Reject</a></td>
+  </tr>
+  {/section}
+</table>
+<p>{$paging}</p>

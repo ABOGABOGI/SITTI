@@ -1,0 +1,35 @@
+<h3>{$ad_name}</h3>
+{if $list}
+<div id="tableKonversi">
+ <table cellspacing="0" cellpadding="0" border="0" class="list zebra">
+  <tr class="head2">
+    <td width="25">No</td>
+    <td>Check-in</td>
+    <td>Date Conversion</td>
+    
+    <td>Transaction ID</td>
+    <td>IP</td>
+    <td>Location</td>
+    <td>Total Conversion (IDR)</td>
+  </tr>
+  {section name=trans loop=$list}
+  <tr>
+    <td>{$smarty.section.trans.iteration}</td>
+    <td>{$list[trans].hittime|date_format:"%d %B %Y, %H:%I:%S"}</td>
+    <td>{$list[trans].conversiontime|date_format:"%d %B %Y, %H:%I:%S"}</td>
+   
+    <td>{$list[trans].transaction_id}</td>
+    <td>{$list[trans].ip}</td>
+    <td>JABODETABEK</td>
+    <td>{if $list[trans].nilai_konversi > 0}{$list[trans].nilai_konversi|number_format}{else}{$list[trans].nilai_komisi|number_format}{/if}</td>
+  </tr>
+  {/section}
+  <tr>
+    <td colspan="6"><strong>Total</strong></td>
+    <td><strong>{$total_konversi|number_format}</strong></td>
+  </tr>
+</table>
+</div>
+{else}
+<p>The ad conversions is not found.</p>
+{/if}

@@ -1,0 +1,166 @@
+ <script type="text/javascript" src="js/jquery.numberformatter-1.1.0.js"></script>
+ <script>
+ 	var random='{$random}';
+ 	var n_slots ={if $n_slots}{$n_slots}{else}0{/if};
+ 	var MINIMUM_BID = {$MINIMUM_BID};
+
+ {literal}
+  $(document).ready(function(){
+
+	  $(".apply").click(function(){
+			var diff = $(this).attr('no');
+			if (diff == '1a'){
+				initial_val = $(".bid0").val();
+				col='input.bidAp';cols='.bid';
+			}else if(diff == '1b'){
+				initial_val = $(".budgets0").val();
+				col = 'input.budAp';cols='.budgets';
+				
+			}else if(diff == '1c'){
+				initial_val = $(".totals0").val();
+				col = 'input.totAp';cols='.totals';
+			}
+			
+			$(col).each(function(index){
+				$(cols+index).val(initial_val);
+				updateTotal();
+				});
+		});
+	//$("#listkeyword").html("<span style='text-align:center;'><img src='images/loader.gif'/></span>");
+ 	//$("#listkeyword").load("beranda.php?selected_keywords=1");
+	 	//alert($("#bid").length());
+	  	updateTotal();
+
+      var bid_val = parseInt($('input.bidval').val());
+      $(function() {
+        $('input.bidval').focus(function() {
+          bid_val = parseInt($(this).val());
+        });
+
+        $('input.bidval').change(function() {
+          if ( parseInt($(this).val()) < parseInt(MINIMUM_BID) ) {
+            $(this).val(bid_val);
+            alert('Minimal nilai tawaran adalah Rp. ' + MINIMUM_BID);
+          }
+        });
+          $('input.budval').change(function() {
+              if ( parseInt($(this).val()) < bid_val ) {
+                //$(this).val(bid_val);
+                //$("#totaldaily").html(bid_val).format({format:"#,###", locale:"en"});
+                alert('Anggaran Harian minimal lebih dari Tawaran Anda');
+              }
+          });
+              $('input.totval').change(function() {
+                  if ( parseInt($(this).val()) < bid_val ) {
+                    //$(this).val(bid_val);
+                    //$("#totalbudget").html(bid_val).format({format:"#,###", locale:"en"});
+                    alert('Anggaran Total minimal lebih dari Tawaran Anda');
+                  }          
+        });
+      });
+
+   });
+
+  function isNumberKey(evt)
+  {
+     var charCode = (evt.which) ? evt.which : event.keyCode
+     if (charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+
+     return true;
+  }
+  function deleteKeyword(keyword){
+	//  $("#listkeyword").html("<span style='text-align:center;'><img src='images/loader.gif'/></span>");
+	// $("#listkeyword").load("beranda.php?delete_selected_key=1&k="+escape(keyword));
+  }
+  function updateTotal(){
+	  var n_total=0;
+	  var n_budget=0;
+	 	for(var i=0;i<n_slots;i++){
+		 	//alert($("#budget_"+(i+1)).val());
+		 	n_total+=eval($("#total_"+(i+1)).val());
+		 	n_budget+=eval($("#budget_"+(i+1)).val());
+	 	}
+	 	$("#totaldaily").html(n_budget).format({format:"#,###", locale:"en"});
+	 	$("#totalbudget").html(n_total).format({format:"#,###", locale:"en"});
+  }
+  {/literal}
+  
+ </script>
+ 
+  <h3 class="headTitle">Buat Iklan Baru</h3>
+  {if $err_msg}
+  <div align="center" class="errorMessage"><p>{$err_msg}</p></div>
+   {/if}
+                <div class="quote" style="margin:10px 0; background-color:#e5eff4;">
+                <strong>Anda bisa melakukan penawaran harga untuk kata kunci dan menentukan budget harian Anda serta Total Budget Anda untuk pemasangan Iklan.</strong>
+ </div>
+                <form class="registerForm" action="buat.php" method="post" enctype="application/x-www-form-urlencoded">
+                <h3 class="blue">Konfirmasikan Kata Kunci &amp; Anggaran Anda</h3>
+                <div id="listkeyword">
+ 				<table width="650" border="0" cellspacing="0" cellpadding="0" class="list zebra" >
+                  <tr class="head">
+                    <td width="20">No.</td>
+                    <td>Kata Kunci</td>
+                    <td>Rata - Rata CPC</td>
+                    <td>*Tawaran Anda</td>
+                    <td>Anggaran Harian*</td>
+                    <td>Anggaran Total*</td>
+                    <!--<td width="50">Remove</td> -->
+                  </tr>
+                  {assign var=num value=0}
+                  {section name=i loop=$list}
+                  {if $list[i].keyword}
+                  <tr>
+                    <td>{$smarty.section.i.iteration}</td>
+                    <td>{$list[i].keyword|trim|stripslashes|strip_tags}</td>
+                    <td>{$list[i].max_cpc|number_format}<input name="cpc[]" type="hidden" value="{$list[i].max_cpc}"/></td>
+                    <td style="width:160px">
+                    	<div style="position:relative;">
+	                    	<input name="keyword[]" type="hidden" value="{$list[i].keyword|stripslashes|strip_tags|mysql_escape_string}"/>
+	                      	<input style="width:100px" name="bid[]" type="text" value="{if $list[i].bid eq ''}{$MINIMUM_BID}{else}{$list[i].bid}{/if}"  class="inputPoint bidval bid{$num} bidAp" onkeypress="return isNumberKey(event)"/>
+	                    	{if $num eq 0}
+		                    	<a class="apply" no='1a' style="position: absolute; top:4px;right:2px;text-decoration:underline;cursor:pointer;font-size:10px;">Apply All</a>
+	                    	{/if}
+                    	</div>
+                    </td>
+                    <td style="width:160px">
+                    	<div style="position:relative;">
+                    	<input style="width:100px" name="budget[]" type="text" value="{$list[i].budget}" class="inputPoint budval budgets{$num} budAp" id="budget_{$smarty.section.i.iteration}" onchange="updateTotal();return false;" onkeypress="return isNumberKey(event)"/>
+                    	{if $num eq 0}
+		                    <a class="apply" no='1b' style="position: absolute; top:4px;right:2px;text-decoration:underline;cursor:pointer;font-size:10px;">Apply All</a>
+	                    {/if}
+	                    </div>	
+                    </td>
+                    <td style="width:160px">
+                    	<div style="position:relative;">
+                    	<input style="width:100px" name="total[]" type="text" value="{$list[i].total}" class="inputPoint totval totals{$num} totAp" id="total_{$smarty.section.i.iteration}" onchange="updateTotal();return false;" onkeypress="return isNumberKey(event)"/>
+                    	{if $num eq 0}
+		                    <a class="apply" no='1c' style="position: absolute; top:4px;right:2px;text-decoration:underline;cursor:pointer;font-size:10px;">Apply All</a>
+	                    {/if}
+	                    </div>
+                    </td>
+                   <!-- <td><div align="center"><a onmouseover="tooltip.show('Hapus Keyword ini?');" onmouseout="tooltip.hide();"  href="javascript:;" class="remove" onclick="deleteKeyword('{$list[i].keyword|stripslashes|strip_tags|mysql_escape_string}');">&nbsp;</a></div></td> --> 
+                  </tr>
+                  {/if}
+                  {assign var=num value=$num+1}
+                  {/section}
+                    <tr>
+                    	<td colspan="4">Subtotal</td>
+                    	<td><span id="totaldaily" name="totaldaily" style="font-weight:bold;">0</span></td>
+                    	<td><span id="totalbudget" name="totalbudget" style="font-weight:bold;">0</span></td>
+                    </tr>
+                </table><br />
+                </div><p>*Nilai ini dianjurkan oleh SITTI berdasarkan dengan simulasi yang telah Anda masukkan. </p>
+  					 
+                    <div class="row">
+                    	 <a href="buat.php?edit=1" class="submitButton">Kembali</a>
+                    	 <input name="token" type="hidden" value="{token}">
+                        <input type="submit" value="Lanjut" class="submitButton" style="float:right;" />
+                        <!--<p class="error">Semua field wajib diisi</p>-->
+                    </div>
+                     <input name="detil" type="hidden" value="1">
+ </form>
+ <div style="margin:10px 0; background-color:#e5eff4;" class="quote">
+                <strong><span style="color:#C00">PERINGATAN: Penggunaan iklan SITTI tidak boleh melanggar persyaratan dan peraturan hukum yang<br/>berlaku umum di Indonesia atau negara lain yang bersangkutan. Untuk lebih jelas lihat <a target="_blank" href="term.html" style="color:#C00; text-decoration:underline;"><span >Syarat dan Ketentuan</span></a></span></strong>
+ 					</div>

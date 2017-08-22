@@ -1,0 +1,10 @@
+ {if $news}<p><span class="style1">LATEST NEWS</span><BR />
+        <span class="style2">{$news.title|stripslashes}</span><BR />
+          <span class="testi">{$news.posted}</span></p>
+      <p>{$news.brief|stripslashes} <a class="artikel" href="article.php?id={$news.id}"><strong>more</strong></a></p>{else} <span class="testi">Not Available Yet</span>{/if}
+      {if $press}
+        <p><span class="style1">PRESS RELEASE</span><BR />
+        <span class="style2"><a href="article.php?id={$press.id}">{$press.title|stripslashes}</a></span><BR />
+          <span class="testi">{$press.posted}</span></p>
+        {/if}
+       

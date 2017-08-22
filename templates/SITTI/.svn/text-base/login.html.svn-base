@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>SITTI 359 Platform</title>
+        <link href="css/sitti.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" language="javascript" src="js/iepngfix_tilebg.js"></script>
+        <script type="text/javascript" language="javascript" src="js/drop_table.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        {literal}
+		<script type="text/javascript">
+		
+          $(document).ready(function(){
+            $(".closeDialog").click(function(){
+				$("#kotakdialog").hide("slow");
+			});
+          });
+		 
+        </script>
+        {/literal}
+        <link rel="shortcut icon" href="images/favicon.ico">
+        <link rel="icon" type="image/gif" href="images/animated_favicon.gif">
+    </head>
+
+    <body onload="init()">{if $takeOut}<div class="cLabel"><a href="http://www.sitti.co.id/UtakAtik/index.html"></a></div>{/if}
+    {if $broadcast}
+     <div id="kotakdialog" title="Pesan Hari Ini">
+     	<div class="isiDialog">
+        {$broadcast|stripslashes}
+        </div>
+	<a class="closeDialog" onmouseover="tooltip.show('Tutup Kotak Dialog');" onmouseout="tooltip.hide();"  href="#">&nbsp;</a>
+    </div>
+	{/if}
+        <div class="wrapper">
+            <a class="logoLogin" href="index.php">&nbsp;</a>
+            <div class="loginBlock">
+                <h3 class="f18 blue">Masukkan E-mail dan Kata Sandi Anda</h3>
+                <form class="login" action="login.php" method="post">
+                    <div class="rowLogin">
+                        <label>Email</label>
+                        <input name="username" type="text" class="inputText" autocomplete="off"/>
+                    </div>
+                    <div class="rowLogin">
+                        <label>Kata Sandi</label>
+                        <input name="password" type="password" class="inputText" autocomplete="off"/>
+                        <a class="forgot" href="lupa.php">Lupa Kata Sandi? <span class="blue"> Klik Di sini</span></a>
+                    </div>
+                    <div class="rowLogin">
+                        {$CAPTCHA}
+                    </div>
+					<input name="role" type="hidden" value="1" />
+					<input name="r" type="hidden" value="{$jumpTo}" />
+
+					
+
+                    <div class="rowLogin2">
+                     	<div class="rowMessageLogin"> 
+                        {if $msg}
+                       
+                        <span class="sukses">{$msg}</span> 
+                        {elseif $er}
+                        
+                        <span class="error">{$er}</span>
+                        
+                        {/if}
+                        </div>
+                        <input type="submit" class="submitButton" value="MASUK" style="width:100px;" />
+                        {if not $ppa and not $ppm}
+                        <a class="signup" href="index.php?registration=1">Belum punya Akun? <span class="blue"> Klik Di sini</span></a>
+                        {/if}
+                    </div>
+
+                </form>
+            </div>
+                                   
+
+                      
+        </div>
+         {literal}
+	        <script type="text/javascript">
+	
+				  var _gaq = _gaq || [];
+				  _gaq.push(['_setAccount', 'UA-16501037-1']);
+				  _gaq.push(['_setDomainName', 'sitti.co.id']);
+				  _gaq.push(['_trackPageview']);
+				
+				  (function() {
+				    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				    var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga, s);
+				  })();
+	
+			</script>
+			
+		{/literal}  
+    </body>
+</html>

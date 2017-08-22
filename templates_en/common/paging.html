@@ -1,0 +1,15 @@
+<div class="paging">
+                     <ul id="pagination">
+                      {if $isPrev}<li class="previous-off">&nbsp;&laquo;&nbsp;<a href="{if $base_url <> ""}{$base_url}&{$start_param}={$begin}{else}?{$start_param}={$begin}{/if}">Previous&nbsp;</a></li>{/if}
+                       {section name=l loop=$page}
+                        {if $curr_page eq $page[l].no}
+                        <li class="active">{$page[l].no}</li>
+                        {else}
+                        <li><a href="{if $base_url <> ""}{$base_url}&{$start_param}={$page[l].start}{else}?{$start_param}={$page[l].start}{/if}">{$page[l].no}</a></li>
+                        {/if}
+                        {/section}
+                      {if $isNext}
+                        <li class="next"><a href="{if $base_url <> ""}{$base_url}&{$start_param}={$last}{else}?{$start_param}={$last}{/if}">&nbsp;Next &raquo;&nbsp;</a></li>
+                        {/if}
+                    </ul>
+                   </div>

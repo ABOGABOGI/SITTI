@@ -1,0 +1,30 @@
+<p><strong>ADMINISTRATIVE ACCOUNTS</strong><br>
+  <br>
+  <strong>Permission settings for &quot;{$rs.username}&quot;</strong></p>
+<p style="color:#FF0000;">{$msg}</p>
+<form action="" method="post">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="list">
+  <tr class="head">
+    <td width="64%"><strong>Section</strong></td>
+    <td width="36%"><strong>Permission</strong></td>
+  </tr>
+  {section name=i loop=$list}
+  <tr>
+    <td>{$list[i].description|stripslashes}</td>
+    <td>
+    <input name="{$list[i].requestID}" type="radio" value="yes" {if $list[i].isAllowed}checked{/if}>
+    <label>Yes </label>
+    <input name="{$list[i].requestID}" type="radio" value="no" {if $list[i].isAllowed}{else}checked{/if}>
+	<label>No</label> </td>
+  </tr>
+  {/section}
+</table>
+<div align="center">
+  <input name="s" type="hidden" id="s" value="admin">
+  <input name="r" type="hidden" id="r" value="permission">
+  <input name="do" type="hidden" id="do" value="update">
+  <input name="id" type="hidden" id="id" value="{$rs.userID}">
+<input type="submit" name="SAVE" id="SAVE" value="SAVE">
+  <br>
+</div>
+</form>

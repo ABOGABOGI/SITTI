@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="icon" type="image/gif" href="images/animated_favicon.gif">
+<title>SITTIZEN Network</title>
+<link href="css/sitti.css" rel="stylesheet" type="text/css" />
+<link href="css/tabcontent.css" rel="stylesheet" type="text/css" />
+<link type="text/css" href="js/themes/hot-sneaks/ui.all.css" rel="stylesheet" />
+{literal}
+<script type="text/javascript" language="javascript" src="js/iepngfix_tilebg.js"></script>
+<script type="text/javascript" language="javascript" src="js/drop_table.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/ui/ui.core.js"></script>
+<script type="text/javascript" src="js/ui/ui.datepicker.js"></script>
+<script type="text/javascript" src="js/ui/i18n/ui.datepicker-id.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#text_img_format').change(function() {
+			$('#ads').hide();
+			if ($('#text_img_format').val() == 1){
+				$('.w300').show(); $('.w160').hide(); $('.w336').hide(); $('.w728').hide(); $('.w610').hide(); $('.w3002').hide(); $('.w940').hide(); $('.w520').hide();$('.w250').hide();$('.w468').hide();$('.w635').hide();
+			}
+			if ($('#text_img_format').val() == 2){
+				$('.w336').show(); $('.w300').hide(); $('.w728').hide(); $('.w160').hide(); $('.w610').hide(); $('.w3002').hide(); $('.w940').hide(); $('.w520').hide();$('.w250').hide();$('.w468').hide();$('.w635').hide();
+			}
+			if ($('#text_img_format').val() == 3){
+				$('.w728').show(); $('.w160').hide(); $('.w336').hide(); $('.w300').hide(); $('.w610').hide(); $('.w3002').hide(); $('.w940').hide(); $('.w520').hide();$('.w250').hide();$('.w468').hide();$('.w635').hide();
+			}
+			if ($('#text_img_format').val() == 4){
+				$('.w160').show(); $('.w728').hide();  $('.w336').hide();  $('.w300').hide(); $('.w610').hide(); $('.w3002').hide(); $('.w940').hide(); $('.w520').hide();$('.w250').hide();$('.w468').hide();$('.w635').hide();
+			}
+			if ($('#text_img_format').val() == 5){
+				$('.w610').show(); $('.w728').hide();  $('.w336').hide();  $('.w300').hide(); $('.w160').hide(); $('.w3002').hide(); $('.w940').hide(); $('.w520').hide();$('.w250').hide();$('.w468').hide();$('.w635').hide();
+			}
+			if ($('#text_img_format').val() == 6){
+				$('.w3002').show(); $('.w728').hide();  $('.w336').hide();  $('.w300').hide(); $('.w160').hide(); $('.w610').hide(); $('.w940').hide(); $('.w520').hide();$('.w250').hide();$('.w468').hide();$('.w635').hide();
+			}
+			
+			if ($('#text_img_format').val() == 7){
+				$('.w940').show(); $('.w728').hide();  $('.w336').hide();  $('.w300').hide(); $('.w160').hide(); $('.w610').hide(); $('.w3002').hide(); $('.w520').hide();$('.w250').hide();$('.w468').hide();$('.w635').hide();
+			}
+			if ($('#text_img_format').val() == 8){
+				$('.w520').show(); $('.w728').hide();  $('.w336').hide();  $('.w300').hide(); $('.w160').hide(); $('.w610').hide(); $('.w3002').hide(); $('.w940').hide();$('.w250').hide();$('.w468').hide();$('.w635').hide();
+			}
+			
+			if ($('#text_img_format').val() == 9){
+				$('.w468').show(); $('.w728').hide();  $('.w336').hide();  $('.w300').hide(); $('.w160').hide(); $('.w610').hide(); $('.w3002').hide(); $('.w940').hide(); $('.w250').hide();$('.w520').hide();$('.w635').hide();
+			}
+			
+			if ($('#text_img_format').val() == 10){
+				$('.w250').show(); $('.w728').hide();  $('.w336').hide();  $('.w300').hide(); $('.w160').hide(); $('.w610').hide(); $('.w3002').hide(); $('.w940').hide(); $('.w468').hide();$('.w520').hide();$('.w635').hide();
+			}
+			if ($('#text_img_format').val() == 11){
+				$('.w635').show(); $('.w728').hide();  $('.w336').hide();  $('.w300').hide(); $('.w160').hide(); $('.w610').hide(); $('.w3002').hide(); $('.w940').hide(); $('.w468').hide();$('.w520').hide();$('.w250').hide();
+			}
+			$('#ads').show('fast');
+		});
+		$('#text_img_format').change();
+	});
+
+ </script>
+<script type="text/javascript">
+	$(document).ready(function() {	
+        //When page loads...
+        $(".tab_content").hide(); //Hide all content
+        $("ul.tabjs li:first").addClass("active").show(); //Activate first tab
+        $(".tab_content:first").show(); //Show first tab content
+        /*
+		//On Click Event
+		$("ul.tabjs li").click(function() {
+		
+			$("ul.tabjs li").removeClass("active"); //Remove any "active" class
+			$(this).addClass("active"); //Add "active" class to selected tab
+			$(".tab_content").hide(); //Hide all tab content
+		
+			var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+			$(activeTab).fadeIn(); //Fade in the active ID content
+			return false;
+		});
+		*/ 
+
+    });
+    $(document).ready(function(){
+		$("#tanggalAwalSlot,#tanggalAkhirSlot,#tanggalAwal10Halaman,#tanggalAkhir10Halaman").datepicker();
+        $('#pilihWaktuSlot,#pilihWaktu10Halaman').change(function() {
+            $('#custom').hide();
+            if ($('#pilihWaktuSlot').val() == 0){
+                $('.pilihHariSlot').show();
+            }else{
+                $('.pilihHariSlot').hide();
+            }if ($('#pilihWaktu10Halaman').val() == 1){
+                $('.pilihHari10Halaman').show();
+            }else{
+                $('.pilihHari10Halaman').hide();
+            }
+            $('#custom').show('slow');
+        });
+        $('#pilihWaktuSlot,#pilihWaktu10Halaman').change();
+    });
+</script>
+ {/literal}
+</head>
+<body onload="init()">
+{if $takeOut}<div class="cLabel"><a href="http://www.sitti.co.id/UtakAtik/index.html"></a></div>{/if}
+ {if $broadcast}
+     <div id="kotakdialog" title="Pesan Hari Ini">
+     	<div class="isiDialog">
+       {$broadcast}
+        </div>
+	<a class="closeDialog" onmouseover="tooltip.show('Tutup Kotak Dialog');" onmouseout="tooltip.hide();"  href="#">&nbsp;</a>
+    </div>
+	{/if}
+<div class="wrapper">
+  <div class="header"> <a class="logoZen" href="index.php">&nbsp;</a> <a class="sloganZen" href="index.php">&nbsp;</a> </div>
+  <!-- <div class="navigationBar">
+    <ul class="navigation">
+      <li><a href="tentang-sitti.php">Tentang SITTI</a></li>
+      <li><a href="tentang-sittizen.php">SITTIZEN</a></li>
+      <li><a target="_blank" href="http://blog.belajarsitti.com/">Blog</a></li>
+       <li><a href="career.php">Karir</a></li>
+      <li><a target="_blank" href="http://sitti.zendesk.com/anonymous_requests/new">Kontak Kami</a></li>
+    </ul>
+    <div class="daftar">
+        {if $isLogin}<a href="index.php?logout=1">KELUAR</a>{else}<a href="index.php?login=1">MASUK</a> | <a href="daftar.php">DAFTAR SITTI</a>{/if}
+    </div></div> -->
+
+    <div class="navigationBarAllLogin">
+			<div class="navigationRight">
+                <ul class="menu navigation" id="menu">
+                    <li><a href="profile.php">Profile Saya</a>
+                    	{*<ul>
+                            <li><a href="profile.php?modify=1">Ganti Profil</a>
+    <!--                            <ul>
+                                    <li><a href="profile.php?bank=1">Daftar Rekening Bank</a></li>
+                                    <li><a href="profile.php?cc=1">Daftar Kartu Kredit</a></li>
+                                </ul>-->
+                            </li>
+                            
+                  			<!-- <li><a href="pembayaran.php">Pembayaran</a></li> -->
+                  			<li><a href="javascript:;" onClick="onTab('#tab_mutasi');">Mutasi Rekening</a></li>
+                  			
+                        </ul>*}
+                    </li>
+                    <li><a href="beranda.php">Laporan</a></li>
+                    <li><a href="download.php">Plugins</a></li>
+                    <li><a target="_blank" href="http://sitti.zendesk.com/anonymous_requests/new">Kontak</a></li>
+                </ul>
+                <script type="text/javascript">var menu=new menu.dd("menu");menu.init("menu","menuhover");</script>
+             <a class="btnKeluar" href="index.php?logout=1"></a>
+             <a target="_blank" href="http://twitter.com/sittiID" class="twitterAtas" alt="http://twitter.com/sittiID"></a>
+             <a target="_blank" href="http://www.facebook.com/SITTI.ID" class="fbAtas" alt="http://www.facebook.com/SITTI.ID"></a>
+             </div>
+            </div>
+  
+
+   {if $isLogin}
+         <div class="topUserMenu">
+         	<div class="topUserMenu-right">
+         	
+         	<div class="tum_info">
+         	<span class="namaPemilik">Nama Pemilik Akun</span>
+         	<span class="namaUser">{$info.name|strip_tags}</span>
+         	<span class="namaUser">{$info.sittiID}</span>
+         	</div>  	
+         	<a class="tum_simulasi" href="mailto:beriklan@sitti.zendesk.com"></a>
+         	<a class="tum_buat" href="beranda.php?daftar=1"></a>
+         	<a class="tum_kampanye" href="beranda.php?notifikasi=1"></a>
+         	
+         	</div>
+         </div>
+         {else}
+         <div class="topUserMenu">
+         	<div class="topUserMenu-right">
+         	
+         	<div class="tum_info">
+         	
+         	</div>  	
+         	<a class="tum_simulasi" href="mailto:beriklan@sitti.zendesk.com"></a>
+         	<a class="tum_buat" href="beranda.php?daftar=1"></a>
+         	<a class="tum_kampanye" href="beranda.php?notifikasi=1"></a>
+         	
+         	</div>
+         </div>
+         {/if}   
+  <div class="blockContent">
+    <div class="content">
+     <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td valign="top"> 
+    	 <div class="colLeft">
+    	  {$mainContent}
+      	 </div>
+				<!--  colom kanan beranda -->
+		</td>
+         
+        </tr>
+      </table>  	
+      <div class="bottomContent"></div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <div class="wrapper">
+        <ul class="navFoot">
+                <li><a href="term.html" target="_blank"> Syarat dan Ketentuan</a>|</li>
+                <li><a href="tentang-sitti.php">Tentang SITTI</a>|</li>
+                <li><a href="http://359.sitti.co.id/" target="_blank"> Beriklan di SITTI</a>|</li>
+      			<li><a href="tentang-sittizen.php">SITTIZEN</a>|</li>
+      			<li><a target="_blank" href="http://blog.belajarsitti.com/">Blog</a>|</li>
+       			<li><a href="career.php">Karir</a>|</li>
+                <li><a href="http://sitti.zendesk.com/anonymous_requests/new" target="_blank">Kontak Kami</a></li>
+        </ul>
+        <p class="copyRight">
+            Email: beriklan@sitti.zendesk.com<br />
+            © 2010 SITTI
+        </p>
+  </div>
+</div>
+   {literal}
+        <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18302010-11']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' :
+'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+{/literal}
+</body>
+</html>

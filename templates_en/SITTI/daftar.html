@@ -1,0 +1,451 @@
+
+<!--js update city n province, link 09-03-2010 -->
+<script type="text/javascript">
+    var ship_rates = {literal}{}{/literal};
+    {section name=i loop=$shipment}
+    ship_rates['{$shipment[i].cityID}'] = {$shipment[i].rates};
+    {/section}
+    var country = [];
+    var province = {literal}{}{/literal};
+    var city = {literal}{}{/literal};
+    {section name=i loop=$country}
+    province['{$country[i].id}'] = [];
+    {section name=j loop=$country[i].province}
+    province['{$country[i].id}'][{$smarty.section.j.index}] = {literal}{{/literal}"id":"{$country[i].province[j].id}","provinceName":"{$country[i].province[j].provinceName}"{literal}};{/literal}
+    city['{$country[i].province[j].id}'] = [];
+    {section name=k loop=$country[i].province[j].city}
+    city['{$country[i].province[j].id}'][{$smarty.section.k.index}] = {literal}{{/literal}"id":"{$country[i].province[j].city[k].id}","cityName":"{$country[i].province[j].city[k].cityName}"{literal}};{/literal}
+    {/section}
+
+    {/section}
+    country[{$smarty.section.i.index}] = {literal}{{/literal}"id":"{$country[i].id}","countryName":"{$country[i].countryName}","province":province['{$country[i].id}']{literal}}{/literal};
+    {/section}
+</script>
+<script type="text/javascript">
+    {literal}
+
+    function updateProvince(){
+
+        var countryID = document.getElementById("home_country").value;
+        var strHTML = "";
+
+        var p = province[countryID];
+
+        try{
+            document.getElementById("home_province").innerHTML = "";
+            for(var i=0;i<p.length;i++){
+                //strHTML+="<OPTION value="+p[i]['id']+">"+p[i]['provinceName']+"</OPTION>";
+                var oOption = document.createElement("OPTION");
+                oOption.setAttribute("value", p[i]['id']);
+                oOption.appendChild(document.createTextNode(p[i]['provinceName']));
+                document.getElementById("home_province").appendChild(oOption);
+            }
+        }catch(e){
+            alert(e.message);
+        }
+        //alert(strHTML);
+
+
+        //document.getElementById("home_province").appendChild("option");
+
+        // alert(strHTML);
+        //alert(document.getElementById("home_province").innerHTML);
+        updateCity();
+        //return false;
+    }
+
+    function updateCity(){
+        var provinceID = document.getElementById("home_province").value;
+        var p = city[provinceID];
+        var strHTML = "";
+        try{
+
+            document.getElementById("home_city").innerHTML = "";
+            for(var i=0;i<p.length;i++){
+                //strHTML+="<OPTION value="+p[i]['id']+">"+p[i]['provinceName']+"</OPTION>";
+                var oOption = document.createElement("OPTION");
+                oOption.setAttribute("value", p[i]['id']);
+                oOption.appendChild(document.createTextNode(p[i]['cityName']));
+                document.getElementById("home_city").appendChild(oOption);
+            }
+        }catch(e){}
+        /*
+        for(var i=0;i<p.length;i++){
+            strHTML+="<option value='"+p[i]['id']+"'>"+p[i]['cityName']+"</option>";
+        }
+        }catch(e){}
+        document.getElementById("home_city").innerHTML = strHTML;
+         */
+
+    }
+    /*
+    function updateShippingProvince(){
+        var countryID = document.getElementById("shipping_country").value;
+        var strHTML = "";
+        var p = province[countryID];
+        for(var i=0;i<p.length;i++){
+            strHTML+="<option value='"+p[i]['id']+"'>"+p[i]['provinceName']+"</option>";
+        }
+        document.getElementById("shipping_province").innerHTML = strHTML;
+        updateShippingCity();
+    }*/
+    function updateShippingProvince(){
+        var countryID = document.getElementById("shipping_country").value;
+        var strHTML = "";
+        var p = province[countryID];
+
+        try{
+
+            document.getElementById("shipping_province").innerHTML = "";
+            for(var i=0;i<p.length;i++){
+                //strHTML+="<OPTION value="+p[i]['id']+">"+p[i]['provinceName']+"</OPTION>";
+                var oOption = document.createElement("OPTION");
+                oOption.setAttribute("value", p[i]['id']);
+                oOption.appendChild(document.createTextNode(p[i]['provinceName']));
+                document.getElementById("shipping_province").appendChild(oOption);
+            }
+        }catch(e){}
+        /*
+        try{
+        for(var i=0;i<p.length;i++){
+            strHTML+="<option value='"+p[i]['id']+"'>"+p[i]['provinceName']+"</option>";
+        }
+        }catch(e){}
+        document.getElementById("shipping_province").innerHTML = strHTML;
+         */
+        updateShippingCity();
+
+    }
+
+
+    function updateShippingCity(d){
+        var provinceID = document.getElementById("shipping_province").value;
+        var p = city[provinceID];
+        var strHTML = "";
+        try{
+
+            document.getElementById("shipping_city").innerHTML = "";
+            for(var i=0;i<p.length;i++){
+                //strHTML+="<OPTION value="+p[i]['id']+">"+p[i]['provinceName']+"</OPTION>";
+                var oOption = document.createElement("OPTION");
+                oOption.setAttribute("value", p[i]['id']);
+                if(d!=null){
+                    if(d==p[i]['id']){
+                        oOption.setAttribute("selected", "selected");
+                    }
+                }
+                oOption.appendChild(document.createTextNode(p[i]['cityName']));
+                document.getElementById("shipping_city").appendChild(oOption);
+            }
+        }catch(e){}
+        /*
+        try{
+        for(var i=0;i<p.length;i++){
+            strHTML+="<option value='"+p[i]['id']+"'>"+p[i]['cityName']+"</option>";
+        }
+        }catch(e){}
+         */
+        //document.getElementById("shipping_city").innerHTML = strHTML;
+        updateShippingRates();
+    }
+    function updateShippingRates(){
+        var rates = ship_rates[document.getElementById('shipping_city').value];
+        document.getElementById("shipping_rates").innerHTML=number_format(rates);
+        document.getElementById("total_price").innerHTML=number_format(parseInt(document.getElementById('subtotal').value)+rates);
+        document.getElementById("rates").value=rates;
+    }
+    function number_format (number, decimals, dec_point, thousands_sep) {
+        var n = number, prec = decimals;
+
+        var toFixedFix = function (n,prec) {
+            var k = Math.pow(10,prec);
+            return (Math.round(n*k)/k).toString();
+        };
+
+        n = !isFinite(+n) ? 0 : +n;
+        prec = !isFinite(+prec) ? 0 : Math.abs(prec);
+        var sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep;
+        var dec = (typeof dec_point === 'undefined') ? '.' : dec_point;
+
+        var s = (prec > 0) ? toFixedFix(n, prec) : toFixedFix(Math.round(n), prec); //fix for IE parseFloat(0.55).toFixed(0) = 0;
+
+        var abs = toFixedFix(Math.abs(n), prec);
+        var _, i;
+
+        if (abs >= 1000) {
+            _ = abs.split(/\D/);
+            i = _[0].length % 3 || 3;
+
+            _[0] = s.slice(0,i + (n < 0)) +
+                _[0].slice(i).replace(/(\d{3})/g, sep+'$1');
+            s = _.join(dec);
+        } else {
+            s = s.replace('.', dec);
+        }
+
+        var decPos = s.indexOf(dec);
+        if (prec >= 1 && decPos !== -1 && (s.length-decPos-1) < prec) {
+            s += new Array(prec-(s.length-decPos-1)).join(0)+'0';
+        }
+        else if (prec >= 1 && decPos === -1) {
+            s += dec+new Array(prec).join(0)+'0';
+        }
+        return s;
+    }
+    {/literal}
+</script>
+<!--end-->
+
+<h3 class="headTitle">SITTI Registration</h3>
+<p>Before starting the process of manufacture and installation of your ad, please medaftarkan themselves first to become a member SITTI.<br />
+Fill out the brief form below. </p>
+<form class="registerForm" action="daftar.php" method="post">
+	<h3 class="blueArrow">Personal data<br />
+	</h3>
+<div class="row">
+        <label>Name</label>
+        <input type="text" name="nama" class="inputText" value="{$var.nama}" autocomplete="off"/> {if $isNotValidNama} <font color="red">{$isNotValidNama}</font> {else} {$var.required} {/if}
+    </div>
+    <div class="row">
+        <label>E-Mail</label>
+        <input type="text" id="email" name="email" class="inputText" value="{$var.email}" autocomplete="off"/>{if $isNotValidEmail} <font color="red">{$isNotValidEmail}</font> {else} {$var.required} {/if}
+    </div>
+	<h3 class="blueArrow" style="margin-top:20px;">Address<br />
+  </h3>
+<div class="row">
+        <label style="float:left">Street Names</label>
+        <textarea name="alamat" class="inputText">{$var.alamat}</textarea>
+    </div>
+<!--    <div class="row">
+        <label>Komplek</label>
+        <input type="text" name="komplek" class="inputText" value="{$var.komplek}" />
+    </div>
+    <div class="row">
+        <label>Blok</label>
+        <input type="text" name="blok" class="inputText" value="{$var.blok}" />
+    </div>-->
+
+    <div class="row">
+        <label>Province</label>
+        <select name="home_province" id="home_province" onchange="updateCity()">
+            {section name=i loop=$province}
+                {if $province[i].id eq '13'} <!--default province=jakarta-->
+                    <option value="{$province[i].id}" selected>{$province[i].provinceName}</option>
+                {else}
+                    <option value="{$province[i].id}">{$province[i].provinceName}</option>
+                {/if}
+            {/section}
+        </select>
+        <script type="text/javascript">document.getElementById('home_province').value="{$rs.home_province}";</script>
+    *Select one</div>
+
+    <div class="row ">
+        <label>City</label>
+        <select name="home_city" id="home_city">
+            {if $rs.home_city}
+                {section name=i loop=$city}
+                    <option value="{$city[i].id}">{$city[i].cityName}</option>
+                {/section}
+            {else}
+                <!--default city=jakarta-->
+                {section name=i loop=$cityJakarta}
+                <option value="{$cityJakarta[i].id}">{$cityJakarta[i].cityName}</option>
+                {/section}
+            {/if}
+        </select>
+        <script type="text/javascript">document.getElementById('home_city').value="{$rs.home_city}";</script>
+    *Select one</div>
+	<h3 class="blueArrow" style="margin-top:20px;">Your Box</h3>
+    <div class="row">
+        <label>Telephone</label>
+        <input type="text" name="telepon" class="inputText" value="{$var.telp}" />
+    *example format: 021-XXXXXX</div>
+    <div class="row">
+        <label>Mobilephone</label>
+        <input type="text" name="handphone" class="inputText" value="{$var.hp}" />
+    *example format: 08XX-XXXXXX</div>
+    <h3 class="blueArrow" style="margin-top:20px;">SITTI Login Data</h3>
+
+    <p>Enter the password to log into your account SITTI.<br />
+    Passwords must contain numbers and characters maximum of 20 letters.</p>
+    
+    <div class="row" id="password-register">
+        <label>Password</label>
+        <div class="password-input">
+        <input type="password" name="password" id="password" class="inputText" value="{$var.password}" maxlength="20" autocomplete="off"/>
+        </div>
+        <div id="password-strength">
+            <div class="colorbar" id="colorbar"></div>
+            <span class="percent" id="percent" style="display:none;">
+                0%
+            </span>
+            &nbsp;&nbsp;
+            <span class="result" id="result"></span>
+        </div>
+        <div class="clear">{if $isNotValidPassword} <span class="errormessage">{$isNotValidPassword}</span> {else} {$var.required} {/if}</div>
+    </div>
+    <!--
+
+        <h3 class="blue">Anda Adalah</h3>
+        <div class="row">
+            <input type="radio" name="role" class="inputRadio" value="2" />
+            <label class="labelChek">Publisher / Website atau Pemilik Blog</label>
+        </div>
+        <div class="row">
+            <input type="radio" name="role" class="inputRadio" value="1" checked />
+            <label class="labelChek">Advertiser / Pemasang Iklan</label>
+        </div>
+        -->
+    <h3 class="blueArrow" style="margin-top:20px;">Business information</h3>
+    <p>When your ad will advertise a brand, both enter the data below. <br />
+     This will help the process of keyword matching.</p>
+
+
+    <div class="row">
+        <label>Company Type</label>
+        <select name="companyType" id="companyType" class="dropdown">
+            <option value="Perorangan">Individual</option>
+            <option value="Perusahaan Perorangan">Individual companies</option>
+            <option value="Perusahaan Dagang">Trading Company</option>
+            <option value="Yayasan">Foundation</option>
+            <option value="Lembaga Pemerintah">Government institutions</option>
+            <option value="Badan Hukum Lain ">Other Legal Entity </option>
+        </select>
+        <script>document.getElementById('companyType').value="{$var.prefixCompany}";</script>
+     </div>
+     <div class="row">
+        <label>Company name</label>
+        <input type="text" name="company" class="inputText" value="{$var.company}" />
+    </div>
+    <!--
+        <div class="row">
+            <label>Industri</label>
+            <input type="text" name="industry" class="inputText" />
+        </div>
+        -->
+
+    <div class="row">
+        <label>Name Brand Products</label>
+        <input type="text" name="brand" class="inputText" value="{$var.brand}" />
+    </div>
+    <div class="row">
+        <label>City</label>
+        <select name="kotaUsaha" id="kotaUsaha">
+            {section name=i loop=$city_industry}
+            <option value="{$city_industry[i].cityName}">{$city_industry[i].cityName}</option>
+            {/section}
+        </select>
+    </div>
+
+
+	<div class="row">
+	{$CAPTCHA}
+	
+	{if $CaptchaError} <span class="errormessage">{$CaptchaError}</span>{/if}
+	</div>
+    <!--<p class="message">* Semua field wajib diisi</p>-->
+
+    <div class="row">
+        <input type="checkbox" name="aggrement" class="inputCheckbox" value="1" />
+        <label class="labelChek">I Agree to <a href="term.html" target="_blank">Terms & Conditions</a> SITTI {$var.required} </label>
+    </div>
+    <div class="row">
+        <input type="submit" name="submit" value="DONE AND SAVE" class="submitButton" />
+        {if $er}
+        <p class="error">{$er}</p>
+        {/if}
+    </div>
+</form>
+
+
+
+<!--js update city n province-->
+<script type="text/javascript">
+    {literal} $(document).ready(function() {{/literal}
+
+
+
+        {literal}
+        if(document.getElementById('home_country').value!="")
+        {
+            {/literal}
+            document.getElementById('home_country').value="{$rs.home_country}";
+            updateProvince({$rs.home_province});
+            document.getElementById('home_province').value="{$rs.home_province}";
+            updateCity({$rs.home_city});
+            document.getElementById('home_city').value="{$rs.home_city}";
+            {literal}
+        }
+        {/literal}
+
+        {literal}
+        if(document.getElementById('shipping_country').value!="")
+        {
+            {/literal}
+            document.getElementById('shipping_country').value="{$rs.shipping_country}";
+            updateShippingProvince({$rs.shipping_province});
+            document.getElementById('shipping_province').value="{$rs.shipping_province}";
+            updateShippingCity({$rs.shipping_city});
+            document.getElementById('shipping_city').value="{$rs.shipping_city}";
+            {literal}
+        }
+        {/literal}
+        updateShippingRates();
+        {literal}});{/literal}
+</script>
+<!--end-->
+<script language="javascript">
+var shortPass = "{$passwd_short}";
+var badPass = "{$passwd_weak}";
+var goodPass = "{$passwd_strong}";
+var strongPass = "{$passwd_very_strong}";
+var sameAsUsername = "{$passwd_sameas_username}";
+</script>
+<script language="javascript" src="js/passwordStrengthMeter.js"></script>
+{literal}
+<script language="javascript">
+	
+	
+	var bpos = "";
+	var perc = 0 ;
+	var minperc = 0 ;
+	$('#email').keyup(function(){
+		$('#result').html(passwordStrength($('#password').val(),$('#email').val())) ;
+		perc = passwordStrengthPercent($('#password').val(),$('#email').val());
+
+		bpos=" $('#colorbar').css( {backgroundPosition: \"0px -" ;
+		bpos = bpos + perc + "px";
+		bpos = bpos + "\" } );";
+		bpos=bpos +" $('#colorbar').css( {width: \"" ;
+		bpos = bpos + (perc * 2) + "px";
+		bpos = bpos + "\" } );";
+		eval(bpos);
+	    	$('#percent').html(" " + perc  + "% ");
+	              });
+	              
+	$('#password').css( {backgroundPosition: "0 0"} );
+	
+	$('#password').keyup(function(){
+		//alert($('#password').val()+","+$('#email').val());
+		$('#result').html(passwordStrength($('#password').val(),$('#email').val())) ; 
+		perc = passwordStrengthPercent($('#password').val(),$('#email').val());
+		
+		bpos=" $('#colorbar').css( {backgroundPosition: \"0px -" ;
+		bpos = bpos + perc + "px";
+		bpos = bpos + "\" } );";
+		bpos=bpos +" $('#colorbar').css( {width: \"" ;
+		bpos = bpos + (perc * 2) + "px";
+		bpos = bpos + "\" } );";
+		
+		eval(bpos);
+	    $('#percent').html(" " + perc  + "% ");
+	    if(perc>0){
+	    	$('#percent').show();
+	    }
+	    
+	});
+		
+	
+	
+</script>
+{/literal}

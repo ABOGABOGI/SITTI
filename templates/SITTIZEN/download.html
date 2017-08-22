@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>SITTI - Platform Iklan Kontekstual Berbahasa Indonesia, Iklan Kontekstual, Bahasa Indonesia</title>
+<link href="css/sitti.css" rel="stylesheet" type="text/css" /> 
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" language="javascript" src="js/iepngfix_tilebg.js"></script>
+<script type="text/javascript" language="javascript" src="js/drop_table.js"></script>
+</head>
+<body onload="init()">
+{if $takeOut}<div class="cLabel"><a href="http://www.sitti.co.id/UtakAtik/index.html"></a></div>{/if}
+<div class="wrapper">
+  <div class="header"> <a class="logoZen" href="index.php">&nbsp;</a> <a class="sloganZen" href="index.php">&nbsp;</a> </div>
+  {if $isLogin}
+    <div class="navigationBarAllLogin">
+			<div class="navigationRight">
+                <ul class="menu navigation" id="menu">
+                    <li><a href="profile.php">Profile Saya</a>
+                    	{*<ul>
+                            <li><a href="profile.php?modify=1">Ganti Profil</a>
+    <!--                            <ul>
+                                    <li><a href="profile.php?bank=1">Daftar Rekening Bank</a></li>
+                                    <li><a href="profile.php?cc=1">Daftar Kartu Kredit</a></li>
+                                </ul>-->
+                            </li>
+                            
+                  			<!-- <li><a href="pembayaran.php">Pembayaran</a></li> -->
+                  			<li><a href="javascript:;" onClick="onTab('#tab_mutasi');">Mutasi Rekening</a></li>
+                  			
+                        </ul>*}
+                    </li>
+                    <li><a href="beranda.php">Laporan</a></li>
+                    <li><a href="download.php">Plugins</a></li>
+                    <li><a target="_blank" href="http://sitti.zendesk.com/anonymous_requests/new">Kontak</a></li>
+                </ul>
+                <script type="text/javascript">var menu=new menu.dd("menu");menu.init("menu","menuhover");</script>
+             <a class="btnKeluar" href="index.php?logout=1"></a>
+             </div>
+            </div>
+  {/if}
+   {if $isLogin}
+         <div class="topUserMenu">
+         	<div class="topUserMenu-right">
+         	
+         	<div class="tum_info">
+         	<span class="namaPemilik">Nama Pemilik Akun</span>
+         	<span class="namaUser">{$info.name|strip_tags}</span>
+         	<span class="namaUser">{$info.sittiID}</span>
+         	</div>  	
+         	<a class="tum_simulasi" href="faq.php"></a>
+         	<a class="tum_buat" href="beranda.php?daftar=1"></a>
+         	<a class="tum_kampanye" href="beranda.php?notifikasi=true"></a>
+         	
+         	</div>
+         </div>
+         {/if}   
+  <div class="blockContent">
+    <div class="content">
+    	 <div class="colLeft">
+    	   <h3 class="headTitle">Unduh Plugin</h3> <a name="wp" id="wp"></a>
+                	<h3> Jika situs web atau blog Anda menggunakan aplikasi wordpress atau blogger.com<br />
+maka SITTI memberikan cara mudah untuk memasang iklan di situs Anda hanya dengan mengunduh plugin Wordpress atau gadget blogger.com.</h3>
+                     
+                    <h3 class="blue">Wordpress Widget</h3>
+                     
+                    <p>Ikutilah langkah mudah di bawah ini untuk memasang plugin SITTI widget di situs web Anda:</p>
+                     
+                     <dl class="tutorialIklan">
+                    	<dt>1. Unduh plugin wordpress: <br /> <br />
+                    			<div style="margin-left:50px">
+                    				<ul>
+  										<li><a href="downloads/sitti_wordpress_plugin_v02.zip">SITTI Wordpress Plugin v2.x</a></li>
+  										<li><a href="downloads/sitti_wordpress_plugin_v03.zip">SITTI Wordpress Plugin v3.x</a><img style="margin:5px 0 0 5px; position:absolute;" src="images/icon_new2.gif" /></li>
+									</ul>
+                    			</div><br />
+ SITTI script tidak bisa digunakan di wordpress.com, hanya di engine wordprress yang di download dan di install ke server lain</dt>
+                    	<dt>2. Unggah plugin melalui panel kontrol Wordpress Anda</dt>
+                        	<dd><img src="images/s_instal_plugin.png" /></dd>
+                    	<dt>3. Lakukan pengaturan plugin di menu "SITTI Ads" pada bagian bawah menu kiri panel kontrol</dt>
+                        	<dd><img src="images/s_setting_panel.png" /></dd>
+                    	<dt>4. Masukkan SITTI_ID dan pilih template iklan yang paling cocok untuk situs web Anda.<br />
+Anda juga dapat mengatur tinggi dan lebar iklan sesuai dengan kebutuhan Anda.
+						</dt>
+                        	<dd><img src="images/s_sitti_panel.png" /></dd>
+                   		<dt>5. Pada bagian "widgets", letakkan plugin SITTI di salah satu posisi side bar</dt>
+                        	<dd><img src="images/s_widget.png" /></dd>
+                    	<dt>6. Mengaktifkan plugin</dt>
+                        	<dd><img src="images/s_aktivasi.png" /></dd>
+                    	<dt>7.  Masuk (login) ke <a href="http://www.belajarsitti.com">BELAJARSITTI.COM</a> untuk melihat laporan dan penghasilan Anda</dt>
+                        	
+                     </dl>
+                   <h3 class="blue"> Blogger.com</h3>
+                   <a name="blogger" id="blogger"></a>
+<p>Ikutilah langkah mudah di bawah ini untuk memasang iklan SITTI di blog Anda :</p>
+                      <dl class="tutorialIklan">
+                    	<dt>1. Masuk (Login) ke <a href="http://www.belajarsitti.com">BELAJARSITTI.COM</a> dan dapatkan script iklan SITTI pada bagian daftar slot iklan</dt>
+                        	<dd><img src="images/s_copy.png" /></dd>
+                    	<dt>2. Masuk ke panel kontrol blogger Anda</dt>
+                        	<dd><img src="images/s_blog.jpg" /></dd>
+                    	<dt>3. Pilih tautan "Tambah Gadget"</dt>
+                    	<dt>4. Pilih tautan "HTML/Javascript"</dt>
+                        	<dd><img src="images/s_js.png" /></dd>
+                    	<dt>5. Tempelkan script iklan SITTI pada bagian "konten"</dt>
+                        	<dd><img src="images/s_js_copy.png" /></dd>
+                    	<dt>6. Simpan</dt>
+                    	<dt>7. Pilih lokasi untuk meletakkan iklan SITTI</dt>
+                    	<dt>8. Masuk (Login) ke <a href="http://www.belajarsitti.com">BELAJARSITTI.COM</a> untuk melihat laporan dan penghasilan Anda</dt>
+                      </dl>
+          
+      	 </div>
+           	
+      <div class="bottomContent"></div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <div class="wrapper">
+       <ul class="navFoot">
+                <li><a href="term.html" target="_blank"> Syarat dan Ketentuan</a>|</li>
+                <li><a href="tentang-sitti.php">Tentang SITTI</a>|</li>
+                <li><a href="http://359.sitti.co.id/" target="_blank"> Beriklan di SITTI</a>|</li>
+      			<li><a href="tentang-sittizen.php">SITTIZEN</a>|</li>
+      			<li><a target="_blank" href="http://blog.belajarsitti.com/">Blog</a>|</li>
+       			<li><a href="career.php">Karir</a>|</li>
+                <li><a href="http://sitti.zendesk.com/anonymous_requests/new" target="_blank">Kontak Kami</a></li>
+        </ul>
+        <p class="copyRight">
+            Email: beriklan@sitti.zendesk.com<br />
+            © 2010 SITTI
+        </p>
+  </div>
+</div>
+	{literal}
+	<script type="text/javascript">
+
+			  var _gaq = _gaq || [];
+			  _gaq.push(['_setAccount', 'UA-16501037-1']);
+			  _gaq.push(['_setDomainName', 'sitti.co.id']);
+			  _gaq.push(['_trackPageview']);
+			
+			  (function() {
+			    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			    var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga, s);
+			  })();
+
+	</script>	
+	{/literal}
+</body>
+</html>

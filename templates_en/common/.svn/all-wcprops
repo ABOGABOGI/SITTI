@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/sittiweb/!svn/ver/290/branches/phase03-03/templates_en/common
+END
+confirm.html
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/sittiweb/!svn/ver/245/branches/phase03-03/templates_en/common/confirm.html
+END
+dialog.html
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/sittiweb/!svn/ver/245/branches/phase03-03/templates_en/common/dialog.html
+END
+paging_js.html
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/sittiweb/!svn/ver/290/branches/phase03-03/templates_en/common/paging_js.html
+END
+default.html
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/sittiweb/!svn/ver/245/branches/phase03-03/templates_en/common/default.html
+END
+message.html
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/sittiweb/!svn/ver/290/branches/phase03-03/templates_en/common/message.html
+END
+paging.html
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/sittiweb/!svn/ver/290/branches/phase03-03/templates_en/common/paging.html
+END
+blank.html
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/sittiweb/!svn/ver/245/branches/phase03-03/templates_en/common/blank.html
+END
+error.html
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/sittiweb/!svn/ver/290/branches/phase03-03/templates_en/common/error.html
+END
+main_club.html
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/sittiweb/!svn/ver/245/branches/phase03-03/templates_en/common/main_club.html
+END
+contact.html
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/sittiweb/!svn/ver/245/branches/phase03-03/templates_en/common/contact.html
+END

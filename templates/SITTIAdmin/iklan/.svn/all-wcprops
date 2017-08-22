@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/sittiweb/!svn/ver/67/branches/phase03-03/templates/SITTIAdmin/iklan
+END
+daftar_iklan.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/sittiweb/!svn/ver/67/branches/phase03-03/templates/SITTIAdmin/iklan/daftar_iklan.html
+END
+edit_iklan.html
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/sittiweb/!svn/ver/67/branches/phase03-03/templates/SITTIAdmin/iklan/edit_iklan.html
+END
+daftar_keyword.html
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/sittiweb/!svn/ver/67/branches/phase03-03/templates/SITTIAdmin/iklan/daftar_keyword.html
+END
+listing_iklan.html
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/sittiweb/!svn/ver/67/branches/phase03-03/templates/SITTIAdmin/iklan/listing_iklan.html
+END

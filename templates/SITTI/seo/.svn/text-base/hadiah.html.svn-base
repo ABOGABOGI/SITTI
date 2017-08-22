@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/style2.css" rel="stylesheet" type="text/css" />
+<title>Seo_Home</title>
+</head>
+
+<body>
+<div id="page">
+	<div id="header">
+		<div id="menu_wrapper">
+			<ul id="menu">
+			<li><a href="index.php">Home</a></li>
+<li><a href="peraturan.php">Peraturan dan Ketentuan</a></li>
+<li><a href="hadiah.php">Hadiah</a></li>
+<li><a href="daftar.php">Daftar Peserta</a></li>
+<li><a href="logo.php">Logo Kontes</a></li>
+			</ul>
+		</div>
+	</div>
+    <div id="content_seo">
+	<div id="hadimg">
+	</div>
+	</div>
+	<div id="content2">
+		<div id="rounded">
+			<div class="head_round">
+			</div>
+			<div class="mid_cont">
+            	<div class="col50">
+                	<h5>Tentang</h5>
+					<p>SITTI adalah platform iklan kontesktual online berbasis bahasa Indonesia . Membantu anda beriklan online secara mudah dan sesuai dengan anggaran anda di lebih dari 24 juta halaman situs online Indonesia . </p>
+                </div>
+                <div class="col25">
+                	<h5>Hubungi Kami</h5>
+					<p>Sekretariat Kontes SEO SITTI<br />Ghra Tirtadi, Jl Senopati 71-73<br />Kebayoran Baru, Jakarta Selatan<br /> <a href="mailto:seo@sitti.co.id">seo@sitti.co.id.</a></p>
+                </div>
+			</div>
+			<div class="bottom_round">
+			</div>
+		</div>
+	</div>
+    <div id="footer">
+    <p><strong>Copyright@2012 sitti.co.id | All Rights Reserved </strong></p>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<form id="form1" name="form1" method="post" action="">
+  <table width="38%" border="0" cellspacing="5" cellpadding="0">
+    <tr>
+      <td>API KEY : 
+        <label for="api_key"></label>
+      <input name="api_key" type="text" id="api_key" size="50" maxlength="50" />
+      <input type="submit" name="button" id="button" value="GO" /></td>
+    </tr>
+   {if $ads}
+    <tr>
+      <td height="23"><div class="w300" style="width:285px; height:235px; padding: 3px; display: table; border: 1px solid rgb(204, 204, 204); background-color: rgb(255, 255, 255); font-family: Arial,Helvetica,sans-serif;"> {section name=i loop=$ads}
+                               <div style="clear: both; line-height:16px; padding:0 0 7px">
+                                    <h1 style="color: #FF6600; font-size: 12px; margin: 0pt; font-weight:bold; text-shadow:none;">{$ads[i].judul|stripslashes|strip_tags}</h1>
+                                    <p style="color: #111111; font-size: 12px; margin: 0pt;text-decoration:none;">{$ads[i].baris1|stripslashes|strip_tags}</p>
+                                    <a style="color:#17A5D9; font-size: 11px; font-family: Arial,Helvetica,sans-serif; text-decoration: none;" href="{$ads[i].clickURL}" target="_blank">{$ads[i].urlName|stripslashes|strip_tags}</a>
+                                </div> 
+                                 {/section}
+                                 
+                                <div style="display:block; clear:both;" align="right">
+                                <a style="color: rgb(23, 165, 217); margin: -10px 0pt 0pt 0pt; padding-right:2px;font-size: 10px; display: table; clear: both;"><img src="http://stat.sittiad.com/assets/iklan_sitti.png" border="0" /></a>
+                               </div>
+                            </div></td>
+    </tr>
+   {/if}
+  </table>
+</form>

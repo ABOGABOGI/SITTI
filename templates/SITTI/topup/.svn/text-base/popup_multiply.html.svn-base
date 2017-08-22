@@ -1,0 +1,20 @@
+{literal}
+<style type="text/css">
+html {
+    color: #343434;
+    font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    line-height: 18px;
+}
+</style>
+{/literal}
+<html>
+<h2 class="blue">PayPal</h2>
+<p><img src="images/multiply-voucher.jpg" />
+<ol>
+        <li>Masukkan kode voucher yang Anda dapatkan dari Multiply.</li>
+        <li>Akun Anda akan terisi sebesar jumlah tersebut.</li>
+        <li>Voucher hanya dapat digunakan untuk satu kali top up.</li>
+</li>
+</ol>
+</html>

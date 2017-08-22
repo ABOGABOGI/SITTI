@@ -1,0 +1,40 @@
+<form id="form1" name="form1" method="get" action="">
+  Pilih Tanggal :
+  <select name="d" id="d">
+    
+  {section name=i loop=$date_list}
+    
+    <option value="{$date_list[i]}">{$date_list[i]}</option>
+    
+   {/section}
+  
+  </select>
+  <input name="s" type="hidden" value="system" />
+  <input name="r" type="hidden" value="queue" />
+  <input type="submit" name="button" id="button" value="GO" />
+  <br />
+  *) hanya menampilkan tanggal 7 hari terakhir.
+  <br />
+  <br />
+  Jumlah halaman yang telah selesai di index : {$TotalQueue|number_format} Halaman.<br />
+</form>
+<p>{$paging}</p>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="list zebra">
+  <tr>
+    <td width="9%">Article Page</td>
+    <td width="14%">Tgl. Isi data</td>
+    <td width="13%">Tgl. Index</td>
+    <td width="15%">Jeda Waktu</td>
+    <td width="22%">Update</td>
+  </tr>
+  {section name=i loop=$list}
+  <tr>
+    <td>{$list[i].webs|stripslashes|strip_tags}</td>
+    <td>{$list[i].tglisidata}</td>
+    <td>{$list[i].tglindex}</td>
+    <td>{$list[i].jeda}s</td>
+    <td>{$list[i].datee}</td>
+  </tr>
+  {/section}
+</table>
+<p>{$paging}</p>

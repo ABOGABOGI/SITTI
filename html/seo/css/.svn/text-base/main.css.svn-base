@@ -1,0 +1,320 @@
+/* --------------------------------------------------------------
+   WEBFONTS
+-------------------------------------------------------------- */
+
+@import url(fonts/billabong-italic.css);
+@import url(fonts/brandon-bold.css);
+
+/* --------------------------------------------------------------
+   RESET CSS (ok)
+-------------------------------------------------------------- */
+
+/* http://meyerweb.com/eric/tools/css/reset/ */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0;}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}body{line-height:1;}ol,ul{list-style:none;}blockquote,q{quotes:none;}blockquote:before,blockquote:after,q:before,q:after{content:none;}table{border-collapse:collapse;border-spacing:0;}
+
+/* iOS */
+html{-webkit-text-size-adjust:100%;}
+input,textarea{-webkit-appearance:none;}
+
+/* --------------------------------------------------------------
+   GLOBAL FONTS (ok)
+-------------------------------------------------------------- */
+
+body {
+	background: #4EC8E1;
+    color: #FFFFFF;
+    font-family: 'Arial',Helvetica,sans-serif;
+    font-size: 12px;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+}
+
+/* --------------------------------------------------------------
+   GLOBAL LAYOUT (ok)
+-------------------------------------------------------------- */
+
+#nav,
+#main,
+#footer {
+	min-width:900px;
+	position:relative;
+}
+
+/* fullscreen */
+.fullscreen,
+.fullscreen body {
+	height:100%;
+}
+.fullscreen #main {
+	position:absolute;
+	top:100px;
+	left:0;
+	right:0;
+	bottom:100px;
+}
+.fullscreen #footer {
+	position:absolute;
+	left:0;
+	right:0;
+	bottom:0;
+}
+
+h2, #nav, #subnav {
+	font-family:'Brandon',Arial,sans-serif;
+	font-weight:normal;
+}
+
+/* logo */
+
+#logo a {
+	width:auto;
+	height:100%;
+	display:block;
+	text-indent:-9999px;
+	background-image:url(img/sidebar-logo.png);
+	background-repeat:no-repeat;
+	background-position:center center;
+	background-color:#333;
+	border-radius:5px;
+	margin-right:10px;
+	position:relative;
+	-webkit-transition:background-color 150ms ease-in-out;
+    -moz-transition:background-color 150ms ease-in-out;
+    -o-transition:background-color 150ms ease-in-out;
+    -ms-transition:background-color 150ms ease-in-out;
+}
+#logo a:hover {
+	background-color:#B2B499;
+}
+#sidebar #logo .loader {
+	margin-bottom:20px;
+}
+
+/* --------------------------------------------------------------
+   #NAV (ok)
+-------------------------------------------------------------- */
+
+#nav {
+	padding:10px 0 10px 10px;
+}
+#nav ul {
+	overflow:hidden;
+}
+#nav li {
+	width:25%;
+	height:80px;
+	float:left;
+	display:block;
+	position:relative;
+	text-align:center;
+}
+#nav li a {
+	width:auto;
+	height:100%;
+	display:block;
+	overflow:hidden;
+	margin-right:10px;
+	border-radius:5px;
+	/* font */
+	color:#b3b3b3;
+	line-height:1.1;
+	font-size:1.6em;
+	font-weight:normal;
+	text-transform:none;
+	text-decoration:none;
+	
+	font-family:'Brandon',Arial,sans-serif;
+	font-size:1.8em;
+	line-height:1em;
+}
+/* out/over */
+#nav li a .out,
+#nav li a .over {
+	width:100%;
+	height:100%;
+	display:block;
+	-webkit-transition:margin-top 200ms ease-out;
+    -moz-transition:margin-top 200ms ease-out;
+    -o-transition:margin-top 200ms ease-out;
+    -ms-transition:margin-top 200ms eases-out;
+}
+#nav li a .out {
+	background-color:#fff;
+}
+#nav li a .over {
+	color:#fff;
+	background-color:#ff9900;
+}
+#nav li a .over {
+	margin-top:-80px;
+}
+#nav li.current-item a .over,
+#nav li a:hover .over {
+	margin-top:0;
+}
+/* label */
+#nav li a .label {
+	display:block;
+	padding-top:20px;
+}
+#nav li a .label span {
+	display:block;
+	font-size:0.9em;
+	font-style:normal;
+	font-family:Arial,sans-serif;
+	text-transform:uppercase;
+	font-family:'Brandon',Arial,sans-serif;
+	font-size:0.85em;
+	line-height:1em;
+	font-weight:normal;
+}
+
+/* --------------------------------------------------------------
+   FOOTER (ok)
+-------------------------------------------------------------- */
+
+#footer {
+	overflow:hidden;
+	padding-top:10px;
+	padding-left:10px;
+}
+
+/* daily/infos/social */
+#footer .daily,
+#footer .news,
+#footer .social {
+	width:25%;
+	height:60px;
+	display:block;
+	float:left;
+	margin-bottom:10px;
+}
+#footer .news {
+	width:50%;
+}
+#footer .social {
+	width:8.333%;
+}
+#footer .blk {
+	height:60px;
+	display:block;
+	margin-right:10px;
+	background-color:#f2f2f2;
+	border-radius:5px;
+	font-size:1.3em;
+	overflow:hidden;
+}
+
+/* daily */
+#footer .daily .blk {
+	text-indent:-9999px;
+	background-image:url(img/footer-dailydash.png);
+	background-repeat:no-repeat;
+	background-position:center center;
+}
+
+/* news */
+#footer .news p {
+	text-align:center;
+	color:#808080;
+	font-size:1.33em;
+	font-family:'Billabong','Times New Roman',serif;
+	font-size:1.7em;
+	margin-top:0.55em;
+}
+
+/* social */
+#footer .social .blk {
+	text-indent:-9999px;
+	background-repeat:no-repeat;
+	background-position:center center;
+	-webkit-transition:background-color 150ms ease-in-out;
+    -moz-transition:background-color 150ms ease-in-out;
+    -o-transition:background-color 150ms ease-in-out;
+    -ms-transition:background-color 150ms ease-in-out;
+}
+#footer a.social:hover .blk {
+	background-color:#333333;
+}
+
+/* creds */
+#footer .creds {
+	clear:both;
+	display:block;
+	height:10px;
+	padding-bottom:10px;
+	margin-right:10px;
+	line-height:0.8;
+	text-align:center;
+}
+#footer .creds a {
+	color:#aaa;
+	text-decoration:underline;
+}
+#footer .creds a:hover {
+	color:#888;
+}
+
+/* --------------------------------------------------------------
+   MAIN
+-------------------------------------------------------------- */
+
+#main {
+	overflow:hidden;
+	margin-left:10px;
+}
+
+/* --------------------------------------------------------------
+   HTML.HOME (ok)
+-------------------------------------------------------------- */
+
+/* HTML.HOME > .SPLASH
+-------------------------------------------------------------- */
+
+.home .splash {
+	height:470px;
+	overflow:hidden;
+	margin-right:10px;
+	border-radius:5px;
+	position:relative;
+	background-color:#f2f2f2;
+}
+.home .splash #logo,
+.home .splash .captain {
+	display:block;
+	position:absolute;
+	text-indent:-9999px;
+	background-repeat:no-repeat;
+	background-position:0 0;
+}
+.home .splash #logo {
+	top:50%; right:25.6%;
+	width:298px; height:156px;
+	margin-top:-78px;
+	margin-right:-149px;
+	background-image:url(img/home-splash-logo.png);
+}
+.home #logo .loader {
+	margin-left:10px;
+	margin-bottom:-40px;
+}
+.home .splash .captain {
+	left:29.9%; top:0;
+	width:412px; height:770px;
+	margin-left:-206px;
+	margin-bottom:-287px;
+	background-image:url(img/home-splash-captain.png);
+	background-position: top;
+}
+
+
+
+/* FULLSCREEN
+------------------------------- */
+
+.fullscreen.not-found .splash {
+	height:auto;
+	position:absolute;
+	top:0; left:0; right:0; bottom:0;
+}

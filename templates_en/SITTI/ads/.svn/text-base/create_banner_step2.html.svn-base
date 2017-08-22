@@ -1,0 +1,205 @@
+<script type="text/javascript" src="js/jshashtable.js"></script>
+<script type="text/javascript" src="js/jquery.numberformatter.js"></script>
+<script type="text/javascript">
+var interval = 1;
+/*var user_saldo = {$user_saldo};*/
+{literal}
+
+function DayDiff(date1, date2) {
+	return (date2.getTime() - date1.getTime()) / 1000 / 60 / 60 / 24;
+}
+
+$(function() {
+
+	$("#tglAwalKampanye,#tglAkhirKampanye").datepicker({ 
+		dateFormat: 'yy-mm-dd'
+	});
+
+	$('#tglAwalKampanye').change( function () {
+		$('#tglAkhirKampanye').val('');		
+	});
+
+	$('#tglAkhirKampanye').change(function () {
+	
+		if ($('#tglAwalKampanye').val() != '') {
+			var awal = $('#tglAwalKampanye').datepicker("getDate");
+			var akhir = $('#tglAkhirKampanye').datepicker("getDate");
+			interval = DayDiff(awal, akhir) + 1;
+			
+			$('#hidden_interval').val(interval);
+			
+			var new_jumlah_imp_total = 0;
+			$('td.imp_total').each(function(index, value) {
+				var imp_harian = parseInt($('#imp_' + index).parseNumber({format:"#,###"}, false));
+				var new_imp_total = parseInt(interval) * imp_harian;
+				new_jumlah_imp_total += new_imp_total;
+				$('td#imp_total_' + index).text($.formatNumber(new_imp_total, {format:"#,###"}));
+				$("input#imp_total_" + index).val(new_imp_total);
+			});
+			$('#total_impresi').text(new_jumlah_imp_total);
+			$('#total_impresi').formatNumber({format:"#,###"})
+			
+			var new_jumlah_budget_total = 0;
+			$('td.budget_total').each(function(index, value) {
+				var new_budget_total = parseInt(interval) * parseInt($('#budget_' + index).parseNumber({format:"#,###"}, false));
+				new_jumlah_budget_total += new_budget_total;
+				$('#budget_total_' + index).text(new_budget_total);
+				$('#budget_total_' + index).formatNumber({format:"#,###"});
+			});
+			$('#total_budget').text(new_jumlah_budget_total);
+			$('#total_harga').text(new_jumlah_budget_total);
+			$('#total_budget').formatNumber({format:"#,###"});
+			$('#total_harga').formatNumber({format:"#,###"});
+			$('#hidden_total_biaya').val(new_jumlah_budget_total);
+			
+		} else {
+			$(this).val('');
+		}
+	
+	});
+	
+	$('input[type="text"].cpm').change(function () {
+		var item_id = $(this).attr('name').substr(-1);
+		
+		$("#cpm_total_" + item_id).text($(this).val());
+		$("#cpm_total_" + item_id).formatNumber({format:"#,###"});
+		
+		var imp = '#imp_' + item_id;
+		var imp_value = $(imp).parseNumber({format:"#,###"}, false);
+		var imp_total_value = parseInt(interval) * imp_value;
+		
+		$("td#imp_total_" + item_id).text(imp_total_value);
+		$("input#imp_total_" + item_id).val(imp_total_value);
+		$("td#imp_total_" + item_id).formatNumber({format:"#,###"});
+		
+		var new_budget_harian = (parseInt($(this).val()) / 1000) * parseInt(imp_value);
+		var new_total_budget_harian = parseInt(interval) * new_budget_harian;
+		
+		$('#budget_' + item_id).text(new_budget_harian);
+		$('#budget_' + item_id).formatNumber({format:"#,###"});
+		$('#budget_total_' + item_id).text(new_total_budget_harian);
+		$('#budget_total_' + item_id).formatNumber({format:"#,###"});
+		
+		var new_total_budget_harian = 0;
+		$('input[type="text"].cpm').each(function(index, value) {
+			new_total_budget_harian += ((parseInt($(this).val())) / 1000) * parseInt($('td#imp_' + index).parseNumber({format:"#,###"}, false));
+		});
+		
+		var new_total_budget = parseInt(interval) * new_total_budget_harian;
+		
+		$('#total_budget_harian').text(new_total_budget_harian);
+		$('#total_budget').text(new_total_budget);
+		$('#total_harga').text(new_total_budget);
+		$('#hidden_total_biaya').val(new_total_budget);
+
+		$('#total_budget_harian').formatNumber({format:"#,###"});
+		$('#total_budget').formatNumber({format:"#,###"});
+		$('#total_harga').formatNumber({format:"#,###"});
+	});
+
+});
+
+{/literal}
+</script>
+
+<form action="buat.php?ad_banner=1" method="post">
+<div style="width:900px;">
+
+	<h3 class="headTitle">Penghitung Kampanye SITTI</h3>
+	<p>Inilah perkiraan biaya kampanye SITTI Anda untuk kategori-kategori kata kunci yang Anda pilih, gunakanlah halaman ini untuk memperkirakan anggaran kampanye Anda. Angka-angka yang tercantum pada simulasi ini hanya merupakan perkiraan, hasil sebenarnya mungkin akan berbeda.</p>
+
+	<table border="0" cellspacing="0" cellpadding="0" class="list zebra">
+	<tr>
+		<td colspan="7"><h3 class="blue noMargin">Perkiraan Anggaran Harian</h3></td>
+	</tr>
+	<tr class="head">
+		<td>Kategori Kata Kunci</td>
+		<td><span style="float:left;">CPM*</span><a style="margin:-3px 0 0 0;" onmouseover="tooltip.show('CPM atau Cost Per Mile adalah harga per 1000 impresi.');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a></td>
+		<td>Perkiraan Impresi</td>
+		<td>Perkiraan Anggaran Harian</td>
+	</tr>
+
+	{section name=i loop=$categories}
+	<tr>
+		<td>
+			<div style="padding: 0pt;" class="row noBorder">
+			<select name="categories[]">
+				{*section name=idx loop=$all_categories*}
+				<option selected="selected" value="{$categories[i].category}">{$categories[i].category|capitalize}</option>
+				{*/section*}
+			</select>
+			</div>
+		</td>
+		<td>
+			<input type="text" class='cpm' name="cpm_{$smarty.section.i.index}" value="{$categories[i].data.cpm}" />
+		</td>
+		<td id="imp_{$smarty.section.i.index}" name="{$categories[i].data.impresi}"><div style="float:right">{$categories[i].data.impresi|number_format}</div></td>
+		<td name="{$categories[i].data.budget}"><div style="float:right">Rp <span id="budget_{$smarty.section.i.index}">{$categories[i].data.budget|number_format}</span></div></td>
+	</tr>
+	{/section}
+	
+	<tr class="total" style="background-color:#c8d9e4">
+		<td colspan="2">Total Perkiraan Biaya Harian</td>
+		<td><div style="float:right"><span id="total_impresi_harian" name="total_impresi_harian" style="font-weight:bold;">{$total_impresi|number_format}</span></div></td>
+		<td><div style="float:right">Rp <span id="total_budget_harian" name="total_budget_harian" style="font-weight:bold;">{$total_biaya|number_format}</span></div></td>
+	</tr>
+
+	</table>
+	
+	<br /><br />
+	<div>* Anda dapat mengubah tawaran Anda untuk mendapatkan peringkat iklan dan jumlah perkiraan klik yang lebih baik</div>
+	
+	<table border="0" cellspacing="0" cellpadding="0" class="list zebra" style="margin-top:30px;">
+	<tr>
+	<td><h3 class="blue noMargin">Durasi Kampanye Anda</h3></td>
+	</tr>
+	<tr>
+	<td>
+	 <input name="tglAwalKampanye" id="tglAwalKampanye" class="inputText" style="width: 100px;" type="text" value="{$current_date}" /> sampai
+	 <input name="tglAkhirKampanye" id="tglAkhirKampanye" class="inputText" style="width: 100px;" type="text" value="{$current_date}" />
+	</td>
+	</tr>
+	</table>
+	
+	<table border="0" cellspacing="0" cellpadding="0" class="list zebra" style="margin-top:30px;">
+	<tr>
+		<td colspan="6"><h3 class="blue noMargin">Perkiraan Total Anggaran Iklan Anda</h3></td>
+	</tr>
+	<tr class="head">
+		<td>Kategori Kata Kunci</td>
+		<td>CPM</td>
+		<td>Perkiraan Impresi Total</td>
+		<td>Perkiraan Anggaran Total</td>
+	</tr>
+	
+	{section name=i loop=$categories}
+	<tr>
+		<td>{$categories[i].category|capitalize}</td>
+		<td><div style="float:right">Rp <span id="cpm_total_{$smarty.section.i.index}">{$categories[i].data.cpm|number_format}</span></div></td>
+		<td class="imp_total" id="imp_total_{$smarty.section.i.index}"><div style="float:right">{$categories[i].data.impresi|number_format}</div></td>
+		<input type="hidden" name="imp_total_{$smarty.section.i.index}" id="imp_total_{$smarty.section.i.index}" value="{$categories[i].data.impresi}">
+		<td class="budget_total"><div style="float:right">Rp <span id="budget_total_{$smarty.section.i.index}">{$categories[i].data.budget|number_format}</span></div></td>
+	</tr>
+	{/section}
+	
+	<tr>
+		<td colspan="2"></td>
+		<td><div style="float:right"><span id="total_impresi" name="totalimp" style="font-weight:bold;">{$total_impresi|number_format}</span></div></td>
+		<td><div style="float:right">Rp <span id="total_budget" name="totalprice" style="font-weight:bold;">{$total_biaya|number_format}</span></div></td>
+	</tr>
+	
+	</table>
+	
+	<div id="closure1" style=" background:#C8D9E4; border: dashed 1px #ccc; padding:10px; margin:30px 0 0 0; height:50px;">
+	<p style="float:left;" class="f14">Perkiraan Total Anggaran untuk Kampanye ini adalah <span class="f18 green bold">Rp. </span><span class="f18 green bold" id="total_harga" name="total_harga">{$total_biaya|number_format}</span></p>
+	</div>
+
+	<div class="row divUploadMateri">
+		<input type="hidden" name="next" value="3" />
+		<input type="hidden" id="hidden_interval" name="interval" value="1" />
+		<input type="hidden" id="hidden_total_biaya" name="total_biaya" value="{$total_biaya}" />
+		<input class="submitButton" name="uploadMateri" value="Definisikan iklan &gt;&gt;" type="submit" />
+	</div>
+	
+</div>
+</form>

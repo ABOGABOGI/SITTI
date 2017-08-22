@@ -1,0 +1,247 @@
+{literal}
+<script language="Javascript">
+    function rbPkg_onclick(pilih){
+        var copyText="";
+
+        //var urlLanding = "index.php";
+        //var landing = window.open('aasdsad'+urlLanding,'Iklan Template');
+
+        if(pilih=='url'){
+            copyText+='<div class="row" style="padding:25px 0 15px 0; border:none;"><label style="float:left;">Alamat situs yang ditampilkan</label>';
+            copyText+='<input name="urlName" type="text" class="inputText" id="setUrl"  onChange="urlTampil(this.value);"  /></div>';
+            copyText+='<div class="row" style="padding:0px 0 10px 0; border:none;"><label style="float:left;">Alamat situs yang sebenarnya</label>';
+            copyText+='<input name="urlLink" type="text" class="inputText" id="urlLink" value="http://"/><span class="blue" style="padding:0 0 0 7px; font-size:11px;">(Harus lengkap dengan http://)</span></div>';
+        }
+        if(pilih=='none'){
+            copyText+='';
+        }
+        if(pilih=='sitti'){
+
+            var campaign = document.getElementById("campaign").value;
+            var namaIklan=document.getElementById("nama").value;
+            var judulIklan=document.getElementById("judul").value;
+            var baris1=document.getElementById("baris1").value;
+            var baris2=document.getElementById("baris2").value;
+            copyText = "";
+            //copyText+="<div style='padding:15px 0'>Untuk mendapatkan hasil yang lebih optimal, Anda dapat menggunakan fasilitas SITTI landing pages kami.<br /><a href='modif_template_petunjuk.php?n="+namaIklan+"&j="+judulIklan+"&b1="+baris1+"&b2="+baris2+"&campaign="+  campaign+"&landing=1'>Klik di sini</a> untuk merancang dan mengaktifkan halaman muka Anda.</div>";
+        }
+        document.getElementById('element').innerHTML=copyText;
+    }
+
+    //
+
+</script>
+{/literal}
+<h3 class="headTitle">Buat Iklan</h3>
+{if $msg}<span class="errorMessage">{$msg}</span>{/if}
+<h3>Proses berikut akan membimbing anda membuat iklan baru di SITTI</h3><br /><br />
+<form class="registerForm" action="beranda.php" method="post" enctype="application/x-www-form-urlencoded">
+	<h3 class="circleTitle"><span class="circle">1</span><span class="circleText">Kampanye/Program Anda</span></h3>
+    	<div class="isiForm">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="addlist zebra">
+      <tr class="head">
+      	<td colspan="2">
+        	<h3 class="subtitleReg">Pilih salah satu Kampanye/Program yang akan dikaitkan dengan iklan yang akan Anda buat.</h3>
+        </td>
+      </tr>
+      <tr>
+        <td width="200">Kampanye/Program:</td>
+        <td><select name="campaign" class="kategoriIklan" id="campaign" style="float:left;">
+            {section name=i loop=$campaign}
+            <option value="{$campaign[i].ox_campaign_id}">{$campaign[i].name}</option>
+            {/section}
+        </select><a style="margin:-3px 0 0 0;" onmouseover="tooltip.show('Pilih kampanye atau grup iklan Anda. Apabila anda belum mempunyai');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+        <script>
+            document.getElementById('campaign').value="{if $campaign_session}{$campaign_session}{else}{$campaign_id}{/if}";
+        </script></td>
+      </tr>
+    </table>
+        </div>
+
+	<hr />
+    <h3 class="circleTitle"><span class="circle">2</span><span class="circleText">Isi Iklan Anda</span></h3>
+    	<div class="isiForm">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="addlist zebra">
+    	<tr class="head">
+        	<td colspan="2">
+            	<h3 class="subtitleReg">Silahkan mengisi informasi iklan yang akan tampil di SITTI. <br />
+				Cobalah menggunakan bahasa yang singkat, tepat dan sesuai dengan kata-kata kunci yang telah Anda pilih</h3>
+            </td>
+        </tr>
+        <tr>
+        	<td width="200">Nama Iklan</td>
+            <td><input name="nama" type="text" class="inputText" id="nama" value="{$nama_iklan}" style="float:left; width:170px;" maxlength="50" /><a onmouseover="tooltip.show('Beri nama iklan Anda agar mudah dikenali');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a></td>
+        </tr>
+        <tr>
+        	<td>Judul Iklan</td>
+            <td><input name="judul" type="text" class="inputText" id="judul"  style="float:left; width:170px;" onChange="judulIklan(this.value);" value="{$judul_iklan}" maxlength="30"/><a onmouseover="tooltip.show('<img src=images/thumb_iklan.gif>');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a></td>
+        </tr>
+        <tr>
+        	<td>Isi Iklan</td>
+            <td> <input name="baris1" type="text" class="inputText" id="baris1" value="{$baris1}" onChange="barisPertama(this.value);" maxlength="60" style="float:left; width:170px;"/><a onmouseover="tooltip.show('<img src=images/thumb_iklan.gif>');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a><span class="blue" style="padding:0 0 0 7px; font-size:11px;">maksimum 60 karakter</span>		
+            </td>
+        </tr>
+        <tr>
+        	<td colspan="2">
+            	<h3 class="subtitleReg">Contoh Tampilan Iklan Anda</h3>
+            </td>
+        </tr>
+        <tr>
+        	<td colspan="2">
+                <div class="sampleIklan" style="margin:0;">
+                <h1 class="titleAdv" id="setJudul">Iklan Sitti Anda</h1>
+                <p style="clear:both;margin:0;" id="setBaris1">Text Iklan Baris Pertama</p>
+                <!--<p style="clear:both; margin:0;" id="setBaris2">Text Iklan Baris Kedua</p>-->
+                
+                <a class="urlAdv" id="setUrl" href="#">www.sittibelajar.com</a> <a class="adsby" href="#">ads by SITTI</a> 
+                </div>
+            </td>
+        </tr>
+    </table>
+    	</div>
+	<hr />
+       	<h3 class="circleTitle"><span class="circle">3</span><span class="circleText">Tujuan Iklan Anda</span></h3>
+ 			<div class="isiForm"> 
+          	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="addlist zebra">
+    			<tr>
+        			<td>
+                        <input name="target_web" type="radio" value="url" onclick="return rbPkg_onclick(this.value)" style="float:left; margin:4px 10px 0 0" {if $landing_selected} {else} checked="checked" {/if}>  
+                  	</td>
+                    <td colspan="2">
+                    	 <span style="float:left;">Situs Anda</span><a style="margin:-3px 0 0 0;" onmouseover="tooltip.show('Arahkan iklan SITTI langsung ke situs Anda');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+                    </td>
+                 </tr>
+                 {if $landing_selected eq '1'}
+
+                {else}
+				<tr>
+                	<td></td>
+                	<td>
+                    	Alamat situs yang ditampilkan
+                    </td>
+                    <td>
+                    	<input name="urlName" type="text" class="inputText" id="setUrl"  onChange="urlTampil(this.value);" value="{$urlName|stripslashes|strip_tags}"/> 
+                    </td>
+                 </tr>
+                 <tr>
+                 	<td></td>
+                	<td>
+                    	Alamat situs yang sebenarnya
+                    </td>
+                    <td>
+                    <input name="urlLink" type="text" class="inputText" id="urlLink" value="{if $urlLink}{$urlLink|stripslashes|strip_tags}{else}http://{/if}"/><span class="blue" style="padding:0 0 0 7px; font-size:11px;">(Harus lengkap dengan http://)</span>
+					</td>
+                 </td>
+                {/if}
+<!--                 <tr>
+                     <td> 
+                     	<input name="target_web" type="radio" value="sitti" onClick="return rbPkg_onclick(this.value)" style="float:left; margin:4px 10px 0 0" {if $landing_selected} checked {/if}>
+                     </td>
+                     <td colspan="2">
+                     <span style="float:left;">Situs SITTI</span><a style="margin:-3px 0 0 0;" onmouseover="tooltip.show('Apabila Anda tidak mempunyai website atau ingin mendapatkan hasil yang lebih optimal, Anda dapat membuat halaman utama sendiri dengan SITTI');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+                     </td>
+                  </tr>-->
+             </table>   
+         </div>
+         <hr />
+         <h3 class="circleTitle"><span class="circle">4</span><span class="circleText">Kategori Iklan Anda</span></h3>
+         <div class="isiForm"> 
+         <table width="100%" border="0" cellspacing="0" cellpadding="0" class="addlist zebra">
+    			<tr class="head">
+        			<td colspan="2">
+                  	  <h3 class="subtitleReg">Kategori yang tepat akan mempermudah SITTI mencocokkan iklan Anda dengan publisher</h3>
+                    </td>
+                </tr>
+                <tr>
+                	<td>
+                    	<select name="category" class="kategoriIklan" id="category">
+                        {section name=i loop=$adCategory}
+                        <option value="{$adCategory[i].id}">{$adCategory[i].categoryName}</option>
+                        {/section}
+                	    </select>
+                    </td>
+                </tr>
+		</table>
+        </div>
+         <hr />
+         <h3 class="circleTitle"><span class="circle">5</span><span class="circleText">Target Pasar Iklan Anda</span></h3>
+         <div class="isiForm"> 
+         <table width="100%" border="0" cellspacing="0" cellpadding="0" class="addlist zebra">
+    			<tr class="head">
+        			<td colspan="6">
+                  	  <h3 class="subtitleReg">Target pasar yang tepat akan mempermudah SITTI mencocokkan iklan Anda dengan publisher</h3>
+                    </td>
+                </tr>
+                <tr>
+                	<td colspan="6">
+                    <select class="kategoriIklan" name="target_market" id="target_market">
+                        {section name=i loop=$adGenre}
+                        <option value="{$adGenre[i].id}">{$adGenre[i].categoryName|ucwords}</option>
+                        {/section}
+                    </select>
+                    </td>
+                </tr>
+                <tr>
+                	<td colspan="6"><h3 class="subtitleReg">Tentukan kota atau dearah yang ingin Anda tuju (Geo Targeting)</h3>
+                    </td>
+                </tr>
+                <tr>
+                	<td colspan="6">
+                    	<input type="checkbox" checked="checked" class="pilihKota" /><span class="kotaTujuan">Seluruh Kota</span>
+                    </td>
+                </tr>
+                <tr>
+                	<td>
+                    	<input type="checkbox" class="pilihKota" /><span class="kotaTujuan">Medan</span>
+                    </td>
+                	<td>
+                    	<input type="checkbox" class="pilihKota" /><span class="kotaTujuan">Jabotabek & Bandung</span>
+                    </td>
+                	<td>
+                    	<input type="checkbox" class="pilihKota" /><span class="kotaTujuan">Yogyakarta</span>
+                    </td>
+                	<td>
+                    	<input type="checkbox" class="pilihKota" /><span class="kotaTujuan">Bali</span>
+                    </td>
+                	<td>
+                    	<input type="checkbox" class="pilihKota" /><span class="kotaTujuan">Ujung Pandang/Makasar</span>
+                    </td>
+                </tr>
+		</table>
+        </div>
+		<hr />
+        <div class="row">
+             {if $done}
+            
+            <input type="submit" value="Konfirmasi Iklan Anda" class="submitButton" />
+            {else}
+            <input type="submit" value="Lanjut" class="submitButton" />
+            {/if}
+        </div>
+        {if $done}
+        <input name="do" type="hidden" value="update_detail">
+        {else}
+        <input name="do" type="hidden" value="step2">
+        {/if}
+</form>
+	                
+                {literal}
+                	<script type="text/javascript">
+							function judulIklan(judul){ //membuat header (judul utama)
+								document.getElementById("setJudul").innerHTML = judul;
+								//alert(titlePage);
+							}
+							function barisPertama(baris1){ //membuat header (judul utama)
+								document.getElementById("setBaris1").innerHTML = baris1;
+								//alert(titlePage);
+							}
+							function barisKedua(baris2){ //membuat header (judul utama)
+								document.getElementById("setBaris2").innerHTML = baris2;
+								//alert(titlePage);
+							}
+							function urlTampil(urlName){ //membuat header (judul utama)
+								document.getElementById("setUrl").innerHTML = urlName;
+								//alert(titlePage);
+							}
+					</script>
+                {/literal}

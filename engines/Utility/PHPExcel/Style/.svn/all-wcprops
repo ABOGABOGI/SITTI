@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/sittiweb/!svn/ver/67/branches/phase03-03/engines/Utility/PHPExcel/Style
+END
+Border.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/sittiweb/!svn/ver/67/branches/phase03-03/engines/Utility/PHPExcel/Style/Border.php
+END
+Alignment.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/sittiweb/!svn/ver/67/branches/phase03-03/engines/Utility/PHPExcel/Style/Alignment.php
+END
+Color.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/sittiweb/!svn/ver/67/branches/phase03-03/engines/Utility/PHPExcel/Style/Color.php
+END
+Borders.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/sittiweb/!svn/ver/67/branches/phase03-03/engines/Utility/PHPExcel/Style/Borders.php
+END
+NumberFormat.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/sittiweb/!svn/ver/67/branches/phase03-03/engines/Utility/PHPExcel/Style/NumberFormat.php
+END
+Conditional.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/sittiweb/!svn/ver/67/branches/phase03-03/engines/Utility/PHPExcel/Style/Conditional.php
+END
+Fill.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/sittiweb/!svn/ver/67/branches/phase03-03/engines/Utility/PHPExcel/Style/Fill.php
+END
+Font.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/sittiweb/!svn/ver/67/branches/phase03-03/engines/Utility/PHPExcel/Style/Font.php
+END
+Protection.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/sittiweb/!svn/ver/67/branches/phase03-03/engines/Utility/PHPExcel/Style/Protection.php
+END

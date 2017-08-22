@@ -1,0 +1,32 @@
+{literal}
+<style type="text/css">
+
+<!--
+.style1 {
+	color: #FFFFFF;
+	font-weight: bold;
+}
+-->
+</style>
+{/literal}
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="64" bgcolor="#000000"><div align="center" class="style1">ADMINISTRATION PAGE</div></td>
+  </tr>
+  <tr>
+    <td height="37" bgcolor="#CCCCCC"><div align="center"><a href="index.php">Dashboard</a> - <a href="?s=static">Manage Page</a> - Administrative - <a href="logout.php">Logout</a></div></td>
+  </tr>
+  <tr>
+    <td height="238" valign="top">
+    {if $msg <> ""}
+    <div style="background-color:#FF9999;border:solid 1px #cc0000">
+    {$msg}
+    </div>
+    {/if}
+    {$content}
+    </td>
+  </tr>
+  <tr>
+    <td><div align="center">Powered by Winixmedia</div></td>
+  </tr>
+</table>

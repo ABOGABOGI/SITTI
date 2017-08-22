@@ -1,0 +1,100 @@
+{literal}
+<script type="text/javascript">
+$(document).ready(function() {
+	$(".next3").click(function() {
+		document.location="beranda.php";
+	});
+});
+</script>
+{/literal}
+{if $metode eq 'bca'}
+<div id="tahap3" class="w635" style="float:none; position:absolute;">
+  <h2 class="blue">Terima Kasih. Anda telah berhasil melakukan top-up akun SITTI melalui <span id="metodepay">klikBCA</span> sebesar <span class="green">Rp.</span> <span id="topupval" class="green">{$topupval|number_format}</span></h2>
+  <p>Dibawah ini adalah nilai nominal Top Up Anda.</p>
+  <!--<p>kode transaksi Anda adalah <br />
+					<span class="bold blue" id="kode_transaksi1">XXXXXXXXXX</span></p> -->
+  <p>Ikuti langkah-langkah dibawah ini untuk menyelesaikan proses top-up :</p>
+  <ol>
+    <li>Login di website KlikBCA, </li>
+    <li>Masuk ke menu "Pembayaran e-Commerce" lalu pilih kategori "Lain-lain" dan kemudian pilih "Indomog", </li>
+    <li>Konfirmasi transaksi top up SITTI yang tadi anda lakukan. </li>
+    <li>Anda akan mendapatkan SMS atau email konfirmasi dari KlikBCA</li>
+    <li>Saldo akan muncul di akun Anda</li>
+  </ol>
+  <strong>Penting:</strong>
+  <ol>
+    <li>Jika belum melakukan langkah konfirmasi ini selama 60 menit ke website klikBCA, maka permintaan TOP UP dari website SITTI    akan dibatalkan.</li>
+    <li>Apabila top-up Anda bermasalah silahkan kirim email ke <a href="mailto:billing@sitti.co.id">billing@sitti.co.id</a> dengan mencantumkan kode transaksi Anda</li>
+  </ol>
+  <p>Terima Kasih telah menjadi advertiser SITTI.</p>
+  <br />
+  <!-- <button class="back2 submitButton">Kembali</button> -->
+  <button class="next3 submitButton">Masuk ke Halaman Akun</button>
+</div>
+{/if}
+{if $metode eq 'mandiri_sms'}
+<div id="tahap4" class="w635" style="float:none; position:absolute;">
+  <h2 class="blue">Terima Kasih. Anda telah berhasil melakukan top-up akun SITTI melalui <span id="metodepay">Mobile Banking Bank Mandiri</span> sebesar <span class="green">Rp.</span> <span id="topupval3" class="green">{$topupval|number_format}</span> </h2>
+  <!--<p>kode transaksi Anda adalah  <span class="bold blue" id="kode_transaksi2">XXXXXXXXXX</span></p>-->
+  <p> Selanjutnya, ikutilah petunjuk yang Anda dapatkan dari handphone untuk menyelesaikan proses top up. Apabila top-up Anda bermasalah silahkan mengirimkan email ke <a href="mailto:billing@sitti.co.id">billing@sitti.co.id</a> dengan mencantumkan kode transaksi Anda </p>
+  <p> Terima Kasih telah menjadi advertiser SITTI. </p>
+  <br />
+  <!-- <button class="back2 submitButton">Kembali</button> -->
+  <button class="next3 submitButton">Masuk ke Halaman Akun</button>
+</div>
+{/if}
+{if $metode eq 'mandiri_internet'}
+<div id="tahap4b" class="w635" style="float:none; position:absolute;">
+  <h2 class="blue">Terima Kasih. Anda telah berhasil melakukan top-up akun SITTI melalui <span id="metodepay">Internet Mandiri</span> sebesar <span class="green">Rp.</span> <span id="topupval3c" class="green">{$topupval|number_format}</span> </h2>
+  <!--<p>kode transaksi Anda adalah <span class="bold blue" id="kode_transaksi2">XXXXXXXXXX</span></p>-->
+  <p> Dana akan dimasukkan ke Akun SITTI anda. Apabila dalam waktu 30 menit Akun anda belum ter-update, silahkan mengirimkan email ke <a href="mailto:billing@sitti.co.id">billing@sitti.co.id</a> dengan mencantumkan kode transaksi Anda </p>
+  <p> Terima Kasih telah menjadi advertiser SITTI. </p>
+  <br />
+  <!-- <button class="back2 submitButton">Kembali</button> -->
+  <button class="next3 submitButton">Masuk ke Halaman Akun</button>
+</div>
+{/if}
+{if $metode eq 'voucher_sitti'}
+<div id="tahap3v" class="w635" style="float:none; position:absolute;">
+  <h2 class="blue">Terima Kasih. Anda telah berhasil melakukan top-up akun SITTI menggunakan Voucher SITTI sebesar <span class="green">Rp.</span> <span id="topupval3v" class="green">{$topupval|number_format}</span> </h2>
+  <p>kode transaksi Anda adalah <span class="bold blue" id="kode_transaksi3">{$kode_transaksi}</span></p>
+  <p> Apabila top-up Anda bermasalah silahkan mengirimkan email ke <a href="mailto:billing@sitti.co.id">billing@sitti.co.id</a> dengan mencantumkan kode transaksi Anda </p>
+  <p> Terima Kasih telah menjadi advertiser SITTI. </p>
+  <br />
+  <!-- <button class="back2 submitButton">Kembali</button> -->
+  <button class="next3 submitButton">Masuk ke Halaman Akun</button>
+</div>
+{/if}
+{if $metode eq 'voucher_multiply'}
+<div id="tahap7b" class="w635" style="float:none; position:absolute;">
+  <h2 class="blue">Terima Kasih. Anda telah berhasil melakukan top-up akun SITTI menggunakan Voucher Multiply sebesar <span class="green">Rp.</span> <span id="topupval7" class="green">{$topupval|number_format}</span> </h2>
+  <p>kode transaksi Anda adalah <span class="bold blue" id="kode_transaksi7">{$kode_transaksi}</span></p>
+  <p> Apabila top-up Anda bermasalah silahkan mengirimkan email ke <a href="mailto:billing@sitti.co.id">billing@sitti.co.id</a> dengan mencantumkan kode transaksi Anda </p>
+  <p> Terima Kasih telah menjadi advertiser SITTI. </p>
+  <br />
+  <!-- <button class="back2 submitButton">Kembali</button> -->
+  <button class="next3 submitButton">Masuk ke Halaman Akun</button>
+</div>
+{/if}
+{if $metode eq 'paypal'}
+	<div id="tahap8" class="w635" style="float:none; position:absolute;">
+	  <h2 class="blue">Terima Kasih. Anda telah berhasil melakukan top-up akun SITTI menggunakan Paypal sebesar <span class="green">Rp.</span> <span id="topupval8" class="green">{$topupval|number_format}</span> </h2>
+	  <p>kode transaksi Anda adalah <span class="bold blue" id="kode_transaksi8">{$kode_transaksi}</span></p>
+	  <p> Dana akan dimasukkan ke Akun SITTI anda. Apabila dalam waktu 30 menit Akun anda belum ter-update, silahkan mengirimkan email ke <a href="mailto:support@sitti.co.id">support@sitti.co.id</a> dengan mencantumkan kode transaksi Anda </p>
+	  <p> Terima Kasih telah menjadi advertiser SITTI. </p>
+	  <br />
+	  <!-- <button class="back2 submitButton">Kembali</button> -->
+	  <button class="next3 submitButton">Masuk ke Halaman Akun</button>
+	</div>
+{/if}
+{if $metode eq 'ipaymu'}
+	<div id="tahap9" class="w635" style="float:none; position:absolute;">
+	  <h2 class="blue">Terima Kasih. Anda telah berhasil melakukan top-up akun SITTI menggunakan iPaymu sebesar <span class="green">Rp.</span> <span id="topupval9" class="green">{$topupval|number_format}</span> </h2>
+	  <p>kode transaksi Anda adalah <span class="bold blue" id="kode_transaksi9">{$kode_transaksi}</span></p>
+	  <p> Dana akan dimasukkan ke Akun SITTI anda. Apabila dalam waktu 30 menit Akun anda belum ter-update, silahkan mengirimkan email ke <a href="mailto:support@sitti.co.id">support@sitti.co.id</a> dengan mencantumkan kode transaksi Anda </p>
+	  <p> Terima Kasih telah menjadi advertiser SITTI. </p>
+	  <br />
+	  <!-- <button class="back2 submitButton">Kembali</button> -->
+	  <button class="next3 submitButton">Masuk ke Halaman Akun</button>
+	</div>
+{/if}

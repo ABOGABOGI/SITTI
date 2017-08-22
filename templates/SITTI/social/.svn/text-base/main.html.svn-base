@@ -1,0 +1,63 @@
+<div class="social-wraper">
+	
+	<div class="round12upxL box-shadow box social-main-box relative">
+		<div id="contentFeed" class="relative">
+			<div class="absolute loader">
+				<img width="180" height="20" src="images/loader.gif">
+			</div>
+			<div class="sub-menu">
+				<div id="subFeed" style="float:left;margin-top: -5px;">
+					<a id="feedGen" href="#" class="feedGen genAct"></a>
+					<a id="feedCat" href="#" class="feedCat"></a>
+				</div>
+				<div id="subFeedCat" style="display:none;float:right;padding-top:1px;">
+					<div id="optionBrand" class="relative" style="display:block;float:right;">
+						<label class="margin10L wid">Brand : </label>
+						<select id="brand">
+							<option value="0">select brand</option>
+						</select>
+						<div class="mask"></div>
+					</div>
+					<div id="radioSNA" style="display:none;float:right;margin: 3px 0 0 5px;color:white;">
+						<input class="group1" type="radio" name="group1" value="brand" checked> Brand <input class="group1" type="radio" name="group1" value="keyword"> Keyword <input class="group1" type="radio" name="group1" value="user"> User
+					</div>
+					<div id="optionCat" style="display:block;float:right;">
+						<label class="wid">Category : </label>
+						<select id="category">
+							<option value="0">select category</option>
+						  {section name=i loop=$category}
+							<option value="{$category[i].id}">{$category[i].category}</option>
+						  {/section}
+						</select>
+					</div>
+				</div>
+			</div>		
+			<div id="mainFeed" class="social-feed box round12down relative">
+			</div>
+			<div id="mainFeed2" class="social-feed box round12down relative" style="display:none;">
+			</div>
+			<div id="mainFeed3" class="social-feed box round12down relative" style="display:none;">
+			</div>
+			<div id="mainFeed4" class="social-feed box round12down relative" style="display:none;text-align:left;">	
+				<div id="mainStatBox" style="display:none">
+					<div id="totalUser" class="box-shadow box" style="border-bottom: 3px solid #FFFFFF;width:594px"></div>
+					<div id="totalConver" class="box-shadow box" style="width:594px"></div>
+				</div>
+			</div>
+			<div class="wcNotif absolute"><a href="javascript:JumpToSimulationPage()" style="text-decoration:none">Click to advertise with these keywords</a></div>
+		</div>
+	</div>
+	
+	<div class="social-side-box">
+		<div class="sideWidget relative">
+			<a href="#" class="widget-header1 absolute" style="cursor:default;"></a>
+			<div id="topuser" class="box round12down social-widget">
+			</div>
+		</div>
+		<div class="sideWidget relative" style="margin:0;">
+			<a href="#" class="widget-header2 absolute" style="cursor:default;"></a>
+			<div id="topkeyword" class="box round12down social-widget" style="height: 287px;overflow:hidden;">
+			</div>
+		</div>
+	</div>
+</div>

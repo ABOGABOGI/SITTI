@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>SITTI - Platform Iklan Kontekstual Berbahasa Indonesia, Iklan Kontekstual, Bahasa Indonesia</title>
+        <link href="css/sitti.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" language="javascript" src="js/iepngfix_tilebg.js"></script>
+        <script type="text/javascript" language="javascript" src="js/drop_table.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <link rel="shortcut icon" href="images/favicon.ico">
+        <link rel="icon" type="image/gif" href="images/animated_favicon.gif">
+        {literal} 
+        <script type="text/javascript">
+            $(document).ready(function() {
+
+                // choose text for the show/hide link - can contain HTML (e.g. an image)
+                var showText='Tampilkan Saran Kata';
+                var hideText='Hide';
+
+                // initialise the visibility check
+                var is_visible = false;
+
+                // append show/hide links to the element directly preceding the element with a class of "toggle"
+                $('.toggle').prev().append(' <a href="#" class="toggleLink submitButton">'+showText+'</a>');
+
+                // hide all of the elements with a class of 'toggle'
+                $('.toggle').hide();
+
+                // capture clicks on the toggle links
+                $('a.toggleLink').click(function() {
+
+                    // switch visibility
+                    is_visible = !is_visible;
+
+                    // change the link depending on whether the element is shown or hidden
+                    $(this).html( (!is_visible) ? showText : hideText);
+
+                    // toggle the display - uncomment the next line for a basic "accordion" style
+                    //$('.toggle').hide();$('a.toggleLink').html(showText);
+                    $(this).parent().next('.toggle').toggle('slow');
+
+                    // return false so any link destination is not followed
+                    return false;
+
+                });
+            });
+
+        </script>
+        <script>
+
+            // When the document loads do everything inside here ...
+            $(document).ready(function(){
+
+                // When a link is clicked
+                $("a.tab").click(function () {
+
+
+                    // switch all tabs off
+                    $(".active").removeClass("active");
+
+                    // switch this tab on
+                    $(this).addClass("active");
+
+                    // slide all content up
+                    $(".contentTab").slideUp();
+
+                    // slide this content up
+                    var content_show = $(this).attr("title");
+                    $("#"+content_show).slideDown();
+
+                });
+
+            });
+        </script>
+        {/literal}
+
+    </head>
+
+    <body onload="init()">
+     {if $takeOut}<div class="cLabel"><a href="http://www.sitti.co.id/UtakAtik/index.html"></a></div>{/if}
+        <div class="wrapper">
+            <div class="header">
+                <a class="logo" href="index.html">&nbsp;</a>
+                <a class="slogan" href="#">&nbsp;</a>
+                <a class="bahasa" href="?lang=id">>> Kembali ke Bahasa Indonesia</a>
+            </div>
+            <div class="navigationBar">
+                <ul class="navigation">
+                    <li><a href="#">Tentang SITTI</a></li>
+                    <li><a href="#">SITTI 359</a></li>
+                    <!--<li><a href="index.php?id=5">SITTIZEN</a></li>-->
+                    <li><a href="uji_sitti.php">Uji SITTI</a></li>
+                    <li><a href="#">Kontak Kami</a></li>
+                    <li><a href="http://kamisitti.com/" target="_blank">Sandbox</a></li>
+                </ul>
+<!--                <div class="daftar">
+                    <a  href="index.php?login=1">LOGIN</a> | <a href="index.php?registration=1">DAFTAR SITTI</a>
+                </div>-->
+            </div>
+            <div class="headContent">&nbsp;</div>
+            <div class="content">
+                <div class="w635">
+                    <h3 class="headTitle">UJI SITTI</h3>
+                    <form class="register2" action="reg1.html">
+                        <h3 class="blue">Tentukan Kata Kunci Iklan Anda</h3>
+                        <p>Disini anda dapat menguji "pengetahuan" SITTI dalam mencocokkan kata-kata kunci web maupun media offline dengan brand, produk atau jasa Anda. Cukup ketik kata yang paling sesuai dibawah ini.</p>
+                        <div class="row">
+                            <input type="text" class="inputText" />
+                        </div>
+                        <div class="row">
+                            <a class="toggleLink"></a>
+                            <div class="toggle">
+
+                                <span>Kata-kata yang paling berhubungan menurut SITTI</span>
+                                <div id="tabbed_box_1" class="tabbed_box">
+                                    <div class="tabbed_area">
+
+                                        <ul class="tabs">
+                                            <li><a title="content_1" class="tab">SITTI Data</a></li>
+                                            <li><a title="content_2" class="tab">Web Data</a></li>
+                                        </ul>
+
+                                        <div id="content_1" class="contentTab">
+                                            <div class="row2"><input type="checkbox" /><label>ducati</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>fiat</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>stoner</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>casey</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>sepang</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>rossi</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>motogp</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>ferrari</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>lorenzo</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>hayden</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>coba</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>uji</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>yamaha</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>pembalap</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>pedrosa</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>colin</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>edwards</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>tercepat</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>renault</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>tech</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>penyempurnaan</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>gresini</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>tes</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>repsol</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>valentino</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>mesin</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>gp</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>sasis</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>spies</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>nicky</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>monster</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>scuderia</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>catatan</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>brawn</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>aerodinamika</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>rizla</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>pabrikan</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>morris</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>konstruktor</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>simoncelli</label></div>
+                                        </div>
+                                        <div style="display: none;" id="content_2" class="contentTab">
+                                            <div class="row2"><input type="checkbox" /><label>ducati</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>fiat</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>stoner</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>casey</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>sepang</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>rossi</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>motogp</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>ferrari</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>lorenzo</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>hayden</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>coba</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>uji</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>yamaha</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>pembalap</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>pedrosa</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>colin</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>edwards</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>tercepat</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>renault</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>tech</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>penyempurnaan</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>gresini</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>tes</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>repsol</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>valentino</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>mesin</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>gp</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>sasis</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>spies</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>nicky</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>monster</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>scuderia</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>catatan</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>brawn</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>aerodinamika</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>rizla</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>pabrikan</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>morris</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>konstruktor</label></div>
+                                            <div class="row2"><input type="checkbox" /><label>simoncelli</label></div>
+                                        </div>
+                                    </div>
+                                    <p><strong class="blue"> * Sitti Data</strong><br />
+                                        Kata berhubungan yang diambil dari media cetak atau media offline
+                                    </p>
+                                    <p>
+                                        <strong class="blue">* Web Data</strong><br />
+                                        Kata berhubungan yang diambil dari internet seperti website dan blog
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <input type="submit" value="Daftar SITTI 359 sekarang" class="submitButton" />
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <div class="bottomContent">
+            </div>
+        </div>
+        <div class="footer">
+            <div class="wrapper">
+                <ul class="navFoot">
+                    <li><a href="tentang_kami.php">Tentang Kami</a>|</li>
+                    <li><a href="term.html" target="_blank"> Syarat dan Ketentuan</a>|</li>
+                    <li><a href="http://blog.belajarsitti.com/" target="_blank">Blog</a>|</li>
+                    <li><a href="http://belajarsitti.com/" target="_blank"> Jadi SITTIZEN</a>|</li>
+                    <li><a href="http://sitti.zendesk.com/anonymous_requests/new" target="_blank">Kontak Kami</a></li>
+                </ul>
+                <p class="copyRight">
+                    Email: beriklan@sitti.zendesk.com<br />
+                    © 2010 SITTI
+                </p>
+            </div>
+        </div>
+        {literal}
+	<script type="text/javascript">
+
+			  var _gaq = _gaq || [];
+			  _gaq.push(['_setAccount', 'UA-16501037-1']);
+			  _gaq.push(['_setDomainName', 'sitti.co.id']);
+			  _gaq.push(['_trackPageview']);
+			
+			  (function() {
+			    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			    var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga, s);
+			  })();
+
+	</script>	
+	{/literal}
+    </body>
+</html>

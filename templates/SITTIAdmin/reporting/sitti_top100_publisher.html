@@ -1,0 +1,40 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="addlist zebra">
+  <tr>
+    <td width="100%"><strong>TOP 10 PUBLISHERS</strong></td>
+  </tr>
+</table>
+<form id="form1" name="form1" method="get" action="">
+  Pilih Tanggal : 
+  <select name="d" id="d">
+  {section name=i loop=$date_list}
+    <option value="{$date_list[i]}">{$date_list[i]}</option>
+   {/section}
+   <option value="0">ALL DAY</option>
+  </select>
+  <input name="s" type="hidden" value="report2" />
+  <input name="r" type="hidden" value="top100_publishers" />
+  <input type="submit" name="button" id="button" value="GO" />
+<br />
+  *) hanya menampilkan tanggal 7 hari terakhir.
+</form>
+<p>&nbsp;</p>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="list zebra">
+  <tr class="head">
+ 	<td><strong>Capture Date</strong></td>
+    <td><strong>SITTI ID - Username</strong></td>
+    <td><strong>Impressions</strong></td>
+    <td><strong>Clicks</strong></td>
+    <td><strong>CTR</strong></td>
+    <td><strong>Last Update</strong></td>
+  </tr>
+  {section name=i loop=$list}
+  <tr>
+  <td>{$list[i].capture_date}</td>
+    <td>{$list[i].sittiID|stripslashes|strip_tags|trim} - {$list[i].username|stripslashes|strip_tags|trim}</td>
+    <td>{$list[i].jum_impression|number_format}</td>
+    <td>{$list[i].jum_klik|number_format}</td>
+    <td>{$list[i].ctr} %</td>
+    <td>{$list[i].last_update}</td>
+  </tr>
+  {/section}
+</table>

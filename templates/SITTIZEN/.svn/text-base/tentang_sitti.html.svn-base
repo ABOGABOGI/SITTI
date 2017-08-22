@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>SITTI - Platform Iklan Kontekstual Berbahasa Indonesia, Iklan Kontekstual, Bahasa Indonesia</title>
+<link href="css/sitti.css" rel="stylesheet" type="text/css" /> 
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" language="javascript" src="js/iepngfix_tilebg.js"></script>
+<script type="text/javascript" language="javascript" src="js/drop_table.js"></script>
+</head>
+<body onload="init()">
+{if $takeOut}<div class="cLabel"><a href="http://www.sitti.co.id/UtakAtik/index.html"></a></div>{/if}
+<div class="wrapper">
+  <div class="header"> <a class="logoZen" href="index.php">&nbsp;</a> <a class="sloganZen" href="index.php">&nbsp;</a> </div>
+  {if $isLogin}
+    <div class="navigationBarAllLogin">
+			<div class="navigationRight">
+                <ul class="menu navigation" id="menu">
+                    <li><a href="profile.php">Profile Saya</a>
+                    	<ul>
+                            <li><a href="profile.php?modify=1">Ganti Profil</a>
+    <!--                            <ul>
+                                    <li><a href="profile.php?bank=1">Daftar Rekening Bank</a></li>
+                                    <li><a href="profile.php?cc=1">Daftar Kartu Kredit</a></li>
+                                </ul>-->
+                            </li>
+                            
+                  			<!-- <li><a href="pembayaran.php">Pembayaran</a></li> -->
+                  			<li><a href="javascript:;" onClick="onTab('#tab_mutasi');">Mutasi Rekening</a></li>
+                  			
+                        </ul>
+                    </li>
+                    <li><a href="beranda.php">Laporan</a></li>
+                    <li><a href="download.php">Plugins</a></li>
+                    <li><a target="_blank" href="http://sitti.zendesk.com/anonymous_requests/new">Kontak</a></li>
+                </ul>
+                <script type="text/javascript">var menu=new menu.dd("menu");menu.init("menu","menuhover");</script>
+             <a class="btnKeluar" href="index.php?logout=1"></a>
+             <a target="_blank" href="http://twitter.com/sittiID" class="twitterAtas" alt="http://twitter.com/sittiID"></a>
+             <a target="_blank" href="http://www.facebook.com/SITTI.ID" class="fbAtas" alt="http://www.facebook.com/SITTI.ID"></a>
+             </div>
+            </div>
+  {/if}
+   {if $isLogin}
+         <div class="topUserMenu">
+         	<div class="topUserMenu-right">
+         	
+         	<div class="tum_info">
+         	<span class="namaPemilik">Nama Pemilik Akun</span>
+         	<span class="namaUser">{$info.name|strip_tags}</span>
+         	<span class="namaUser">{$info.sittiID}</span>
+         	</div>  	
+         	<a class="tum_simulasi" href="faq.php"></a>
+         	<a class="tum_buat" href="beranda.php?daftar=1"></a>
+         	<a class="tum_kampanye" href="#"></a>
+         	
+         	</div>
+         </div>
+         {/if}   
+  <div class="blockContent">
+    <div class="content">
+    	 <div class="colLeft">
+         <div class="w635" style="width:891px">
+    	   <h3 class="headTitle">Tentang SITTI</h3>
+           
+                            <p>Sejak berdiri pada tahun 2010, Sitti adalah jaringan pemasang iklan kontekstual daring (online) terbesar di Indonesia. Jaringan kami yang mencakup lebih dari jutaan jumlah halaman web yang siap menjadi media para pengiklan siti dan lebih dari 1,000 blog berbahasa Indonesia memudahkan para pemasang iklan untuk menjangkau sasaran pasar dalam jaringan internet yang dituju. </p>
+                            <p>
+            Kami juga membantu para pemilik situs dan blog untuk memanfaatkan halaman-halaman di situs/blog mereka dengan pemasangan iklan dari jaringan kami. 
+                            </p>
+                            <p>
+            Iklan kontekstual artinya menyuguhkan iklan kepada pengunjung situs yang memiliki profil yang sesuai dengan kebutuhan si pemasang iklan.  Mulai dari usia, jenis kelamin, profesi, hingga gaya hidup. 
+              </p>
+              <p>
+            Iklan kontekstual merupakan tren iklan masa kini yang bertumpu pada teknologi yang dapat membidik para pelanggan berdasarkan kata kunci (keyword) yang mereka ketik di kolom pencari. 
+              </p>
+              <p>
+            Sistem Sitti lalu membaca kata kunci tersebut, mengolahnya sedemikian rupa untuk kemudian memanggil pesan-pesan iklan yang relevan untuk ditampilkan di situs yang dibaca secara keseluruhan oleh si pengunjung, baik iklan tersebut muncul di satu halaman yang sama maupun berupa iklan pop-up . Iklan kontekstual adalah iklan yang munculnya di suatu web secara dinamis. 
+              </p>
+              <p>
+            Iklan kontekstual dari hasil pencarian lewat media situs pencari menjadi salah satu dari sektor periklanan yang paling pesat perkembangannya. 
+            </p>
+            </div>
+      	 </div>
+            
+      <div class="bottomContent"></div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <div class="wrapper">
+        <ul class="navFoot">
+                <li><a href="term.html" target="_blank"> Syarat dan Ketentuan</a>|</li>
+                <li><a href="tentang-sitti.php">Tentang SITTI</a>|</li>
+                <li><a href="http://359.sitti.co.id/" target="_blank"> Beriklan di SITTI</a>|</li>
+      			<li><a href="tentang-sittizen.php">SITTIZEN</a>|</li>
+      			<li><a target="_blank" href="http://blog.belajarsitti.com/">Blog</a>|</li>
+       			<li><a href="career.php">Karir</a>|</li>
+                <li><a href="http://sitti.zendesk.com/anonymous_requests/new" target="_blank">Kontak Kami</a></li>
+        </ul>
+        <p class="copyRight">
+            Email: beriklan@sitti.zendesk.com<br />
+            © 2010 SITTI
+        </p>
+  </div>
+</div>
+{literal}
+	<script type="text/javascript">
+
+			  var _gaq = _gaq || [];
+			  _gaq.push(['_setAccount', 'UA-16501037-1']);
+			  _gaq.push(['_setDomainName', 'sitti.co.id']);
+			  _gaq.push(['_trackPageview']);
+			
+			  (function() {
+			    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			    var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga, s);
+			  })();
+
+	</script>	
+	{/literal}
+</body>
+</html>

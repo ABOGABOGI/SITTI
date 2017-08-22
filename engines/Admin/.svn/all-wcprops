@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/sittiweb/!svn/ver/67/branches/phase03-03/engines/Admin
+END
+PluginManager.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/sittiweb/!svn/ver/67/branches/phase03-03/engines/Admin/PluginManager.php
+END
+UserManager.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/sittiweb/!svn/ver/67/branches/phase03-03/engines/Admin/UserManager.php
+END
+DashboardManager.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/sittiweb/!svn/ver/67/branches/phase03-03/engines/Admin/DashboardManager.php
+END
+Admin.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/sittiweb/!svn/ver/67/branches/phase03-03/engines/Admin/Admin.php
+END

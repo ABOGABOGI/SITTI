@@ -1,0 +1,180 @@
+<body leftmargin="0" topmargin="0" marginwidth="0" marginwidth="0">
+<table width="700" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td><h1>INVOICE</h1></td>
+<td align="right"><img src="http://stat.sittiad.com/assets/logo.jpg" width="157" height="46"/></td>
+</tr>
+</table>
+<table width="700" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="87">Kepada</td>
+<td width="10">:</td>
+<td width="328">{$rs.perusahaan|stripslashes|strip_tags}</td>
+<td width="52">&nbsp;</td>
+<td width="4">&nbsp;</td>
+<td width="225">&nbsp;</td>
+</tr>
+<tr>
+<td>UP</td>
+<td>:</td>
+<td>{$rs.up_name|stripslashes|strip_tags}</td>
+<td>No.</td>
+<td>:</td>
+<td>{$rs.id}/SITTI/SYS/{$rs.bulan}/{$rs.tahun}</td>
+</tr>
+<tr>
+<td>Alamat:</td>
+<td>:</td>
+<td>{$rs.address|stripslashes|strip_tags}</td>
+<td>Tanggal</td>
+<td>:</td>
+<td>{$rs.generate_date}</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>{$rs.komplek|stripslashes|strip_tags} {$rs.blok|stripslashes|strip_tags} {$rs.province|stripslashes|strip_tags}{if $rs.city},{$rs.city|stripslashes|strip_tags}{/if} </td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>Agent No.</td>
+<td>:</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>Adv. No.</td>
+<td>:</td>
+<td>{$rs.advertiser_id}</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>:</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+<table width="600" border="1px" cellspacing="0" cellpadding="0" bordercolor="#000000">
+<tr>
+<td width="24" align="center"><strong>No.</strong></td>
+<td width="287" align="center"><strong>Keterangan</strong></td>
+<td width="234" align="center"><strong>Jumlah</strong></td>
+</tr>
+<tr>
+<td align="center" valign="top">1</td>
+<td valign="top">Click Usage for Campaign &quot;{$rs.campaign_name|stripslashes|strip_tags}&quot;<br />
+  <br />
+  {$rs.bln} {$rs.tahun}<br/>
+  Account ID : {$rs.advertiser_id}<br/></td>
+<td align="right" valign="top">Rp. {$rs.harga|number_format}</td>
+</tr>
+<tr>
+<td align="center">&nbsp;</td>
+<td align="right">Subtotal</td>
+<td align="right">Rp. {$rs.harga|number_format}</td>
+</tr>
+<tr>
+<td align="center">&nbsp;</td>
+<td>PPN 10 %</td>
+<td align="right">Rp. {$rs.ppn|number_format}</td>
+</tr>
+<tr>
+<td align="center">&nbsp;</td>
+<td align="right"><strong>TOTAL</strong></td>
+<td align="right"><strong>Rp. {$rs.harga_total|number_format}</strong></td>
+</tr>
+</table>
+<table width="600" border="0" cellspacing="0" cellpadding="0">
+<tr>
+  <td width="1313">Terbilang : {$rs.terbilang|ucwords} Rupiah<br/></td>
+</tr>
+</table>
+<table width="600" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><strong>Syarat Pembayaran:</strong></td>
+  </tr>
+  <tr>
+    <td><strong>Jatuh tempo pembayaran pada saat penerimaan Invoice ini Ke :</strong></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><strong>Bank Central Asia, cab. Wolter Monginsidi.Jakarta</strong></td>
+  </tr>
+  <tr>
+    <td><strong>Atas Nama : PT SITTI</strong></td>
+  </tr>
+  <tr>
+    <td><strong>Nomor Rekening : 524 0 3333 43<br />
+      <br />
+      <br />
+      <br />
+    </strong></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+   <tr>
+    <td>&nbsp;</td>
+  </tr>
+   <tr>
+    <td>&nbsp;</td>
+  </tr>
+   <tr>
+    <td>&nbsp;</td>
+  </tr>
+   <tr>
+     <td>&nbsp;</td>
+   </tr>
+   <tr>
+     <td>&nbsp;</td>
+   </tr>
+   <tr>
+     <td>&nbsp;</td>
+   </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<table width="600" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+<td width="317" height="19" valign="top"><strong>PT SITTI</strong><br/></td>
+<td width="283" valign="top"><strong>Menyetujui</strong></td>
+</tr>
+<tr>
+<td height="19" valign="top">&nbsp;</td>
+<td valign="top">&nbsp;</td>
+</tr>
+<tr>
+<td height="19" valign="top">&nbsp;</td>
+<td valign="top">&nbsp;</td>
+</tr>
+<tr>
+<td height="19" valign="top">&nbsp;</td>
+<td valign="top">&nbsp;</td>
+</tr>
+<tr>
+<td height="19" valign="top">&nbsp;</td>
+<td valign="top">&nbsp;</td>
+</tr>
+<tr>
+<td height="19" valign="top"><strong><u>INDRADJAYA UTAMA H.SYARIF</u></strong><br /></td>
+<td valign="top"><strong>______________________________</strong></td>
+</tr>
+<tr>
+<td height="19" valign="top"><strong>Direktur</strong></td>
+<td valign="top">&nbsp;</td>
+</tr>
+</table>
+</body>
+

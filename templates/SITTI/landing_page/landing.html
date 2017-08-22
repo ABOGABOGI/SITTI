@@ -1,0 +1,344 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>{if $layout.page_title}{$layout.page_title|stripslashes}{else}campaign{/if}</title>
+        <meta name="keywords" content="{if $layout.meta_tags}{$layout.meta_tags|stripslashes}{else}sitti{/if}"></meta>
+        <meta name="description" content="{if $layout.meta_description}{$layout.meta_description|stripslashes}{else}sitti{/if}" />
+        <meta name="author" content="{if $layout.meta_author}{$layout.meta_author|stripslashes}{else}SITTI{/if}" />
+        <link rel="icon" type="image/gif" href="images/animated_favicon.gif">
+
+
+        {literal}
+        <script type="text/javascript" src="js/iepngfix_tilebg.js"></script>
+        <style type="text/css">
+            img, div, input { behavior: url("js/iepngfix.htc") }
+			html{
+				margin:0;
+				padding:0;
+			}
+            body{
+                margin:0 auto;
+                padding:0;
+            }
+            .wrapper{
+                width:900px;
+            }
+            .header{
+                height:150px;
+                width:100%;
+                display:block;
+            }
+            .container{
+                height:450px;
+                width:100%;
+                display:block;
+            }
+            .content{
+                width:400px;
+                display:table;
+                min-height:300px;
+                overflow:hidden;
+                float:left;
+            }
+            .banner{
+                width:500px;
+                float:left;
+                display:table;
+                min-height:300px;
+                overflow:hidden;
+            }
+            .footer{
+                height:50px;
+                padding:15px 0;
+                clear:both;
+                font-size:12px;
+            }
+            /* element style */
+            h1{
+                text-shadow:1px 1px 2px #ababab;
+                margin:15px 0 10px 0;
+            }
+            h2{
+                margin:0 0 20px 0;
+                text-transform:capitalize;
+                text-shadow:1px 1px 2px #ababab;
+            }
+            a{
+                outline:none;
+                text-shadow:1px 1px 2px #ababab;
+                font-weight:bold;
+                font-size:12px;
+            }
+            a:hover{
+                color:#C60;
+                text-decoration:underline;
+            }
+			a.submitButton{
+				background:url(images/bg_submit.gif) repeat-x;
+				height:30px; padding:5px 15px;
+				text-transform:uppercase;
+				text-shadow:1px 1px 1px #000000;
+				color:#FFF;
+				text-align:center;
+				border:none;
+				-moz-border-radius:8px;
+				-webkit-border-radius:8px;
+				cursor:pointer;
+				text-decoration:none;
+				display:inline;
+				font-size:12px;
+				margin:0 20px 0 0;
+			}
+			a.submitButton:hover{
+				background:url(images/bg_submit_hover.gif) repeat-x;
+			}
+            p{
+                line-height:22px;
+            }
+            img{
+                border:none;
+            }
+            .title{
+                font-size:25px;
+                margin:0;
+            }
+            .subtitle{
+                margin:0;
+                font-size:20px;
+            }
+            a.logo{
+                float:left;
+                margin:0 20px 0 0;
+            }
+            a.logo img{
+                width:235px;
+                height:150px;
+            }
+            .headerText{
+                float:left;
+                padding:55px 0 0 0;
+                width:630px;
+            }
+            /* form style */
+            form{
+                margin:50px 0 0 0;
+            }
+            input[type=text], input[type=password], select,input[type=submit], input[type=button]{
+                background:url(images/bg_input.jpg) no-repeat;
+                border:none;
+                width:235px; height:20px;
+                padding:5px;
+                margin:0 0 20px 0;
+            }
+            input[type=submit], input[type=button]{
+                background:url(images/bg_button_hover.jpg) no-repeat;
+                height:30px;
+                text-align:left;
+                color:#FFF;
+                width:245px;
+                cursor:pointer;
+            }
+            input[type=submit]:hover, input[type=button]:hover{
+                background:url(images/bg_button.jpg) no-repeat;
+            }
+			#site-body-container {}
+	 
+			#site-body-content {
+					padding:0;
+				}
+	 
+			#site-bottom-bar {
+				background:url(images/bg_tabber.gif) repeat-x #3B5998 ;
+				border-top: 1px solid #009cff ;
+				bottom: 0px ;
+				font-family: verdana, arial ;
+				font-size: 11px ;
+				height: 30px ;
+				padding:5px 0;
+				position: fixed ;
+				width: 100% ;
+				z-index: 1000 ;
+				}
+	 
+			#site-bottom-bar-frame {
+				height: 30px ;
+				margin: 0px 10px 0px 10px ;
+				position: relative ;
+				}
+	 
+			#site-bottom-bar-content {
+				padding: 3px 0px 0px 0px ;
+				text-align:center;
+				}
+	 
+			#menu-root {
+				background-color: #000 ;
+				border: 1px solid #D0D0D0 ;
+				color: #fff ;
+				display: inline ;
+				height: 22px ;
+				line-height: 22px ;
+				text-align: center ;
+				text-decoration: none ;
+				padding:5px 10px;
+				-moz-border-radius:5px;
+				}
+	 
+			#menu-root:hover {
+				background-color: #666666 ;
+				border-color: #000000 ;
+				color: #FFFFFF ;
+				}
+	 
+	 
+			/* -------------------------------------------------- */
+			/* -- IE 6 FIXED POSITION HACK ---------------------- */
+			/* -------------------------------------------------- */
+	 
+			html,
+			body,
+			#site-body-container {
+				_height: 100% ;
+				_overflow: hidden ;
+				_width: 100% ;
+				}
+	 
+			#site-body-container {
+				_overflow-y: scroll ;
+				_overflow-x: hidden ;
+				_position: relative ;
+				}
+	 
+			/* To make up for scroll-bar. */
+			#site-bottom-bar {
+				_bottom: -1px ;
+				_position: absolute ;
+				_right: 16px ;
+				}
+	 
+			/* To make up for overflow left. */
+			#site-bottom-bar-frame {
+				_margin-left: 26px ;
+				}
+	 
+	
+        </style>
+        {/literal}
+    </head>
+
+    <body style="background-color:{if $layout.bgcolor} #{$layout.bgcolor} {else} #cccccc {/if}; color:#333; font-family:arial;">        
+ 
+	<div id="site-body-container">
+		<div id="site-body-content">
+            <form method="post" action="preview_template.php?send=1">
+        	<table width="970" border="0" cellspacing="0" cellpadding="0" align="center">
+              <tr>
+                <td>
+<div class="wrapper">
+                    <div class="header">
+                         <a href="modif_template.php?r=edit_layout&id={$id}" class="logo">
+                        {if $layout.logo_img}
+                        <img src="contents/images/{$layout.logo_img}" />
+                        {else}
+                        <img src="images/logo_template.png" />
+                        {/if}
+                         </a>
+                        
+                        <div class="headerText">
+                            <h1 class="title">
+                                {if $layout.header_title}
+                                    {$layout.header_title|stripslashes}
+                                {else}
+                                    Ini adalah contoh halaman muka untuk iklan SITTI,
+                                {/if}
+                            </h1>
+                            <h2 class="subtitle">
+                                {if $layout.header_subtitle}
+                                    {$layout.header_subtitle|stripslashes}
+                                {else}
+                                    Halaman ini bisa menjadi halaman anda
+                                {/if}
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="content">
+                            {if $layout.content}
+                                {$layout.content|stripslashes}
+                            {else}
+                                <h1>Judul Untuk Laman Landas (Landing Page)</h1>
+                                <br>
+                                <h2>
+                                    Sebaiknya halaman "landing" Anda di optimalkan sehingga
+                                    mendapatkan ranking iklan yang baik di
+                                    Platform Iklan Kontekstual SITTI.
+                                </h2>
+                            {/if}
+
+
+                            {if $field.defaultField1 OR $field.defaultField2 OR $field.additional1 OR $field.additional2 OR $field.additional3}
+                            
+                            <form class="campaignForm" name="campaign">
+                                {if $field.defaultField1}
+                                <input type="text" name="{if $field.defaultField1}{$field.defaultField1}{/if}" value="{if $field.defaultField1}{$field.defaultField1}{/if}" />
+                                {/if}
+        
+                                {if $field.defaultField2}
+                                <input type="text" name="{if $field.defaultField2}{$field.defaultField2}{/if}" value="{if $field.defaultField2}{$field.defaultField2}{/if}" />
+                                {/if}
+        
+                                {if $field.additional1}
+                                <input type="text" name="{if $field.additional1}{$field.additional1}{/if}" value="{if $field.additional1}{$field.additional1}{/if}">
+                                {/if}
+        
+                                {if $field.additional2}
+                                <input type="text" name="{if $field.additional2}{$field.additional2}{/if}" value="{if $field.additional2}{$field.additional2}{/if}">
+                                {/if}
+        
+                                {if $field.additional3}
+                                <input type="text" name="{if $field.additional3}{$field.additional3}{/if}" value="{if $field.additional3}{$field.additional3}{/if}">
+                                {/if}
+        
+                                {if $field.defaultField1 OR $filed.defaultField2 OR $field.additional1 OR $field.additional2 OR $field.additional3}
+                                <input type="submit" value="SUBMIT" />
+                                {/if}
+                            </form>
+                            {else}
+
+                                {if $layout.link_website}
+                                <a href="{$layout.link_website}" target="_BLANK">{$layout.link_website}</a>
+                                {/if}
+                                
+                            {/if}
+                        </div>
+                        <div class="banner">
+                            {if $layout.banner_img}
+                            <img style="width:490px;" src="contents/images/{$layout.banner_img}" />
+                            {else}
+                            <img src="images/banner.png" />
+                            {/if}
+                        </div>
+                    </div>
+                    
+                    <div class="footer">
+                        
+                        {if $layout.footer_text}
+                            {$layout.footer_text|stripslashes}
+                        {else}
+                            Ini adalah halaman contoh. <br>
+                            Dengan mendaftarkan iklan SITTI, anda dapat merubah halaman ini.
+                        {/if}
+                    </div>
+                </div>
+
+                </td>
+              </tr>
+            </table>
+            </form>
+                
+		</div>
+	</div>
+           
+    </body>
+</html>

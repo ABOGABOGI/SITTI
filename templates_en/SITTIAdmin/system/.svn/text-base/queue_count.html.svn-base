@@ -1,0 +1,12 @@
+<p><strong>PUBLISHER'S PAGE IN QUEUE</strong></p>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="list zebra">
+  <tr>
+    <td width="18%"><strong>Last Update</strong></td>
+    <td width="82%"><strong>Total In-Queue</strong></td>
+  </tr>
+  <tr>
+    <td>{$rs.last_update}</td>
+    <td>{$rs.jum_queue|number_format}</td>
+  </tr>
+</table>
+<p>&nbsp;</p>

@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/sittiweb/!svn/ver/67/branches/phase03-03/engines/Utility/PHPExcel/Shared/JAMA
+END
+LUDecomposition.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/sittiweb/!svn/ver/67/branches/phase03-03/engines/Utility/PHPExcel/Shared/JAMA/LUDecomposition.php
+END
+CholeskyDecomposition.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/sittiweb/!svn/ver/67/branches/phase03-03/engines/Utility/PHPExcel/Shared/JAMA/CholeskyDecomposition.php
+END
+SingularValueDecomposition.php
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/sittiweb/!svn/ver/67/branches/phase03-03/engines/Utility/PHPExcel/Shared/JAMA/SingularValueDecomposition.php
+END
+CHANGELOG.TXT
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/sittiweb/!svn/ver/67/branches/phase03-03/engines/Utility/PHPExcel/Shared/JAMA/CHANGELOG.TXT
+END
+QRDecomposition.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/sittiweb/!svn/ver/67/branches/phase03-03/engines/Utility/PHPExcel/Shared/JAMA/QRDecomposition.php
+END
+EigenvalueDecomposition.php
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/sittiweb/!svn/ver/67/branches/phase03-03/engines/Utility/PHPExcel/Shared/JAMA/EigenvalueDecomposition.php
+END
+Matrix.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/sittiweb/!svn/ver/67/branches/phase03-03/engines/Utility/PHPExcel/Shared/JAMA/Matrix.php
+END

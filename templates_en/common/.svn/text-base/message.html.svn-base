@@ -1,0 +1,9 @@
+<div align="center" style="padding:100px 0 0 0; min-height:355px;">
+    <div align="center" class="suksesMessage">
+      <p>
+          {$msg|stripslashes}
+      </p>
+      
+      <p><a class="continue" href="{$url}">Continue</a></p>
+    </div>
+</div>

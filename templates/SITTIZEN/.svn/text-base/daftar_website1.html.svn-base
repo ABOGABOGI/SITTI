@@ -1,0 +1,509 @@
+{literal}
+<script>
+var _jenis_font = "arial";
+var _color_bg = "FFFFFF";
+var _color_border = "CCCCCC";
+var _color_title = "FF6600";
+var _color_text = "111111";
+var _color_url = "17A5D9";
+function onLayoutChanged(){
+	_color_bg = $("#colorPicker").val();
+	_color_border = $("#colorPickerBorder").val();
+	_color_title = $("#colorPickerJudul").val();
+	_color_text = $("#colorPickerText").val();
+	_color_url = $("#colorPickerUrl").val();
+	_jenis_font = $("#jenisFont").val();
+	
+	updateAdLayout();
+}
+function updateAdLayout(){
+	
+	$("div.w300").css({'background-color':'#'+_color_bg,'border-color':'#'+_color_border,'font-family':_jenis_font});
+	$("div.w336").css({'background-color':'#'+_color_bg,'border-color':'#'+_color_border,'font-family':_jenis_font});
+	$("div.w728").css({'background-color':'#'+_color_bg,'border-color':'#'+_color_border,'font-family':_jenis_font});
+	$("div.w160").css({'background-color':'#'+_color_bg,'border-color':'#'+_color_border,'font-family':_jenis_font});
+	$("div.w610").css({'background-color':'#'+_color_bg,'border-color':'#'+_color_border,'font-family':_jenis_font});
+	$("div.w3002").css({'background-color':'#'+_color_bg,'border-color':'#'+_color_border,'font-family':_jenis_font});
+	$("div.w940").css({'background-color':'#'+_color_bg,'border-color':'#'+_color_border,'font-family':_jenis_font});
+	$("div.w520").css({'background-color':'#'+_color_bg,'border-color':'#'+_color_border,'font-family':_jenis_font});
+	$("div.w468").css({'background-color':'#'+_color_bg,'border-color':'#'+_color_border,'font-family':_jenis_font});
+	$("div.w250").css({'background-color':'#'+_color_bg,'border-color':'#'+_color_border,'font-family':_jenis_font});
+	$("div.w635").css({'background-color':'#'+_color_bg,'border-color':'#'+_color_border,'font-family':_jenis_font});
+
+	$("div.w300 h1").css({'color':'#'+_color_title});
+	$("div.w336 h1").css({'color':'#'+_color_title});
+	$("div.w728 h1").css({'color':'#'+_color_title});
+	$("div.w160 h1").css({'color':'#'+_color_title});
+	$("div.w610 h1").css({'color':'#'+_color_title});
+	$("div.w3002 h1").css({'color':'#'+_color_title});
+	$("div.w940 h1").css({'color':'#'+_color_title});
+	$("div.w520 h1").css({'color':'#'+_color_title});
+	$("div.w468 h1").css({'color':'#'+_color_title});
+	$("div.w250 h1").css({'color':'#'+_color_title});
+	$("div.w635 h1").css({'color':'#'+_color_title});
+
+	$("div.w300 p").css({'color':'#'+_color_text});
+	$("div.w336 p").css({'color':'#'+_color_text});
+	$("div.w728 p").css({'color':'#'+_color_text});
+	$("div.w160 p").css({'color':'#'+_color_text});
+	$("div.w610 p").css({'color':'#'+_color_text});
+	$("div.w3002 p").css({'color':'#'+_color_text});
+	$("div.w940 p").css({'color':'#'+_color_text});
+	$("div.w520 p").css({'color':'#'+_color_text});
+	$("div.w468 p").css({'color':'#'+_color_text});
+	$("div.w250 p").css({'color':'#'+_color_text});
+	$("div.w635 p").css({'color':'#'+_color_text});
+
+	$("div.w300 a").css({'color':'#'+_color_url});
+	$("div.w336 a").css({'color':'#'+_color_url});
+	$("div.w728 a").css({'color':'#'+_color_url});
+	$("div.w160 a").css({'color':'#'+_color_url});
+	$("div.w610 a").css({'color':'#'+_color_url});
+	$("div.w3002 a").css({'color':'#'+_color_url});
+	$("div.w940 a").css({'color':'#'+_color_url});
+	$("div.w520 a").css({'color':'#'+_color_url});
+	$("div.w468 a").css({'color':'#'+_color_url});
+	$("div.w250 a").css({'color':'#'+_color_url});
+	$("div.w635 a").css({'color':'#'+_color_url});
+}
+</script>
+{/literal}
+            		<script type="text/javascript" src="js/jscolor.js"></script>
+            		<a style="position:absolute;top:20px;right:33px; text-decoration:none;" href="downloads/SITTIzen-cara_membuat_akun_&_memasang_script_untuk_Blogger.pdf"><img src="images/pdf.png" width="16"> Cara Membuat Akun & Memasang Script Untuk Blogger</a>
+                    <h3 class="headTitle">DAFTARKAN SITUS ANDA</h3>
+                    <form class="register2" action="beranda.php" method="post" enctype="application/x-www-form-urlencoded">
+                      <p>Proses berikut akan membawa Anda menuju proses pendaftaran situs baru untuk memasang iklan SITTI</p>
+                      <div class="row">
+                      <label class="labelSelect">Alamat Situs Anda</label>
+                       <input name="url" type="text" class="inputTex" id="url" value="http://" size="40" maxlength="255" />
+                     
+                     </div>
+                     <h3 class="blue">Tampilan Iklan</h3>
+                     <div class="row">
+                        <div class="w315L">
+                            <div class="row noBorder pad10">
+                                <label style="float:left;">Jenis Huruf</label>
+                                <select id="jenisFont" name="jenisFont" onchange="onLayoutChanged();">
+                                    <option value="Arial">Arial</option>
+                                    <option value="Tahoma">Tahoma</option>
+                                    <option value="Times New Roman">Times New Roman</option>
+                                    <option value="Trebuchet MS">Trebuchet MS</option>
+                                    <option value="Verdana">Verdana</option>
+                                </select>
+                            </div>
+                            <div class="row noBorder pad10" style="position:relative">
+                                <label style="float:left;">Warna latar Belakang</label>
+                                <input style="position:absolute" type="text" class="color" name="colorPicker" id="colorPicker" value="FFFFFF" onChange="onLayoutChanged();">
+                            </div>
+                            <div class="row noBorder pad10" style="position:relative">
+                                <label style="float:left;">Warna Garis Pembatas</label>
+                                <input style="position:absolute" type="text" class="color" name="colorPickerBorder" id="colorPickerBorder" value="CCCCCC" onChange="onLayoutChanged();">
+                            </div>
+                         </div>
+                         <div class="w315L">
+                           <!--<div class="row noBorder pad10">
+                                <label style="float:left;">Jenis Border</label>
+                                <select>
+                                    <option value="kotak">Kotak</option>
+                                    <option value="sedikitbundar">Sedikit Bundar</option>
+                                    <option value="bundar">Bundar</option>
+                                </select>
+                            </div>
+                             -->
+                             
+                            <div class="row noBorder pad10" style="position:relative; margin-bottom:10px;">
+                                <label style="float:left;">Warna Judul Iklan</label>
+                                <input style="position:absolute" type="text" class="color" name="colorPickerJudul" id="colorPickerJudul" value="FF6600" onChange="onLayoutChanged();">
+                            </div>
+                            <div class="row noBorder pad10" style="position:relative; margin-bottom:10px;">
+                               <label style="float:left;">Warna Tulisan</label>
+                                <input style="position:absolute" type="text" class="color" name="colorPickerText" id="colorPickerText" value="111111" onChange="onLayoutChanged();">
+                            </div>
+                            <div class="row noBorder pad10" style="position:relative; margin-bottom:10px;">
+                                <label style="float:left;">Warna URL (alamat Situs)</label>
+                                <input style="position:absolute" type="text" class="color" name="colorPickerUrl" id="colorPickerUrl" value="17A5D9" onChange="onLayoutChanged();">
+                            </div>
+                        </div>
+                        <!-- 
+                  		 <div class="w315L">
+                            <p><strong>Contoh Tampilan Iklan Anda</strong></p>
+                            <div id="slotBody" style="font-family:arial; color:#000; width:200px; height:90px; border:solid 1px; border-color:#ccc; padding:5px;">
+                                <h1 id="titleColor" style="font-size:14px; margin:0; text-shadow:none; color:#FF6600;">Iklan Sitti Anda</h1>
+                                <p style="clear:both;margin:0;" id="setBaris1">Text Iklan Baris Pertama</p>
+                                <p style="clear:both; margin:0;" id="setBaris2">Text Iklan Baris Kedua</p>
+                                
+                                <a id="urlColor" style="color:#17A5D9; font-size:12px;" href="#">www.sitti.co.id</a> 
+                                <div align="right">
+                                    <a  style="font-size:10px;" href="#"><img src="images/iklan_sitti.png" /></a> 
+                                </div> 
+                            </div>
+                        </div>
+                         -->
+                   </div>
+                      <h3 class="blue">Ukuran iklan yang akan ditampilkan</h3>
+                      <div class="row">
+                        <label class="labelSelect">Pilih type Iklan yang ingin Anda tampilkan</label>
+                          <select name="ad_type" id="text_img_format" onchange="wiz_dirty(); updateCodeField()">
+                            <option value="1">300 x 250</option>
+                            <option value="2">336 x 280</option>
+                            <option value="3">728 x 90</option>
+                            <option value="4">160 x 600</option>
+                            <option value="5">610 x 60</option>
+                            <option value="6">300 x 160</option>
+                            <option value="7">940 x 70</option>
+                            <option value="8">520 x 70</option>
+                            <option value="9">468 x 60</option>
+                            <option value="10">250 x 250</option>
+                            <option value="11">635 x 100</option>
+                          </select>
+                          
+                      </div>
+                      <div class="row">
+                        <label class="labelSelect">Kategori Iklan</label>
+                        <select name="category" id="category">
+                          <option value="1">Ekonomi</option>
+                          <option value="2">Headline</option>
+                          <option value="3">Hiburan</option>
+                          <option value="4">Hukum</option>
+                          <option value="5">Industri</option>
+                          <option value="6">Internasional</option>
+                          <option value="7">Jasa</option>
+                          <option value="8">Kesehatan</option>
+                          <option value="9">Lingkungan</option>
+                          <option value="10">Nasional</option>
+                          <option value="11">Olahraga</option>
+                          <option value="12">Opini</option>
+                          <option value="13">Otomotif</option>
+                          <option value="14">Pendidikan</option>
+                          <option value="15">Perbankan</option>
+                          <option value="16">Perdagangan</option>
+                          <option value="17">Politik</option>
+                          <option value="18">Ragam</option>
+                          <option value="19">Teknologi</option>
+                        </select>
+                      </div>
+                      <div class="row">
+                        <label class="labelSelect">Nama Iklan</label>
+                         <input name="name" type="text" class="inputTex" id="name" value=""/>
+                      </div>
+                      <h3 class="blue">Contoh</h3>
+                      <div class="row">
+                        <div class="ads" style="font-family:arial;">
+                            <div class="w300" style="width:285px; height:235px; padding: 3px; display: table; border: 1px solid rgb(204, 204, 204); background-color: rgb(255, 255, 255); font-family: Arial,Helvetica,sans-serif;">
+                               <div style="clear: both; line-height:16px; padding:0 0 7px">
+                                    <h1 style="color: #FF6600; font-size: 12px; margin: 0pt; font-weight:bold; text-shadow:none;">Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 12px; margin: 0pt;text-decoration:none;">Daftar sekarang di SITTI. Masih gratis. Waktu terbatas.</p>
+                                    <a style="color:#17A5D9; font-size: 11px; font-family: Arial,Helvetica,sans-serif; text-decoration: none;" href="#">www.sitti.co.id</a>
+                                </div> 
+                                 <div style="clear: both; line-height:16px; padding:0 0 7px">
+                                    <h1 style="color: #FF6600; font-size: 12px; margin: 0pt; font-weight:bold;text-shadow:none;">Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 12px; margin: 0pt;text-decoration:none;">Daftar sekarang di SITTI. Masih gratis. Waktu terbatas.</p>
+                                    <a style="color:#17A5D9; font-size: 11px; font-family: Arial,Helvetica,sans-serif; text-decoration: none;" href="#">www.sitti.co.id</a>
+                                </div> 
+                                 <div style="clear: both; line-height:16px; padding:0 0 7px">
+                                    <h1 style="color: #FF6600; font-size: 12px; margin: 0pt; font-weight:bold;text-shadow:none;">Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 12px; margin: 0pt;text-decoration:none;">Daftar sekarang di SITTI. Masih gratis. Waktu terbatas.</p>
+                                    <a style="color:#17A5D9; font-size: 11px; font-family: Arial,Helvetica,sans-serif; text-decoration: none;" href="#">www.sitti.co.id</a>
+                                </div> 
+                                <div style="display:block; clear:both;" align="right">
+                                <a style="color: rgb(23, 165, 217); margin: -10px 0pt 0pt 0pt; padding-right:2px;font-size: 10px; display: table; clear: both;"><img src="http://stat.sittiad.com/assets/iklan_sitti.png" border="0" /></a>
+                               </div>
+                            </div>
+                            <div class="w336" style="width:320px; height:265px; padding:3px; display: table; border: 1px solid rgb(204, 204, 204); background-color: rgb(255, 255, 255); font-family: Arial,Helvetica,sans-serif;">
+                               <div style="clear: both; padding:0 0 7px 0; display:table; line-height:18px;">
+                                    <h1 style="color: #FF6600; font-size: 14px; margin: 0pt; font-weight:bold;text-shadow:none;" >Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 13px; margin: 0pt;text-decoration:none;">Daftar sekarang di SITTI. Pasang Iklan Masih gratis. Waktu terbatas.</p>
+                                    <a style="color:#17A5D9; font-size: 11px; font-family: Arial,Helvetica,sans-serif; text-decoration: none;" href="#">www.sitti.co.id</a>
+                                </div>
+                                <div style="clear: both; padding:0 0 7px 0; display:table; line-height:18px;">
+                                    <h1 style="color: #FF6600; font-size: 14px; margin: 0pt; font-weight:bold;text-shadow:none;" >Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 13px; margin: 0pt;text-decoration:none;">Daftar sekarang di SITTI. Pasang Iklan Masih gratis. Waktu terbatas.</p>
+                                    <a style="color:#17A5D9; font-size: 11px; font-family: Arial,Helvetica,sans-serif; text-decoration: none;" href="#">www.sitti.co.id</a>
+                                </div>
+                                <div style="clear: both; padding:0 0 7px 0; display:table; line-height:18px;">
+                                    <h1 style="color: #FF6600; font-size: 14px; margin: 0pt; font-weight:bold;text-shadow:none;" >Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 13px; margin: 0pt;text-decoration:none;">Daftar sekarang di SITTI. Pasang Iklan Masih gratis. Waktu terbatas.</p>
+                                    <a style="color:#17A5D9; font-size: 11px; font-family: Arial,Helvetica,sans-serif; text-decoration: none;" href="#">www.sitti.co.id</a>
+                                </div>
+                                
+                                <div style="display:block; clear:both;" align="right">
+                                <a style="color: rgb(23, 165, 217); margin: -5px 0pt 0pt 0pt; padding-right:2px;font-size: 10px; display: table; clear: both;"><img src="http://stat.sittiad.com/assets/iklan_sitti.png" border="0" /></a>
+                               </div>
+                            </div>
+                            <div class="w728" style="width:710px; height:80px; padding:3px; display: table; border: 1px solid rgb(204, 204, 204); background-color: rgb(255, 255, 255); font-family: Arial,Helvetica,sans-serif;">
+                                 <div style=" float:left; margin: 0 10px 0 0; line-height:18px; width:220px;">
+                                    <h1 style="color: #FF6600; font-size: 12px; margin: 0pt; font-weight:bold;text-shadow:none;" >Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 13px; margin: 0pt;text-decoration:none;">Daftar sekarang di SITTI. Pasang Iklan Masih gratis. Waktu terbatas.</p>
+                                    <a style="color:#17A5D9; font-size: 11px; font-family: Arial,Helvetica,sans-serif; text-decoration: none;" href="#">www.sitti.co.id</a>
+                                </div>
+                                <div style=" float:left; margin: 0 10px 0 0; line-height:18px; width:220px;">
+                                    <h1 style="color: #FF6600; font-size: 12px; margin: 0pt; font-weight:bold;text-shadow:none;" >Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 13px; margin: 0pt;text-decoration:none;">Daftar sekarang di SITTI. Pasang Iklan Masih gratis. Waktu terbatas.</p>
+                                    <a style="color:#17A5D9; font-size: 11px; font-family: Arial,Helvetica,sans-serif; text-decoration: none;" href="#">www.sitti.co.id</a>
+                                </div>
+                                <div style=" float:left; margin: 0 10px 0 0; line-height:18px; width:220px;">
+                                    <h1 style="color: #FF6600; font-size: 12px; margin: 0pt; font-weight:bold;text-shadow:none;" >Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 13px; margin: 0pt;text-decoration:none;">Daftar sekarang di SITTI. Pasang Iklan Masih gratis. Waktu terbatas.</p>
+                                    <a style="color:#17A5D9; font-size: 11px; font-family: Arial,Helvetica,sans-serif; text-decoration: none;" href="#">www.sitti.co.id</a>
+                                </div>
+                                <div style="display:block; clear:both;" align="right">
+                                <a style="color: rgb(23, 165, 217); margin: -5px 0pt 0pt 0pt; padding-right:2px;font-size: 10px; display: table; clear: both;"><img src="http://stat.sittiad.com/assets/iklan_sitti.png" border="0" /></a>
+                               </div>
+                            </div>
+                            <div class="w160" style="width:145px; height:580px; padding:4px; display: table; border: 1px solid rgb(204, 204, 204); background-color: rgb(255, 255, 255); font-family: Arial,Helvetica,sans-serif;">
+                                 <div style="clear: both; padding:0 0 15px 0; line-height:15px;">
+                                    <h1 style="color: #FF6600; font-size: 12px; margin: 0pt; font-weight:bold;text-shadow:none;" >Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 12px; margin: 0pt;text-decoration:none;">Daftar sekarang di SITTI. Pasang Iklan Masih gratis. Waktu terbatas.</p>
+                                    <a style="color:#17A5D9; font-size: 11px; font-family: Arial,Helvetica,sans-serif; text-decoration: none;" href="#">www.sitti.co.id</a>
+                                </div>
+								<div style="clear: both; padding:0 0 15px 0; line-height:15px;">
+                                    <h1 style="color: #FF6600; font-size: 12px; margin: 0pt; font-weight:bold;text-shadow:none;" >Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 12px; margin: 0pt;text-decoration:none;">Daftar sekarang di SITTI. Pasang Iklan Masih gratis. Waktu terbatas.</p>
+                                    <a style="color:#17A5D9; font-size: 11px; font-family: Arial,Helvetica,sans-serif; text-decoration: none;" href="#">www.sitti.co.id</a>
+                                </div
+                                ><div style="clear: both; padding:0 0 15px 0; line-height:15px;">
+                                    <h1 style="color: #FF6600; font-size: 12px; margin: 0pt; font-weight:bold;text-shadow:none;" >Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 12px; margin: 0pt;text-decoration:none;">Daftar sekarang di SITTI. Pasang Iklan Masih gratis. Waktu terbatas.</p>
+                                    <a style="color:#17A5D9; font-size: 11px; font-family: Arial,Helvetica,sans-serif; text-decoration: none;" href="#">www.sitti.co.id</a>
+                                </div
+                                ><div style="clear: both; padding:0 0 15px 0; line-height:15px;">
+                                    <h1 style="color: #FF6600; font-size: 12px; margin: 0pt; font-weight:bold;text-shadow:none;" >Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 12px; margin: 0pt;text-decoration:none;">Daftar sekarang di SITTI. Pasang Iklan Masih gratis. Waktu terbatas.</p>
+                                    <a style="color:#17A5D9; font-size: 11px; font-family: Arial,Helvetica,sans-serif; text-decoration: none;" href="#">www.sitti.co.id</a>
+                                </div
+                                ><div style="clear: both; padding:0 0 15px 0; line-height:15px;">
+                                    <h1 style="color: #FF6600; font-size: 12px; margin: 0pt; font-weight:bold;text-shadow:none;" >Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 12px; margin: 0pt;text-decoration:none;">Daftar sekarang di SITTI. Pasang Iklan Masih gratis. Waktu terbatas.</p>
+                                    <a style="color:#17A5D9; font-size: 11px; font-family: Arial,Helvetica,sans-serif; text-decoration: none;" href="#">www.sitti.co.id</a>
+                                </div
+                                ><div style="clear: both; padding:0 0 15px 0; line-height:15px;">
+                                    <h1 style="color: #FF6600; font-size: 12px; margin: 0pt; font-weight:bold;text-shadow:none;" >Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 12px; margin: 0pt;text-decoration:none;">Daftar sekarang di SITTI. Pasang Iklan Masih gratis. Waktu terbatas.</p>
+                                    <a style="color:#17A5D9; font-size: 11px; font-family: Arial,Helvetica,sans-serif; text-decoration: none;" href="#">www.sitti.co.id</a>
+                                </div
+                                ><div style="display:block; clear:both;" align="right">
+                                <a style="color: rgb(23, 165, 217); margin: -5px 0pt 0pt 0pt; padding-right:2px;font-size: 10px; display: table; clear: both;"><img src="http://stat.sittiad.com/assets/iklan_sitti.png" border="0" /></a>
+                               </div>
+                            </div>
+                            <div class="w610" style="width:590px; height:48px;padding:3px; display: table; border: 1px solid rgb(204, 204, 204); background-color: rgb(255, 255, 255); font-family: Arial,Helvetica,sans-serif;">
+                                <div style="padding:0 10px 0 0; display:table; width:280px; float:left; line-height:15px;">  
+                                    <h1 style="color: #FF6600; font-size: 13px; margin: 0pt; font-weight:bold;text-shadow:none;" >Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 13px; margin: 0pt;text-decoration:none;">Daftar sekarang di SITTI. Pasang Iklan Masih gratis. Waktu terbatas.</p>
+                                </div>
+                                <div style="padding:0 10px 0 0; display:table; width:280px; float:left; line-height:15px;">  
+                                    <h1 style="color: #FF6600; font-size: 13px; margin: 0pt; font-weight:bold;text-shadow:none;" >Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 13px; margin: 0pt;text-decoration:none;">Daftar sekarang di SITTI. Pasang Iklan Masih gratis. Waktu terbatas.</p>
+                                </div>
+                                <div style="display:block; clear:both;" align="right">
+                                <a style="color: rgb(23, 165, 217); margin: -10px 0pt 0pt 0pt; padding-right:2px;font-size: 10px; display: table; clear: both;"><img src="http://stat.sittiad.com/assets/iklan_sitti.png" border="0" /></a>
+                               </div>
+                            </div>
+                            <div class="w3002" style="width:285px; height:145px; padding:3px; display: table; border: 1px solid rgb(204, 204, 204); background-color: rgb(255, 255, 255); font-family: Arial,Helvetica,sans-serif;">
+                                <div style="clear: both; line-height:16px; margin: 0 0 10px 0">
+                                    <h1  style="color: #FF6600; text-decoration:none; font-size:12px; margin:0;text-shadow:none;" >Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 12px; margin: 0pt;text-decoration:none;">Daftar sekarang di SITTI. Pasang Iklan Masih gratis. Waktu terbatas.</p>
+                                    <a style="color:#17A5D9; font-size: 11px; font-family: Arial,Helvetica,sans-serif; text-decoration: none;" href="#">www.sitti.co.id</a>
+                                </div>
+                                <div style="clear: both; line-height:16px; margin: 0 0 10px 0">
+                                    <h1  style="color: #FF6600; text-decoration:none; font-size:12px; margin:0;text-shadow:none;" >Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 12px; margin:0;text-decoration:none;">Daftar sekarang di SITTI. Pasang Iklan Masih gratis. Waktu terbatas.</p>
+                                    <a style="color:#17A5D9; font-size: 11px; font-family: Arial,Helvetica,sans-serif; text-decoration: none;" href="#">www.sitti.co.id</a>
+                                </div>
+                                <div style="display:block; clear:both;" align="right">
+                                <a style="color: rgb(23, 165, 217); margin: -10px 0pt 0pt 0pt; padding-right:2px;font-size: 10px; display: table; clear: both;"><img src="http://stat.sittiad.com/assets/iklan_sitti.png" border="0" /></a>
+                               </div>
+                            </div>  
+                            <div class="w940" style="width:925px; height:65px; padding:3px; display: table; border: 1px solid rgb(204, 204, 204); background-color: rgb(255, 255, 255); font-family: Arial,Helvetica,sans-serif;">
+                                <div style="padding:0 10px 0 0; display:table; width:280px; float:left; line-height:18px;">  
+                                    <h1  style="color: #FF6600; text-decoration:none; font-size:13px; margin:0;text-shadow:none;" >Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 13px; margin:0;text-decoration:none;">Daftar sekarang di SITTI. Pasang Iklan Masih gratis. Waktu terbatas.</p>
+                                </div>
+                                <div style="padding:0 10px 0 0; display:table; width:280px; float:left; line-height:18px;">  
+                                    <h1  style="color: #FF6600; text-decoration:none; font-size:13px; margin:0;text-shadow:none;" >Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 13px; margin:0;text-decoration:none;">Daftar sekarang di SITTI. Pasang Iklan Masih gratis. Waktu terbatas.</p>
+                                </div>
+                                <div style="padding:0 10px 0 0; display:table; width:280px; float:left; line-height:18px;">  
+                                    <h1  style="color: #FF6600; text-decoration:none; font-size:13px; margin:0;text-shadow:none;" >Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 13px; margin:0;text-decoration:none;">Daftar sekarang di SITTI. Pasang Iklan Masih gratis. Waktu terbatas.</p>
+                                </div>
+                                <div style="display:block; clear:both;" align="right">
+                                <a style="color: rgb(23, 165, 217); margin: -10px 0pt 0pt 0pt; padding-right:2px;font-size: 10px; display: table; clear: both;"><img src="http://stat.sittiad.com/assets/iklan_sitti.png" border="0" /></a>
+                               </div>
+                            </div> 
+                            <div class="w520" style="width:499px; height:60px; padding:3px; display: table; border: 1px solid rgb(204, 204, 204); background-color: rgb(255, 255, 255); font-family: Arial,Helvetica,sans-serif;">
+                                <div style="padding:0 10px 0 0; display:table; width:235px; float:left; line-height:18px;">  
+                                    <h1  style="color: #FF6600; text-decoration:none; font-size:13px; margin:0;text-shadow:none;" >Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 13px; margin:0;text-decoration:none;">Daftar sekarang di SITTI. Pasang Iklan Masih gratis. Waktu terbatas.</p>
+                                </div>
+                                <div style="padding:0 10px 0 0; display:table; width:235px; float:left; line-height:18px;">  
+                                    <h1  style="color: #FF6600; text-decoration:none; font-size:13px; margin:0;text-shadow:none;" >Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 13px; margin:0;text-decoration:none;">Daftar sekarang di SITTI. Pasang Iklan Masih gratis. Waktu terbatas.</p>
+                                </div>
+                                <div style="display:block; clear:both;" align="right">
+                                <a style="color: rgb(23, 165, 217); margin: -10px 0pt 0pt 0pt; padding-right:2px;font-size: 10px; display: table; clear: both;"><img src="http://stat.sittiad.com/assets/iklan_sitti.png" border="0" /></a>
+                               </div>
+                            </div>
+                            <div class="w468" style="width:458px; height:50px; padding:3px; display: table; border: 1px solid rgb(204, 204, 204); background-color: rgb(255, 255, 255); font-family: Arial,Helvetica,sans-serif;">
+                                <div style="padding:0 10px 0 0; display:table; width:205px; float:left; line-height:15px;">  
+                                    <h1  style="color: #FF6600; text-decoration:none; font-size:13px; margin:0;text-shadow:none;" >Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 13px; margin:0;text-decoration:none;">Daftar sekarang di SITTI. Pasang Iklan Masih gratis. Waktu terbatas.</p>
+                                </div>
+                                <div style="padding:0 10px 0 0; display:table; width:205px; float:left; line-height:15px;">  
+                                    <h1  style="color: #FF6600; text-decoration:none; font-size:12px; margin:0;text-shadow:none;" >Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 12px; margin:0;text-decoration:none;">Daftar sekarang di SITTI. Pasang Iklan Masih gratis. Waktu terbatas.</p>
+                                </div>
+                                <div style="display:block; clear:both;" align="right">
+                                <a style="color: rgb(23, 165, 217); margin: -15px 0 0 0; font-size: 10px; display: table; clear: both;"><img src="http://stat.sittiad.com/assets/iklan_sitti.png" border="0" /></a>
+                               </div>
+                            </div>
+                            <div class="w250" style="width:235px; height:235px; padding: 3px; display: table; border: 1px solid rgb(204, 204, 204); background-color: rgb(255, 255, 255); font-family: Arial,Helvetica,sans-serif;">
+                               <div style="clear: both; line-height:16px; padding:0 0 7px">
+                                    <h1 style="color: #FF6600; font-size: 12px; margin: 0pt; font-weight:bold;text-shadow:none;">Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 12px; margin: 0pt;text-decoration:none;">Daftar sekarang di SITTI. Masih gratis. Waktu terbatas.</p>
+                                    <a style="color:#17A5D9; font-size: 11px; font-family: Arial,Helvetica,sans-serif; text-decoration: none;" href="#">www.sitti.co.id</a>
+                                </div> 
+                                 <div style="clear: both; line-height:16px; padding:0 0 7px">
+                                    <h1 style="color: #FF6600; font-size: 12px; margin: 0pt; font-weight:bold;text-shadow:none;">Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 12px; margin: 0pt;text-decoration:none;">Daftar sekarang di SITTI. Masih gratis. Waktu terbatas.</p>
+                                    <a style="color:#17A5D9; font-size: 11px; font-family: Arial,Helvetica,sans-serif; text-decoration: none;" href="#">www.sitti.co.id</a>
+                                </div> 
+                                 <div style="clear: both; line-height:16px; padding:0 0 7px">
+                                    <h1 style="color: #FF6600; font-size: 12px; margin: 0pt; font-weight:bold;text-shadow:none;">Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 12px; margin: 0pt;text-decoration:none;">Daftar sekarang di SITTI. Masih gratis. Waktu terbatas.</p>
+                                    <a style="color:#17A5D9; font-size: 11px; font-family: Arial,Helvetica,sans-serif; text-decoration: none;" href="#">www.sitti.co.id</a>
+                                </div> 
+                                <div style="display:block; clear:both;" align="right">
+                                <a style="color: rgb(23, 165, 217); margin: -5px 0pt 0pt 0pt; padding-right:2px;font-size: 10px; display: table; clear: both;"><img src="http://stat.sittiad.com/assets/iklan_sitti.png" border="0" /></a>
+                               </div>
+                            </div>
+                            <div class="w635" style="width:627px; height:92px;padding:3px; display: table; border: 1px solid rgb(204, 204, 204); background-color: rgb(255, 255, 255); font-family: Arial,Helvetica,sans-serif;">
+                                <div style="padding:0 10px 0 0; display:table; width:197px; float:left; line-height:14px;">  
+                                    <h1 style="color: #FF6600; font-size: 13px; margin: 0pt; font-weight:bold;text-shadow:none;" >Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 13px; margin: 0pt;text-decoration:none;">Daftar sekarang di SITTI. Pasang Iklan Masih gratis. Waktu terbatas.</p>
+                                    <a style="color:#17A5D9; font-size: 11px; font-family: Arial,Helvetica,sans-serif; text-decoration: none;" href="#">www.sitti.co.id</a>                                
+                                </div>
+                                 <div style="padding:0 10px 0 0; display:table; width:197px; float:left; line-height:14px;">  
+                                    <h1 style="color: #FF6600; font-size: 13px; margin: 0pt; font-weight:bold;text-shadow:none;" >Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 13px; margin: 0pt;text-decoration:none;">Daftar sekarang di SITTI. Pasang Iklan Masih gratis. Waktu terbatas.</p>
+                                    <a style="color:#17A5D9; font-size: 11px; font-family: Arial,Helvetica,sans-serif; text-decoration: none;" href="#">www.sitti.co.id</a>                              
+                                </div>
+                                 <div style="padding:0 10px 0 0; display:table; width:197px; float:left; line-height:14px;">  
+                                    <h1 style="color: #FF6600; font-size: 13px; margin: 0pt; font-weight:bold;text-shadow:none;" >Ingin Iklan Anda Disini?</h1>
+                                    <p style="color: #111111; font-size: 13px; margin: 0pt;text-decoration:none;">Daftar sekarang di SITTI. Pasang Iklan Masih gratis. Waktu terbatas.</p>
+                                    <a style="color:#17A5D9; font-size: 11px; font-family: Arial,Helvetica,sans-serif; text-decoration: none;" href="#">www.sitti.co.id</a>                                
+                                </div>
+               
+                                <div style="display:block; clear:both;" align="right">
+                                <a style="color: rgb(23, 165, 217); margin: -10px 0pt 0pt 0pt; padding-right:2px;font-size: 10px; display: table; clear: both;"><img src="http://stat.sittiad.com/assets/iklan_sitti.png" border="0" /></a>
+                               </div>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                       <input name="do" type="hidden" id="do" value="create">
+                        <input type="submit" value="Selesai dan Tampilkan Kode HTML" class="submitButton" />
+                      </div>
+                    </form>
+            		{literal}
+                    	<script type="text/javascript">
+								$(document).ready(function(){
+									$('#pilihFont').change(function() {
+										$('#slotBody').hide();
+										if ($('#pilihFont').val() == arial){
+											$('.w300').show(); $('.w160').hide(); $('.w336').hide(); $('.w728').hide(); $('.w610').hide(); $('.w3002').hide(); $('.w940').hide(); $('.w520').hide();$('.w250').hide();$('.w468').hide();$('.w635').hide();
+										}
+										if ($('#pilihFont').val() == tahoma){
+											$('.w336').show(); $('.w300').hide(); $('.w728').hide(); $('.w160').hide(); $('.w610').hide(); $('.w3002').hide(); $('.w940').hide(); $('.w520').hide();$('.w250').hide();$('.w468').hide();$('.w635').hide();
+										}
+										$('#ads').show('fast');
+									});
+									$('#text_img_format').change();
+								});
+								function warnaBg(wb){ //set background layout color
+									var isIE=/*@cc_on!@*/false;//IE detector
+									if(isIE){
+										document.getElementById("slotBody").style.backgroundColor='#'+wb; //bg color
+										document.getElementById("slotBody").style.color='#333'; //font color
+										document.getElementById("slotBody").style.width='200px';
+										document.getElementById("slotBody").style.padding='5px';
+										document.getElementById("slotBody").style.border='solid 1px';
+										document.getElementById("slotBody").style.borderColor='#ccc';
+										document.getElementById("slotBody").style.fontFamily='arial'; //font family
+							
+							
+									}else{
+										//FF
+										document.getElementById("slotBody").setAttribute("style","background-color:#"+wb+"; color:#333; width:200px; padding:5px; border:solid 1px; border-color:#ccc; font-family:arial;");
+										document.getElementById("colorPicker").setAttribute("value", wb);
+									}
+								}
+								function warnaTeks(wt){//set semua warna teks
+									var isIE=/*@cc_on!@*/false;//IE detector
+									//alert(wt);
+									if(isIE){
+										var wb = document.getElementById("colorPickerText").value;
+										
+										//document.getElementById("slotBody").style.backgroundColor='#'+wb; //bg color
+										document.getElementById("slotBody").style.color='#'+wt; // color
+										document.getElementById("colorPickerText").value=wt; //set all text color
+							
+									}else{
+										//FF
+										var wb = document.getElementById("colorPickerText").getAttribute("value");
+										
+										document.getElementById("slotBody").setAttribute("style","background-color:#"+wb+";color:#"+wt+"; width:200px; padding:5px; border:solid 1px; border-color:#ccc; font-family:arial;");
+										//document.getElementById("colorPickerText").setAttribute("value", wt);
+										document.getElementById("colorPickerText").value = wt;
+									}
+								}
+								function warnaBorder(wbr){//set semua warna teks
+									var isIE=/*@cc_on!@*/false;//IE detector
+									if(isIE){
+										var wb = document.getElementById("colorPicker").value;
+										var wt = document.getElementById("colorPickerText").value;
+										
+										document.getElementById("slotBody").style.backgroundColor='#'+wb; //bg color
+										document.getElementById("slotBody").style.color='#'+wt; // color
+										document.getElementById("slotBody").style.borderColor='#'+wbr; // border color
+										document.getElementById("colorPickerBorder").value.wbr; //set border color
+							
+									}else{
+										//FF
+										var wb = document.getElementById("colorPicker").getAttribute("value");
+										var wt = document.getElementById("colorPickerText").getAttribute("value");
+										
+										document.getElementById("slotBody").setAttribute("style","background-color:#"+wb+"; color:#"+wt+"; width:200px; padding:5px; border:solid 1px; border-color:#"+wbr+"; font-family:arial;");
+										document.getElementById("colorPickerBorder").setAttribute("value", wbr);
+									}
+								}
+								function warnaUrl(wu){ //set background layout color
+									var isIE=/*@cc_on!@*/false;//IE detector
+									if(isIE){
+										document.getElementById("urlColor").style.color='#'+wu; //bg color
+							
+									}else{
+										//FF
+										document.getElementById("urlColor").setAttribute("style","color:#"+wu+"; font-family:arial;");
+										document.getElementById("colorPickerUrl").setAttribute("value", wu);
+									}
+								}
+								function warnaJudul(wj){ //set background layout color
+									var isIE=/*@cc_on!@*/false;//IE detector
+									if(isIE){
+										document.getElementById("titleColor").style.color='#'+wj; //font color
+										document.getElementById("titleColor").style.textShadow='none';
+										document.getElementById("titleColor").style.margin='0';
+										document.getElementById("titleColor").style.fontSize='14px';
+							
+							
+									}else{
+										//FF
+										document.getElementById("titleColor").setAttribute("style","color:#"+wj+"; text-shadow:none; margin:0; font-size:14px;");
+										document.getElementById("colorPickerJudul").setAttribute("value", wj);
+									}
+								}
+						</script>
+    	  			{/literal}
+<script>
+updateAdLayout();
+</script>

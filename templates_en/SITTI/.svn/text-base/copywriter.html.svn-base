@@ -1,0 +1,305 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>SITTI - Platform Iklan Kontekstual Berbahasa Indonesia, Iklan Kontekstual, Bahasa Indonesia</title>
+        <link href="css/sitti_en.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" language="javascript" src="js/iepngfix_tilebg.js"></script>
+        <script type="text/javascript" language="javascript" src="js/drop_table.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <link type="text/css" href="js/themes/hot-sneaks/ui.all.css" rel="stylesheet" />
+		<script type="text/javascript" src="js/iepngfix_tilebg.js"></script>
+        <script type="text/javascript" src="js/drop_table.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/ui/ui.core.js"></script>
+        <script type="text/javascript" src="js/ui/ui.datepicker.js"></script>
+        <script type="text/javascript" src="js/ui/i18n/ui.datepicker-id.js"></script>
+        <script type="text/javascript" src="js/flash.js"></script>
+        {literal}
+		<script type="text/javascript">
+		
+          $(document).ready(function(){
+            $(".closeDialog").click(function(){
+				$("#kotakdialog").hide("slow");
+			});
+          });
+		 
+        </script>
+		<script type="text/javascript">
+            $(document).ready(function() {	
+                //When page loads...
+                $(".tab_content").hide(); //Hide all content
+                $("ul.tabjs li:first").addClass("active").show(); //Activate first tab
+                $(".tab_content:first").show(); //Show first tab content
+				
+				
+            
+            });
+            $(document).ready(function(){
+                $("#tanggalAwalBeranda,#tanggalAkhirBeranda,#tanggalAwalAkun,#tanggalAkhirAkun,#tanggalAwalPenempatan,#tanggalAkhirPenempatan,#tanggalAwalKatakunci,#tanggalAkhirKatakunci,#tanggalAwalTujuan,#tanggalAkhirTujuan,#tanggalAwalPeforma,#tanggalAkhirPeforma,#tanggalAwalGeografis,#tanggalAkhirGeografis,#tanggalAwalPenagihan,#tanggalAkhirPenagihan").datepicker();
+            });
+            function onPhraseClicked(obj){
+				//alert(obj.value);
+				$("input[name=keywords\\[\\]]").removeAttr("checked");
+				$("input[name=keywords\\[\\]]").attr("disabled","true");
+            }
+        </script>
+		<script type="text/javascript">
+        $(document).ready(function(){
+            
+            $(".accordion h3:first").addClass("active");
+            $(".accordion p:not(:first)").hide();
+        
+            $(".accordion h3").click(function(){
+                $(this).next("p").slideToggle("slow")
+                .siblings("p:visible").slideUp("slow");
+                $(this).toggleClass("active");
+                $(this).siblings("h3").removeClass("active");
+            });
+        
+        });
+        </script>
+        <style type="text/css">
+            strong{ font-size:14px;}
+            .term{
+                -moz-border-radius:15px;
+                -webkit-border-radius:15px;
+                border-radius:15px;
+                -moz-box-shadow:1px 0 5px #000;
+                -webkit-box-shadow:1px 0 5px #000;
+                box-shadow:1px 0 5px #000;
+                padding:20px;
+                background:#fff;
+                text-align:left;
+            }
+            .accordion {
+            width: 100%;
+            border-bottom: solid 1px #cfdee6;
+			clear:both;
+            }
+            .accordion h3 {
+                background: #e3f0f3 url(images/arrow-square.gif) no-repeat right -44px;
+                padding:12px 15px;
+                margin: 0;
+                font: bold 120%/100% Arial, Helvetica, sans-serif;
+                border: solid 1px #cfdee6;
+                border-bottom: none;
+                cursor: pointer;
+                color:#0099CC;
+                text-shadow:0 1px 0 #fff;
+            }
+            .accordion h3:hover {
+                background-color: #e1f5ff;
+            }
+            .accordion h3.active {
+                background-position: right 11px;
+            }
+            .accordion p {
+                background: #f7f7f7;
+                margin: 0;
+                padding:15px;
+                border-left: solid 1px #cfdee6;
+                border-right: solid 1px #cfdee6;
+            }
+            .accordion p span{
+                display:block;
+                background:url(images/arrow_blue_small.gif) no-repeat 0 7px;
+                padding:0 0 10px 20px;
+            }
+            .accordion p strong{
+                display:block;
+                padding:15px 0 10px 0;
+            }
+            .list{
+                list-style:none;
+                margin:0 0 0 20px;
+                padding:0;
+            }
+			.list li{
+				margin:0 0 10px 0;
+                background:url(images/arrow_blue_small.gif) no-repeat 0 7px;
+                padding:0 0 10px 20px;
+			}
+        </style>
+{/literal}
+        <link rel="shortcut icon" href="images/favicon.ico">
+        <link rel="icon" type="image/gif" href="images/animated_favicon.gif">
+
+    </head>
+
+    <body onload="init()">
+      {if $takeOut}<div class="cLabel"><a href="http://www.sitti.co.id/UtakAtik/index.html"></a></div>{/if}
+	 {if $broadcast}
+	
+     <div id="kotakdialog" title="Pesan Hari Ini">
+     	<div class="isiDialog">
+       {$broadcast}
+        </div>
+	<a class="closeDialog" onmouseover="tooltip.show('Tutup Kotak Dialog');" onmouseout="tooltip.hide();"  href="#">&nbsp;</a>
+    </div>
+	{/if}
+    <table  border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr>
+    <td>
+        <div class="wrapper">
+			
+            <div class="header">
+             {if $isLogin}
+                <a class="logo" href="beranda.php">&nbsp;</a>
+                <a class="slogan" href="beranda.php">&nbsp;</a>
+                <a class="bahasa" href="?lang=id">>> Kembali ke Bahasa Indonesia</a>
+             {else}
+                <a class="logo" href="beranda.php">&nbsp;</a>
+                <a class="slogan" href="index.php">&nbsp;</a>
+                <a class="bahasa" href="?lang=id">>> Kembali ke Bahasa Indonesia</a>
+             {/if}
+            </div>
+<!--             {if $msg}
+            <div class="messageBoxLogin" align="right">
+               
+               
+                <span class="sukses">{$msg}</span> 
+                {elseif $er}
+                
+                <span class="error">Anda tidak berhasil masuk. Periksa nama akun dan kata sandi anda.</span>
+                
+              
+            </div>
+              {/if}-->
+            {if $isLogin}
+			<div class="navigationBarAllLogin">
+			<div class="navigationRight" style="position:relative;">
+                <ul class="menu navigation" id="menu">
+                    <li  style="margin:0 29px 0 0"><a class="dropmenu" href="profile.php">My Profile</a>
+                    	<ul>
+                            <li><a href="profile.php?modify=1">Change Profile</a>
+    <!--                            <ul>
+                                    <li><a href="profile.php?bank=1">Daftar Rekening Bank</a></li>
+                                    <li><a href="profile.php?cc=1">Daftar Kartu Kredit</a></li>
+                                </ul>-->
+                            </li>
+                            <li><a href="refer.php">Refer to Your Friend</a></li>
+                  			<li><a href="pembayaran.php">Payment</a></li>
+                  			<li><a href="pembayaran.php?mutasi=true">Account Mutations</a></li>
+                        </ul>
+                    </li>
+                    <li  style="margin:0 29px 0 0"><a href="beranda.php">Report</a></li>
+                    <li  style="margin:0 29px 0 0"><a href="pembayaran.php">Top Up</a></li>
+                    <li  style="margin:0 29px 0 0"><a target="_blank" href="http://sitti.zendesk.com/anonymous_requests/new">Contact Us</a></li>
+                </ul>
+                <script type="text/javascript">var menu=new menu.dd("menu");menu.init("menu","menuhover");</script>
+             
+             <a class="btnKeluar" href="index.php?logout=1"></a>
+             <a target="_blank" href="http://twitter.com/sittiID" class="twitterAtas" alt="http://twitter.com/sittiID"></a>
+             <a target="_blank" href="http://www.facebook.com/SITTI.ID" class="fbAtas" alt="http://www.facebook.com/SITTI.ID"></a>
+            
+             </div>
+			
+            </div>
+            {else}
+            
+            <div class="navigationBarAll">
+              <div class="navigationRight">
+                <ul class="navigation">
+                    <li><a href="tentang_kami.php">About Us</a></li>
+                    <li><a href="uji_sitti.php">Simulation</a></li>
+                     <li><a href="career.php">Career</a></li>
+                    <li><a target="_blank" href="http://sitti.zendesk.com/anonymous_requests/new">Contact Us</a></li>
+                </ul>
+                   <a class="daftarSITTI" href="index.php?registration=1">SITTI Registration</a>
+                    <form class="regForm" action="{$LOGIN_URL}" method="post" enctype="application/x-www-form-urlencoded">
+                  <input name="username" type="text" value="Your E-mail" onfocus="blank(this)" onblur="unblank(this)" autocomplete="off">
+                    <input name="password" type="password" value="password" onfocus="blank(this)" onblur="unblank(this)" autocomplete="off">
+                    <input name="role" type="hidden" value="1" />
+                    <input type="submit" value="&nbsp;" />
+                   </form>
+                    
+               </div>
+            </div>
+            
+            
+            {/if}
+          <div class="blockContent">   
+            <div class="content">
+                <div class="colLeft" style="width:650px;">
+                	<h3 class="headTitle">Copy Writer</h3>
+                    		<ul id="topCareer">
+                        	<li><a href="technology-team.php">TECHNOLOGY TEAM</a></li>
+                            <li><a href="canvassing-team.php">CANVASSING TEAM</a>|</li>
+                            <li><a href="sales-team.php">SALES TEAM</a>|</li>
+                           </ul>                
+<p style="clear:both"><strong>Kualifikasi :</strong>
+</p>
+<ul class="list">
+	<li>Memiliki minimal gelar Sarjana di bidang Linguistik / Bahasa / Periklanan</li>
+	<li>Memiliki pengalaman bekerja setidaknya 1 tahun, lebih disukai dari Biro Periklanan</li>
+	<li>Menunjukkan kemampuan dalam menciptakan ide-ide / konsep baru</li>
+	<li>Memiliki keterampilan berkomunikasi baik berbicara maupun menulis yang baik</li>
+	<li>Memiliki kepribadian yang baik, kreatif, integritas yang tinggi dan menunjukkan kemampuan untuk bekerja dalam tim</li>
+</ul>
+ <p>
+Untuk melamar, cukup kirimkan resume dan contoh tulisan asli Anda atau portofolio (untuk Editorial Area, Copy Writer, Web Designer),dengan besar tidak lebih dari 300kb. Terima kasih.
+</p>	<p>
+   If you feel that you meet the requirements, send your resume along with a complete curriculum vitae, please mention your expected salary, and send it to:
+	<a class="f18" href="mailto:recruitment@kamisitti.com">recruitment@kamisitti.com</a>
+</p>
+                </div>
+                {if $contentID eq "1" or $contentID eq "2" or $contentID eq "3"}
+                <div class="w242">
+                    <ul class="navUser">
+                        <li><a href="index.php?id=1">Latar Belakang</a></li>
+                        <li><a href="index.php?id=2">Visi dan Misi</a></li>
+                        <li><a href="index.php?id=3">Video Presentasi</a></li>
+                    </ul>
+                </div>
+                {/if}
+				<!--  colom kanan beranda -->
+               
+				 <div class="bottomContent"> </div>
+            </div>
+         </div>
+           
+        </div>
+  </td>
+  </tr>
+</table>
+        <div class="footer">
+            <div class="wrapper">
+                <ul class="navFoot">
+                    <li><a href="tentang_kami.php">About Us</a>|</li>
+                    <li><a href="term.html" target="_blank">Terms and Conditions</a>|</li>
+                    <li><a href="privasi.html" target="_blank">Privacy</a>|</li>
+                    <li><a href="http://blog.belajarsitti.com/" target="_blank">Blog</a>|</li>
+                    <li><a href="http://sittizen.sitti.co.id/" target="_blank">Become a SITTIZEN</a>|</li>
+                    <li><a href="http://sitti.zendesk.com/anonymous_requests/new" target="_blank">Contact Us</a></li>
+                </ul>
+                <p class="copyRight">
+                    Email: beriklan@sitti.zendesk.com<br />
+                    © 2010 SITTI
+                </p>
+            </div>
+        </div>
+ {literal}
+		 <script type="text/javascript">
+        function blank(a) { if(a.value == a.defaultValue) a.value = ""; }
+        function unblank(a) { if(a.value == "") a.value = a.defaultValue; }
+        </script> 
+{/literal}
+{literal}
+	<script type="text/javascript">
+
+			  var _gaq = _gaq || [];
+			  _gaq.push(['_setAccount', 'UA-16501037-1']);
+			  _gaq.push(['_setDomainName', 'sitti.co.id']);
+			  _gaq.push(['_trackPageview']);
+			
+			  (function() {
+			    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			    var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga, s);
+			  })();
+
+	</script>	
+	{/literal}
+    </body>
+</html>

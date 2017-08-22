@@ -1,0 +1,46 @@
+ <script>
+ 	var random='{$random}';
+ {literal}
+  $(document).ready(function(){
+	$("#listkeyword").html("<span style='text-align:center;'><img src='images/loader.gif'/></span>");
+ 	$("#listkeyword").load("beranda.php?selected_keywords=1");
+   });
+  
+  function deleteKeyword(keyword){
+	  $("#listkeyword").html("<span style='text-align:center;'><img src='images/loader.gif'/></span>");
+	 $("#listkeyword").load("beranda.php?delete_selected_key=1&k="+escape(keyword));
+  }
+  {/literal}
+  
+ </script>
+ 
+  <h3 class="headTitle">Create New Ad</h3>
+  {if $err_msg}
+  <div align="center" class="errorMessage"><p>{$err_msg}</p></div>
+   {/if}
+                <p>These following steps will guide you to create a new Ad in SITTI</p>
+                <div class="quote" style="margin:10px 0; background-color:#e5eff4;">
+                <strong>You can do the bidding price for a keyword and determining your daily budget and Total Budget for the installation of your ads. <br />
+Currently SITTI still free. With the confirmation of making this ad, you will NOT be on the bill payment for the clicks that your ad has generated.</strong>
+                </div>
+                <form class="registerForm" action="beranda.php" method="post" enctype="application/x-www-form-urlencoded">
+                <h3 class="blue">Purchase Keyword and Suggestion of Ad Installation</h3>
+                <div id="listkeyword">
+ 				
+                </div>
+  					 <!--                
+   					<div class="row">
+                         <a class="ButtonBack" href="beranda.php?buat_iklan=1&step=2">Kembali ke Pilih Keyword</a>
+                    </div>-->
+                              
+                    <div class="row">
+                    	<h3 class="blue">Websites that best suits your ads by SITTI</h3>
+                       <p>Data not yet available</p>
+                    </div>
+                    <div class="row">
+                    	 <a href="beranda.php?buat_iklan=1&step=2" class="submitButton">Back</a>
+                        <input type="submit" value="Your Ad Confirmation" class="submitButton" style="float:right;" />
+                        <!--<p class="error">Semua field wajib diisi</p>-->
+                    </div>
+                     <input name="do" type="hidden" value="step4">
+                </form>

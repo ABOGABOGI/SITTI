@@ -1,0 +1,60 @@
+<h3 class="headTitle">NOTIFICATION</h3>
+<div id="tahap1" class="w915">
+
+<table cellspacing="0" cellpadding="0" border="0" class="list zebra">
+ 	<tbody>
+		<tr class="head2 oddRow oddRow">
+    		<td>{$list[0].posted_date|date_format:"%d/%m/%Y"}</td>
+    	</tr>
+    	
+    	{assign var="day" value=$list[0].posted_date}
+    	
+    	{section name=i loop=$list}
+    	
+    		{if $day != $list[i].posted_date}
+    			{assign var="day" value=$list[i].posted_date}
+    			<tr class="head2 oddRow oddRow">
+    				<td>{$list[i].posted_date|date_format:"%d/%m/%Y"}</td>
+    			</tr>
+    		{/if}
+    	
+    		{if $list[i].type_alert >= 0}
+				<tr class="evenRow" style="background-color:#E8CAD1;">
+					<td width="500">
+						You have {$list[i].total} {$list[i].alert_msg}
+						<p>
+							<ul style="margin-left:15px;">
+							{section name=j loop=$list[i].list_iklan}
+								<li><a href="beranda.php?PerformaIklan={$list[i].list_iklan[j].id}">{$list[i].list_iklan[j].nama}, keyword: {$list[i].list_iklan[j].keyword}</a></li>
+							{/section}
+							</ul>
+						</p>
+		   			</td>
+		   		</tr>
+	   		{else}
+	   			<tr class=" evenRow evenRow">
+					<td width="500">
+						{if $list[i].url != ''}
+							<a target="_blank" href="{$list[i].url}">{$list[i].message}</a>
+						{else}
+							{$list[i].message}
+						{/if}
+	   				</td>
+	   			</tr>
+	   		{/if}
+   		{/section}
+   		
+		<tr class=" oddRow">
+		   <td>
+		   		{if $prev > 0}
+		   		<a href="?notifikasi=true&page={$prev}">Prev</a>&nbsp;&nbsp;
+		   		{/if}
+		   		{if $next > 0}
+		   		<a href="?notifikasi=true&page={$next}">Next</a>
+		   		{/if}
+		   </td>
+		</tr>
+	</tbody>
+</table>
+
+</div>

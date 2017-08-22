@@ -1,0 +1,388 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>SITTI - Platform Iklan Kontekstual Berbahasa Indonesia, Iklan Kontekstual, Bahasa Indonesia</title>
+        <link href="css/sitti.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" language="javascript" src="js/iepngfix_tilebg.js"></script>
+        <script type="text/javascript" language="javascript" src="js/drop_table.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <link type="text/css" href="js/themes/hot-sneaks/ui.all.css" rel="stylesheet" />
+		<script type="text/javascript" src="js/iepngfix_tilebg.js"></script>
+        <script type="text/javascript" src="js/drop_table.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/ui/ui.core.js"></script>
+        <script type="text/javascript" src="js/ui/ui.datepicker.js"></script>
+        <script type="text/javascript" src="js/ui/i18n/ui.datepicker-id.js"></script>
+        <script type="text/javascript" src="js/flash.js"></script>
+		<script language="javascript" src="js/modal.popup.js"></script>
+        {literal}
+		<script type="text/javascript">
+		
+          $(document).ready(function(){
+            $(".closeDialog").click(function(){
+				$("#kotakdialog").hide("slow");
+			});
+          });
+		 
+        </script>
+		<script type="text/javascript">
+            $(document).ready(function() {	
+                //When page loads...
+                $(".tab_content").hide(); //Hide all content
+                $("ul.tabjs li:first").addClass("active").show(); //Activate first tab
+                $(".tab_content:first").show(); //Show first tab content
+				
+				
+            
+            });
+            $(document).ready(function(){
+                $("#tanggalAwalBeranda,#tanggalAkhirBeranda,#tanggalAwalAkun,#tanggalAkhirAkun,#tanggalAwalPenempatan,#tanggalAkhirPenempatan,#tanggalAwalKatakunci,#tanggalAkhirKatakunci,#tanggalAwalTujuan,#tanggalAkhirTujuan,#tanggalAwalPeforma,#tanggalAkhirPeforma,#tanggalAwalGeografis,#tanggalAkhirGeografis,#tanggalAwalPenagihan,#tanggalAkhirPenagihan").datepicker();
+            });
+            function onPhraseClicked(obj){
+				//alert(obj.value);
+				$("input[name=keywords\\[\\]]").removeAttr("checked");
+				$("input[name=keywords\\[\\]]").attr("disabled","true");
+            }
+        </script>
+		<script type="text/javascript">
+        $(document).ready(function(){
+            
+            $(".accordion h3:first").addClass("active");
+            $(".accordion p:not(:first)").hide();
+        
+            $(".accordion h3").click(function(){
+                $(this).next("p").slideToggle("slow")
+                .siblings("p:visible").slideUp("slow");
+                $(this).toggleClass("active");
+                $(this).siblings("h3").removeClass("active");
+            });
+			
+			//This method hides the popup when the escape key is pressed
+			$(document).keyup(function(e) {
+				if (e.keyCode == 27) {
+					closePopup(fadeOutTime);
+				}
+			});
+        
+        });
+        </script>
+        <style type="text/css">
+            strong{ font-size:14px;}
+            .term{
+                -moz-border-radius:15px;
+                -webkit-border-radius:15px;
+                border-radius:15px;
+                -moz-box-shadow:1px 0 5px #000;
+                -webkit-box-shadow:1px 0 5px #000;
+                box-shadow:1px 0 5px #000;
+                padding:20px;
+                background:#fff;
+                text-align:left;
+            }
+            .accordion {
+            width: 100%;
+            border-bottom: solid 1px #cfdee6;
+			clear:both;
+            }
+            .accordion h3 {
+                background: #e3f0f3 url(images/arrow-square.gif) no-repeat right -44px;
+                padding:12px 15px;
+                margin: 0;
+                font: bold 120%/100% Arial, Helvetica, sans-serif;
+                border: solid 1px #cfdee6;
+                border-bottom: none;
+                cursor: pointer;
+                color:#0099CC;
+                text-shadow:0 1px 0 #fff;
+            }
+            .accordion h3:hover {
+                background-color: #e1f5ff;
+            }
+            .accordion h3.active {
+                background-position: right 11px;
+            }
+            .accordion p {
+                background: #f7f7f7;
+                margin: 0;
+                padding:15px;
+                border-left: solid 1px #cfdee6;
+                border-right: solid 1px #cfdee6;
+            }
+            .accordion p span{
+                display:block;
+                background:url(images/arrow_blue_small.gif) no-repeat 0 7px;
+                padding:0 0 10px 20px;
+            }
+            .accordion p strong{
+                display:block;
+                padding:15px 0 10px 0;
+            }
+            .list{
+                list-style:none;
+                margin:0 0 0 20px;
+                padding:0;
+            }
+			.list li{
+				margin:0 0 10px 0;
+                background:url(images/arrow_blue_small.gif) no-repeat 0 7px;
+                padding:0 0 10px 20px;
+			}
+        </style>
+{/literal}
+ {literal}
+            <script>
+			//script Popup
+		function showOption(option) {
+            
+		//Change these values to style your modal popup
+		var align = 'center';									//Valid values; left, right, center
+		var top = 100; 											//Use an integer (in pixels)
+		var width = 500; 										//Use an integer (in pixels)
+		var padding = 10;										//Use an integer (in pixels)
+		var backgroundColor = '#FFFFFF'; 						//Use any hex code
+		var source = 'popup_wizard.php?option='+option; 								//Refer to any page on your server, external pages are not valid e.g. http://www.google.co.uk
+		var borderColor = '#ffffff'; 							//Use any hex code
+		var borderWeight = 1; 									//Use an integer (in pixels)
+		var borderRadius = 20; 									//Use an integer (in pixels)
+		var fadeOutTime = 300; 									//Use any integer, 0 = no fade
+		var disableColor = '#666666'; 							//Use any hex code
+		var disableOpacity = 40; 								//Valid range 0-100
+		var loadingImage = 'images/loading.gif';		//Use relative path from this page
+			
+		//This method initialises the modal popup
+		modalPopup(align, top, width, padding, disableColor, disableOpacity, backgroundColor, borderColor, borderWeight, borderRadius, fadeOutTime, source, loadingImage);
+    }
+			</script>
+            
+            <SCRIPT LANGUAGE="JavaScript">
+			//radio link
+var myOption = false
+function initValue() {
+    myOption = document.forms[0].songs[3].checked
+}
+ function fullName(form) {
+	var link
+    for (var i = 0; i < form.songs.length; i++) {
+        if (form.songs[i].checked) {
+			link = form.songs[i].value;
+            break
+        }
+    }
+    window.location = link;
+}
+function setShemp(setting) {
+    myOption = setting
+}
+function exitMsg() {
+    if (myOption) {
+        alert("You like My Option?")
+    }
+}
+</SCRIPT>
+            {/literal}
+         	
+        <link rel="shortcut icon" href="images/favicon.ico">
+        <link rel="icon" type="image/gif" href="images/animated_favicon.gif">
+
+    </head>
+
+    <body onload="init()">
+      {if $takeOut}<div class="cLabel"><a href="http://www.sitti.co.id/UtakAtik/index.html"></a></div>{/if}
+	 {if $broadcast}
+	
+     <div id="kotakdialog" title="Pesan Hari Ini">
+     	<div class="isiDialog">
+       {$broadcast}
+        </div>
+	<a class="closeDialog" onmouseover="tooltip.show('Tutup Kotak Dialog');" onmouseout="tooltip.hide();"  href="#">&nbsp;</a>
+    </div>
+	{/if}
+    <table  border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr>
+    <td>
+        <div class="wrapper">
+			
+            <div class="header">
+             {if $isLogin}
+                <a class="logo" href="beranda.php">&nbsp;</a>
+                <a class="slogan" href="beranda.php">&nbsp;</a>
+                {*}<a class="bahasa" href="?lang=en">>> Can't speak Bahasa? Click here for English!</a>{/*}
+             {else}
+                <a class="logo" href="beranda.php">&nbsp;</a>
+                <a class="slogan" href="beranda.php">&nbsp;</a>
+               {*}<a class="bahasa" href="?lang=en">>> Can't speak Bahasa? Click here for English!</a>{/*}
+             {/if}
+            </div>
+<!--             {if $msg}
+            <div class="messageBoxLogin" align="right">
+               
+               
+                <span class="sukses">{$msg}</span> 
+                {elseif $er}
+                
+                <span class="error">Anda tidak berhasil masuk. Periksa nama akun dan kata sandi anda.</span>
+                
+              
+            </div>
+              {/if}-->
+            {if $isLogin}
+			<div class="navigationBarAllLogin">
+			<div class="navigationRight">
+                 <ul class="menu navigation" id="menu">
+                    <li  style="margin:0 29px 0 0"><a class="dropmenu" href="profile.php">Profile Saya</a>
+                    	<ul>
+                            <li><a href="profile.php?modify=1">Ganti Profil</a>
+    <!--                            <ul>
+                                    <li><a href="profile.php?bank=1">Daftar Rekening Bank</a></li>
+                                    <li><a href="profile.php?cc=1">Daftar Kartu Kredit</a></li>
+                                </ul>-->
+                            </li>
+                            <li><a href="refer.php">Refer Teman</a></li>
+                  			<li><a href="pembayaran.php">Pembayaran</a></li>
+                  			<li><a href="pembayaran.php?mutasi=true">Mutasi Rekening</a></li>
+                            <li><a href="refer_report.php">Laporan Referral</a></li>
+                        </ul>
+                    </li>
+                    <li  style="margin:0 29px 0 0"><a href="beranda.php">Laporan</a></li>
+                    <li  style="margin:0 29px 0 0"><a href="pembayaran.php">Top Up</a></li>
+                    <li  style="margin:0 29px 0 0"><a target="_blank" href="http://sitti.zendesk.com/anonymous_requests/new">Kontak</a></li>
+                </ul>
+                <script type="text/javascript">var menu=new menu.dd("menu");menu.init("menu","menuhover");</script>
+             <a class="btnKeluar" href="index.php?logout=1"></a>
+             <a target="_blank" href="http://twitter.com/sittiID" class="twitterAtas" alt="http://twitter.com/sittiID"></a>
+             <a target="_blank" href="http://www.facebook.com/SITTI.ID" class="fbAtas" alt="http://www.facebook.com/SITTI.ID"></a>
+             </div>
+			
+            </div>
+            {else}
+            
+            <div class="navigationBarAll">
+            	<div class="navigationRight">
+                <ul class="navigation">
+                    <li><a href="tentang_kami.php">Tentang</a></li>
+                    <li><a href="uji_sitti.php">Simulasi</a></li>
+                     <li><a href="career.php">Karir</a></li>
+                    <li><a target="_blank" href="http://sitti.zendesk.com/anonymous_requests/new">Kontak Kami</a></li>
+                </ul>
+               		 <a class="daftarSITTI" href="index.php?registration=1">Daftar di SITTI</a>
+                    <form class="regForm" action="{$LOGIN_URL}" method="post" enctype="application/x-www-form-urlencoded">
+                	<input name="username" type="text" value="E-mail Anda" onfocus="blank(this)" onblur="unblank(this)" autocomplete="off">
+                    <input name="password" type="password" value="Kata Sandi" onfocus="blank(this)" onblur="unblank(this)" autocomplete="off">
+                    <input name="role" type="hidden" value="1" />
+                    <input type="submit" value="&nbsp;" />
+               		 </form>
+                    
+               </div>
+            </div>
+          
+            {/if}
+             {if $isLogin}
+         <div class="topUserMenu">
+         	<div class="topUserMenu-right">
+         	
+         	<div class="tum_info">
+         	<span class="namaPemilik">Nama Pemilik Akun</span>
+         	<span class="namaUser">{$info.name|strip_tags}</span>
+         	<span class="namaUser">{$info.sittiID}</span>
+         	</div>  	
+         	<a class="tum_bantuan" href="faq.php"></a>
+         	<a class="tum_buat" href="javascript:showOption('a')"></a>
+         	<a class="tum_kampanye" href="javascript:showOption('c')"></a>
+           
+         	</div>
+         </div>
+         {/if}   
+          <div class="blockContent">   
+            <div class="content">
+                <div class="colLeft" style="width:1000px;">
+                	<h3 class="headTitle">Bantuan</h3>
+                    		
+
+<div class="accordion">
+	<h3>Cara mendaftar di SITTI359</h3>
+
+    	<p>
+    		<strong>Untuk mendaftar sebagai advertiser SITTI di SITTI359, silahkan ikuti langkah-langkah berikut:</strong>
+        	<span>Kunjungi situs SITTI di http://www.SITTI.co.id;</span>
+        	<span>Klik SITTI359;</span>
+            <span>Klik "Daftar di sini" (pada pojok kanan atas) untuk memulai;</span>
+            <span>Ikuti langkah-langkah panduan untuk melengkapi setup akun Anda;</span>
+            <span>Setelah akun SITTI dibuat, aktifkan akun Anda dengan melakukan verifikasi yang dikirimkan oleh SITTI pada email Anda.</span>
+            
+        </p>
+	<h3>Biaya beriklan di SITTI</h3>
+    	<p>
+        	<span>Iklan Anda dikenakan biaya sesuai dengan kata kunci yang Anda pilih. Anda dapat melihat perkiraan biayanya pada saat melakukan simulasi.</span>
+        
+        </p>
+	<h3>Bagaimana kalau tidak punya akun Bank seperti yang tertera di menu top up</h3>
+	<p>
+	<span>Apabila Anda tidak mempunyai akun bank seperti yang tertera di menu top up (Klik BCA, SMS Banking Mandiri dan Internet Banking Mandiri), Anda bisa melakukan setor tunai ke rekening kami;</span>
+    <span>Nama Bank : BCA - Cabang Wolter Monginsidi Jakarta<br>
+			a/n : PT SITTI<br>
+			No. Rekening : 5240 3333 43</span>
+	<span>Untuk konfirmasi setor tunai, Anda bisa mengirimkan melalui fax di 021 520 4158 up: Ibu Ima.</span>
+    </p>
+	
+</div>
+	<br />
+<br />	<p>
+	Untuk bantuan lebih lanjut, silahkan email kami di <a class="f12" href="mailto:support@sitti.co.id">support@sitti.co.id</a>
+   
+</p>
+                </div>
+                
+				
+				 <div class="bottomContent"> </div>
+            </div>
+         </div>
+           
+        </div>
+  </td>
+  </tr>
+</table>
+       <div class="footer">
+            <div class="wrapper">
+                <ul class="navFoot">
+                    <li><a href="tentang_kami.php">Tentang Kami</a>|</li>
+                    <li><a href="term.html" target="_blank"> Syarat dan Ketentuan</a>|</li>
+                    <li><a href="privasi.html" target="_blank">Kebijakan Privasi</a>|</li>
+                    <li><a href="http://blog.belajarsitti.com/" target="_blank">Blog</a>|</li>
+                    <li><a href="http://sittizen.sitti.co.id/" target="_blank"> Jadi SITTIZEN</a>|</li>
+                    <li><a href="http://sitti.zendesk.com/anonymous_requests/new" target="_blank">Kontak Kami</a></li>
+                </ul>
+                <p class="copyRight">
+                    Email: beriklan@sitti.zendesk.com<br />
+                    © 2010 SITTI
+                </p>
+            </div>
+        </div>
+ {literal}
+		 <script type="text/javascript">
+        function blank(a) { if(a.value == a.defaultValue) a.value = ""; }
+        function unblank(a) { if(a.value == "") a.value = a.defaultValue; }
+        </script> 
+{/literal}
+	 {literal}
+     <script type="text/javascript">
+	 	$("#lanjut").click(function () {
+			alert("tes");
+		});
+
+			  var _gaq = _gaq || [];
+			  _gaq.push(['_setAccount', 'UA-16501037-1']);
+			  _gaq.push(['_setDomainName', 'sitti.co.id']);
+			  _gaq.push(['_trackPageview']);
+			
+			  (function() {
+			    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			    var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga, s);
+			  })();
+
+		</script>
+		
+	{/literal}  
+    </body>
+</html>

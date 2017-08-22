@@ -1,0 +1,78 @@
+<script type="text/javascript">
+{literal}
+
+$(document).ready(function() {
+	$('#promo_form').validate({
+		rules: {
+			nama: 'required',
+			email: {
+				required: true,
+				email: true
+			},
+			telp: 'required'
+		}
+	});
+});
+
+{/literal}
+</script>
+<h3 style="color:#186a86; font-size:36px; margin-bottom:10px;"><center>Selamat!</center></h3>
+<h3 style="color:#186a86"><center>Anda berhasil mendapatkan Top Up Voucher* untuk beriklan dengan <br />SITTI senilai <span style="font-size:24px;">Rp100.000.</span></center></h3>
+<h4 style="color:#186a86; text-align:left;"><center>
+	Dengan Top Up Voucher* ini, Anda dapat mengiklankan produk/jasa Anda di jutaan situs/website yang termasuk dalam jaringan SITTI di seluruh Indonesia. </center>
+</h4>
+ <p style="text-align:center;">
+			*Top Up Voucher ini dapat segera diaktifkan dan ditambahkan ke saldo Anda ketika Anda sedang memiliki iklan aktif.
+     </p>
+        <p style="text-align:center;">Caranya mudah, isi data diri Anda pada formulir di bawah ini:</p>
+        <div style=" padding-left:80px;">
+        <form method="post" id="promo_form" action="promo.php">
+        <table cellpadding="0" cellspacing="0" border="0" style="color:#666; border:1px solid #999;" class="round-5">
+        	<tr style="background:#fff;">
+        		<td align="right" width="60" style="background:#dcdcdc;">Nama</td><td width="290" style="background:#dcdcdc;" valign="middle"><input class="round-5 border-no" type="text" style="width: 255px;margin-top: 10px;" name="nama" id="nama" /></td>
+        		<td style="padding:10px;" rowspan="4">
+        		{if $captcha}
+					{$captcha}
+
+				{/if}
+				</td>
+        	</tr>
+        	<tr style="background:#cccccc;">
+        		<td align="right" width="60">Email</td><td><input class="round-5 border-no" type="text" style="width: 255px;margin-top: 10px;" id="email" name="email"  /></td>
+        	</tr>
+        	<tr style="background:#dcdcdc;">
+        		<td align="right" width="60">Telepon</td><td><input class="round-5 border-no" type="text" style="width: 255px;margin-top: 10px;" id="telp" name="telp" /></td>
+        	</tr>
+            <tr style="background:#cccccc;">
+            
+        		<td></td><td><input type="hidden" name="submit_promo" value="1"/>
+	<input type="hidden" name="ref" value="{$ref_id}"/>
+	<input type="hidden" name="event" value="promo-7des11"/><input class="round-5 border-no" type="submit" value="Kirim" style="margin-bottom: 7px;" /></td>
+        	</tr>
+        
+        </table>
+       	</form>
+        </div>
+        
+        <p style="text-align:center;">Tambah segera penghasilan Anda dengan beriklan melalui SITTI. Beriklan dengan SITTI artinya produk/jasa Anda akan dilihat oleh lebih dari 500 juta pasang mata di seluruh Indonesia. Jangan lewatkan kesempatan berbisnis online yang cerdas melalui SITTI.
+        
+        </p>
+        
+        <p style="text-align:center;">SITTI, <em>memudahkan Anda dalam memaksimalkan peluang di dunia digital.</em>
+        
+        </p>
+         <h4 style="color:#186a86; text-align:center; margin-top:-15px;"><br />
+         	Tunggu apa lagi? Segera isi formulir ini dan dapatkan Top Up Voucher senilai Rp.100.000 dengan cuma-cuma. 
+		</h4>
+        <h4 style="color:#186a86; text-align:center;">
+        "Sejak saya beriklan dengan SITTI, ada banyak sekali yang mengakses website saya. Dibandingkan dengan media beriklan online lain, SITTI 		         lebih banyak menghasilkan impresi iklan. Impresi iklan saya sampai 200.000 orang unique visitor!"
+        </h4>
+        <p style="text-align:right; font-size:12px;">(Ernest Joshua, 22 tahun, www.gudangprinter.com, Bandung)<br /> </p>
+		{*}<p>Dalam berbisnis, kesempatan adalah segalanya. Jangan tunda lagi. Menunggu sampai besok berarti menunda kesuksesan bisnis Anda.
+        </p>
+        <p>
+        	Waktu Anda tidak banyak. Isi formulir di atas, dapatkan e-voucher perdana SITTI359 senilai Rp100.000, iklankan produk/jasa Anda di internet. SEKARANG.
+        </p>{/*}
+        {*}
+         <p style="color:#186a86"><img src="images/foto.jpg" style="text-align:left;" /> *Punya pertanyaan? Colek <a style="text-decoration:none" href="http://www.twitter.com/sosronegoro" target="_blank">@sosronegoro</a> di Twitter..</p>
+	{/*}

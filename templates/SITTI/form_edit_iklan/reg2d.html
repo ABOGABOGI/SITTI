@@ -1,0 +1,180 @@
+{literal}
+<!--<script type="text/javascript">
+		$(document).ready(function() {
+		
+		// choose text for the show/hide link - can contain HTML (e.g. an image)
+		var showText='Tampilkan Saran Kata';
+		var hideText='Hide';
+		
+		// initialise the visibility check
+		var is_visible = false;
+		
+		// append show/hide links to the element directly preceding the element with a class of "toggle"
+		$('.toggle').prev().append(' <a href="#" class="toggleLink submitButton">'+showText+'</a>');
+		
+		// hide all of the elements with a class of 'toggle'
+		$('.toggle').hide();
+		
+		// capture clicks on the toggle links
+		$('a.toggleLink').click(function() {
+		
+		// switch visibility
+		is_visible = !is_visible;
+		
+		// change the link depending on whether the element is shown or hidden
+		$(this).html( (!is_visible) ? showText : hideText);
+		
+		// toggle the display - uncomment the next line for a basic "accordion" style
+		//$('.toggle').hide();$('a.toggleLink').html(showText);
+		$(this).parent().next('.toggle').toggle('slow');
+		
+		// return false so any link destination is not followed
+		return false;
+		
+				});
+		});
+
+    </script>-->
+    <script>
+	{/literal}
+			var n_key={$total_keyword_selected};
+			{literal}
+	  // When the document loads do everything inside here ...
+	  $(document).ready(function(){
+		
+		// When a link is clicked
+		$("a.tab").click(function () {
+			
+			
+			// switch all tabs off
+			$(".active").removeClass("active");
+			
+			// switch this tab on
+			$(this).addClass("active");
+			
+			// slide all content up
+			$(".contentTab").slideUp();
+			
+			// slide this content up
+			var content_show = $(this).attr("title");
+			$("#"+content_show).slideDown();
+		  
+		});
+	
+	  });
+	  
+	  function search_words(){
+		//alert("yey");
+		if(document.getElementById('q').value.length>0){
+			//sumber
+				var n = 1;
+				if(document.getElementById('sumber1').checked){
+					n = 1; //sitti data
+				}else{
+					n = 2; //social media
+				}
+			
+			
+			$("#content_1").html("<span style='text-align:center;'><img src='images/loader.gif'/></span>");
+			$("#content_2").html("<span style='text-align:center;'><img src='images/loader.gif'/></span>");
+			$("#content_3").html("<span style='text-align:center;'><img src='images/loader.gif'/></span>");
+			$("#content_4").html("<span style='text-align:center;'><img src='images/loader.gif'/></span>");
+			$("#content_1").load("uji_sitti.php?advanced=1&q="+escape(document.getElementById('q').value)+"&t=1&n="+n);
+			$("#content_2").load("uji_sitti.php?advanced=1&q="+escape(document.getElementById('q').value)+"&t=2&n="+n);
+			$("#content_3").load("uji_sitti.php?advanced=1&q="+escape(document.getElementById('q').value)+"&t=3&n="+n);
+			$("#content_4").load("uji_sitti.php?advanced=1&q="+escape(document.getElementById('q').value)+"&t=4&n="+n);
+		}
+	}
+	function keywordClicked(obj){
+				if(obj.checked){
+					n_key++;
+				}else{
+					n_key--;	
+				}
+				if(n_key>2){
+					alert("Maaf, saat ini anda hanya dapat memilih maksimal 2 keyword. \nBila Anda ingin mencoba beragam kata kunci, silahkan membuat beberapa iklan dengan halaman tujuan dan isi berbeda untuk menguji ketepatan iklan Anda");
+					//for(var i=0;i<document.getElementById('keywords'
+					//obj.checked = false;
+				}
+			}
+	function continueToStep3(){
+				if(n_key!=0&&n_key<=2){
+					document.getElementById('frm01').submit();
+				}else{
+					alert("Maaf, saat ini anda hanya dapat memilih minimal 1 keyword dan maksimal 2 keyword. \nBila Anda ingin mencoba beragam kata kunci, silahkan membuat beberapa iklan dengan halaman tujuan dan isi berbeda untuk menguji ketepatan iklan Anda");
+				}
+			}
+	function gotoRegister(){
+		document.location = "daftar.php";	
+	}
+  </script>
+  {/literal}
+                <h3 class="headTitle">Buat Iklan Baru</h3>
+                <p>Proses berikut akan membimbing anda membuat iklan baru di SITTI</p>
+                <form class="registerForm" action="beranda.php" method="post" enctype="application/x-www-form-urlencoded" id="frm01">
+                <h3 class="blue">Tentukan Kata Kunci Iklan Anda</h3>
+                <p>Disini, Anda dapat menggunakan SITTI untuk mendapatkan
+                    keyword yang paling sesuai untuk produk  atau jasa Anda.
+                    Masukkan Keyword yang paling sesuai dengan produk Anda dalam Bahasa Indonesia<br />
+                    (mis, Sepatu, Baju, Asuransi Murah)</p>
+                    <div class="row">
+                        <input name="q" type="text" class="inputText" id="q" maxlength="20" onchange="search_words()"/><a style="margin:0 0 0 20px" class="submitButton" onclick="search_words()" >Tampilkan Saran Kata</a>
+                        <div class="row noBorder">
+                 	    <input id="sumber1" name="sumber" type="radio" class="inputRadio" value="1" checked="checked" />
+                        <label>SITTI Data</label>
+                        <input id="sumber2" name="sumber" type="radio" class="inputRadio" value="2" />
+                        <label>Web Data</label>
+                        </div>
+                    </div>
+                    <div class="row">
+       
+                        <div class="toggle">
+                           
+							<span>Kata-kata yang paling berhubungan menurut SITTI</span>
+                           <div id="tabbed_box_1" class="tabbed_box">
+                            <div class="tabbed_area">
+                            
+                                <ul class="tabs">
+                                    <li><a title="content_1" class="tab">Kata Kerja</a></li>
+                                    <li><a title="content_2" class="tab">Kata Sifat</a></li>
+                                    <li><a title="content_3" class="tab">Kata Benda</a></li>
+                                    <li><a title="content_4" class="tab">Nama Brand</a></li>
+                                </ul>
+                                
+                                <div id="content_1" class="contentTab">
+                                       
+                                </div>
+                                <div style="display: none;" id="content_2" class="contentTab">
+                                       
+                                </div>
+                                <div style="display: none;" id="content_3" class="contentTab">
+                                       
+                                </div>
+                                <div style="display: none;" id="content_4" class="contentTab">
+                                        
+                                </div>
+
+                            </div>   
+                                <p><a class="black" href="beranda.php?edit_pending=1&step=2&id={$iklan_id|stripslashes|strip_tags}&c={$campaign_id|stripslashes|strip_tags}">&laquo; Kembali ke Saran Kata Sederhana</a></p>
+                             <div class="row noBorder">   
+                                <p><strong class="blue message"> * Sitti Data</strong><br />
+                                Kata berhubungan yang diambil dari media cetak atau media offline
+                                 </p>
+                                 <p>
+                                <strong class="blue message">* Web Data</strong><br />
+                                Kata berhubungan yang diambil dari internet seperti website dan blog  
+                                </p>
+							</div>
+                        </div>
+                        </div>
+                        
+                    </div>
+                <div class="row">
+                  <input name="id" type="hidden" id="id" value="{$iklan_id|stripslashes|strip_tags}" />
+                 <input name="c" type="hidden" id="c" value="{$campaign_id|stripslashes|strip_tags}" />
+					  <input name="edit_pending" type="hidden" value="1"/>
+					  <input name="step" type="hidden" value="3" />
+                	<input type="button" value="Pilih Keywords dan Lanjutkan" class="submitButton" onClick="continueToStep3();return false;"/>
+                    <!-- <p class="error">Semua field wajib diisi</p>-->
+                </div>
+                </form>

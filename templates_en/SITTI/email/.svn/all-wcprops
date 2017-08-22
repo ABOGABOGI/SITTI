@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/sittiweb/!svn/ver/257/branches/phase03-03/templates_en/SITTI/email
+END
+konfirmasi_ubah_password.html
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/sittiweb/!svn/ver/257/branches/phase03-03/templates_en/SITTI/email/konfirmasi_ubah_password.html
+END
+notifikasi_pendaftaran.html
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/sittiweb/!svn/ver/257/branches/phase03-03/templates_en/SITTI/email/notifikasi_pendaftaran.html
+END
+iklan_ditolak.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/sittiweb/!svn/ver/257/branches/phase03-03/templates_en/SITTI/email/iklan_ditolak.html
+END
+iklan_baru.html
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/sittiweb/!svn/ver/257/branches/phase03-03/templates_en/SITTI/email/iklan_baru.html
+END
+publisher_registration.html
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/sittiweb/!svn/ver/257/branches/phase03-03/templates_en/SITTI/email/publisher_registration.html
+END

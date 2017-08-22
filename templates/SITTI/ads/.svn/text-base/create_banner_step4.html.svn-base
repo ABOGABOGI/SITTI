@@ -1,0 +1,112 @@
+{literal}
+<script type="text/javascript">
+
+$(function() {
+  
+  $('input#disclaimer').click(function () {
+    if ($(this).is(':checked')) {
+      $('input#konfirmasiaktifkan').removeAttr('disabled');
+    } else {
+      $('input#konfirmasiaktifkan').attr('disabled', true);
+    }
+  });
+
+});
+
+</script>
+{/literal}
+<form action="buat.php?ad_banner=1" method="post">
+                	<h1 class="blue">Konfirmasi Kampanye Anda</h1>
+					<p>Konfirmasikan Iklan Banner  Iklan Anda sudah siap untuk di tanyangkan. Silahkan periksa ulang perincian iklan Anda dan konfirmasikan penayangannya dengan klik tombol dibawah.
+</p>
+					
+						
+					<div class="isiForm2">
+					<table class="addlist zebra" width="100%" border="0" cellpadding="0" cellspacing="0">
+      					<tbody>
+      					<tr class="head evenRow">
+       						 <td>Nama Kampanye</td>        					
+      					</tr>
+      					<tr>
+      						 <td>{$campaign.name|strip_tags|stripslashes}</td>
+      					</tr>
+   					 	</tbody>
+   					 </table>
+   					 <table class="addlist zebra" width="100%" border="0" cellpadding="0" cellspacing="0">
+      					<tbody>
+      					<tr class="head evenRow">
+       						 <td>Nama Iklan</td>        					
+      					</tr>
+      					<tr>
+      						 <td>{$rs1.judul|strip_tags|stripslashes}</td>
+      					</tr>
+   					 	</tbody>
+   					 </table>
+   					  <table class="addlist zebra" width="100%" border="0" cellpadding="0" cellspacing="0">
+      					<tbody>
+      					<tr class="head evenRow">
+       						 <td>Waktu Tayang</td>        					
+      					</tr>
+      					<tr>
+      						 <td>{$tgl_awal} – {$tgl_akhir}</td>
+      					</tr>
+   					 	</tbody>
+   					 </table>
+   					  <table class="addlist zebra" width="100%" border="0" cellpadding="0" cellspacing="0">
+      					<tbody>
+      					<tr class="head evenRow">
+       						 <td>Durasi Tayang</td>        					
+      					</tr>
+      					<tr>
+      						 <td>{$interval|number_format} hari</td>
+      					</tr>
+   					 	</tbody>
+   					 </table>
+   					  <table class="addlist zebra" width="100%" border="0" cellpadding="0" cellspacing="0">
+      					<tbody>
+      					<tr class="head evenRow">
+       						 <td>Total Perkiraan Impresi</td>        					
+      					</tr>
+      					<tr>
+      						 <td>{$total_impresi|number_format}</td>
+      					</tr>
+   					 	</tbody>
+   					 </table>
+   					  <table class="addlist zebra" width="100%" border="0" cellpadding="0" cellspacing="0">
+      					<tbody>
+      					<tr class="head evenRow">
+       						 <td>Total Perkiraan Biaya</td>        					
+      					</tr>
+      					<tr>
+      						 <td>Rp {$total_biaya|number_format}</td>
+      					</tr>
+   					 	</tbody>
+   					 </table>
+   					 <!-- 
+      					<tr class=" oddRow oddRow">
+        					<td width="200">
+								{$interval|number_format} hari
+							</td>
+        					<td>
+        						{$total_impresi|number_format}
+        					</td>
+        					<td>
+        						Rp {$total_biaya|number_format}
+        					</td>
+      					</tr> -->
+					
+					</div>
+					<hr>
+    	 			<div style="background: none repeat scroll 0% 0% rgb(200, 217, 228); border: 1px dashed rgb(204, 204, 204); padding: 10px; margin: 30px 0pt 0pt; height: 45px;" id="closure1">
+               	    <p class="f14" style="float: left;"><input name="disclaimer" id="disclaimer" type="checkbox"><span class="kotaTujuan">Saya setuju dengan syarat dan ketentuan SITTI</span></p>
+                        
+                    </div>
+    	 			<div class="row">
+    	 			{if $img_ext}
+					<input type="hidden" name="img_ext" value="{$img_ext}" />
+					{/if}
+    	 			<input type="hidden" name="do" value="save"/>
+    	 				<input class="submitButton" id="konfirmasiaktifkan" value="Konfirmasi &amp; Tayangkan" type="submit" disabled="disabled" />
+    	 			</div>
+    	 			</form>
+    	 			

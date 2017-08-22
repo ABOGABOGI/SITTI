@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>SITTI Technology</title>
+<link rel="stylesheet" href="css/SITTI_newface.css" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.6.4.min.js"></script> 
+<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="icon" type="image/gif" href="images/animated_favicon.gif">
+<script type="text/javascript">
+{literal}
+
+$(document).ready(function() {
+	$('#promo_form').validate({
+		rules: {
+			nama: 'required',
+			email: {
+				required: true,
+				email: true
+			},
+			telp: 'required'
+		}
+	});
+});
+
+{/literal}
+</script>
+</head>
+
+<body>
+	<div id="header" style="background:none;">
+    	<div class="content relative">
+        	<img class="logo absolute" src="images/logo.png" width="330" height="176" />
+           
+        </div>
+    </div>
+	<div id="main-content" class="margin-top-120">
+    	<div class="content relative round-5 bg_white" style="padding: 40px;width: 870px;">
+        	
+       {$mainContent}
+        <div id="feed-form" class="absolute round-5">
+                	<div style="position:relative">
+                    	<span id="close" style="color: #999999;
+    right: 2px;
+    top: -22px;
+    width: 65px;
+    position:absolute;
+    font-size:10px;
+    cursor:pointer;
+">CLOSE X</span>
+                    </div>
+    			 <form action="feedback.php" method="post" enctype="application/x-www-form-urlencoded"> 
+    			<input class="round-5 border-no margin-right-15" onfocus="blank(this)" onfocus="unblank(this)" type="text" name="name" value="NAMA" />
+                <input class="round-5 border-no margin-right-15" onfocus="blank(this)" onfocus="unblank(this)" type="text" name="email" value="E-MAIL" />
+                <textarea class="round-5 border-no margin-right-15" name="saran" cols="30" rows="5"></textarea>
+                <input type="submit" value="SEND" name="send" class="round-20 border-no">
+                <input type="reset" value="RESET" name="reset" class="round-20 border-no">
+                </form>
+    		</div>
+           
+        </div>
+        
+    </div>
+    <div id="footer">
+    	<div class="content relative">
+        	 <div id="toc-choice" class="absolute round-5">
+             	<a class="toc-items" href="https://359.sitti.co.id/term.html" target="_blank">Advertiser</a> /
+             	<a class="toc-items" href="https://sittizen.sitti.co.id/term.html" target="_blank">Blogger</a>
+    		</div>
+        	<div class="link-footer">
+            	 
+            </div>
+            <div class="copyright absolute"></div>
+            
+        </div>
+    </div>
+  	{literal}
+        <script type="text/javascript">
+
+			  var _gaq = _gaq || [];
+			  _gaq.push(['_setAccount', 'UA-16501037-1']);
+			  _gaq.push(['_setDomainName', 'sitti.co.id']);
+			  _gaq.push(['_trackPageview']);
+			
+			  (function() {
+			    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			    ga.src = ('https:' == document.location.protocol ? 'https://ssl' :
+			'http://www') + '.google-analytics.com/ga.js';
+			    var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(ga, s);
+			  })();
+
+		</script>
+		<!-- Start of StatCounter Code for Default Guide -->
+		<script type="text/javascript">
+			var sc_project=7320154; 
+			var sc_invisible=1; 
+			var sc_security="e322bef5"; 
+		</script>
+		<script type="text/javascript"
+			src="http://www.statcounter.com/counter/counter.js">
+		</script>
+		<noscript>
+			<div class="statcounter">
+				<a title="web stats" href="http://statcounter.com/free-web-stats/" target="_blank">
+					<img class="statcounter" src="http://c.statcounter.com/7320154/0/e322bef5/1/" alt="web stats">
+				</a>
+			</div>
+		</noscript>
+		<!-- End of StatCounter Code for Default Guide -->
+	{/literal}  
+</body>
+</html>

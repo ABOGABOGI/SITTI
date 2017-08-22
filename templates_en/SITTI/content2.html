@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>SITTI ZEN Platform</title>
+        <link href="css/sitti.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" language="javascript" src="js/iepngfix_tilebg.js"></script>
+        <script type="text/javascript" language="javascript" src="js/drop_table.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <link rel="shortcut icon" href="images/favicon.ico">
+        <link rel="icon" type="image/gif" href="images/animated_favicon.gif">
+
+    </head>
+
+    <body onload="init()">
+     {if $takeOut}<div class="cLabel"><a href="http://www.sitti.co.id/UtakAtik/index.html"></a></div>{/if}
+        <div class="wrapper">
+            <div class="header">
+                <a class="logo" href="index.php">&nbsp;</a>
+                <a class="slogan" href="index.php">&nbsp;</a>
+                <a class="bahasa" href="?lang=id">>> Kembali ke Bahasa Indonesia</a>
+            </div>
+            <div class="navigationBar">
+                <ul class="navigation">
+                    <li><a href="tentang_kami.php">Tentang SITTI</a></li>
+                    <li><a href="uji_sitti.php">Uji SITTI</a></li>
+                    <li><a target="_blank" href="http://sitti.zendesk.com/anonymous_requests/new">Kontak Kami</a></li>
+                </ul>
+                <div class="daftar">
+                    {if $isLogin}<a href="index.php?logout=1">LOGOUT</a>{else}<a href="index.php?login=1">LOGIN</a> | <a href="index.php?registration=1">DAFTAR SITTI</a>{/if}
+                </div>
+            </div>
+            {if $isBeranda}
+            <div class="subNav">
+        	<ul class="menu" id="menu">
+            	<li><a href="beranda.php">Beranda</a></li>
+                <li><a href="profile.php">Profil Saya</a>
+                    <ul>
+                        <li><a href="profile.php?modify=1">Rubah Profile</a>
+                            <ul>
+                                <li><a href="profile.php?bank=1">Daftar Rekening Bank</a></li>
+                                <li><a href="profile.php?cc=1">Daftar Kartu Kredit</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="refer.php">Refer Teman</a></li>
+                    </ul>
+                </li>
+                <li><a href="campaign.php">Daftar Iklan</a></li>
+                <li><a href="report.php">Laporan</a></li>
+                <li><a href="billing.php">Tagihan</a>
+                     <ul>
+                        <li><a href="billing.php?summary=1">Ringkasan</a></li>
+                        <li><a href="billing.php?summary=1&detail=1">Per Tanggal</a></li>
+                    </ul>
+                </li>
+                <li><a href="help.php">Bantuan</a>
+                     <ul>
+                        <li><a href="help.php?knowledge=1">Daftar Pengetahuan</a></li>
+                        <li><a href="help.php?faq=1">FAQ</a></li>
+                        <li><a href="help.php?contact=1">Tanya Kami</a></li>
+                    </ul>
+                </li>
+            </ul>
+			<script type="text/javascript">var menu=new menu.dd("menu");menu.init("menu","menuhover");</script>
+        </div>
+            {/if}
+            <div class="headContent">&nbsp;</div>
+            <div class="content">
+                <div class="w635">
+                    {$mainContent}
+                    <p>&nbsp;</p>
+                </div>
+                {if $contentID eq "1" or $contentID eq "2" or $contentID eq "3"}
+                <div class="w242">
+                    <ul class="navUser">
+                        <li><a href="index.php?id=1">Latar Belakang</a></li>
+                        <li><a href="index.php?id=2">Visi dan Misi</a></li>
+                        <li><a href="index.php?id=3">Video Presentasi</a></li>
+                    </ul>
+                </div>
+                {/if}
+				<!--  colom kanan beranda -->
+                {if $isBeranda}
+                <div class="w242">
+                    <div class="userSitti">
+                        <span class="namaPemilik">Nama Pemilik</span>
+                        <span class="namaUser">{$info.name|strip_tags}</span>
+                    </div>
+                    <div class="idUser">
+                      <span class="f14">SITTI ID :</span><span> {$info.sittiID}</span>
+                    </div>
+
+                    <ul class="navUser">
+                        <li><a href="beranda.php?daftar=1">Daftar Website</a></li>
+                        <li><a href="#">Lihat Laporan</a></li>
+                        <li><a href="#">Edit Profi</a>l</li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                  <div class="help">
+                   <h3>	Bantuan SITTI</h3>
+                        <ul>
+                         <li><a href="#">Bagaimanakah cara mengetahui berapa penghasilan saya?</a></li>
+                        <li><a href="#">Saya mempunyai blog wordpress, apakah SITTI memiliki plugin khusus?</a></li>
+                        <li><a href="#">Apa keuntungan yang saya dapat  dengan refer teman?</a></li>
+                        <li><a href="#">Bagaimana cara merubah data rekening saya? </a></li>
+                        </ul>
+                    </div>
+                </div>
+                {/if}
+               <!--  colom kanan beranda end -->
+
+            </div>
+            <div class="bottomContent">
+            </div>
+        </div>
+        <div class="footer">
+            <div class="wrapper">
+                <ul class="navFoot">
+                    <li><a href="tentang_kami.php">Tentang Kami</a>|</li>
+                    <li><a href="term.html" target="_blank"> Syarat dan Ketentuan</a>|</li>
+                    <li><a href="http://blog.belajarsitti.com/" target="_blank">Blog</a>|</li>
+                    <li><a href="http://belajarsitti.com/" target="_blank"> Jadi SITTIZEN</a>|</li>
+                    <li><a href="http://sitti.zendesk.com/anonymous_requests/new" target="_blank">Kontak Kami</a></li>
+                </ul>
+                <p class="copyRight">
+                    Email: beriklan@sittibelajar.com<br />
+                    © 2010 SITTI
+                </p>
+            </div>
+        </div>
+{literal}
+	<script type="text/javascript">
+
+			  var _gaq = _gaq || [];
+			  _gaq.push(['_setAccount', 'UA-16501037-1']);
+			  _gaq.push(['_setDomainName', 'sitti.co.id']);
+			  _gaq.push(['_trackPageview']);
+			
+			  (function() {
+			    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			    var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga, s);
+			  })();
+
+	</script>	
+	{/literal}
+    </body>
+</html>

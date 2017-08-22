@@ -1,0 +1,40 @@
+<div class="w915">
+    
+    <h3 class="headTitle">Profil Anda</h3>
+    <p>Di sini Anda dapat mengganti profil Anda di SITTI.</p>
+    <form class="editProfile" action="profile.php" method="post" enctype="application/x-www-form-urlencoded">
+        <div class="row">
+            <label>Nama</label>
+            <input name="name" type="text" class="inputText" id="name" value="{$rs.name|stripslashes|strip_tags|htmlentities|htmlspecialchars}" />
+        </div>
+        <div class="row">
+            <label>E-Mail</label>
+            {$rs.email|stripslashes|strip_tags|htmlentities}
+           
+        </div>
+        <div class="row">
+            <label>No.Telepon</label>
+            <input name="telepon" type="text" class="inputText" id="telepon" value="{$rs.phone|stripslashes|strip_tags|htmlentities|htmlspecialchars}" />
+        </div>
+        <div class="row">
+            <label>No.Handphone</label>
+            <input name="handphone" type="text" class="inputText" id="handphone" value="{$rs.mobile|stripslashes|strip_tags|htmlentities|htmlspecialchars}" />
+        </div>
+        <div class="row">
+            <label style="float:left;">Alamat</label>
+            <textarea name="alamat" class="inputText" id="alamat">{$rs.address|stripslashes|strip_tags|htmlentities|htmlspecialchars}</textarea>
+        </div>
+     	<div class="row">
+     	<a href="?password=1">Ganti Kata Sandi</a>
+     	</div>
+        <div class="row">
+            <input name="save" type="hidden" value="1">
+            <input name="token" type="hidden" value="{token}">
+            <input type="submit" class="submitButton" value="GANTI" />
+            <p class="error">{$msg}</p>
+        </div>
+		
+    </form>
+
+  
+</div>

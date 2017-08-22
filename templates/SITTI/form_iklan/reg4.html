@@ -1,0 +1,89 @@
+<div class="w635">
+                <h3 class="headTitle">Periksa Kembali Iklan Anda</h3>
+                <form class="registerForm" action="beranda.php" method="post" enctype="application/x-www-form-urlencoded">                           
+   					<div class="row noBorder" style="margin:0 0 20px 0; padding:0;">
+                        <p>Proses pembuatan iklan telah selesai. Silahkan periksa kembali iklan dan pilihan keyword anda.<br />
+ Apabila Anda telah merancang SITTI landing page, Anda dapat mengubah atau memperbaikinya juga di halaman ini</p>
+ 						<div class="quote" style="margin:10px 0; background-color:#e5eff4;">
+                        <strong>Saat ini SITTI masih gratis. Dengan konfirmasi pembuatan iklan ini, <br />
+						Anda TIDAK akan di tagihkan pembayaran atas klik yang telah di hasilkan iklan Anda.</strong>
+						</div>
+							
+<!--                    	<h3 class="blue">Budget Anda</h3>
+                        <p>Anda dapat menentukan batas budget untuk total Iklan ini</p>
+                        <span class="budget">Rp. 1.000.0000</span>-->
+                    </div>
+                     
+                        	<h3 style="float:left; margin:0;">Pilihan Kata Kunci</h3><a onmouseover="tooltip.show('Ganti Kata Kunci Anda');" onmouseout="tooltip.hide();" class="editPage" style="float:right; margin:0;" href="beranda.php?buat_iklan=1&step=1"></a> 
+                         <table border="0" cellspacing="0" cellpadding="0" class="list zebra" style="margin:5px 0 0 0;">
+                              <tr class="head">
+                                <td width="20">Kata Kunci</td>
+                                <td width="20">Rata-rata CPC</td>
+                                <td width="20">Tawaran Anda</td>
+                                <td width="20">Budget Harian</td>
+                                <td width="20">Max Budget</td>
+                              </tr>
+                              {section name=i loop=$keywords}
+                              <tr>
+                                <td>{$keywords[i].name|stripslashes|strip_tags}</td>
+                                <td>{$keywords[i].max_cpc|number_format}</td>
+                                <td>{$keywords[i].bid|number_format}</td>
+                                <td>{$keywords[i].budget|number_format}</td>
+                                <td>{$keywords[i].total|number_format}</td>
+                              </tr>
+                              {/section}
+                		  </table>
+                            <table  border="0" cellspacing="0" cellpadding="0" style="margin:30px 0">
+                              <tr>
+                                <td><h3 style="float:left; margin:0;">Iklan Anda</h3><a onmouseover="tooltip.show('Ganti Iklan Anda');" onmouseout="tooltip.hide();" class="editPage" style="float:right; margin:0;" href="beranda.php?buat_iklan=1&step=2"></a> </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                    <div class="sampleIklan" style="margin:0;">
+                                                                <h1 class="titleAdv">{$rs1.judul|stripslashes|strip_tags}</h1>
+                                    <p style="clear:both; margin:0;">{$rs1.baris1|stripslashes|strip_tags}</p>
+                                    <p style="clear:both; margin:0;">{$rs1.baris2|stripslashes|strip_tags}</p>
+                                    
+                                    <a class="urlAdv" href="{$rs1.urlLink|stripslashes|strip_tags}" target="_blank">{$rs1.urlName|stripslashes|strip_tags}</a> <a class="adsby" href="#">ads by SITTI</a> 
+                                </td>
+                              </tr>
+                            </table>
+                    {if $landingSelected}
+              			 	  <h3 style="float:left; margin:0;">Halaman Muka SITTI</h3><a onmouseover="tooltip.show('Ganti Halaman Muka SITTI');" onmouseout="tooltip.hide();" class="editPage" style="float:right; margin:0;" href="preview_template.php?id={$rs2.id}"></a> 
+                          	<table border="0" cellspacing="0" cellpadding="0" class="addlist zebra"  style="margin:5px 0 0 0;">
+                              <tr>
+                                <td width="120">Nama Halaman</td>
+                                <td width="450">{$rs2.page_title|stripslashes|strip_tags}</td>
+                              </tr>
+                              <tr>
+                                <td>Deskripsi</td>
+                                <td>{$rs2.meta_description|stripslashes|strip_tags}</td>
+                              </tr>
+                              <tr>
+                                <td>Isi</td>
+                                <td>{$rs2.content|stripslashes|strip_tags}</td>
+                              </tr>
+                              <tr>
+                                <td>Judul</td>
+                                <td>{$rs2.header_title|stripslashes|strip_tags}</td>
+                              </tr>
+                              <tr>
+                                <td>Kata Kunci</td>
+                                <td>{$rs2.meta_tags|stripslashes|strip_tags}</td>
+                              </tr>
+                            </table>
+                           
+                    	{/if}
+                  <div class="row">
+                        <input type="checkbox" name="agree" class="inputCheckbox" id="agree" value="1"/>
+                        <label class="labelChek"><a href="#">Saya Setuju akan Syarat Ketentuan SITTI</a></label>
+                    </div>
+                    <div class="row">
+                       <!-- <a href="beranda.php?buat_iklan=1&step=2" class="submitButton">Kembali</a>-->
+                        <input type="submit" value="Simpan dan Proses Iklan Saya" class="submitButton" style="float:right" />
+                        
+                        <!--<p class="error">Semua field wajib diisi</p>-->
+                    </div>
+                    <input name="do" type="hidden" value="finish">
+                </form>
+</div>

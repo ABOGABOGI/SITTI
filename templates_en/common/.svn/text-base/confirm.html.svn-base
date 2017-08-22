@@ -1,0 +1,8 @@
+<div align="center" style="padding:100px 0 0 0">
+    <div align="center" class="suksesMessage">
+      <p>
+          {$msg}
+      </p>
+      <p><a class="continue" href="{secureurl url=$onyes.url inline='true'}">{$onyes.label}</a>&nbsp;&nbsp;<a class="continueErr" href="{secureurl url=$onno.url inline='true'}">{$onno.label}</a></p>
+    </div>
+</div>

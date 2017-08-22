@@ -1,0 +1,24 @@
+{literal}
+<style type="text/css">
+html {
+    color: #343434;
+    font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    line-height: 18px;
+	padding:15px;
+}
+</style>
+{/literal}
+<html>
+<p><img src="images/ipaymu.png" /></p>
+<ol>
+        <li>Pilih metode pembayaran IPAYMU</li>
+        <li>Masukkan jumlah <strong>Top Up</strong> (minimal Rp 100.000), kemudian klik tombol <strong>"Lanjut"</strong></li>
+        <li>Tunggu hingga redirect ke IPAYMU</li>
+        <li>Login ke IPAYMU</li>
+        <li>Di halaman <strong>"Konfirmasi"</strong>, klik<strong> "Bayar"</strong></li>
+        <li>Tunggu hingga redirect & menampilkan notifikasi bahwa Top Up IPAYMU telah berhasil di akun Anda.</li>
+        <li>Apabila Top Up Anda bermasalah silahkan kirim email ke <a href="mailto:billing@sitti.co.id">billing@sitti.co.id</a> dengan mencantumkan kode transaksi Anda.</li>
+</li>
+</ol>
+</html>

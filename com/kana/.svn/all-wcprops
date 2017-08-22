@@ -1,0 +1,113 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/sittiweb/!svn/ver/67/branches/phase03-03/com/kana
+END
+SQLData.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/sittiweb/!svn/ver/67/branches/phase03-03/com/kana/SQLData.php
+END
+SITTI_AdvertiserStruct.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/sittiweb/!svn/ver/67/branches/phase03-03/com/kana/SITTI_AdvertiserStruct.php
+END
+ntlm_sasl_client.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/sittiweb/!svn/ver/67/branches/phase03-03/com/kana/ntlm_sasl_client.php
+END
+digest_sasl_client.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/sittiweb/!svn/ver/67/branches/phase03-03/com/kana/digest_sasl_client.php
+END
+SITTI_Register.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/sittiweb/!svn/ver/67/branches/phase03-03/com/kana/SITTI_Register.php
+END
+basic_sasl_client.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/sittiweb/!svn/ver/67/branches/phase03-03/com/kana/basic_sasl_client.php
+END
+test2.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/sittiweb/!svn/ver/67/branches/phase03-03/com/kana/test2.php
+END
+sasl.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/sittiweb/!svn/ver/67/branches/phase03-03/com/kana/sasl.php
+END
+SITTI_OX_RPC.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/sittiweb/!svn/ver/67/branches/phase03-03/com/kana/SITTI_OX_RPC.php
+END
+cram_md5_sasl_client.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/sittiweb/!svn/ver/67/branches/phase03-03/com/kana/cram_md5_sasl_client.php
+END
+SITTI_register_BAK.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/sittiweb/!svn/ver/67/branches/phase03-03/com/kana/SITTI_register_BAK.php
+END
+test.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/sittiweb/!svn/ver/67/branches/phase03-03/com/kana/test.php
+END
+plain_sasl_client.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/sittiweb/!svn/ver/67/branches/phase03-03/com/kana/plain_sasl_client.php
+END
+smtp.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/sittiweb/!svn/ver/67/branches/phase03-03/com/kana/smtp.php
+END
+DNS.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/sittiweb/!svn/ver/67/branches/phase03-03/com/kana/DNS.php
+END
+rrcompat.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/sittiweb/!svn/ver/67/branches/phase03-03/com/kana/rrcompat.php
+END
+login_sasl_client.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/sittiweb/!svn/ver/67/branches/phase03-03/com/kana/login_sasl_client.php
+END
+getmxrr.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/sittiweb/!svn/ver/67/branches/phase03-03/com/kana/getmxrr.php
+END

@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>SITTI - Platform Iklan Kontekstual Berbahasa Indonesia, Iklan Kontekstual, Bahasa Indonesia</title>
+<link rel="shortcut icon" href="images/favicon.ico">
+<script type="text/javascript" language="javascript" src="js/iepngfix_tilebg.js"></script>
+<script type="text/javascript" src="js/iepngfix_tilebg.js"></script>
+<link rel="icon" type="image/gif" href="images/animated_favicon.gif">
+
+<link rel="stylesheet" type="text/css" href="css/sitti.css" />
+<style type="text/css">
+	body{
+	background:url(images/new/bg_search.gif) repeat-x;
+	font-size:12px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	}
+	#sitnav{
+		padding:10px;
+		height:10px;
+	}
+	#sitnav ul{
+		list-style:none;
+		margin:0;
+		padding:0;
+	}
+	#sitnav ul li{
+		float:left;
+		margin:0;
+		padding:0;
+		color:#0CF;
+	}
+	#sitnav ul li a{
+		display:inline;
+		padding:10px 15px;
+		color:#0CF;
+		text-decoration:none;
+	}
+	#sitnav ul li a:hover{
+		color:#0FF;
+		font-size:16px;
+	}
+	.logoSearch{
+		background:url(images/new/logo_sitti_beta.png) no-repeat;
+		width:350px;
+		clear:both;
+		display:block;
+		height:86px;
+		margin:80px auto 0 auto;
+	}
+	input.searchSitti[type=text]{
+		width:400px;
+		margin:40px 0 0 0;
+		clear:both;
+		display:block;
+		background:url(images/new/bg_search_input.gif) repeat-x 0 -15px;
+		border:none;
+		padding:10px;
+		-moz-border-radius:15px;
+		-webkit-border-radius:15px;
+		border-radius:15px;
+		-moz-box-shadow:1px 0 5px #000;
+		-webkit-box-shadow:1px 0 5px #000;
+		box-shadow:1px 0 5px #000;
+	}
+	.searchSubmit{
+		display:block;
+		border:solid 1px #006;
+		margin:20px 0 0 0;
+		padding:5px 10px;
+		background:url(images/new/bg_search_submit.gif) repeat-x;
+		color:#FFF;
+		-moz-border-radius:15px;
+		-webkit-border-radius:15px;
+		border-radius:15px;
+		-moz-box-shadow:1px 0 5px #000;
+		-webkit-box-shadow:1px 0 5px #000;
+		box-shadow:1px 0 5px #000;
+		cursor:pointer;
+		border:none;
+	}
+	.copyright{
+		padding:40px 0 0 0;
+		color:#fff;
+		font-size:10px;
+	}
+	.sloganSitti{
+		background:url(images/new/slogan_bendera.png) no-repeat;
+		width:469px;
+		height:36px;
+		margin:20px 0 0 0;
+	}
+</style>
+</head>
+
+<body>
+	<center>
+    	<div id="sitnav">
+        	<ul>
+            	<li><a href="http://www.sitti.co.id">SITTI</a>|</li>
+                <li><a href="http://www.sittibelajar.com">SITTI 359</a>|</li>
+                <li><a href="http://www.belajarsitti.com">SITTI Zen</a>|</li>
+                <li><a href="http://www.blog.sittibelajar.com">SITTI Blog</a></li>
+            </ul>
+       	</div>
+        <center>
+        	<div class="logoSearch">
+            	
+            </div>
+            <div class="sloganSitti">
+            </div>
+            <div class="searchInput">
+            	<form>
+            	<input class="searchSitti" type="text">
+                <input type="submit" class="searchSubmit" value="Telusuri SITTI" />
+            	</form>
+            </div>
+            <div class="copyright">
+            	<p>©2010 SITTI</p>
+            </div>
+        </center>
+    </center>
+
+</body>
+</html>

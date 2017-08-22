@@ -1,0 +1,712 @@
+<script type="text/javascript">
+{if $selected_campaign}
+var campaign_id = '{$selected_campaign}';
+{/if}
+{if $campaign_name}
+var campaign_name = '{$campaign_name|capitalize}';
+{/if}
+{if $tglAwalChart && $tglAkhirChart}
+var default_tgl_awal = {$tglAwalChart};
+var default_tgl_akhir = {$tglAkhirChart};
+{/if}
+var default_csv_link = "report.php?t=6&csv=1&st={$start}";
+
+var chart_no_latest_30days_data = "{$chart_no_latest_30days_data}";
+var chart_no_chosen_dates_data = "{$chart_no_chosen_dates_data}";
+var chart_start_date_biggerthan_end_date = "{$chart_start_date_biggerthan_end_date}";
+
+var ad_id = {$ad_id_list};
+//alert(ad_id);
+</script>
+{literal}
+<script type="text/javascript" src="js/charts/highslide-full.min.js"></script>
+<script type="text/javascript" src="js/charts/highslide.config.js" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="js/charts/highslide.css" />
+<script type="text/javascript" src="js/jquery.numberformatter-1.1.0.js"></script>
+<script type="text/javascript">
+
+function DayDiff(date1, date2) {
+    return (date2.getTime() - date1.getTime()) / 1000 / 60 / 60 / 24;
+}
+
+function DiffDate(date, interval) {
+    var ms = date.getTime() - (interval * 1000 * 60 * 60 * 24);
+	return new Date(ms);
+}
+
+function GetToday() {
+	var today = new Date();
+	today = DatetoString(today);
+	return today;
+}
+
+function SetDatepicker(datepicker_obj,date) {
+	var realDate = StringtoDate(date);
+	$(datepicker_obj).datepicker('setDate', realDate);
+}
+
+function StringtoDate(strdate){
+	var dateParts = strdate.match(/(\d+)/g);
+	var realDate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]); // months are 0-based!
+	
+	return realDate;
+}
+
+function DatetoString(date){
+	var dd = date.getDate();
+	var mm = date.getMonth()+1; //January is 0!
+
+	var yyyy = date.getFullYear();
+	if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} var today = yyyy+'-'+mm+'-'+dd;
+	return today;
+}
+
+$(document).stopTime();
+function updateInterval(){
+	 //$(document).ready(function() {
+		 $(document).oneTime('15s', function() {
+			    //alert("foo");
+			    //updateInterval();
+			 	$.ajax({ url: "report.php?t=6&n=10&status=1&tr="+campaign_id, context: document.body, success: function(data){
+			        if(data=='1'){
+				        //alert('update');
+				        $(document).stopTime();
+				        updateInterval();
+			        }else if(data=='0'){
+				        //alert('refresh');
+				        $(document).stopTime();
+						onTab("#PerformaIklan","nav6");
+						
+			        }else{;
+						//do nothing
+			        } 
+			      }});
+		  });	 
+		//});
+}
+var f3 = [];
+var f4 = [];
+$(document).ready(function() {
+	   $("#PerformaIklan h1").html('Performa Iklan untuk ' + campaign_name)
+
+       $("#g2").html("<span style='text-align:center;' align='center'><img src='images/loader.gif'/></span>");
+       $.get('report.php',{t:102,campaign: campaign_id,cache:false}, function(data) {
+			f3 = eval(data);
+            if (f3 != null && f3[0].stats != null) { // just checking first stat, not so good
+                _chart2(f3);
+            } else {
+                $("#g2").html(chart_no_latest_30days_data);
+            }
+		});
+
+    $("#campaign_list2").change( function() {
+        //window.location.href="beranda.php?PerformaIklan=" + $(this).val();
+        onCampaignDetail($(this).val());
+        /*$("#export-csv").attr('href', default_csv_link + '&campaign=' + $(this).val());
+        $.get('report.php', {t:6, campaign: $(this).val()}, function(data) {
+            $("#content_daftar_iklan").html(data);
+        });*/
+    });
+
+    $("#tglAwalChart2,#tglAkhirChart2").datepicker({ 
+        dateFormat: 'yy-mm-dd'
+    });
+
+    $('#tglAwalChart2').bind('change', function () {
+        $('#tglAkhirChart2').val('');     
+    });
+
+    $('#tglAkhirChart2').bind('change', function () {
+        var tgl_awal = $('#tglAwalChart2').datepicker("getDate");
+        var tgl_akhir = $('#tglAkhirChart2').datepicker("getDate");
+        interval = DayDiff(tgl_awal, tgl_akhir);
+            
+        GetChartData(interval);
+		SetExportLink();
+    });
+    
+	$('#tglPilihanChart2').bind('change', function () {
+		var option = $('#tglPilihanChart2').val();
+		var akhir = GetToday();
+		var awal;
+		var interval = 0;
+		switch(option){
+			case "1":
+				interval = 30;
+				break;
+			case "2":
+				interval = 7;
+				break;
+			case "3":
+				interval = 1;
+				break;
+			case "4":
+				interval = -1;
+				break;
+		}
+		
+		if (interval==-1){
+			awal = "2011-01-01";
+			interval = 1;
+		}else{
+			date_akhir = StringtoDate(akhir);
+			date_awal = DiffDate(date_akhir,interval);
+			awal = DatetoString(date_awal);
+		}
+		
+		SetDatepicker('#tglAwalChart2',awal);
+		SetDatepicker('#tglAkhirChart2',akhir);
+		
+		GetChartData(interval);
+		SetExportLink();
+	});
+	
+	$('#action_button2').bind('click', function () {
+		var list = [];
+		$("input.checkbox2").each(function(){
+			if ($(this).attr("checked") == true){
+				list.push($(this).val());
+			}
+		});
+		if (list.length>0){
+			var msg = "";
+			if (list.length==1){
+				msg = "Anda akan melakukan perubahan pada iklan, Lanjutkan?";
+			}else{
+				msg = "Anda akan melakukan perubahan pada lebih dari satu iklan, Lanjutkan?";
+			}
+			var answer = confirm(msg);
+			if (answer){
+				var action = $("#action2 option:selected").val();
+				switch(action){
+					case "active":
+						//alert("aktifkan");
+						MultiEnable(list);
+						break;
+					case "disable":
+						//alert("nonaktifkan");
+						MultiDisable(list);
+						break;
+					case "delete":
+						//alert("hapus");
+						MultiDelete(list);
+						break;
+				}
+			}
+		}else{
+			alert("Tidak ada iklan yang dipilih!");
+		}
+    });
+});
+
+function MultiEnable(list){
+	var id="";
+	for(i=0;i<list.length;i++){
+		if (id!=""){
+			id+=",";
+		}
+		id+=list[i];
+	}
+	$.get('beranda.php',{m_enable:1, id:id}, function(){
+		window.location = "beranda.php?PerformaIklan="+campaign_id;
+	});
+}
+
+function MultiDisable(list){
+	var id="";
+	for(i=0;i<list.length;i++){
+		if (id!=""){
+			id+=",";
+		}
+		id+=list[i];
+	}
+	$.get('beranda.php',{m_disable:1, id:id}, function(){
+		window.location = "beranda.php?PerformaIklan="+campaign_id;
+	});
+}
+
+function MultiDelete(list){
+	var id="";
+	for(i=0;i<list.length;i++){
+		if (id!=""){
+			id+=",";
+		}
+		id+=list[i];
+	}
+	$.get('beranda.php',{m_delete_iklan:1, id:id}, function(){
+		window.location = "beranda.php?PerformaIklan="+campaign_id;
+	});
+}
+
+function SetExportLink(){
+	var tglawal = $('#tglAwalChart2').val();
+	var tglakhir = $('#tglAkhirChart2').val();
+	$('#export_xls2').attr('href','report.php?t=602&xls=1&st=0&campaign='+campaign_id+'&tgl_awal='+tglawal+'&tgl_akhir='+tglakhir);
+	$('#export_csv2').attr('href','report.php?t=602&csv=1&st=0&campaign='+campaign_id+'&tgl_awal='+tglawal+'&tgl_akhir='+tglakhir);
+}
+
+function GetChartData(interval){
+	if ($('#tglAwalChart2').val() != '' && interval > 0) {
+
+		var awal = $('#tglAwalChart2').val();
+		var akhir = $('#tglAkhirChart2').val();
+
+		$("#g2").html("<span style='text-align:center;' align='center'><img src='images/loader.gif'/></span>");
+		$.get('report.php',{t:102, campaign: campaign_id, tgl_awal: awal, tgl_akhir: akhir, cache:false}, function(data) {
+			f3 = eval(data);
+			if (f3 != null && f3[0].stats != null) { // just checking first stat, not so good
+				_chart2(f3);
+			} else {
+				$("#g2").html(chart_no_chosen_dates_data);
+			}
+			GetTableData(interval);
+		});
+
+	} else {
+		$(this).val('');
+		if (interval <= 0) {
+			alert(chart_start_date_biggerthan_end_date);
+		}
+	}
+}
+
+function GetTableData(interval){
+	if ($('#tglAwalChart2').val() != '' && interval > 0) {
+		var awal = $('#tglAwalChart2').val();
+		var akhir = $('#tglAkhirChart2').val();
+		
+		$.get('report.php',{t:602, campaign: campaign_id, tgl_awal: awal, tgl_akhir: akhir, cache:false}, function(data) {
+			f4 = eval(data);
+			if (f4 != null) {
+				//alert(f4.length);
+				SetTableData(f4);
+			} else {
+				//alert("no data");
+			}
+		});
+	}
+}
+
+function SetTableData(feeds){
+	var nn = feeds.length;
+	var n = ad_id.length;
+	var flag;
+	var id;
+	for(j=0;j<n;j++){
+		flag = 0;
+		id = ad_id[j];
+		id = id.replace(/\./,"\\.");
+		for(i=0;i<nn;i++){
+			if (ad_id[j]==feeds[i].enc_id){
+				flag = 1;
+				$('#imp_'+id).html(feeds[i].imp).format({format:"#,###", locale:"en"});
+				$('#click_'+id).html(feeds[i].click).format({format:"#,###", locale:"en"});
+				$('#ctr_'+id).html(feeds[i].ctr+" %");
+				$('#avg_cpc_'+id).html(feeds[i].avg_cpc);
+				$('#row_'+id).show();
+				break;
+			}
+		}
+		if (flag==0){
+			$('#row_'+id).hide();
+		}
+	}
+}
+
+function togglec2(){
+	try{
+       if (f3 != null && f3[0].stats != null) { // just checking first stat, not so good
+            _chart2(f3);
+        } else {
+            $("#g2").html(chart_no_latest_30days_data);
+        }
+		
+	}catch(e){}
+}
+function _chart2(feeds){
+	//try{
+		  // define the options
+		var nn = feeds.length;
+		var _series = [];
+		var _plots = [];
+		var _titles = {'imp':'Jumlah Impresi','click':'Jumlah Klik','ctr':'Persentase CTR'};
+		for(i=0;i<nn;i++){
+			if(feeds[i].stats != null){
+			_series.push({name:feeds[i].nama_iklan});
+			_plots.push(feeds[i].stats);
+			}
+		}
+		
+        var options = {
+    		exporting:{enabled:false},
+            chart: {
+                renderTo: 'g2'
+            },
+            
+            title: {
+                text:  _titles[$("#cc2").val()]+' Iklan Terbaik'
+            },
+            
+            subtitle: {
+                text: " "
+            },
+            
+            xAxis: {
+                type: 'datetime',
+                tickInterval: 7 * 24 * 3600 * 1000, // one week
+                tickWidth: 0,
+                gridLineWidth: 1,
+                labels: {
+                    align: 'left',
+                    x: 3,
+                    y: -3 
+                }
+            },
+            
+            yAxis: [{ // left y axis
+                title: {
+                    text: null
+                },
+                labels: {
+                    align: 'left',
+                    x: 3,
+                    y: 16,
+                    formatter: function() {
+                        return Highcharts.numberFormat(this.value, 0);
+                    }
+                },
+                showFirstLabel: false
+            }, { // right y axis
+                linkedTo: 0,
+                gridLineWidth: 0,
+                opposite: true,
+                title: {
+                    text: null
+                },
+                labels: {
+                    align: 'right',
+                    x: -3,
+                    y: 16,
+                    formatter: function() {
+                        return Highcharts.numberFormat(this.value, 0);
+                    }
+                },
+                showFirstLabel: false
+            }],
+            
+            legend: {
+                align: 'left',
+                verticalAlign: 'top',
+                y: 20,
+                floating: true,
+                borderWidth: 0
+            },
+            
+            tooltip: {
+                shared: true,
+                crosshairs: true
+            },
+			credits:{enabled:false},
+            
+            plotOptions: {
+				
+                series: {
+                    cursor: 'pointer',
+                    point: {
+                        events: {
+                            click: function() {
+                                hs.htmlExpand(null, {
+                                    pageOrigin: {
+                                        x: this.pageX, 
+                                        y: this.pageY
+                                    },
+                                    headingText: this.series.name,
+                                    maincontentText: Highcharts.dateFormat('%b %e, %Y', this.x) +':<br/> '+ 
+                                        this.y,
+                                    width: 200
+                                });
+                            }
+                        }
+                    },
+                    marker: {
+                        lineWidth: 1
+                    }
+                }
+            },
+            
+            series: _series
+        }
+        var n_plots = _plots.length;
+		
+		for(i=0;i<n_plots;i++){
+			var dd = _plots[i];
+			
+			var oo = [];
+			for(j=0;j<dd.length;j++){
+				if(dd[j][$('#cc2').val()]==null){
+					dd[j][$('#cc2').val()]= 0.0;
+				}
+				var parts = dd[j].capture_date.match(/(\d+)/g);
+				var dt = new Date(parts[0],parts[1]-1,parts[2],24);
+				
+				oo.push([
+                        //Date.parse(dd[j].capture_date), 
+						Date.parse(dt),
+                        parseFloat(dd[j][$('#cc2').val()], 10)
+                    ]);
+			}
+			options.series[i].data = oo;
+			
+		}
+        //console.log(options);
+        chart = new Highcharts.Chart(options);
+        
+	//}catch(e){
+      // console.log(e);
+	//}
+ }
+
+</script>
+{/literal}
+<p><strong>Pilih kampanye yang anda inginkan</strong></p>
+<select name="campaign_list" id="campaign_list2">
+    {*<option value='none'>Semua Kampanye</option>*}
+    {section name=i loop=$list_campaign}
+    <option value="{$list_campaign[i].enc_campaign_id}" {if $selected_campaign == $list_campaign[i].enc_campaign_id }selected="selected"{/if} >{$list_campaign[i].name}</option>
+    {/section}
+</select>
+<div style="margin-bottom: 45px;">
+ <table border="0" cellspacing="0" cellpadding="0" class="list zebra">
+  <tr class="head2">
+    <td>Jumlah Iklan Aktif</td>
+    <td>Jumlah Iklan Tidak Aktif</td>
+    <td>Iklan Terbaik CTR</td>
+  </tr>
+  <tr>
+    <td><span class="f18 bold green">{$report.iklan_aktif|number_format} Iklan</span></td>
+    <td> <span class="f18 bold green">{$report.iklan_nonaktif|number_format} Iklan</span> </td>
+    <td> <span class="f18 bold green">{$report.iklan_terbaik|stripslashes|strip_tags} ({$campaign_name|stripslashes|strip_tags})</span> </td>
+  </tr>
+</table>
+</div>
+<select id="tglPilihanChart2">
+	<option value="1">1 Bulan Terakhir</option>
+	<option value="2">1 Minggu Terakhir</option>
+	<option value="3">Hari Kemarin</option>
+	{*}<option value="4">Sepanjang Waktu (Total)</option>{/*}
+</select>
+Tanggal <input name="tglAwalChart" id="tglAwalChart2" class="inputText" style="width: 100px;" type="text" value="{$tglAwalChart}" /> s/d
+<input name="tglAkhirChart" id="tglAkhirChart2" class="inputText" style="width: 100px;" type="text" value="{$tglAkhirChart}" />
+
+<a id="export2" class="excel" style="width: auto; padding-left: 20px;cursor:pointer;">Export</a>
+<div id="exportPop2" class="round7" style="background:black; opacity:0.7;display:none;position:absolute;top:310px;right:44px;padding:5px 10px;color:white">
+	<a id="export_xls2" href="report.php?t=602&xls=1&st={$start}&campaign={$selected_campaign}" style="color:white;cursor:pointer;">Excel</a> | <a id="export_csv2" href="report.php?t=602&csv=1&st={$start}&campaign={$selected_campaign}" style="color:white;cursor:pointer;">CSV</a>
+</div>
+<div id="iklanChartIklan" style="margin-top: 15px;">
+	<div class="shortGrafik">
+	<span> Lihat berdasarkan : </span>
+	<select id='cc2' onchange="togglec2();">
+	<option value="imp">Impresi</option>
+	<option value="click">Klik</option>
+	<option value="ctr">CTR</option>
+	</select>
+	</div>
+
+	<div id="grafikBlock">
+		<div id="g2"></div>
+	</div>
+
+</div>
+{*<div class="titleBerandaZen">
+
+ <a class="tambahIcon" onmouseover="tooltip.show('Pindahkan ke Beranda');" onmouseout="tooltip.hide();"  href="#">&nbsp;</a>
+  <a class="refreshIcon" onmouseover="tooltip.show('Refresh Halaman');" onmouseout="tooltip.hide();"  href="#">&nbsp;</a>
+ <!-- sementara di hide <a class="pdf" onmouseover="tooltip.show('Export ke PDF');" onmouseout="tooltip.hide();"  href="#">&nbsp;</a>
+ --><a id="export-csv2" class="excel" onmouseover="tooltip.show('Export ke CSV');" onmouseout="tooltip.hide();" href="report.php?t=6&csv=1&st={$start}&campaign={$selected_campaign}" target="_blank">&nbsp;</a>
+</div>*}
+{if $UpdateInProgress}
+<div class="titleBerandaZen">
+<div align="center" style="text-align:left; padding:10px;" class="colLoader">
+<div class="loaderBox">
+<img src="images/loader_small.gif" class="loaderSmall" /><p>Mohon tunggu, kami sedang memproses perubahan iklan Anda.</p>
+</div>
+</div>
+</div>
+<script>
+  updateInterval();
+</script>
+{/if}
+<form action="buat.php" method="get">
+	<input type="hidden" name="c_id" value="{$selected_campaign}"/>
+	<input type="submit" style="margin:0;float:right;" value="Tambah Iklan" class="submitButton"/>
+</form>
+{if $ad_list}
+{if not $UpdateInProgress}
+<select id="selector2" class="selStyle round7">
+	<option id="none2">tidak sama sekali</option>
+	<option id="all2">semua</option>
+	<option id="reverse2">balikan</option>
+</select>
+<select id="action2" class="selStyle round7">
+	<option value="active">aktifkan</option>
+	<option value="disable">nonaktifkan</option>
+	<option value="delete">hapus</option>
+</select>
+<input id="action_button2" type="button" value="Lakukan" class="submitButton">
+{/if}
+<div id="content_daftar_iklan">
+    <table border="0" cellspacing="0" cellpadding="0" class="list zebra">
+    	<tr class="head2">
+    		<td align="center"></td>
+    		<td>Nama Iklan</td>
+    		<td>Status</td>
+    		<td width="300">Kata Kunci</td>
+    		
+    		<td align="center"><a href="#" class="shortTitle">Impresi<img class="shotIcon" src="images/short_up.png" /></a></td>
+    		<td align="center"><a href="#" class="shortTitle">Klik<img class="shotIcon" src="images/short_down.png" /></a></td>
+    		<td align="center"><a href="#" class="shortTitle">CTR % <img class="shotIcon" src="images/short_down.png" /></a></td>
+            {*}<td align="center"><a href="#" class="shortTitle">AVG CPC <img class="shotIcon" src="images/short_down.png" /></a></td>{/*}
+    		
+    			</tr>
+		{section name=j loop=$ad_list}
+			{assign var=flag value=0}
+			{assign var=index value=-1}
+			{assign var=i value=0}
+			{section name=i loop=$top_iklan}
+				{if $ad_list[j].id eq $top_iklan[i].id}
+					{assign var=flag value=1}
+					{assign var=index value=$i}
+				{/if}
+				{assign var=i value=$i+1}
+			{/section}
+			
+			<tr id="row_{$ad_list[j].enc_id}" {if $flag eq 0}style="display:none"{/if}>
+				<td align="center">
+					<input class="checkbox2" name="pilih" type="checkbox" value="{$ad_list[j].enc_id}" />
+				</td>
+				{if $ad_list[j].in_progress <> '1'}
+				<td>
+				<div class="AdsNameList" style="float:left;"><a href="javascript:void(0);" onclick="show_detail('{$ad_list[j].id}','{$sittiID}',5, '{$selected_campaign}');return false;">{$ad_list[j].nama|stripslashes|strip_tags}</a></div>
+				<div class="actionBtn" style="float:right;">
+					<a onmouseover="tooltip.show('Ganti Iklan');" onmouseout="tooltip.hide();"  class="editPage" href="{secureurl url='beranda.php' edit_iklan=1 id=$ad_list[j].id campaign_id=$selected_campaign}">&nbsp;</a> 
+					<a onmouseover="tooltip.show('Hapus Iklan');" onmouseout="tooltip.hide();"  class="deletePage" href="{secureurl url='beranda.php' delete_iklan=1 id=$ad_list[j].id campaign_id=$selected_campaign} ">&nbsp;</a>
+				</div>
+				</td>
+				<td>{if $ad_list[j].status eq '0'}<span class="green"><a href="{secureurl url='beranda.php' disable=1 id=$ad_list[j].id campaign_id=$selected_campaign}">Aktif</a></span><span class="scoreGreen"><img src="images/green.gif" /></span>{else}<span class="red"><a href="{secureurl url='beranda.php' enable=1 id=$ad_list[j].id campaign_id=$selected_campaign}">Tidak Aktif</a></span><span class="scoreRed"><img src="images/red.gif" /></span>{/if}</td>
+				<td style="width:300px;">
+				<div style="width:300px;">
+					{section name=word loop=$ad_list[j].keywords}
+						{if $smarty.section.word.index != 0}, {/if}<a href="beranda.php?PerformaKataKunci"><i>{$ad_list[j].keywords[word]}</a></i>
+					{/section}
+				</div>
+				</td>
+				<td align="center"><b id="imp_{$ad_list[j].enc_id}">{if $flag eq 1}{$top_iklan[$index].imp|number_format}{/if}</b>
+				<span style="padding-left:10px;"><img id="imp_change_{$ad_list[j].enc_id}" 
+				{if $flag eq 1}
+				{if $top_iklan[$index].imp_change > 0} src="images/ppc/arrow_up.png" onmouseout="tooltip.hide();" onmouseover="tooltip.show('{$top_iklan[$index].imp_change|number_format:2}%');"
+				{elseif $top_iklan[$index].imp_change < 0}
+				src="images/ppc/arrow_down.png" onmouseout="tooltip.hide();" onmouseover="tooltip.show('{$top_iklan[$index].imp_change|number_format:2}%');"
+				{else}
+				src="images/ppc/green.gif"
+				{/if}
+				{/if}
+				/></span>
+				</td>
+				<td align="center"><b id="click_{$ad_list[j].enc_id}">{if $flag eq 1}{$top_iklan[$index].click|number_format}{/if}</b>
+				<span style="padding-left:10px;"><img id="click_change_{$ad_list[j].enc_id}" 
+				{if $flag eq 1}
+				{if $top_iklan[$index].klik_change > 0}
+				src="images/ppc/arrow_up.png" onmouseout="tooltip.hide();" onmouseover="tooltip.show('{$top_iklan[$index].klik_change|number_format:2}%');"
+				{elseif $top_iklan[$index].klik_change < 0}
+				src="images/ppc/arrow_down.png" onmouseout="tooltip.hide();" onmouseover="tooltip.show('{$top_iklan[$index].klik_change|number_format:2}%');" 
+				{else}
+				src="images/ppc/green.gif" 
+				{/if}
+				{/if}
+				 /></span>
+				</td>
+				<td align="center"><b id="ctr_{$ad_list[j].enc_id}">{if $flag eq 1}{$top_iklan[$index].ctr} %{/if}</b>
+				<span style="padding-left:10px;"><img id="ctr_change_{$ad_list[j].enc_id}" 
+				{if $flag eq 1}
+				{if $top_iklan[$index].ctr_change > 0}
+				src="images/ppc/arrow_up.png" onmouseout="tooltip.hide();" onmouseover="tooltip.show('{$top_iklan[$index].ctr_change|number_format:2}%');"
+				{elseif $top_iklan[$index].ctr_change < 0}
+				src="images/ppc/arrow_down.png" onmouseout="tooltip.hide();" onmouseover="tooltip.show('{$top_iklan[$index].ctr_change|number_format:2}%');" 
+				{else}
+				src="images/ppc/green.gif" 
+				{/if}
+				{/if}
+				 /></span>
+				</td>
+				{*}<td align="center"><b id="avg_cpc_{$ad_list[j].enc_id}">{if $flag eq 1}{$top_iklan[$index].avg_cpc}{/if}</b>
+				<span style="padding-left:10px;"><img id="avg_cpc_change_{$ad_list[j].enc_id}" 
+				{if $flag eq 1}
+				{if $top_iklan[$index].avg_cpc_change > 0}
+				src="images/ppc/arrow_up.png" onmouseout="tooltip.hide();" onmouseover="tooltip.show('{$top_iklan[$index].avg_cpc_change|number_format:2}');"
+				{elseif $top_iklan[$index].avg_cpc_change < 0}
+				src="images/ppc/arrow_down.png" onmouseout="tooltip.hide();" onmouseover="tooltip.show('{$top_iklan[$index].avg_cpc_change|number_format:2}');" 
+				{else}
+				src="images/ppc/green.gif" 
+				{/if}
+				{/if}
+				 /></span>
+				</td>{/*}
+				
+				{else}
+				<td>
+				  <div class="AdsNameList" style="float:left;"><i>{$ad_list[j].nama|stripslashes|strip_tags}</i></div>
+				 </td>
+				<td><span class="red">sedang proses</span><span class="scoreRed"><img src="images/red.gif" /></span></td>
+				<td style="width:300px;">
+				<div style="width:300px;">
+					{section name=word loop=$ad_list[j].keywords}{if $smarty.section.word.index != 0}, {/if}<a href="beranda.php?PerformaKataKunci"><i>{$ad_list[j].keywords[word]}</a></i>
+					{/section}
+				</div>
+				</td>
+				<td align="center"><i id="imp_{$ad_list[j].enc_id}">{if $flag eq 1}{$top_iklan[$index].imp|number_format}{/if}</i></td>
+				<td align="center"><i id="click_{$ad_list[j].enc_id}">{if $flag eq 1}{$top_iklan[$index].click|number_format}{/if}</i></td>
+				<td align="center"><i id="ctr_{$ad_list[j].enc_id}">{if $flag eq 1}{$top_iklan[$index].ctr} %{/if}</i></td>
+				{*}<td align="center"><i id="avg_cpc_{$ad_list[j].enc_id}">{if $flag eq 1}{$top_iklan[$index].avg_cpc}{/if}</i></td>{/*}
+				{/if}
+			</tr>
+		{/section}
+    </table>
+{$paging}
+</div>
+{else}
+<p>Kampanye ini tidak memiliki iklan.</p>
+{/if}
+{literal}
+	<script type="text/javascript">
+		$('#export2').toggle(function() {
+			$("#exportPop2").fadeIn();
+		}, function() {
+			$("#exportPop2").fadeOut();
+		});
+		$('#exportPop2 a').click(function(){
+			$("#exportPop2").fadeOut();
+		});
+		$("#selector2").change(function () {
+	          $("#selector2 option:selected").each(function () {
+	                str = $(this).text();
+	                if (str == 'semua'){
+		                $("input.checkbox2").each(function(){
+		    				$(this).attr("checked","checked");
+		    			});
+	                }else if(str == "tidak sama sekali"){
+	                	$("input.checkbox2").each(function(){
+	        				$(this).attr("checked",false);
+	        			});
+		            }else if(str == "balikan"){
+		            	$("input.checkbox2").each(function(){
+		    				if ($(this).attr("checked") == true){
+		    					$(this).attr("checked",false);
+		    				}else if($(this).attr("checked") == false){
+		    					$(this).attr("checked",true);
+		    				}
+		    			});
+				    }
+	              });
+	        });
+	</script>
+    {/literal}

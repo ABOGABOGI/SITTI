@@ -1,0 +1,57 @@
+{if $top_iklan}
+<table border="0" cellspacing="0" cellpadding="0" class="list zebra">
+	<tr class="head2">
+		<td align="center">No.</td>
+		<td>Nama Iklan</td>
+		<td>Status</td>
+		<td width="300">Kata Kunci</td>
+		
+		<td align="center"><a href="#" class="shortTitle">Impresi<img class="shotIcon" src="images/short_up.png" /></a></td>
+		<td align="center"><a href="#" class="shortTitle">Klik<img class="shotIcon" src="images/short_down.png" /></a></td>
+		<td align="center"><a href="#" class="shortTitle">CTR % <img class="shotIcon" src="images/short_down.png" /></a></td>
+		
+			</tr>
+	{section name=i loop=$top_iklan}
+	<tr>
+		<td align="center">{$top_iklan[i].no}</td>
+		{if $top_iklan[i].in_progress <> '1'}
+		<td>
+        <div class="AdsNameList" style="float:left;"><a href="javascript:void(0);" onclick="show_detail('{$top_iklan[i].id}','{$sittiID}',5);return false;">{$top_iklan[i].nama|stripslashes|strip_tags}</a></div>
+        <div class="actionBtn" style="float:right;">
+        	<a onmouseover="tooltip.show('Ganti Iklan');" onmouseout="tooltip.hide();"  class="editPage" href="{secureurl url='beranda.php' edit_iklan=1 id=$top_iklan[i].id}">&nbsp;</a> 
+        	<a onmouseover="tooltip.show('Hapus Iklan');" onmouseout="tooltip.hide();"  class="deletePage" href="{secureurl url='beranda.php' delete_iklan=1 id=$top_iklan[i].id}">&nbsp;</a>
+        </div>
+        </td>
+        <td>{if $top_iklan[i].status eq '0'}<span class="green"><a href="{secureurl url='beranda.php' disable=1 id=$top_iklan[i].id}">Aktif</a></span><span class="scoreGreen"><img src="images/green.gif" /></span>{else}<span class="red"><a href="{secureurl url='beranda.php' enable=1 id=$top_iklan[i].id}">non-aktif</a></span><span class="scoreRed"><img src="images/red.gif" /></span>{/if}</td>
+		<td style="width:300px;">
+        <div style="width:300px;">
+            {section name=word loop=$top_iklan[i].keywords}{if $smarty.section.word.index != 0}, {/if}<a href="beranda.php?PerformaKataKunci"><i>{$top_iklan[i].keywords[word]}</a></i>
+            {/section}
+        </div>
+        </td>
+		<td align="center">{$top_iklan[i].imp|number_format}</td>
+		<td align="center">{$top_iklan[i].click|number_format}</td>
+		<td align="center">{$top_iklan[i].ctr} %</td>
+		
+        {else}
+        <td>
+          <div class="AdsNameList" style="float:left;"><i>{$top_iklan[i].nama|stripslashes|strip_tags}</i></div>
+         </td>
+        <td><span class="red">sedang proses</span><span class="scoreRed"><img src="images/red.gif" /></span></td>
+		<td style="width:300px;">
+        <div style="width:300px;">
+            {section name=word loop=$top_iklan[i].keywords}{if $smarty.section.word.index != 0}, {/if}<a href="beranda.php?PerformaKataKunci"><i>{$top_iklan[i].keywords[word]}</a></i>
+            {/section}
+        </div>
+        </td>
+		<td align="center"><i>{$top_iklan[i].imp|number_format}</i></td>
+		<td align="center"><i>{$top_iklan[i].click|number_format}</i></td>
+		<td align="center"><i>{$top_iklan[i].ctr} %</i></td>
+		
+        {/if}
+	</tr>
+	{/section}
+</table>
+{else}
+<p>Kampanye ini tidak memiliki iklan.</p>
+{/if}

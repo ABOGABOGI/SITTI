@@ -1,0 +1,508 @@
+@charset "UTF-8";
+/* CSS Document 
+	Template: SITTI New Face ver1.0
+	Author: cendekiApp
+*/
+
+body{
+	background: url(../images/bg_main.png) repeat-x scroll 0 0 #ececec;
+    color: #FFFFFF;
+    font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+	}
+.relative{
+	position:relative;
+	}
+.absolute{
+	position:absolute;
+	}
+.round-5{
+	-webkit-border-radius: 5px; 
+		 -moz-border-radius: 5px;
+			  border-radius: 5px; 		  
+	   zoom:1;
+	 behavior: url(border-radius.htc);
+	}
+.round-20{
+	-webkit-border-radius: 20px; 
+		 -moz-border-radius: 20px;
+			  border-radius: 20px; 		  
+	   zoom:1;
+	 behavior: url(border-radius.htc);
+	}
+.border-no{
+	border:none;
+	}
+.margin-right-15{
+	margin-right: 15px;
+	}
+.margin-top-90{
+	margin-top:90px;
+	}
+.margin-top-100{
+	margin-top:100px;
+	}
+.margin-top-120{
+	margin-top:120px;
+	}
+.margin-top-185{
+	margin-top:185px;
+	}
+.dot-vertical{
+	background:url(../images/dot_vertical.png) no-repeat right;
+	}
+	
+/*******************HEADER***********************/
+#header{
+	background: url(../images/bg_head.png) repeat-x scroll 0 0 transparent;
+	height:121px;
+	margin: 20px 0 0 0;
+    padding: 0;
+	}
+#header .content{
+	margin: 0 auto;
+	width:960px;
+	}
+#header .logo{
+	top: -20px;
+	left:0;
+	}
+#header .control{
+	height: 45px;
+    overflow: hidden;
+    right: 0;
+    top: 0;
+    width: 441px;	
+	}
+#header .login{
+	background:#1e6275;
+	margin: -9px 0 0;
+    padding: 18px 0 10px;
+	  -webkit-border-radius: 10px; 
+		 -moz-border-radius: 10px;  
+			  border-radius: 10px; 		  
+	  zoom:1;
+	behavior: url(border-radius.htc);
+	height: 25px;
+	}
+#header input[type=text], #header input[type=password], #header input[type=submit]{
+	color: #999999;
+    padding: 4px;
+    position: relative;
+    width: 75px;
+	
+	}
+#header select{
+	background: none repeat scroll 0 0 #FFFFFF;
+    color: #999999;
+    padding: 4px;
+    position: relative;
+    width: 100px;
+    height:23px;
+	}
+.select_style{
+   width: 100px;
+   height: 22px;
+   overflow: hidden;
+   background: none no-repeat #fff;
+   background-position: right 0px;
+   float:left;
+	}
+#header input[type=submit]{
+	padding:3px;
+	width: 60px;
+	background:#5bcbe2;
+	color:#FFF;
+	cursor:pointer;
+	}
+#header .home{
+	background:url(../images/icon_home.png);
+	width:25px;
+	height:24px;
+	left: 430px;
+    top: 70px;
+	}
+#header .menu-top{
+	left: 460px;
+    top: 75px;
+	}
+.menu-top a{
+	color:#252525;
+	text-decoration:none;
+	padding: 10px;
+	}
+.menu-top a:hover{
+	color:#fff;
+	}
+.bg_white{
+	background:#FFF;
+	}
+a.pdf{
+	color:#FFF;
+	text-decoration: none;
+	background: url(../images/pdf-logo.png) no-repeat right;
+	padding: 2px 25px 0 0;
+	}
+/*******************MAIN CONTENT***********************/
+#main-content .content{
+	margin: 0 auto;
+	width:960px;
+	min-height: 700px;
+	font-size:14px;
+	}
+#main-content .head-text{
+	color:#176c88;
+	text-align:left;
+	font-family: helvetica;
+    font-size: 24px;
+	}
+#main-content a.signup{
+	background:url(../images/signup.png);
+	background-position: top left;
+	height: 65px;
+    left: 455px;
+    top: 9px;
+    width: 172px;
+	}
+#main-content a.signup2{
+	background-position: 0 -69px;
+	left: 725px;
+    top: -85px;
+	}
+#main-content .views{
+	right: 12px;
+    top: 15px;
+	color:#555555;
+	font-size:16px;
+	text-align:left
+	}
+.views .counter{
+	background:url(../images/revisi/count.png) no-repeat;
+	color:#0072bc;
+	font-size: 24px;
+	margin-top: 6px;
+    padding: 2px 10px;
+    width:203px;
+    height: 28px;
+	}
+#main-content .btn-views{
+	background:url(../images/btn_views.png);
+	width:58px;
+	height:35px;
+	left: 890px;
+    top: 40px;
+	}
+#main-content a:hover.btn-views{
+	background-position:0px -45px;
+	}
+#main-content .advertiser{
+	top: 250px;
+	left:0;
+	background:#fff;
+	width:420px;
+	height:320px;
+	padding: 70px 20px 0;
+	color:#666666;
+	text-align:left;
+	font-size: 16px;
+	}
+#main-content ul{
+	list-style-image: url(../images/checkList.png);
+	line-height: 35px;
+	}
+#main-content .logo-adv{
+	left: 15px;
+    top: 150px;
+	background:url(../images/logo_adv.png);
+	width: 303px;
+	height:165px;
+	}
+#main-content .logo-sitti{
+	left: 15px;
+    top: 150px;
+	background:url(../images/sitti.png);
+	width:271px;
+	height:73px;
+	}
+#main-content .icon-adv{
+	left: 330px;
+    top: 215px;
+	background:url(../images/icon_adv.png);
+	width:105px;
+	height:16px;
+	}
+#main-content .text-adv{
+	font-size: 46px;
+    left: 190px;
+    top: 256px;
+	color:#ff9900;
+	}
+#main-content .blogger{
+	top: 250px;
+	right:0;
+	background:#fff;
+	width:420px;
+	height:320px;
+	padding: 70px 20px 0;
+	color:#666666;
+	text-align:left;
+	font-size: 16px;
+	}
+#main-content .logo-blog{
+	left: 515px;
+    top: 150px;
+	background:url(../images/logo_blog.png);
+	width:176px;
+	height:163px;
+	}
+#main-content .icon-blog{
+	left: 830px;
+    top: 215px;
+	background:url(../images/icon_blog.png);
+	width:105px;
+	height:16px;
+	}
+#main-content .text-blog{
+	font-size: 46px;
+    left: 745px;
+    top: 246px;
+	color:#33cc33;
+	}
+a.adv-why, a.blog-why{
+	background:url(../images/btn_whyup.png);
+	display: block;
+    height: 40px;
+    width: 103px;
+	float:right;
+	margin: 0 25px 0 0;
+	}
+a.adv-up{
+	background:url(../images/btn_whyup.png);
+	background-position: 0 -40px;
+	display: block;
+    height: 40px;
+    width: 103px;
+	float:right;
+	}
+a.blog-up{
+	background:url(../images/btn_whyup.png);
+	background-position: 0 40px;
+	display: block;
+    height: 40px;
+    width: 103px;
+	float:right;
+	}
+#main-content .page-blog{
+	left: 15px;
+    top: -40px;
+	}
+#main-content .page-blog2{
+	left: 780px;
+    top: 15px;
+	}
+#main-content .page-blog3{
+	left: 695px;
+    top: 35px;
+	}
+#main-content .page-adv{
+	left: 15px;
+    top: -40px;
+	}
+#main-content .page-tentang{
+	left: 75px;
+    top: 50px;
+	}	
+.comment{
+	color: #186A86;
+    font-size: 20px;
+    text-align: left;
+	}
+.author-comment{
+	margin-top: 40px;
+	color: #186A86;
+    font-size: 18px;
+    text-align: right;
+	}
+.blue{
+	color: #0099cc;
+	}
+p, h1, h2, h3{
+	color:#333;
+	text-align:left;
+	}
+#feed-form{
+	display:none;
+	background: none repeat scroll 0 0 #ECECEC;	
+	bottom: 0;
+    left: 135px;
+    width: 275px;
+	padding: 35px 0 25px 10px;
+	z-index:99;
+	}
+#main-content input[type=text], #main-content input[type=password], #main-content select{
+	color: #999999;
+    padding: 4px;
+	height: 30px;
+	margin-bottom: 10px;
+    width: 255px;
+    font-size:15px;
+    background: url(../images/revisi/input-text.png) no-repeat;
+	}
+#main-content select{
+	height: 37px;
+    padding: 9px;
+    width: 263px;
+	}
+#main-content textarea{
+	color: #999999;
+    padding: 4px;
+	}
+#main-content input[type=submit], #main-content input[type=reset]{
+	background: none repeat scroll 0 0 #5BCBE2;
+    color: #FFFFFF;
+    cursor: pointer;
+    padding: 3px;
+    width: 60px;
+	margin-top: 10px;
+	}
+input[type=submit]#mulaiberiklan{
+	background: url(../images/revisi/btn-beriklan.png) no-repeat;
+	height: 41px;
+    width: 120px;
+    float:left;
+}
+input[type=reset]#reset{
+	background: url(../images/revisi/btn-reset.png) no-repeat;
+	height: 41px;
+    width: 120px;
+    float:right;
+}
+.tabel-reg{
+	background: url(../images/revisi/bg-form.jpg) no-repeat scroll 0 0 transparent;
+    color: #666666;
+    height: 570px;
+    margin: 0 0 0 -15px;
+    padding: 80px 50px;
+    width: 495px;
+}
+.testiText{
+	background: url(../images/revisi/bg-testi.jpg) no-repeat scroll 0 0 transparent;
+	padding: 0 40px;
+	margin: 25px 0 0;
+}
+#main-content .newsticker-jcarousellite ul{
+	line-height:18px;
+}
+.newsticker-jcarousellite ul li{
+	font-size:12px;
+}
+.newsticker-jcarousellite ul li p{
+	text-align:center;
+	}
+/*******************FOOTER***********************/
+#footer{
+	background: url(../images/dot_footer.png) repeat-x scroll 0 0 #ececec;
+    height: 140px;
+    margin: 20px 0 0;
+    padding: 0;
+    width: 100%;
+	}
+#footer .content{
+	margin: 0 auto;
+	width:960px;
+	color:#999999;
+	}
+#footer .link-footer{
+	padding: 25px 0 0;
+	}
+.link-footer a{
+	text-decoration:none;
+	color:#999999;
+	text-transform:uppercase;
+	padding:10px;
+	}
+.link-footer a:hover{
+	color:#FFF;
+	}
+#footer .copyright{
+	background:url(../images/copyright.png) no-repeat;
+	width:242px;
+	height:50px;
+	left:0;
+	top:75px;
+	}
+#footer .social{
+	right: 0;
+    top: 110px;
+    width: 205px;
+	}
+.social span{
+	float:left;
+	margin-right:10px;
+	}
+.social a{
+	background:url(../images/icon_fbtwit.png) no-repeat;
+	width:18px;
+	height:16px;
+	display:block;
+	float:left;
+	}
+.social a.twit{
+	background-position: -20px 0px;
+	}
+#toc-choice{
+	display:none;left: 455px;top: 55px;text-align:left;
+	}
+#toc-choice a{
+	text-decoration: none;
+	color:#999999;
+	text-transform:uppercase;
+	padding:10px;
+	}
+#toc-choice a:hover{
+	color:white;
+	}
+#faq-choice{
+	display:none;right: 133px;top: 104px;text-align:left; color:#000;
+	}
+#faq-choice a{
+	text-decoration: none;
+	color:#000;
+	text-transform:uppercase;
+	padding:10px;
+	}
+#faq-choice a:hover{
+	color:white;
+	}
+	
+	
+.suksesMessage, .errorMessage {
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+    border: 1px solid #235593;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+    color: #900;
+    display: block;
+    padding: 15px;
+    text-transform: capitalize;
+    width: 380px;
+	font-weight:bold;
+}
+a.continue, a.continueErr {
+    background: none repeat scroll 0 0 #235593;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+    color: #FFFFFF;
+    display: block;
+    margin: 20px 0 0;
+    padding: 5px 10px;
+    text-decoration: none;
+    width: 80px;
+}
+#main-content input#recaptcha_response_field{
+	height:20px;
+	background: none repeat scroll 0 0 #FFFFFF;
+}

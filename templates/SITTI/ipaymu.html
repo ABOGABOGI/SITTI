@@ -1,0 +1,24 @@
+<p>Anda akan di redirect ke situs PayPal sesaat lagi</p>
+<form action="{$path_url_ipaymu}" method="post" id="PayPalForm">
+<input type="hidden" name="member" value="sittiad">
+<input type="hidden" name="action" value="payment">
+<input type="hidden" name="product" value="SITTI Topup">
+<input type="txt" name="price" value="{$amount}">
+<input type="hidden" name="quantity" value="1">
+<input type="hidden" name="period" value="">
+<input type="hidden" name="trial" value="">
+<input type="hidden" name="setup" value="0">
+<input type="hidden" name="tax" value="">
+<input type="hidden" name="shipping" value="0">
+<input type="hidden" name="ureturn" value="{$path_return_ipaymu_confirm}">
+<input type="hidden" name="unotify" value="{$path_return_ipaymu_notify}">
+<input type="hidden" name="ucancel" value="{$path_return_ipaymu_cancel}">
+<input type="hidden" name="comments" value="{$transaction_id}">
+
+</form>
+
+<script type="text/javascript">
+{literal}
+document.getElementById("PayPalForm").submit();
+{/literal}
+</script>

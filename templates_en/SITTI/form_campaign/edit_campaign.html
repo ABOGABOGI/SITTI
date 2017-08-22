@@ -1,0 +1,42 @@
+{literal}
+<script>
+$(document).ready(function(){
+	$("#tanggalAwal,#tanggalAkhir").datepicker();
+});
+</script>
+{/literal}
+{if $msg}<span class="errorMessage">{$msg}</span>{/if}
+        	<div class="w915">
+                <h3 class="headTitle">Edit Campaign/Program</h3>
+                <p><strong>The Ad Campaign is a collection of several Ads in a single theme. For example, you can create a "Year End Promo" Ad Campaign that contain services or goods you want to advertise like clothes promo Ad, shoes promo Ad, and so on.</strong></p>
+            	<form class="registerForm" action="beranda.php" method="POST" enctype="application/x-www-form-urlencoded">
+            	<div class="row">
+                	<label style="width:120px; float:left;">Campaign /Program  Name</label>
+                    <input type="text" name="name" class="inputText" style="float:left;" value="{$rs.name|trim|stripslashes|strip_tags}"/><a onmouseover="tooltip.show('Beri nama kampanye iklan supaya mudah dikenali');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+                </div>
+            	<div class="row">
+               	  <label style="width:120px; float:left;">Description</label>
+                    <textarea name="deskripsi" cols="40" rows="10" id="deskripsi" style="float:left;">{$rs.description|trim|stripslashes|strip_tags}</textarea><a onmouseover="tooltip.show('Description is an additional note to clarify the SITTI campaign purpose');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+                </div>
+            	<div class="row">
+                    <label style="width:120px; float:left;">Start</label> 
+                    <input type="text" name="tanggalAwal" id="tanggalAwal" value="{$rs.campaign_start}" maxlength="12"/>
+                        <a onmouseover="tooltip.show('Active campaign date');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+                </div>
+            	<div class="row">
+                	<label style="width:120px; float:left;">End</label> 
+					<input type="text" name="tanggalAkhir" id="tanggalAkhir" value="{$rs.campaign_end}" maxlength="12"/>	
+                        <a onmouseover="tooltip.show('Non-active campaign date');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+                </div>
+                <div class="row">
+                    
+                	<input type="submit" value="Save Change" class="submitButton" />
+                	<input name="do" type="hidden" id="do" value="update_campaign" />
+                	<input name="token" type="hidden" id="token" value="{token}" />
+                	<input name="id" type="hidden" id="id" value="{$rs.ox_campaign_id}" />
+                	<br /><br />
+                    <font color="red" style="font-size:10px;"> All fields needs to be filled, except for the Description field.</font>
+                </div>
+                </form>
+            </div>
+            

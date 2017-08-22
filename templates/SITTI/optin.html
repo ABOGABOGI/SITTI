@@ -1,0 +1,41 @@
+<script type="text/javascript">
+{literal}
+	function check()
+		{
+			if(document.getElementById("agree").checked==true){
+				document.getElementById("buttonSubmit").disabled=false;
+			}else{
+				document.getElementById("buttonSubmit").disabled=true;
+			}
+		}
+{/literal}
+</script>
+
+<form method="post" id="optin_form" action="optin.php">
+        <table cellpadding="0" cellspacing="0" border="0" style="color:#666; border:1px solid #999; margin:0 auto; padding: 10px;" class="round-5">
+        	<tr>           
+				<td>
+					<p>
+					Dear SITTIzen,
+					</p>			
+					<p>Terimakasih atas kepercayaan Anda dengan menjadi bagian dari SITTI yang terus mendukung dan bermitra dengan kami.
+					</p>	
+					<p>Melalui surat ini, kami ingin menginformasikan bahwa saat ini SITTI telah memiliki advertiser yang sangat beragam.  Sehubungan dengan hal tersebut, beberapa di antara advertiser SITTI memiliki syarat dan ketentuan dalam menayangkan produk/jasa yang mereka miliki, yaitu dengan tidak mengiklankan produk atau jasa mereka pada website dengan pengunjung mayoritas di bawah umur 17 tahun.</p>
+					<p>Perlu kami perjelas bahwa advertiser yang kami maksud di atas adalah advertiser yang bergerak di bidang yang sah secara hukum, hanya saja regulasi periklanan mengharuskan mereka untuk tidak menayangkan produk/jasanya untuk pengunjung dibawah umur 17 tahun. Para advertiser dari kategori ini merupakan advertiser besar yang tentunya akan mendatangkan pendapatan yang signifikan untuk SITTIzen.</p>
+					<p>Demi menjaga kepentingan dan kebaikan bagi para publisher dan advertiser SITTI, maka kami meminta kerjasama Anda selaku publisher untuk menjawab pernyataan di bawah ini hanya <strong>JIKA minimal 75% dari pengunjung website/blog Anda berusia 17 tahun ke atas.</strong></p>
+				
+				</td>
+        	</tr>
+            <tr>           
+				<td>
+					<input type="hidden" name="submit_optin" value="1"/>
+					<label>
+						<input type="checkbox" name="agree" id="agree" onclick="check()">Saya menyatakan minimal 75% dari pengunjung blog Saya berusia 17 tahun ke atas.</input>
+					</label>
+					<input type="hidden" name="sittiID" value="{$sittiID}"/><br/>
+					<input class="round-5 border-no" type="submit" id="buttonSubmit" disabled=true value="Konfirmasi" style="margin-bottom: 7px;width:150px;" />
+				</td>
+        	</tr>
+        
+        </table>
+</form>

@@ -1,0 +1,39 @@
+
+<h3 class="headTitle">Kontak Kami</h3>
+<div class="w635">
+    <form action="contact.php" method="post" enctype="application/x-www-form-urlencoded">
+        <div id="form">
+            <div class="row">
+                <label>Nama</label>
+                <input name="name" type="text" id="text" />
+                <p class="error"><span></span></p>
+            </div>
+            <div class="row">
+                <label>E-Mail</label>
+                <input name="email" type="text" id="text" />
+                <p class="error"><span></span></p>
+            </div>
+            <div class="row">
+                <label>Subyek</label>
+                <select name="subject" id="selectID">
+                    <option  value="No Subject" selected="selected">Pilih Subyek</option>
+                    <option value="subyek 1">Subyek 1</option>
+                    <option value="subyek 2">Subyek 2</option>
+                </select>
+                <p class="error"><span></span></p>
+            </div>
+            <div class="row">
+                <label>Pesan</label>
+                <textarea name="message" id="text"></textarea>
+                <p class="error"><span></span></p>
+            </div>
+            <div class="row">
+                <input class="submitButton" type="submit" name="button" id="button" value="KIRIM" />
+                <p class="error">
+                    <span>semua field harus di isi</span>
+                </p>
+            </div>
+        </div>
+    </form>
+
+</div>

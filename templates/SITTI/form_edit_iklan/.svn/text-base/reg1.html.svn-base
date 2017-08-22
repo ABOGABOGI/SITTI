@@ -1,0 +1,348 @@
+ <script type="text/javascript">
+ 	var random='{$random}';
+ 	var iklan_id = "{$rs.id|mysql_escape_string|strip_tags}";
+	var restricted_word = {$restricted_words};
+	//skor range 1-100
+	var skor = 60;
+ {literal}
+ 
+ function filter_restricted_words(statement, filter) {
+        var found = false;
+        for (var i = 0; i < filter.length; i++) {
+            var pattern = new RegExp("\\b"+filter[i]+"\\b", 'g');
+            if (pattern.test($.trim(statement.toLowerCase()))) {
+                found = true;
+                break;
+            }
+        }
+        return found;
+    }
+	
+  $(document).ready(function(){
+	  /*SKOR Iklan*/
+		var arrow_skor = (186*skor)/100;
+		var desc_skor = arrow_skor - 20;
+		$("div#arrowSkor").css("left",arrow_skor+"px");
+		$("div#descSkor").css("left",desc_skor+"px");
+		if (skor <= 30){
+			$("div#descSkor").html("Kurang Baik");
+		}else if(skor > 30 && skor < 70){
+			$("div#descSkor").html("Baik");
+		}else{
+			$("div#descSkor").html("Sangat Baik");
+		}
+      
+
+	
+	$("#listkeyword").html("<span style='text-align:center;'><img src='images/loader.gif'/></span>");
+ 	$("#listkeyword").load("beranda.php?selected_keywords=3&id="+iklan_id);
+   });
+  
+  function deleteKeyword(keyword){
+	  $("#listkeyword").html("<span style='text-align:center;'><img src='images/loader.gif'/></span>");
+	 $("#listkeyword").load("beranda.php?delete_selected_key=1&k="+escape(keyword));
+  }
+  
+  $(document).ready(function() {
+      $('input#nama, input#judul, input#baris1, input#setUrl, input#urlLink').bind('blur',
+          function() {
+              if(filter_restricted_words($(this).val(), restricted_word)) {
+                    alert('Input anda mengandung kata-kata yang dilarang.');
+                    $(this).css('border', '1px solid #ff0000');
+                    if ($(this).attr('id') == 'urlLink') {
+                        $(this).val('http://');
+                    } else {
+                        $(this).val('');   
+                    }
+                    $(this).focus();
+                } else {
+                  $(this).css('border', '1px solid #cccccc');
+                  if ($(this).val() != '')
+                  {
+                      if ($(this).attr('id') == 'judul') {
+                          $('#setJudul').html($(this).val());
+                      } else if ($(this).attr('id') == 'baris1') {
+                          $('#setBaris1').html($(this).val());
+                      } else if ($(this).attr('id') == 'setUrl') {
+                          $('#setUrl').html($(this).val());
+                      }
+                  }
+              }
+          });
+		  
+	$(document).ready(function(){
+		urlTampil(document.getElementById("urlName").value);
+		barisPertama(document.getElementById("baris1").value);
+		judulIklan(document.getElementById("judul").value);
+	});
+  });
+  {/literal}
+ </script>
+<h3 class="headTitle">Edit Iklan</h3>
+<h3>Proses berikut akan membimbing anda mengedit iklan baru di SITTI</h3><br /><br />
+<form onload="setPreview()" class="registerForm" action="beranda.php" method="post" enctype="application/x-www-form-urlencoded"> 
+	<h3 class="circleTitle"><span class="circle">1</span><span class="circleText">Ubah isi Iklan Anda</span></h3>
+    	<div class="isiForm">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="addlist zebra">
+      <tr class="head">
+      	<td colspan="2">
+        	<h3 class="subtitleReg">Pada tahap ini silahkan mengisi Iklan yang akan tampil di SITTI</h3>
+        </td>
+      </tr>
+      <tr>
+        <td width="100">Nama Iklan</td>
+        <td><input name="nama" maxlength="30" type="text" class="inputText" id="nama" style="float:left; width:350px;" value="{$rs.nama|stripslashes|strip_tags}" /><a onmouseover="tooltip.show('Beri nama iklan Anda agar mudah dikenali');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a></td>
+      </tr>
+      <tr>
+        <td width="100">Judul Iklan</td>
+        <td><input name="judul" type="text" class="inputText" id="judul" onchange="judulIklan(this.value);"  style="float:left; width:350px;" value="{$rs.judul|stripslashes|strip_tags}" maxlength="30" onKeyDown="limitText(this.form.judul,this.form.cdJudul,30);" onKeyUp="limitText(this.form.judul,this.form.cdJudul,30);"/><a onmouseover="tooltip.show('<img src=images/sample-judul.jpg>');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+        	<span id="judIk" style="display:none;padding:0 0 0 7px; font-size:11px;margin: 3px 0 0;float:left;" class="blue"><input readonly type="text" id="cdJudul" name="cdJudul" size="3" value="30" style="border:none;background:none;font-size:12px;width:18px;">karakter yang tersisa.</span>
+        </td>
+      </tr>
+      <tr>
+        <td width="100">Isi Iklan</td>
+        <td><input name="baris1" maxlength="60" type="text" class="inputText" id="baris1" onchange="barisPertama(this.value);" style="float:left; width:350px;" value="{$rs.baris1|stripslashes|strip_tags}" size="70" maxlength="60" onKeyDown="limitText(this.form.baris1,this.form.cdIsi,60);" onKeyUp="limitText(this.form.baris1,this.form.cdIsi,60);"/><a onmouseover="tooltip.show('<img src=images/sample-isi.jpg>');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+        	<span id="isiIk" style="display:none;padding:0 0 0 7px; font-size:11px;margin: 3px 0 0;float:left;" class="blue"><input readonly type="text" id="cdIsi" name="cdIsi" size="3" value="60" style="border:none;background:none;font-size:12px;width:18px;">karakter yang tersisa.</span> 
+        </td>
+      </tr>
+      <tr class=" oddRow oddRow">
+            <td colspan="2">
+                <h3 class="subtitleReg" style="float:left;">Kolom Preview </h3>
+                {*}
+                <h3 class="subtitleReg" style="float:right;margin: 0 165px 0 0;">Skor Iklan</h3>
+            	{/*}
+            </td>
+        </tr>
+        <tr class=" evenRow evenRow">
+            <td colspan="2">
+                <div style="margin:0;float:left;" class="sampleIklan">
+                <a id="setJudulURL" href="#" target="_blank"><h1 id="setJudul" class="titleAdv">Iklan Sitti Anda</h1></a>
+                <a id="setContentURL" href="#" target="_blank" style="text-decoration:none;"><p id="setBaris1" style="clear:both;margin:0;">Text Iklan Baris Pertama</p></a>
+                <!--<p style="clear:both; margin:0;" id="setBaris2">Text Iklan Baris Kedua</p>-->
+                
+                <a href="#" id="setUrl" class="urlAdv" target="_blank">www.sittibelajar.com</a> <a href="#" class="adsby">ads by SITTI</a> 
+                </div>
+                {*}
+                <div style="float:right; margin: 2px 17px 0 0; position:relative;">
+                	<div class="gradient round7" style="display:block;width:200px;height:15px;"></div>
+                	<div id="arrowSkor" class="arrow-up" style="position:absolute;top:15px;left:0;"></div>
+                	<div id="descSkor" class="round7" style="border: 1px solid #CCCCCC;left: -20px;padding: 1px 5px;position: absolute;text-align: center;top: 27px;width: 40px;">Kurang Baik</div>
+                </div>
+                {/*}
+            </td>
+        </tr>
+    </table>
+        </div>
+	<hr />
+    	<h3 class="circleTitle"><span class="circle">2</span><span class="circleText">Tentukan Tujuan Iklan Anda</span></h3>
+ 			<div class="isiForm"> 
+          	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="addlist zebra">
+    			<tr style="display:none;">
+        			<td>
+                       <input name="target_web" type="radio" disabled="disabled" value="sitti" onClick="return rbPkg_onclick(this.value)" style="float:left; margin:4px 10px 0 0">
+                  	</td>
+                    <td colspan="2">
+                    	
+            <span style="float:left;">SITTI Landing Page</span><a style="margin:-3px 0 0 0;" onmouseover="tooltip.show('Apabila Anda tidak mempunyai website atau ingin mendapatkan hasil yang lebih optimal, Anda dapat membuat halaman utama sendiri dengan SITTI');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+                    </td>
+                 </tr>
+    			<tr>
+        			<td>
+                      <input name="target_web" type="radio" value="url" onclick="return rbPkg_onclick(this.value)" style="float:left; margin:4px 10px 0 0" checked="true">
+                  	</td>
+                    <td colspan="2">
+                    	<span style="float:left;">Website Sendiri</span><a style="margin:-3px 0 0 0;" onmouseover="tooltip.show('Arahkan iklan SITTI langsung ke situs Anda');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+                    </td>
+                 </tr>
+				<tr>
+                	<td></td>
+                	<td>
+                    	Alamat situs yang ditampilkan
+                    </td>
+                    <td>
+                    	<input name="urlName" type="text" class="inputText" id="urlName" onchange="urlTampil(this.value);" style="width:300px;float:left;" value="{$rs.urlName|stripslashes|strip_tags}" value="{$urlName|stripslashes|strip_tags}" onKeyDown="limitText(this.form.urlName,this.form.cdURL,30);" onKeyUp="limitText(this.form.urlName,this.form.cdURL,30);" /><a style="margin: 4px 0 0;" onmouseover="tooltip.show('<img src=images/sample-url.jpg>');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+                    	<span id="cdURL" style="display: none;padding:0 0 0 7px; font-size:11px;margin: 3px 0 0;float:left;" class="blue"><input readonly type="text" name="cdURL" size="3" value="30" style="border:none;background:none;font-size:12px;width:18px;" id="URLcd">karakter yang tersisa.</span>
+                    </td>
+                 </tr>
+                 <tr>
+                 	<td></td>
+                	<td>
+                    	Alamat situs yang sebenarnya
+                    </td>
+                    <td>
+                    <input name="urlLink" type="text" class="inputText" id="urlLink" value="{$rs.urlLink|stripslashes|strip_tags}"/><span class="blue" style="padding:0 0 0 7px; font-size:11px;">(Harus lengkap dengan http://)</span>
+					</td>
+                 </td>
+             </table>   
+         </div>
+         <hr />
+  <h3 class="circleTitle"><span class="circle">3</span><span class="circleText">Tentukan Kategori Iklan Anda</span></h3>
+         <div class="isiForm"> 
+         <table width="100%" border="0" cellspacing="0" cellpadding="0" class="addlist zebra">
+    			<tr class="head">
+        			<td colspan="2">
+                  	  <h3 class="subtitleReg">Kategori yang tepat akan mempermudah SITTI mencocokkan iklan Anda dengan publisher</h3>
+                    </td>
+                </tr>
+                <tr>
+                	<td>
+                    	 <select name="category" class="kategoriIklan" id="category">
+                {section name=i loop=$adCategory}
+                <option value="{$adCategory[i].id}">{$adCategory[i].categoryName}</option>
+                {/section}
+            </select>
+            <script>
+			document.getElementById('category').value="{$rs.category_id|stripslashes|strip_tags}";
+			</script>
+                    </td>
+                </tr>
+		</table>
+        </div>
+         <hr />
+         <h3 class="circleTitle"><span class="circle">4</span><span class="circleText">Tentukan Target Pasar Iklan Anda</span></h3>
+         <div class="isiForm"> 
+         <table width="100%" border="0" cellspacing="0" cellpadding="0" class="addlist zebra">
+    			<tr class="head">
+        			<td colspan="2">
+                  	  <h3 class="subtitleReg">Target pasar yang tepat akan mempermudah SITTI mencocokkan iklan Anda dengan publisher</h3>
+                    </td>
+                </tr>
+                <tr>
+                	<td>
+                    <select class="kategoriIklan" name="target_market" id="target_market">
+                {section name=i loop=$adGenre}
+                <option value="{$adGenre[i].id}">{$adGenre[i].categoryName}</option>
+                {/section}
+            </select>
+             <script>
+			document.getElementById('target_market').value="{$rs.genre_id|stripslashes|strip_tags}";
+			</script>
+                    </td>
+                </tr>
+		</table>
+        </div>
+		<hr />
+ 		 <h3 class="circleTitle"><span class="circle">5</span><span class="circleText">Pembelian Kata Kunci dan Saran Pemasangan Iklan</span></h3>
+         <div class="isiForm"> 
+                <div id="listkeyword">
+ 				
+                </div>
+                   <div class="row noBorder">
+                       <a href="beranda.php?edit_keyword=1&id={$rs.id|stripslashes|strip_tags}">Hapus Kata Kunci</a>
+                       &nbsp;&nbsp;
+                       <a href="beranda.php?tambah_keyword=1&id={$rs.id|stripslashes|strip_tags}">Tambah Kata Kunci</a>
+                    </div>
+    	 </div>
+      
+      <hr />
+ 		 <h3 class="circleTitle"><span class="circle">6</span><span class="circleText">Daerah yang ingin anda tuju (Geo Targeting)</span></h3>
+         <div class="isiForm"> 
+              <table>
+               <tr>
+                	<td colspan="6">
+                    	<input id="allcity" name="allcity" type="checkbox" class="pilihKota" value="1" onchange="toggleAllCity();return false;" {if $ALL}checked="true"{/if}/><span class="kotaTujuan">Seluruh Kota</span>
+                    </td>
+                </tr>
+                <tr>
+                	<td>
+                    	<input id="tcity[]" name="tcity[]" value="MEDAN" type="checkbox" class="pilihKota" onchange="uncheckedAll();return false;" {$MEDAN}/><span class="kotaTujuan">Medan</span>
+                    </td>
+                	<td>
+                    	<input id="tcity[]" name="tcity[]" value="JABODETABEKBAN" type="checkbox" class="pilihKota" onchange="uncheckedAll();return false;" {$JABODETABEKBAN}/><span class="kotaTujuan">Jabotabek & Bandung</span>
+                    </td>
+                	<td>
+                    	<input id="tcity[]" name="tcity[]" value="YOGYAKARTA" type="checkbox" class="pilihKota" onchange="uncheckedAll();return false;" {$YOGYAKARTA}/><span class="kotaTujuan">Yogyakarta</span>
+                    </td>
+                	<td>
+                    	<input id="tcity[]" name="tcity[]" value="BALI" type="checkbox" class="pilihKota" onchange="uncheckedAll();return false;" {$BALI}/><span class="kotaTujuan">Bali</span>
+                    </td>
+                	<td>
+                    	<input id="tcity[]" name="tcity[]" value="UJUNG PANDANG" type="checkbox" class="pilihKota" onchange="uncheckedAll();return false;" {$UJUNG_PANDANG}/><span class="kotaTujuan">Ujung Pandang/Makasar</span>
+                    </td>
+                </tr>
+              </table>  
+    	 </div>
+      <hr />
+    <div class="row">
+        <input type="submit" value="SIMPAN" class="submitButton" />
+    </div>
+
+  <input name="id" type="hidden" id="id" value="{$rs.id|stripslashes|strip_tags}" />
+  <input name="c" type="hidden" id="c" value="{$rs.ox_campaign_id|stripslashes|strip_tags}" />
+  <input name="edit_iklan" type="hidden" value="1"/>
+  <input name="token" type="hidden" value="{token}"/>
+  <input name="do" type="hidden" value="update" />
+</form>
+ {literal}
+                	<script type="text/javascript">		                	               	                			
+		                	function linkAsli(url){
+								$("#setJudulURL").attr("href",url);
+								$("#setContentURL").attr("href",url);
+								$("#setUrl").attr("href",url);
+								}
+							function judulIklan(judul){ //membuat header (judul utama)
+								document.getElementById("setJudul").innerHTML = judul;
+								//document.getElementById("setJudul2").innerHTML = judul;
+								//alert(titlePage);
+							}
+							function barisPertama(baris1){ //membuat header (judul utama)
+								document.getElementById("setBaris1").innerHTML = baris1;
+								//alert(titlePage);
+							}
+							function barisKedua(baris2){ //membuat header (judul utama)
+								document.getElementById("setBaris2").innerHTML = baris2;
+								//alert(titlePage);
+							}
+							function urlTampil(urlName){ //membuat header (judul utama)
+								document.getElementById("setUrl").innerHTML = urlName;
+								//alert(titlePage);
+							}
+							function uncheckedAll(){
+								$('#allcity').attr("checked","");
+							}
+							function toggleAllCity(){
+								$.each($("input[name='tcity[]']:checked"), function() {
+										$(this).attr('checked',false);
+									});
+																	
+							}
+							function limitText(limitField, limitCount, limitNum) {
+								if (limitField.value.length > limitNum) {
+									limitField.value = limitField.value.substring(0, limitNum);
+								} else {
+									limitCount.value = limitNum - limitField.value.length;
+								}
+							}
+							$("#urlName").focus(function(){
+								var jum = $(this).val();
+								var sisa = 30 - jum.length;
+								$("#URLcd").val(sisa);
+								$("#cdURL").show();
+							});
+							$("#judul").focus(function(){
+								var jum = $(this).val();
+								var sisa = 30 - jum.length;
+								$("#cdJudul").val(sisa);
+								$("#judIk").show();
+							});
+							$("#baris1").focus(function(){
+								var jum = $(this).val();
+								var sisa = 60 - jum.length;
+								$("#cdIsi").val(sisa);
+								$("#isiIk").show();
+							});
+					</script>
+                {/literal}
+<script>
+{literal}
+function uncheckedAll(){
+	$('#allcity').attr("checked","");
+}
+function toggleAllCity(){
+	$.each($("input[name='tcity[]']:checked"), function() {
+			$(this).attr('checked',false);
+		});
+										
+}
+{/literal}
+</script>

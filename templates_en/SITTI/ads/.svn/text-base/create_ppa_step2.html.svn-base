@@ -1,0 +1,37 @@
+<form action="buat.php?ad_ppa=true"" method="post">
+<div style="width:900px;">
+
+	<h3 class="headTitle">Tentukan Kategori Produk </h3>
+	<p>Pilih kata kunci sesuai dengan iklan Anda.</p>
+	
+	<table cellspacing="0" cellpadding="0" border="0" class="tablesorter list">
+        <tr>
+            <td>
+            <table width="100%">
+            {assign var=num value=0}
+            {section name=i loop=$categories}
+            <tr>
+            <td style="border:none;">
+            <input type="checkbox" value="{$categories[i].kategori}" name="categories[]">{$categories[i].kategori|capitalize}
+            </td>
+            </tr>
+            {if $num == $categories_half}
+            </table>
+            </td>
+            <td>
+            <table>
+            {/if}
+            {assign var=num value=$num+1}
+            {/section}    
+            </table>    
+            </td>
+        </tr> 
+    </table>
+		
+	<div style="margin-top:10px">
+		<input type="hidden" name="next" value="3" />
+		<input type="submit" value="Lanjut" name="simpanKonversi" class="submitButton">
+	</div>
+	
+</div>
+</form>

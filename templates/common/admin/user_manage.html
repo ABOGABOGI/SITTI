@@ -1,0 +1,35 @@
+<p><strong>ADMINISTRATIVE ACCOUNTS</strong> </p>
+<table class="list" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="head">
+    <td width="4%"><strong>No</strong></td>
+    <td width="74%"><strong>Username</strong></td>
+    <td width="22%"><strong>Action</strong></td>
+  </tr>
+  {section name=i loop=$list}
+  <tr>
+    <td>1</td>
+    <td>{$list[i].username|stripslashes}</td>
+    <td>
+    <a class="publish" href="?s=admin&r=permission&id={$list[i].userID}">Set Permissions</a> 
+    <a class="addSubPage" href="?s=admin&amp;r=users&amp;do=edit&amp;id={$list[i].userID}">Edit</a> 
+    <a class="deletePage" href="#" onClick="doConfirm('{$list[i].userID}');return false;">Delete</a>
+    </td>
+  </tr>
+  {/section}
+</table>
+<a class="newUserAccount" href="?s=admin&amp;r=users&amp;do=new">&nbsp; </a>
+
+<script>
+{literal}
+function doConfirm(id){
+	if(confirm("Are you sure to delete this account permanently ?")){
+	{/literal}
+		var s = "?s=admin&r=users&do=delete&id="+id;
+{literal}
+		document.location=s;
+	}else{
+		return false;
+	}
+}
+{/literal}
+</script>

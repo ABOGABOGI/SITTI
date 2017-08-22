@@ -1,0 +1,170 @@
+.popupBox a{
+cursor: pointer;
+text-decoration:none;
+}
+
+#backgroundPopup{
+display:none;
+position:fixed;
+_position:absolute; /* hack for internet explorer 6*/
+height:100%;
+width:100%;
+top:0;
+left:0;
+background:#000000;
+border:1px solid #cecece;
+z-index:1;
+}
+.popupBox{
+display:none;
+position:fixed;
+_position:absolute; /* hack for internet explorer 6*/
+height:740px;
+width:995px;
+;
+border:2px solid #cecece;
+z-index:2;
+padding:12px;
+font-size:13px;
+}
+.popupBox h1{
+text-align:left;
+color:#6FA5FD;
+font-size:22px;
+font-weight:700;
+border-bottom:1px dotted #D3D3D3;
+padding-bottom:2px;
+margin-bottom:20px;
+}
+#popup160x600{
+	background:#FFFFFF url(../dummyPage/160x600.jpg) no-repeat;
+	}
+#popup160x600 .banner{
+	background-color: #FFF;
+	display:block;
+	width:160px;
+	height:600px;
+	margin-left: 782px;
+    margin-top: 113px;
+	}
+#popup250x250{
+	background:#FFFFFF url(../dummyPage/250x250.jpg) no-repeat;
+	}
+#popup250x250 .banner{
+	background-color:#FFF;
+	display:block;
+	width:250px;
+	height:250px;
+    margin-left: 645px;
+    margin-top: 386px;
+	}
+#popup300x160{
+	background:#FFFFFF url(../dummyPage/300x160.jpg) no-repeat;
+	}
+#popup300x160 .banner{
+	background-color:#FFF;
+	display:block;
+	width:300px;
+	height:160px;
+    margin-left: 631px;
+    margin-top: 388px;
+	}
+#popup300x250{
+	background:#FFFFFF url(../dummyPage/300x250.jpg) no-repeat;
+	}
+#popup300x250 .banner{
+	background-color:#FFF;
+	display:block;
+	width:300px;
+	height:250px;
+    margin-left: 627px;
+    margin-top: 140px;
+	}
+#popup336x280{
+	background:#FFFFFF url(../dummyPage/336x280.jpg) no-repeat;
+	}
+#popup336x280 .banner{
+	background-color:#FFF;
+	display:block;
+	width:336px;
+	height:280px;
+    margin-left: 627px;
+    margin-top: 125px;
+	}
+#popup468x60{
+	background:#FFFFFF url(../dummyPage/468x60.jpg) no-repeat;
+	}
+#popup468x60 .banner{
+	background-color:#FFF;
+	display:block;
+	width:468px;
+	height:60px;
+    margin-left: 213px;
+    margin-top: 361px;
+	}
+#popup520x70{
+	background:#FFFFFF url(../dummyPage/520x70.jpg) no-repeat;
+	}
+#popup520x70 .banner{
+	background-color:#FFF;
+	display:block;
+	width:520px;
+	height:70px;
+    margin-left: 213px;
+    margin-top: 367px;
+	}
+#popup610x60{
+	background:#FFFFFF url(../dummyPage/610x60.jpg) no-repeat;
+	}
+#popup610x60 .banner{
+	background-color:#FFF;
+	display:block;
+	width:610px;
+	height:60px;
+    margin-left: 213px;
+    margin-top: 565px;
+	}
+#popup728x90{
+	background:#FFFFFF url(../dummyPage/728x90.jpg) no-repeat;
+	}
+#popup728x90 .banner{
+	background-color:#FFF;
+	display:block;
+	width:728px;
+	height:90px;
+    margin-left: 214px;
+    margin-top: 396px;
+	}
+#popup940x70{
+	background:#FFFFFF url(../dummyPage/940x70.jpg) no-repeat;
+	}
+#popup940x70 .banner{
+	background-color:#FFF;
+	display:block;
+	width:940px;
+	height:70px;
+    margin-left: 48px;
+    margin-top: 572px;
+	}
+.popupClose{
+font-size:14px;
+line-height:14px;
+right:6px;
+top:4px;
+position:absolute;
+color:#6fa5fd;
+font-weight:700;
+display:block;
+}
+
+.containerKonversi{
+	width: 800px;
+	background:#fff;
+	height: 850px;
+}
+.containerKonversi h1{
+	color:#0080AB;
+}
+.konversi{
+	padding: 10px;
+}

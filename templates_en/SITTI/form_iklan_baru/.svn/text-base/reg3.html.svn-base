@@ -1,0 +1,101 @@
+ <script type="text/javascript" src="js/jquery.numberformatter-1.1.0.js"></script>
+ <script>
+ 	var random='{$random}';
+ 	var n_slots ={if $n_slots}{$n_slots}{else}0{/if};
+ 	var MINIMUM_BID = {$MINIMUM_BID};
+
+ {literal}
+  $(document).ready(function(){
+	//$("#listkeyword").html("<span style='text-align:center;'><img src='images/loader.gif'/></span>");
+ 	//$("#listkeyword").load("beranda.php?selected_keywords=1");
+	 	//alert($("#bid").length());
+	  	updateTotal();
+
+      var bid_val = 0;
+      $(function() {
+        $('input.bidval').focus(function() {
+          bid_val = parseInt($(this).val());
+        });
+
+        $('input.bidval').change(function() {
+          if ( parseInt($(this).val()) < parseInt(MINIMUM_BID) ) {
+            $(this).val(bid_val);
+            alert('Your minimun bid is Rp. ' + MINIMUM_BID);
+          }
+        });
+      });
+
+   });
+  
+  function deleteKeyword(keyword){
+	//  $("#listkeyword").html("<span style='text-align:center;'><img src='images/loader.gif'/></span>");
+	// $("#listkeyword").load("beranda.php?delete_selected_key=1&k="+escape(keyword));
+  }
+  function updateTotal(){
+	  var n_total=0;
+	  var n_budget=0;
+	 	for(var i=0;i<n_slots;i++){
+		 	//alert($("#budget_"+(i+1)).val());
+		 	n_total+=eval($("#total_"+(i+1)).val());
+		 	n_budget+=eval($("#budget_"+(i+1)).val());
+	 	}
+	 	$("#totaldaily").html(n_budget).format({format:"#,###", locale:"en"});
+	 	$("#totalbudget").html(n_total).format({format:"#,###", locale:"en"});
+  }
+  {/literal}
+  
+ </script>
+ 
+  <h3 class="headTitle">Create New Ads</h3>
+  {if $err_msg}
+  <div align="center" class="errorMessage"><p>{$err_msg}</p></div>
+   {/if}
+                <div class="quote" style="margin:10px 0; background-color:#e5eff4;">
+                <strong>You may bid for a keyword, decide on the daily budget and the total budget for your Ad placement.</strong>
+ </div>
+                <form class="registerForm" action="buat.php" method="post" enctype="application/x-www-form-urlencoded">
+                <h3 class="blue">Confirm Your Keyword &amp; Budget</h3>
+                <div id="listkeyword">
+ 				<table width="650" border="0" cellspacing="0" cellpadding="0" class="list zebra" >
+                  <tr class="head">
+                    <td width="20">No.</td>
+                    <td>Keyword</td>
+                    <td>Average CPC</td>
+                    <td>*Your Bid</td>
+                    <td>Daily Budget*</td>
+                    <td>Total Budget*</td>
+                    <!--<td width="50">Remove</td> -->
+                  </tr>
+                  {section name=i loop=$list}
+                  {if $list[i].keyword}
+                  <tr>
+                    <td>{$smarty.section.i.iteration}</td>
+                    <td>{$list[i].keyword|trim|stripslashes|strip_tags}</td>
+                    <td>{$list[i].max_cpc|number_format}<input name="cpc[]" type="hidden" value="{$list[i].max_cpc}"/></td>
+                    <td><input name="keyword[]" type="hidden" value="{$list[i].keyword|stripslashes|strip_tags|mysql_escape_string}"/>
+                      <input name="bid[]" type="text" value="{if $list[i].bid eq ''}{$MINIMUM_BID}{else}{$list[i].bid}{/if}"  class="inputPoint bidval"/></td>
+                    <td><input name="budget[]" type="text" value="{$list[i].budget}" class="inputPoint" id="budget_{$smarty.section.i.iteration}" onchange="updateTotal();return false;"/></td>
+                    <td><input name="total[]" type="text" value="{$list[i].total}" class="inputPoint" id="total_{$smarty.section.i.iteration}" onchange="updateTotal();return false;"/></td>
+                   <!-- <td><div align="center"><a onmouseover="tooltip.show('Hapus Keyword ini?');" onmouseout="tooltip.hide();"  href="javascript:;" class="remove" onclick="deleteKeyword('{$list[i].keyword|stripslashes|strip_tags|mysql_escape_string}');">&nbsp;</a></div></td> --> 
+                  </tr>
+                  {/if}
+                    {/section}
+                    <tr>
+                    	<td colspan="4">Subtotal</td>
+                    	<td><span id="totaldaily" name="totaldaily" style="font-weight:bold;">0</span></td>
+                    	<td><span id="totalbudget" name="totalbudget" style="font-weight:bold;">0</span></td>
+                    </tr>
+                </table><br />
+                </div><p>*This value is recommended by SITTI based on the simulation.</p>
+  					 
+                    <div class="row">
+                    	 <a href="buat.php?edit=1" class="submitButton">Back</a>
+                    	 <input name="token" type="hidden" value="{token}">
+                        <input type="submit" value="Next" class="submitButton" style="float:right;" />
+                        <!--<p class="error">Semua field wajib diisi</p>-->
+                    </div>
+                     <input name="detil" type="hidden" value="1">
+ </form>
+ <div style="margin:10px 0; background-color:#e5eff4;" class="quote">
+                <strong><span style="color:#C00">WARNING: Use of SITTI Ad must not violate legal and regulatory requirements that <br/> generally accepted in Indonesia or other countries concerned. For more details see <a target="_blank" href="term.html" style="color:#C00; text-decoration:underline;"><span >Terms and Conditions</span></a></span></strong>
+ 					</div>

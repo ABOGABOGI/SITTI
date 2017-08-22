@@ -1,0 +1,30 @@
+<script type="text/javascript">
+{literal}
+
+$(document).ready(function() {
+	
+	$('#list_iklan').bind('change', function() {
+		if ($(this).val() != 'pilih') {
+				$('#detail_iklan').load('iklan.php?action=detail_iklan&id_iklan=' + $(this).val(), function() {
+				$('#detail_iklan').show();
+				$('#iklan_log').val('').show();
+			});	
+		}
+	});
+
+});
+
+{/literal}
+</script>
+<h1>PPA Sandbox</h1>
+{if $ads}
+<label for="list_iklan">Pilih Iklan </label>
+<select name="list_iklan" id="list_iklan">
+	<option value="pilih">Pilih Iklan</option>
+	{section name=i loop=$ads}
+	<option value="{$ads[i].id}">{$ads[i].nama}</option>
+	{/section}
+</select>
+<div id="detail_iklan" style="display:none;"></div>
+<textarea id="iklan_log" rows="10" cols="80" style="display:none;"></textarea>
+{/if}

@@ -1,0 +1,126 @@
+<h1 class="blue">Tentukan Jenis Iklan Anda</h1>
+					<p>Kini Anda bisa menentukan jenis iklan sesuai kebutuhan. Pilih salah satu format iklan dibawah ini.</p>
+					<div class="row">&nbsp;</div>
+					<div class="row">
+                    <table cellspacing="0" cellpadding="0" border="0" class="noMargin">
+       				 <tr>
+            			<td><a href="buat.php"><img src="images/baru/iklan_text.png" style="width:224px; height:230px;"></a></td>
+            		 	<td valign="middle">
+                        <br /><br /><br /><br />
+                        <h3 class="blue"><a class="ppa" href="buat.php">Iklan TEXT Pay Per Click <img src="images/baru/iklan_arrow.png" style="width:18px; height:13px;"></a></h3>
+            		 		<p>Iklan Pay Per Click atau Bayar Setiap Klik adalah jenis iklan dimana Anda<br />hanya membayar SITTI apabila iklan Anda di klik.</p></td>
+            		 </tr>
+            		</table>
+                    </div>
+                   {if $takeOut}
+<div><a href="buat.php"><img src="images/iklan-text-2.png" style="width:567px; height:210px;"></a></div>
+                    
+                     <h2 class="blue" style="font-size:24px; margin-bottom:20px;">Iklan Tulisan atau Text</h2>
+                    <div><img src="images/iklan-text.png" style="width:641px; height:186px;"/></div>
+                    <div><a class="buatIklanButton" href="buat.php">&nbsp;</a></div>
+					{/if}
+             		
+                    
+                    <div class="row">
+                    <table cellspacing="0" cellpadding="0" border="0" class="noMargin">
+       				 <tr>
+            			<td><a href="buat.php?ad_banner=1"><img src="images/baru/iklan_flash.png" style="width:223px; height:230px;"></a></td>
+            		 	<td valign="middle">
+                        <br /><br /><br /><br />
+                        <h3 class="blue"><a class="ppa" href="buat.php?ad_banner=1">Iklan Banner <img src="images/baru/iklan_arrow.png" style="width:18px; height:13px;"></a></h3>
+            		 		<p>Iklan Banner adalah jenis iklan berupa animasi atau gambar yang metode<br />pembeliannya adalah per impressi.</p></td>
+            		 </tr>
+            		</table>
+                    </div>
+                   	
+                    {if $takeOut}
+                    <div><a href="buat.php?ad_banner=1"><img src="images/iklan-banner-2.png" style="width:567px; height:210px;"></a></div>
+                   
+                     <h2 class="blue" style="font-size:24px; margin-bottom:20px;">Iklan Animasi atau Statis</h2>
+                    <div style="margin-right:30px;" class="bannerFlash">
+               			<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="FlashID" height="190" width="230">
+                                          <param value="flash/300x250.swf" name="movie">
+                                          <param value="high" name="quality">
+                                          <param value="opaque" name="wmode">
+                                          <param value="9.0.45.0" name="swfversion">
+                                          <!-- This param tag prompts users with Flash Player 6.0 r65 and higher to download the latest version of Flash Player. Delete it if you don�t want users to see the prompt. -->
+                                          <param value="Scripts/expressInstall.swf" name="expressinstall">
+                                          <!-- Next object tag is for non-IE browsers. So hide it from IE using IECC. -->
+                                          <!--[if !IE]>-->
+                                          <object data="flash/300x250.swf" type="application/x-shockwave-flash" height="190" width="230">
+                                            <!--<![endif]-->
+                                            <param value="high" name="quality">
+                                            <param value="opaque" name="wmode">
+                                            <param value="9.0.45.0" name="swfversion">
+                                            <param value="Scripts/expressInstall.swf" name="expressinstall">
+                                            <!-- The browser displays the following alternative content for users with Flash Player 6.0 and older. -->
+                                            <div>
+                                              <h4>Content on this page requires a newer version of Adobe Flash Player.</h4>
+                                              <p><a href="http://www.adobe.com/go/getflashplayer"><img alt="Get Adobe Flash player" src="pptHalaman2_files/get_flash_player.gif" height="33" width="112"></a></p>
+                                            </div>
+                                            <!--[if !IE]>-->
+                                          </object>
+                                          <!--<![endif]-->
+                                        </object>
+                	</div>
+                    <div  class="bannerFlash"><img src="images/300x250.jpg" style="height:190px; width:230px" /></div>
+                	<div><a class="buatIklanButton" href="buat.php?ad_banner=1">&nbsp;</a></div>
+                	{/if}
+                	
+                	{if $popup_ppa}
+                     <div class="row">
+                    <table cellspacing="0" cellpadding="0" border="0" class="noMargin">
+       				 <tr>
+            			<td><a id="buttonKonversi" href="javascript:;"><img src="images/baru/iklan_ppa.png" style="width:223px; height:230px;"></a></td>
+            		 	<td valign="middle">
+                        <br /><br /><br /><br />
+                        <h3 class="blue"><a id="linkKonversi" class="ppa" href="javascript:;">Iklan Text Pay Per Acquisition <img src="images/baru/iklan_arrow.png" style="width:18px; height:13px;"></a></h3>
+            		 		<p>Iklan Pay Per Acquistion adalah jenis iklan SITTI yang Anda yang menentukan<br />pembagian komisi per klik ketika menjadi konversi penjualan atau tujuan<br />dari klik SITTI.</p></td>
+            		 </tr>
+            		</table>
+                    </div>
+                    {else}
+                    <div class="row">
+                    <table cellspacing="0" cellpadding="0" border="0" class="noMargin">
+       				 <tr>
+            			<td><a id="buttonKonversi2" href="buat.php?ad_ppa=true"><img src="images/baru/iklan_ppa.png" style="width:223px; height:230px;"></a></td>
+            		 	<td valign="middle">
+                        <br /><br /><br /><br />
+                        <h3 class="blue"><a id="buttonKonversi2" class="ppa" href="buat.php?ad_ppa=true">Iklan Text Pay Per Acquisition <img src="images/baru/iklan_arrow.png" style="width:18px; height:13px;"></a></h3>
+            		 		<p>Iklan Pay Per Acquistion adalah jenis iklan SITTI yang Anda yang menentukan<br />pembagian komisi per klik ketika menjadi konversi penjualan atau tujuan<br />dari klik SITTI.</p></td>
+            		 </tr>
+            		</table>
+                    </div>
+                    {/if}
+                    <br />
+                   	<div style="margin:10px 0; background-color:#e5eff4;" class="quote">
+                <strong><span style="color:#C00">PERINGATAN: Penggunaan iklan SITTI tidak boleh melanggar persyaratan dan peraturan hukum yang<br/>berlaku umum di Indonesia atau negara lain yang bersangkutan. Untuk lebih jelas lihat <a target="_blank" href="term.html" style="color:#C00; text-decoration:underline;"><span >Syarat dan Ketentuan</span></a></span></strong>
+ 					</div>
+                    
+                    
+                    
+                    {if $takeOut}
+                	<div>
+                	{if $popup_ppa}
+                	<a id="buttonKonversi" href="javascript:;"><img src="images/iklan-ppa-1.png" style="width:567px; height:210px;"></a>
+                	{else}
+                	<a id="buttonKonversi" href="buat.php?ad_ppa=true"><img src="images/iklan-ppa-1.png" style="width:567px; height:210px;"></a>
+                	{/if}
+                	</div>
+                	
+                	
+                	
+                	
+                	<h2 class="blue" style="font-size:24px; margin-bottom:0px;">Iklan Text Dengan Target Konversi</h2>
+                	<div  class="bannerFlash" style="border:0;"><img src="images/ppa.png" style="height:190px; width:430px" /></div>
+                	<div>
+                    {if $popup_ppa}
+                    <a id="buttonKonversi" class="buatIklanButton" href="javascript:;">&nbsp;</a></div><br />
+                    {else}
+                    <a id="buttonKonversi" class="buatIklanButton" href="buat.php?ad_ppa=true">&nbsp;</a></div><br />
+                    {/if}
+				          </div>{/if}
+ 
+{if $popup_ppa}
+{$popup_ppa}
+{/if}

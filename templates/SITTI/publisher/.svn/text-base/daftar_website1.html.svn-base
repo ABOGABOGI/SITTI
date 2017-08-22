@@ -1,0 +1,92 @@
+
+      <div class="colLeft">
+        <h3 class="headTitle">Daftarkan Website Anda</h3>
+        <form class="register2" action="beranda.php" method="post" enctype="application/x-www-form-urlencoded">
+          <p>Proses berikut akan mendaftarkan Anda mendaftarkan situs baru untuk memasang iklan SITTI</p>
+          <div class="row">
+          <label class="labelSelect">Alamat Website Anda</label>
+           <input name="url" type="text" class="inputTex" id="url" value="http://" size="40" maxlength="255" />
+         
+       	 </div>
+          <h3 class="blue">Pilih Ukuran Iklan</h3>
+          <div class="row">
+            <label class="labelSelect">Pilih type Iklan yang ingin Anda Tampilkan</label>
+              <select name="ad_type" id="text_img_format" onchange="wiz_dirty(); updateCodeField()">
+                <option value="1">300 x 250 Medium Rectangle</option>
+                <option value="2">336 x 280 Large Rectangle</option>
+                <option value="3">728 x 90 Leaderboard</option>
+                <option value="4">160 x 600 Wide Skyscraper</option>
+              </select>
+          </div>
+          <div class="row">
+            <label class="labelSelect">Pilih kategori yang paling sesuai dengan website Anda</label>
+            <select name="category" id="category">
+              <option value="Ekonomi">Ekonomi</option>
+              <option value="Headline">Headline</option>
+              <option value="Hiburan">Hiburan</option>
+              <option value="Hukum">Hukum</option>
+              <option value="Industri">Industri</option>
+              <option value="Internasional">Internasional</option>
+              <option value="Jasa">Jasa</option>
+              <option value="Kesehatan">Kesehatan</option>
+              <option value="Lingkungan">Lingkungan</option>
+              <option value="Nasional">Nasional</option>
+              <option value="Olahraga">Olahraga</option>
+              <option value="Opini">Opini</option>
+              <option value="Otomotif">Otomotif</option>
+              <option value="Pendidikan">Pendidikan</option>
+              <option value="Perbankan">Perbankan</option>
+              <option value="Perdagangan">Perdagangan</option>
+              <option value="Politik">Politik</option>
+              <option value="Ragam">Ragam</option>
+              <option value="Teknologi">Teknologi</option>
+            </select>
+          </div>
+          <div class="row">
+            <label class="labelSelect">Beri nama Iklan Anda</label>
+             <input name="name" type="text" class="inputTex" id="name" />
+          </div>
+          <h3 class="blue">Contoh Iklan</h3>
+          <div class="row">
+          	<div class="ads">
+                <div class="w300" style="width:290px; height:240px; border:solid 1px #CCC; padding:5px;">
+                  <h1 class="titleAdv">Toko SITTI</h1>
+                   <p style="font-size:11px; margin:0;">Komputer Murah</p>
+                    <p style="font-size:11px; margin:0;">bekas berkualitas, bermutu</p>
+                  <div class="footadv"> <a class="urlAdv" href="#">www.sittibelajar.com</a> <a class="adsby" href="#">ads by SITTI</a> </div>
+                </div>
+                <div class="w336" style="width:326px; height:270px; border:solid 1px #CCC; padding:5px;">
+                  <h1 class="titleAdv">Toko SITTI</h1>
+                   <p style="font-size:11px; margin:0;">Komputer Murah</p>
+                    <p style="font-size:11px; margin:0;">bekas berkualitas, bermutu</p>
+                  <div class="footadv"> <a class="urlAdv" href="#">www.sittibelajar.com</a> <a class="adsby" href="#">ads by SITTI</a> </div>
+                </div>
+                <div class="w728" style="width:718px; height:80px; border:solid 1px #CCC; padding:5px;">
+                  <h1 class="titleAdv">Toko SITTI</h1>
+                   <p style="font-size:11px; margin:0;">Komputer Murah</p>
+                    <p style="font-size:11px; margin:0;">bekas berkualitas, bermutu</p>
+                  <div class="footadv"> <a class="urlAdv" href="#">www.sittibelajar.com</a> <a class="adsby" href="#">ads by SITTI</a> </div>
+                </div>
+                <div class="w160" style="width:160px; height:590px; border:solid 1px #CCC; padding:5px;">
+                  <h1 class="titleAdv">Toko SITTI</h1>
+                   <p style="font-size:11px; margin:0;">Komputer Murah</p>
+                    <p style="font-size:11px; margin:0;">bekas berkualitas, bermutu</p>
+                  <div class="footadv"> <a class="urlAdv" href="#">www.sittibelajar.com</a> <a class="adsby" href="#">ads by SITTI</a> </div>
+                </div>
+            </div>
+          </div>
+          <div class="row">
+           <input name="do" type="hidden" id="do" value="create">
+            <input type="submit" value="Selesai dan Tampilkan Kode HTML" class="submitButton" />
+          </div>
+        </form>
+      </div>
+				<div class="w242">
+                    <div class="sideBox">
+               		    <h3> Bingung menggunakan SITTI?</h3>
+                        Silahkan kirim pertanyaan, masukan atau masalah yang Anda temukan pada saat mendaftarkan iklan Anda di SITTI. 
+                        
+                        Alamat email helpdesk kami adalah :<br />
+                         <a href="mailto:support@sitti.zendesk.com">support@sitti.zendesk.com</a>
+					</div>
+                </div>

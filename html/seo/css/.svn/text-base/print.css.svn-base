@@ -1,0 +1,52 @@
+/* Reset */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}
+body{line-height:1}
+ol,ul{list-style:none}
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}
+:focus{outline:0}
+ins{text-decoration:none}
+del{text-decoration:line-through}
+table{border-collapse:collapse;border-spacing:0}
+/*Site Colors*/
+/*Green 81aa26*/
+/*Blue 019dd8*/
+/*Teal 19706a*/
+/*Red b82f27*/
+/* Text */
+html,body{height:100%;}
+body{font:12px/1.5 Verdana,'Helvetica Neue','Trebuchet MS',Arial,verdana,sans-serif;background:#FFFFFF;}
+a:focus{outline:0px;}
+a{color:#007dc3;text-decoration:none;}
+a:hover{text-decoration:underline;}
+hr{border:0 #ccc solid;border-top-width:1px;clear:both;height:0}
+h1{font-size:1.4em;color:#2c2c2c;}
+h1 a{}
+h2{font-size:1.2em;color:#2c2c2c;}
+h2 a{}
+h3{font-size:1.1em;color:#474747;font-weight:normal;}
+h3 a{}
+h4{font-size:0.9em;color:#00a9a2;font-weight:bold;}
+h4 a{}
+h5{font-size:0.8em;color:#37c7e0;font-weight:normal;}
+h5 a{}
+h6{font-size:0.6em;color:#333333;font-weight:normal;}
+h6 a{}
+ol{list-style:decimal;}
+ul{list-style:disc;}
+li{margin-left:30px;}
+strong{font-size:12px;}
+p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset{margin-bottom:10px}
+h1,h2,h3,h4,h5{margin:0px 0px 0px 0px;}
+#totop{display:none;}
+#subnav{display:none;}
+#mobileselector{display:none;}
+#footer{display:none;}
+li{margin-bottom:20px;}
+#branding{display:none;}
+#thecssawards{display:none;}
+.opener{display:none;}
+#mainnav{display:none;}
+#twitter,#facebook{display:none;}
+#billboard{display:none;}
+#langnav{display:none;}

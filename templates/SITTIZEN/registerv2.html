@@ -1,0 +1,439 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>SITTI Technology</title>
+<link rel="stylesheet" href="css/SITTI_newface.css" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.6.4.min.js"></script> 
+<script src="js/jcarousellite_1.0.1c4.js" type="text/javascript"></script> 
+<script type="text/javascript" src="js/flowplayer-3.2.6.min.js"></script> 
+<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="icon" type="image/gif" href="images/animated_favicon.gif">
+<script type="text/javascript">
+{literal}
+        $(function() {
+            $(".newsticker-jcarousellite").jCarouselLite({
+                vertical: true,
+                hoverPause:true,
+                visible: 1,
+                auto:2000,
+                speed:1000
+            });
+        });
+{/literal}
+</script>
+</head>
+
+<body>
+	<div id="header">
+    	<div class="content relative">
+        	<img class="logo absolute" src="images/logo.png" width="330" height="176" />
+            <div class="control absolute">
+            	<div class="login">
+                <form id="sittiType" name="sittiTipe" action="https://359.sitti.co.id/login.php" method="post" enctype="application/x-www-form-urlencoded">
+                    <input class="round-5 border-no margin-right-15" onfocus="blank(this)" onblur="unblank(this)" type="text" name="username" value="username" maxlength="40" autocomplete="off" />
+                    <input class="round-5 border-no margin-right-15" onfocus="blank(this)" onblur="unblank(this)" type="password" name="password" value="password" maxlength="40" autocomplete="off" />                                  
+                    
+                        <select class="round-5 border-no margin-right-15" name="sittiT" id="sitti-type" onchange="sitti();">
+                          <option value="https://359.sitti.co.id/login.php">Advertiser</option>
+                          <option value="https://sittizen.sitti.co.id/login.php">Blogger</option>
+                        </select>
+                    
+                    <input name="login" type="hidden" value="1" />
+                     <input name="role" type="hidden" value="1" />
+                    <input class="round-20 border-no" type="submit" value="Login" />                   
+            	</form>
+                </div>
+        	</div>
+            <a class="home absolute" href="http://www.sitti.co.id/"></a>
+            <div class="menu-top absolute">
+            	<a class="dot-vertical" href="http://www.sitti.co.id/tentang-sitti.php">TENTANG SITTI</a>
+                <a class="dot-vertical" href="http://www.sitti.co.id/advertiser.php">ADVERTISER</a>
+                <a class="dot-vertical" href="http://www.sitti.co.id/blogger.php">BLOGGER</a>
+                <a id="faq" class="dot-vertical" href="#">FAQ</a>
+                <a class="dot-vertical" href="http://www.sitti.co.id/blog/" target="_blank">BLOG SITTI</a>
+                <a href="http://sitti.zendesk.com/anonymous_requests/new" target="_blank">HUBUNGI KAMI</a>
+            </div>
+            <div id="faq-choice" class="absolute round-5">
+             	<a class="faq-items" href="http://www.sitti.co.id/faqAdvertiser.php">Advertiser</a> /
+             	<a class="faq-items" href="http://www.sitti.co.id/faqBlogger.php">Blogger</a>
+    		</div>
+        	<div class="social absolute" style="right:0; top:130px;">
+            	<span>Join us on social media: </span>
+            	<a class="fb" href="http://www.facebook.com/SITTI.ID" target="_blank"></a>
+                <a class="twit" href="http://twitter.com/sittiID" target="_blank"></a>
+            </div>
+            <div class="absolute" style="right:200px; top:128px;">
+        		<a class="pdf" href="http://www.sitti.co.id/download/sitti_vs_google.pdf">SITTI359 vs Google Adwords<sup>TM</sup></a>
+    		</div>
+        </div>
+    </div>
+	<div id="main-content" class="margin-top-120">
+    	<div class="content relative round-5 bg_white" style="padding: 20px 40px 40px 40px;width: 870px;min-height: 1060px;"> 
+			<div style="padding-top:14px;"><h1 class="blue">Pendaftaran Anggota</h1></div>
+			<p style="padding-bottom:10px;">Lengkapilah formulir dibawah untuk bergabung dengan SITTI sebagai publisher.</p>
+			<span class="text-blog absolute" style="left:690px; top:35px;">PUBLISHER</span>
+			<div class="icon-adv absolute page-blog2"></div>
+			<hr style="border:1px dotted #ccc"></hr>
+			<div style="float:left;">
+			<form class="registerForm" action="daftar.php" method="post" onsubmit="return validateForm()">
+				<table cellpadding="0" cellspacing="0" border="0" class="round-5 tabel-reg">
+			        	<tr>
+			        		<td align="right" width="150">Nama Lengkap*</td>
+			        		<td width="300" valign="middle">
+			        			<input style="margin-top: 10px;margin-bottom:0;" type="text" id="namaLengkap" name="nama" class="inputText round-5 border-no" autocomplete="off"/>
+			        			<span class="result" id="namaCheck" style="color:#f00;font-size:10px;height:13px;display:block;">Isi nama lengkap Anda.</span>
+			        		</td>
+			        		
+			        	</tr>
+			        	<tr>
+			        		<td align="right" width="60">Email*</td>
+			        		<td>
+			        			<input name="email" type="text" id="email" class="inputText round-5 border-no" maxlength="50" autocomplete="off" style="margin-bottom:0;"/>
+			        			<span class="result" id="emailCheck" style="color:#f00;font-size:10px;height:13px;display:block;"></span>	
+			        		</td>
+			        	</tr>
+			        	<tr>
+			        		<td align="right" width="60">Password*</td><td>	        						        
+							    <input type="password" name="password" id="password" class="inputText round-5 border-no" value="{$var.password}" maxlength="20" autocomplete="off" style="margin:0;"/>			    
+			        			<div id="password-strength" style="font-size:10px">
+                    				<div class="colorbar" id="colorbar"></div>
+                        				<span class="percent blue" id="percent" style="display:none;">
+                            				0%
+                       					 </span>
+                        				&nbsp;&nbsp;
+                       				 <span class="result" id="result" style="color:#f00"></span>
+								</div>
+			        		</td>
+			        	</tr>			        	
+			        	<tr>
+			        		<td align="right" width="60">Kota</td><td>	        						        
+							    <input type="text" name="kota" id="kota" class="inputText round-5 border-no" maxlength="20" autocomplete="off" value="{$var.kota|stripslashes}"/>			    
+			        		</td>
+			        	</tr>
+			        	<tr>
+			        		<td align="right" width="60">Nomor Telepon</td><td>	        						        
+							    <input type="text" name="telp" id="telp" class="inputText round-5 border-no" value="{$var.telp|stripslashes}"/>			    
+			        		</td>
+			        	</tr>
+			        	<tr>
+			        		<td align="right" width="60">Alamat Situs*</td><td>	        						        
+							    <input name="website" type="text" class="inputText round-5 border-no" id="website" value="http://" />			    
+			        		</td>
+			        	</tr>
+			        	<tr>
+			        		<td align="right" width="60">Jenis Situs</td><td>	        						        
+							    <select name="jenis_situs" class="inputText round-5 border-no" id="jenis_situs">
+		                          <option value="Blog" selected="selected">Blog</option>
+		                          <option value="Website Pribadi">Website Pribadi</option>
+		                          <option value="Perusahaan">Perusahaan</option>
+		                          <option value="Portal">Portal</option>
+		                          <option value="Situs Jual-Beli">Situs Jual-Beli</option>
+		                          <option value="Lainnya">Bukan Salah Satu Diatas</option>
+		                        </select>		    
+			        		</td>
+			        	</tr>
+			        	<tr>
+			        		<td align="right" width="60">Aplikasi yang Digunakan</td><td>	        						        
+							    <select name="jenis_app" class="inputText round-5 border-no" id="jenis_app">
+		                          <option value="Wordpress" selected="selected">Wordpress</option>
+		                          <option value="Blogger.com">Blogger.com</option>
+		                          <option value="Drupal">Drupal</option>
+		                          <option value="Joomla">Joomla</option>
+		                          <option value="Mambo">Mambo</option>
+		                          <option value="Aplikasi Sendiri">Aplikasi Sendiri</option>
+		                          <option value="Tidak Tahu">Tidak Tahu</option>
+		                        </select>		    
+			        		</td>
+			        	</tr>
+			        	<tr>
+			        		<td align="right" width="60">Perkiraan Jumlah Pengunjung PerHari</td><td>	        						        
+							    <select name="jum_pengunjung" class="inputText round-5 border-no" id="jum_pengunjung">
+		                           <option value="< 5000">&lt; 5000</option>
+		                           <option value="> 5000">&gt; 5000</option>
+		                           <option value="> 10000">&gt; 10000</option>
+		                           <option value="> 50000">&gt; 50000</option>
+		                           <option value="> 100000">&gt; 100000</option>
+		                           <option value="Tidak Tahu">Tidak Tahu</option>
+		                        </select>    
+			        		</td>
+			        	</tr>
+			        	<tr>
+			        		<td align="right" width="60"></td>
+			        		<td style="padding: 0 15px 10px; font-size:10px;" align="left">	        						        
+							    <input type="checkbox" name="term" id="term" /> Saya setuju <a href="https://sittizen.sitti.co.id/term.html" target="_blank" style="color:#1e6275; text-decoration: none;">syarat & ketentuan menjadi publisher</span>	    
+			        		</td>
+			        	</tr>
+			        	<tr>
+			        		<td colspan="2" align="right">	        						        
+			        			{$CAPTCHA}
+			        		</td>
+			        	</tr>
+			            <tr>
+			        		<td></td>
+			        		<td style="padding: 0 15px 10px;">
+			        		 <input name="daftar" type="hidden" value="1" />
+						    {if $referral_id}
+			                <input name="referral_id" type="hidden" value="{$referral_id}" />
+			                {/if}
+			        		<input id="mulaiberiklan" class="round-5 border-no" type="submit" value="" style="margin-bottom: 7px;" />
+			        		<input id="reset" class="round-5 border-no" type="reset" value="" style="margin-bottom: 7px;" />
+			        		</td>
+			        	</tr>
+			        	<tr>
+			        		<td align="right" width="60"></td>
+			        		<td style="padding: 0 15px 10px;">	        						        
+							   <span style="color:#f00; float:left; font-size:10px;">*Wajib diisi</span>	    
+			        		</td>
+			        	</tr>
+			            
+			        </table>
+			</form>
+			</div>
+			<div style="float:left;margin:60px 0 0 20px;">
+				<h3 class="blue">Masih ragu  daftar SITTI? Tonton video ini!</h3>
+				<hr style="border:1px dotted #ccc; margin: 0 0 20px 0;"></hr>	
+				{*}
+				<iframe width="360" height="275" src="http://www.youtube.com/embed/oUMXUBxW0as" frameborder="0" allowfullscreen></iframe>
+				{/*}
+				<a id="zen" href="#zenVid" style="margin: 0 0 20px 0;"><img src="images/video/sittizen.jpg" width="360"></img></a><br></br>
+				<a id="blog" href="#blogVid"><img src="images/video/blogger.jpg" width="360"></img></a>
+				<hr style="border:1px dotted #ccc; margin: 20px 0;" ></hr>
+				<a href="http://www.sitti.co.id/faqBlogger.php" style="background:url(images/revisi/btn-tentang.png) no-repeat; display: block;height: 41px;width: 358px;margin: 0 0 10px 0;"></a>
+				{*}
+				<span class="blue" style="float:left; margin: 0 15px 0 0;padding: 10px 0 0;">Cara Pembayaran:</span><img src="images/bank_klik_bca.jpg" width="56" height="44" style="float:left"></img><img src="images/internet_mandiri2.jpg" width="80" height="44" style="float:left"></img>
+				{/*}
+			</div>
+			<div class="testimonial" style="height:100px;  width: 870px; float:left; margin: -30px 0 0;">
+			<hr style="border:1px dotted #ccc;"></hr>
+				
+			<div class="testiText">
+			                <div class="newsticker-jcarousellite">
+			                    <ul>
+			                        <li>
+			                            <p>Helo SITTI Juwariyah… <br />
+			aku baru pasang iklanmu di blogku loh.. jangan lupa kasih honor yang gede ya… hehehe…
+			                            </p>
+			                            <p class="blue">
+			                            Ponco - Blogger
+			                            </p>
+			                        </li>
+			                        
+			                        <li>
+			                            <p>Betul Berjuang terus sitti,
+			Saya juga lagi siapin senjata buat perang lawan ALIBABA yang mengalir di SUNGAI AMAZON he…
+			Tetap semangat,dan pesan saya ndak usah head to Head lawan google, kita pakai taktik perang gerilya
+			Sukses buat sitti
+			                            </p>
+			                            <p class="blue">
+			                            Any - Blogger
+			                            </p>
+			                        </li>
+			                        <li>
+			                            <p> “Thanks SITTI utk IPADnya yaaa :),, 
+			                            seneng deh *meski masih katrok pake’nya* hehehe, moga SITTI tampil paling depan dalam hal advertising
+			                            supaya kami sebagai advertiser juga publisher mendapatkan pelayanan yang memuaskan,, trussss…
+			                            SITTI yang rajin yaa bagi-bagi hadiah hehehe.”
+			                            </p>
+			                            <p class="blue">
+			                            Dian - Blogger
+			                            </p>
+			                        </li>
+			                    </ul>
+			                </div>
+			            </div>
+			</div>
+			
+			<div id="feed-form" class="absolute round-5">
+			                	<div style="position:relative">
+			                    	<span id="close" style="color: #999999;right: 2px;top: -22px;width: 65px;position:absolute;font-size:10px;cursor:pointer;">CLOSE X</span>
+			                    </div>
+			                <form action="http://www.sitti.co.id/feedback.php" method="post" enctype="application/x-www-form-urlencoded"> 
+			    			<input class="round-5 border-no margin-right-15" onfocus="blank(this)" onfocus="unblank(this)" type="text" name="name" value="NAMA" />
+			                <input class="round-5 border-no margin-right-15" onfocus="blank(this)" onfocus="unblank(this)" type="text" name="email" value="E-MAIL" />
+			                <textarea class="round-5 border-no margin-right-15" name="saran" cols="30" rows="5"></textarea>
+			                <input type="submit" value="SEND" name="send" class="round-20 border-no" >
+			                <input type="reset" value="RESET" name="reset" class="round-20 border-no">
+			                </form>
+			    		</div>
+
+        <div id="zenVid" class="absolute" style="left: 145px;top: 270px; display:none;z-index:602;">
+        	<a href="video/SITTIZen.m4v" style="display:block;width:640px;height:360px" id="player"> </a> 
+    		<script type="text/javascript">flowplayer("player", "video/flowplayer-3.2.7.swf");</script>
+        </div>
+         <div id="blogVid" class="absolute" style="left: 145px;top: 270px; display:none;z-index:602;">
+        	<a href="video/Blogger.m4v" style="display:block;width:640px;height:360px" id="player2"> </a> 
+    		<script type="text/javascript">flowplayer("player2", "video/flowplayer-3.2.7.swf");</script>
+        </div>
+        <div id="transBg" style="background: url('images/trans50.png') repeat scroll 0 0 transparent; height: 100%; left: 0; position: fixed; top: 0; width: 100%; z-index: 1; display:none;"></div>
+        
+        
+        {literal}
+        <script>
+        	$("#zen").click(function(){
+				$("#zenVid").fadeIn("slow");
+				$("#transBg").fadeIn("slow");
+            	});
+        	$("#blog").click(function(){
+				$("#blogVid").fadeIn("slow");
+				$("#transBg").fadeIn("slow");
+            	});
+        	$("#transBg").click(function(){
+				$("#zenVid").fadeOut("slow");
+				$("#blogVid").fadeOut("slow");
+				$(this).fadeOut("slow");
+            	});
+        </script>
+        {/literal}
+        
+        </div>
+        
+    </div>
+    
+    <div id="footer">
+    	<div class="content relative">
+        	 <div id="toc-choice" class="absolute round-5">
+             	<a class="toc-items" href="https://359.sitti.co.id/term.html" target="_blank">Advertiser</a> /
+             	<a class="toc-items" href="https://sittizen.sitti.co.id/term.html" target="_blank">Blogger</a>
+    		</div>
+        	<div class="link-footer">
+            	<a href="http://www.sitti.co.id/tentang-sitti.php">TENTANG SITTI</a>    /     <a id="feeds" href="#feed-form">feedback form</a>    /   <a href="http://sitti.zendesk.com/anonymous_requests/new" target="_blank">contact us</a>    /   <a id="toc" href="#toc-choice">terms and conditions</a>    /   <a href="#">top 100 publisher</a>    /   <a href="#">kumpulan tips</a>
+            </div>
+            <div class="copyright absolute"></div>
+            
+        </div>
+	</div>
+
+
+<script>
+{literal}
+
+			$("#feeds").click(function(){
+				$("#feed-form").fadeToggle("slow");						  
+			});
+			$("#close").click(function(){
+				$("#feed-form").fadeOut("slow");						  
+			});
+			
+			$("#toc").hover(
+				function(){
+					$("#toc-choice").stop(true, true).fadeIn("fast");},
+				function(){
+					$("#toc-choice").stop(true, true).fadeOut("slow");	
+				}
+			);
+			
+			$("a.toc-items").hover(
+				function(){
+					$("#toc-choice").stop(true, true).fadeIn("fast");},
+				function(){
+					$("#toc-choice").stop(true, true).fadeOut("slow");	
+				}
+			);
+			
+			function blank(a) { if(a.value == a.defaultValue) a.value = ""; }
+        	function unblank(a) { if(a.value == "") a.value = a.defaultValue; }
+			function sitti(){
+					document.getElementById("sittiType").action = document.sittiTipe.sittiT.value;
+					return;
+				}
+			$("#faq").hover(
+				function(){
+					$("#faq-choice").stop(true, true).fadeIn("fast");},
+				function(){
+					$("#faq-choice").stop(true, true).fadeOut("slow");	
+				}
+			);
+			
+			$("a.faq-items").hover(
+				function(){
+					$("#faq-choice").stop(true, true).fadeIn("fast");},
+				function(){
+					$("#faq-choice").stop(true, true).fadeOut("slow");	
+				}
+			);
+			{/literal}
+	</script> 
+	<script language="javascript" src="js/passwordStrengthMeter.js"></script>
+{literal}
+<script language="javascript">
+
+
+var bpos = "";
+var perc = 0 ;
+var minperc = 0 ;
+
+$('#email').keyup(function(){
+	$('#emailCheck').html(emailValidate($('#email').val()));
+	
+    });
+$('#namaLengkap').keyup(function() {
+	$('#namaCheck').html(namaValidate($('#namaLengkap').val()));
+	});
+              
+$('#password').css( {backgroundPosition: "0 0"} );
+
+$('#password').keyup(function(){
+	//alert($('#password').val()+","+$('#email').val());
+	$('#result').html(passwordStrength($('#password').val())) ; 
+	perc = passwordStrengthPercent($('#password').val());
+	
+	bpos=" $('#colorbar').css( {backgroundPosition: \"0px -" ;
+	bpos = bpos + perc + "px";
+	bpos = bpos + "\" } );";
+	bpos=bpos +" $('#colorbar').css( {width: \"" ;
+	bpos = bpos + (perc * 2) + "px";
+	bpos = bpos + "\" } );";
+	
+	eval(bpos);
+    $('#percent').html(" " + perc  + "% ");
+    if(perc>0){
+    	$('#percent').show();
+    }
+    
+});
+function validateForm()
+{
+var nama = $("#namaLengkap").val();
+var pass = $("#password").val();
+var email = $("#email").val();
+var web = $("#website").val();
+//alert(web);
+if (nama==null || nama=="")
+  	{
+		$("#namaLengkap").focus();
+  		return false;
+  	}else if(email==null || email==""){
+		$("#email").focus();
+		return false;	
+	}else if(pass==null || pass==""){
+		$("#password").focus();
+		return false;	
+	}else if(web==null || web=="" || web=="http://"){
+		//alert("tes");
+		$("#website").focus();
+		return false;	
+	}
+}	
+
+
+</script>
+{/literal}
+	{literal}
+	<script type="text/javascript">
+
+			  var _gaq = _gaq || [];
+			  _gaq.push(['_setAccount', 'UA-16501037-1']);
+			  _gaq.push(['_setDomainName', 'sitti.co.id']);
+			  _gaq.push(['_trackPageview']);
+			
+			  (function() {
+			    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			    var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga, s);
+			  })();
+
+	</script>	
+	{/literal}
+</body>
+</html>

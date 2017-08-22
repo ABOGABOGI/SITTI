@@ -1,0 +1,82 @@
+<table cellspacing="0" cellpadding="0" border="0" style="margin-top:30px;" class="list zebra">
+	<tbody>
+	{section name=i loop=$uploaders}
+	<tr>
+	<td>
+	<h3 class="blue noMargin">{$uploaders[i].label|addslashes}</h3></td></tr>
+	<tr class="evenRow">
+	<td>
+		<div><strong>{if $ad_type eq "3"}SWF :{else}Image : {/if}</strong></div> 
+		<div id="{$uploaders[i].name}" style="width:100%;height:60px;float:left;"></div>
+		<div style="float:left;" id="{$uploaders[i].name}_menu">
+		<div  style="float:left;padding-left: 5px;padding-top: 15px;"><a id='{$uploaders[i].popupName}' href="#">Preview Materi</a></div><div style="float:left;padding-left: 50px;padding-top: 15px;"><a href="#" onclick="toggle_edit('d_{$uploaders[i].fileID}',{$uploaders[i].no});return false;">Edit Materi</a></div>
+		</div>
+		{if $ad_type eq "3"}
+		<div style="width:100%;height:18px;float:left;"><strong>Default Image :</strong></div> 
+		<div id="{$uploaders[i].name}_img" style="float:left;width:100%;height:60px;"></div>
+		<div style="float:left;" id="{$uploaders[i].name}_img_menu">
+		<div  style="float:left;padding-left: 5px;padding-top: 15px;"><a href="#" onclick="toggle_edit_img('d_{$uploaders[i].fileID}_img','{$uploaders[i].no}_img');return false;">Ganti Default Image</a></div>
+		
+		</div>
+		{/if}
+	</td></tr>
+	{/section}
+	</tbody>
+	</table>
+<script>
+$(document).ready(
+		
+		{literal}
+		function () {
+			{/literal}
+			{section name=i loop=$uploaders}
+			
+			$('#{$uploaders[i].name}').flash(
+					{literal}
+				{
+					// test_flashvars.swf is the flash document
+					swf: 'uploader.swf',
+					width: 350,
+					height: 50,
+					// these arguments will be passed into the flash document
+					flashvars: {
+					{/literal}
+						fileID: '{$uploaders[i].fileID}',
+						no: '{$uploaders[i].no|intval}'
+						{literal}
+					}
+				}
+			);
+			{/literal}
+				{if $ad_type eq "3"}
+				$('#{$uploaders[i].name}_img').flash(
+						{literal}
+					{
+						// test_flashvars.swf is the flash document
+						swf: 'uploader.swf',
+						width: 350,
+						height: 50,
+						// these arguments will be passed into the flash document
+						flashvars: {
+						{/literal}
+							fileID: '{$uploaders[i].fileID}',
+							no: '{$uploaders[i].no|intval}_img'
+							{literal}
+						}
+					}
+				);
+				{/literal}
+				$("#{$uploaders[i].name}_img_menu").hide();
+				{/if}
+				  $("#{$uploaders[i].name}_menu").hide();
+				 
+			{/section}
+			
+			{literal}
+			
+		}
+			{/literal}
+		
+	);
+
+</script>

@@ -1,0 +1,45 @@
+<script type="text/javascript">
+<!--
+var detail_iklan_url = "report.php?t=konversi&iklan=";
+{literal}
+
+function detailPPAIklan(iklan_id) {
+  var url = detail_iklan_url + iklan_id;
+  $.ajax({
+    url:  url,
+    type: 'GET',
+    success: function(data) {
+      $("#content_konversi").html(data);
+    },
+    error: function(data) {
+      alert('No data for the Ad');
+    }
+  });
+}
+
+{/literal}
+-->
+</script>
+<h3>{$campaign_name}</h3>
+{if $list}
+<div id="tableKonversi">
+ <table cellspacing="0" cellpadding="0" border="0" class="list zebra">
+  <tr class="head2">
+    <td width="25">No</td>
+    <td>Ads</td>
+    <td>Total Conversion</td>
+    <td>Total Value</td>
+  </tr>
+  {section name=iklan loop=$list}
+  <tr>
+    <td>{$smarty.section.iklan.iteration}</td>
+    <td><a href="javascript:;" onClick="detailPPAIklan({$list[iklan].iklan_id})">{$list[iklan].nama}</a></td>
+    <td>{$list[iklan].jum_konversi}</td>
+    <td>{if $list[iklan].nilai_konversi > 0}{$list[iklan].nilai_konversi|number_format}{else}{$list[iklan].nilai_komisi|number_format}{/if}</td>
+  </tr>
+  {/section}
+</table>
+</div>
+{else}
+<p>The ad conversions is not found.</p>
+{/if}

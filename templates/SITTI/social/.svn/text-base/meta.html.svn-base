@@ -1,0 +1,34 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>SITTI SOCWAVE</title>
+<link rel="shortcut icon" href="images/ver2/favicon.ico">
+<link href="css/demo_table_jui.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="css/drop.css" type="text/css"/>
+
+<script type="text/javascript" src="js/jquery.js"></script> 
+<script type="text/javascript" src="js/drop.js"></script> 
+<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="js/charts/highcharts.js"></script>
+
+<!-- Additional files for the Highslide popup effect -->
+<link rel="stylesheet" type="text/css" href="js/charts/highslide.css" />
+<script type="text/javascript" src="js/charts/highslide-full.min.js"></script>
+<script type="text/javascript" src="js/charts/highslide.config.js" charset="utf-8"></script>
+
+<!-- SNA  -->
+<!-- CSS Files -->
+
+<link type="text/css" href="css/base.css" rel="stylesheet" />
+<link type="text/css" href="css/ForceDirected.css" rel="stylesheet" />
+<link type="text/css" href="css/Cadd.css" rel="stylesheet" />
+<!-- JIT Library File -->
+<script language="javascript" type="text/javascript" src="js/jit.js"></script>
+<script language="javascript" type="text/javascript" src="js/sna.js"></script>
+
+<!--JQCloud-->
+<link href="js/jqcloud.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="js/jqcloud-0.2.8.min.js"></script>
+
+<!--Social-->
+<link href="css/social.css" rel="stylesheet" type="text/css"/>
+<link href="css/socialv2.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="js/social.js"></script>

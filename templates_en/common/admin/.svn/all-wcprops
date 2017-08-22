@@ -1,0 +1,119 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/sittiweb/!svn/ver/245/branches/phase03-03/templates_en/common/admin
+END
+dashboard_config.html
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/sittiweb/!svn/ver/245/branches/phase03-03/templates_en/common/admin/dashboard_config.html
+END
+user_edit.html
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/sittiweb/!svn/ver/245/branches/phase03-03/templates_en/common/admin/user_edit.html
+END
+message.html
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/sittiweb/!svn/ver/245/branches/phase03-03/templates_en/common/admin/message.html
+END
+exportTo.html
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/sittiweb/!svn/ver/245/branches/phase03-03/templates_en/common/admin/exportTo.html
+END
+default.html
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/sittiweb/!svn/ver/245/branches/phase03-03/templates_en/common/admin/default.html
+END
+user_manage.html
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/sittiweb/!svn/ver/245/branches/phase03-03/templates_en/common/admin/user_manage.html
+END
+dashboard.html
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/sittiweb/!svn/ver/245/branches/phase03-03/templates_en/common/admin/dashboard.html
+END
+user_new.html
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/sittiweb/!svn/ver/245/branches/phase03-03/templates_en/common/admin/user_new.html
+END
+admin.html
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/sittiweb/!svn/ver/245/branches/phase03-03/templates_en/common/admin/admin.html
+END
+permission.html
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/sittiweb/!svn/ver/245/branches/phase03-03/templates_en/common/admin/permission.html
+END
+dialog.html
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/sittiweb/!svn/ver/245/branches/phase03-03/templates_en/common/admin/dialog.html
+END
+login.dummy.html
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/sittiweb/!svn/ver/245/branches/phase03-03/templates_en/common/admin/login.dummy.html
+END
+broadcast.html
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/sittiweb/!svn/ver/245/branches/phase03-03/templates_en/common/admin/broadcast.html
+END
+paging.html
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/sittiweb/!svn/ver/245/branches/phase03-03/templates_en/common/admin/paging.html
+END
+config.html
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/sittiweb/!svn/ver/245/branches/phase03-03/templates_en/common/admin/config.html
+END
+dashboard_panel.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/sittiweb/!svn/ver/245/branches/phase03-03/templates_en/common/admin/dashboard_panel.html
+END
+login.html
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/sittiweb/!svn/ver/245/branches/phase03-03/templates_en/common/admin/login.html
+END
+admin.html.old.html
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/sittiweb/!svn/ver/245/branches/phase03-03/templates_en/common/admin/admin.html.old.html
+END
+edit_config.html
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/sittiweb/!svn/ver/245/branches/phase03-03/templates_en/common/admin/edit_config.html
+END

@@ -1,0 +1,363 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>SITTI - Platform Iklan Kontekstual Berbahasa Indonesia, Iklan Kontekstual, Bahasa Indonesia</title>
+<link href="css/sitti.css" rel="stylesheet" type="text/css" /> 
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" language="javascript" src="js/iepngfix_tilebg.js"></script>
+<script type="text/javascript" language="javascript" src="js/drop_table.js"></script>
+{literal}
+	<script type="text/javascript">
+        $(document).ready(function(){
+            
+            $(".accordion h3:first").addClass("active");
+            $(".accordion p:not(:first)").hide();
+        
+            $(".accordion h3").click(function(){
+                $(this).next("p").slideToggle("slow")
+                .siblings("p:visible").slideUp("slow");
+                $(this).toggleClass("active");
+                $(this).siblings("h3").removeClass("active");
+            });
+        
+        });
+        </script>
+        <style type="text/css">
+            strong{ font-size:14px;}
+            .term{
+                -moz-border-radius:15px;
+                -webkit-border-radius:15px;
+                border-radius:15px;
+                -moz-box-shadow:1px 0 5px #000;
+                -webkit-box-shadow:1px 0 5px #000;
+                box-shadow:1px 0 5px #000;
+                padding:20px;
+                background:#fff;
+                text-align:left;
+            }
+            .accordion {
+            width: 100%;
+            border-bottom: solid 1px #cfdee6;
+            }
+            .accordion h3 {
+                background: #e3f0f3 url(images/arrow-square.gif) no-repeat right -44px;
+                padding:12px 15px;
+                margin: 0;
+                font: bold 120%/100% Arial, Helvetica, sans-serif;
+                border: solid 1px #cfdee6;
+                border-bottom: none;
+                cursor: pointer;
+                color:#0099CC;
+                text-shadow:0 1px 0 #fff;
+            }
+            .accordion h3:hover {
+                background-color: #e1f5ff;
+            }
+            .accordion h3.active {
+                background-position: right 11px;
+            }
+            .accordion p {
+                background: #f7f7f7;
+                margin: 0;
+                padding:15px;
+                border-left: solid 1px #cfdee6;
+                border-right: solid 1px #cfdee6;
+            }
+            .accordion p span{
+                display:block;
+                background:url(images/arrow_blue_small.gif) no-repeat 0 7px;
+                padding:0 0 10px 20px;
+            }
+            .accordion p strong{
+                display:block;
+                padding:15px 0 10px 0;
+            }
+            .list{
+                list-style:none;
+                margin:0 0 0 20px;
+                padding:0;
+            }
+        </style>
+  {/literal}
+</head>
+<body onload="init()">
+ {if $takeOut}<div class="cLabel"><a href="http://www.sitti.co.id/UtakAtik/index.html"></a></div>{/if}
+<div class="wrapper">
+  <div class="header"> <a class="logoZen" href="index.php">&nbsp;</a> <a class="sloganZen" href="index.php">&nbsp;</a> </div>
+   {if $isLogin}
+    <div class="navigationBarAllLogin">
+			<div class="navigationRight">
+                <ul class="menu navigation" id="menu">
+                    <li><a href="profile.php">Profile Saya</a>
+                    	<ul>
+                            <li><a href="profile.php?modify=1">Ganti Profil</a>
+    <!--                            <ul>
+                                    <li><a href="profile.php?bank=1">Daftar Rekening Bank</a></li>
+                                    <li><a href="profile.php?cc=1">Daftar Kartu Kredit</a></li>
+                                </ul>-->
+                            </li>
+                            
+                  			<!-- <li><a href="pembayaran.php">Pembayaran</a></li> -->
+                  			<li><a href="javascript:;" onClick="onTab('#tab_mutasi');">Mutasi Rekening</a></li>
+                  			
+                        </ul>
+                    </li>
+                    <li><a href="beranda.php">Laporan</a></li>
+                    <li><a href="download.php">Plugins</a></li>
+                    <li><a target="_blank" href="http://sitti.zendesk.com/anonymous_requests/new">Kontak</a></li>
+                </ul>
+                <script type="text/javascript">var menu=new menu.dd("menu");menu.init("menu","menuhover");</script>
+             <a class="btnKeluar" href="index.php?logout=1"></a>
+             <a target="_blank" href="http://twitter.com/sittiID" class="twitterAtas" alt="http://twitter.com/sittiID"></a>
+             <a target="_blank" href="http://www.facebook.com/SITTI.ID" class="fbAtas" alt="http://www.facebook.com/SITTI.ID"></a>
+             </div>
+            </div>
+  {/if}
+   {if $isLogin}
+         <div class="topUserMenu">
+         	<div class="topUserMenu-right">
+         	
+         	<div class="tum_info">
+         	<span class="namaPemilik">Nama Pemilik Akun</span>
+         	<span class="namaUser">{$info.name|strip_tags}</span>
+         	<span class="namaUser">{$info.sittiID}</span>
+         	</div>  	
+         	<a class="tum_simulasi" href="mailto:beriklan@sitti.zendesk.com"></a>
+         	<a class="tum_buat" href="beranda.php?daftar=1"></a>
+         	<a class="tum_kampanye" href="#"></a>
+         	
+         	</div>
+         </div>
+         {/if}   
+  <div class="blockContent">
+    <div class="content">
+    	 <div class="colLeft">
+         <div class="w635" style="width:891px">
+         	<h3 class="headTitle">Career at SITTI</h3>
+ <p>
+SITTI is looking for a few good men or women to join our highly dedicated tech team. If you haven’t heard about us yet, SITTI is a web based Contextual Ad Platform that can be found on the likes of <a href="http://kompas.com" target="_blank">KOMPAS.COM</a>, <a href="http://www.detik.com" target="_blank">DETIK.COM</a> and another million pages in Bahasa Indonesia. SITTI is the first truly contextual Bahasa Indonesia text ad provider in Indonesia, second only to the giants of sillicon valley (that is, not for long we hope!).  Up to the task? Join the force!  Send in your application now!<strong></strong></p>
+<strong></strong></p><br /><br />
+<div class="accordion">
+		<h3>SENIOR DEVELOPER</h3>
+
+    	<p>
+        	<span>Middle Age Male 25 - 30 Years of Age </span>
+            <span>Knows his way around web application languages such as PHP, JAVA</span>
+            <span>Knowing additional languages such as Python, R & Networking Tools would be a plus</span>
+            <span>Advanced Algorithm skills & Logical Problem Solving Ability </span>
+            <span>Must have experience in programming frameworks (no hard coders allowed!)</span>
+            <span>Must have experience in Design Patterns and Relational Database Concepts</span>
+            <span>Managed a Web Based App Project at some point in his career</span>
+            <span>S1 Education , although we will seriuously consider applicants of a lesser or higher   education  that show promise</span>
+            <span>Must have a sense of humor, hunger for knowledge and a willingness to stay back at work for our   weekly LAN parties (gamers welcome!)</span>
+		
+        </p>
+	<h3>JUNIOR DEVELOPER</h3>
+
+    	<p>
+        	<span>Young Male 20 - 25 Years of Age</span>
+            <span>Knows his way around web application languages such as PHP, JAVA</span>
+            <span>Algorithm skills & Logical Problem Solving Ability</span>
+            <span>Ultra fast learner</span>
+            <span>Must have experience in programming frameworks (no hard coders allowed!)</span>
+            <span>Must have some knowledge of App Design Patterns and Relational Database Concepts</span>
+            <span>S1 Education</span>
+            <span>Must have a sense of humor and some experience in RPG or RTS games</span>
+		
+        </p>
+	<h3>SENIOR DATABASE PROGRAMMER </h3>
+	<p>
+   <strong> Description :</strong>
+		<span>Develop database models and subsequent code modules to support emerging SITTI development. Develop and perform enterprise-level solutions and data integration processes and procedures. Develop and perform data extraction, transformation, and loading (ETL). Work closely with other members of the database administration and development team to design, develop, test, and implement database modification scripts and installation procedures to support user and client requirements. Work closely with members of the software development team to identify technical solutions to user requested enhancements and modifications. </span>
+
+        <strong>Qualifications</strong>
+		<strong class="f12 blue">Basic Qualifications:</strong>
+    <span>3+ years of experience with developing relational, object, and object-relational database models, architectures, and solutions</span>
+	<span>3+ years of experience with developing data integration processes and procedures</span>
+	<span>3+ years of experience with MySQL or SQL Server </span>
+	<span>Candidate must possess at least a Diploma or Bachelor's Degree in Computer Science/Information Technology or equivalent.</span>
+    
+    <strong>Additional Qualifications:</strong>
+    <span>Experience with UML, XSD, XML, WSDL, UDDI, and SOAP</span>
+    <span>Expertise in database schema design & architecture </span>
+    <span>Expertise in database procedural language programming (PL/SQL) </span>
+    <span>Expertise in SQL tuning</span>
+    <span>Expertise in building multithreaded connection pooling database server applications in C++ or Java</span>
+    <span> Experience with non-relational NoSQL document oriented data stores is a big bonus</span>
+    <span>General knowledge in OWL, RDF, and SPARQL is a big bonus</span>
+
+    </p>
+	<h3>TEXT / DATA MINING ENGINEER </h3>
+	<p>
+     <strong> Description :</strong>
+    <span>Work as part of a team to design, prototype and support intelligent information processing application with primary focus on decision analytics using text mining and data mining technologies. Responsible for development of a content mining and semantic based product offerings for the conversational online advertising, SITTI. Researches, analyzes, and develops technologies for new and existing systems to support text mining requirements. </span>
+    
+    <strong>Qualifications</strong>
+    <strong class="f12 blue">Basic Qualifications:</strong>
+    <span>Hands on experience in text mining techniques (e.g., information extraction and retrieval, text categorization, text clustering, etc.) </span>
+    <span>Hands on experience with data mining techniques (e.g., classification, association, rules based induction, etc.)</span>
+    <span>Experience with text mining and data mining tools and algorithm</span>
+    <span>to develop novel algorithms to index, analyze and draw conclusions from internet and corporate  data</span>
+    <span>Candidate must possess at least a Diploma or Bachelor's Degree in Computer Science/Information Technology or equivalent.</span>
+
+    
+    <strong class="f12 blue">Additional Qualifications:</strong>
+	<span>This experience will be coupled with a broad knowledge of the major relevant informatics resources and predictive approaches (e.g. QSAR, data-mining, classification methods, etc.). Programming skills in a number of languages (e.g. perl/python, java, C, C++), familiarity with database querying (SQL, PL/SQL) is required. Experience with a number of data analysis/predictive model development is desirable (e.g. R, SPSS, Matlab, Octave, etc).</span>
+	<span>General knowledge in NOSQL, semantic web, and rule-based programming is a big bonus.</span>
+
+    </p>
+	<h3>JUNIOR DATABASE PROGRAMMER </h3>
+	<p>
+	<strong>Qualifications</strong>
+    <strong class="f12 blue">Basic Qualifications:</strong>
+    <span>Development/Design of custom "bolt-on" database applications</span>
+    <span>Development/Design of Software Integration</span>
+    <span>Development/Design of data extractions and custom reports</span>
+    <span>Follow development standards and best practices</span>
+
+    
+    <strong class="f12 blue">Additional Qualifications:</strong>
+	<span>Extensive SQL experience </span>  
+	<span>1+ years Experience with PL/SQL or other database programming languages</span>  
+	<span>Elegant modular code developer</span>  
+	<span>Excellent problem solving and communication skills, highly self-motivated</span>  
+	<span>Understanding of source control and bug tracking</span>  
+	<span>Desired languages: SQL, PL/SQL, HTML, PHP, Java, C++</span>    
+    </p>
+    <h3>DATA ANALYST </h3>
+    <p>
+    <span>SITTI is looking for new members of our technical staff to focus on analyzing raw data, publisher and advertising datasets. You should have a passion  to find meaning in massive datasets, and enjoy distilling results into presentable form for the business organization.</span>
+    
+    <strong>Qualifications</strong>
+    <strong class="f12 blue">Basic Qualifications:</strong>
+    <span>Write and interpret SQL queries for standard as well as ad-hoc data mining purposes</span>
+    <span>Work closely and iterate quickly with the analytics team as well as other product teams</span>
+    <span>Code using a mix of SQL and programming language.</span>
+    <span>Summarize and report key analytical findings in both oral and written form</span>
+    <span>Work with large unstructured and structured data sets.</span>
+
+    
+    <strong class="f12 blue">Additional Qualifications:</strong>
+    <span>Experience with scripting languages, regular expressions, etc.</span>
+    <span>Interest in discrete math and statistics</span>
+    <span>Strong verbal, visual, and written communication skills </span>
+
+    </p>
+    <h3>SCRIPTING LANGUAGE PROGRAMMER</h3>
+    <p>
+    <span>We are looking for someone with a passion for writing great code that can demonstrate exceptional programming and problem solving skills. This person needs to be self-motivated and an effective team player.</span>
+    
+    <strong>REQUIRED:</strong>
+    <span>Experience in using Perl, </span>
+    <span>Experience in using SQL Programming,</span>
+    <span>Experience using JAVASCRIPT, AJAX, JSON, and XML </span>
+    <span>Data modeling and  processing systems design,  </span>
+    <span>Experience in building scalable, distributed applications capable of supporting straight - Experience with Java is desirable </span>
+    <span>Good collaboration and influence skills</span>
+    </p>
+    <h3>TEST ANALYST</h3>
+    <p>
+    <span>We are looking to recruit a Test Analyst ideally with web-testing experience/exposure. You will be working for a fast paced professional outfit where the staff work as hard as they play. This is an exceptional opportunity for someone looking to enhance there career as a test analyst</span>
+    
+    <strong>Basic Qualification</strong>
+    <span> Contributing to the development of the test plans and produce associated test completion reports.</span>
+    <span> Endorse and implement the testing guidelines and processes as per the corporate test strategy.</span>
+    <span>Analysis of test inputs (documents and other input sources) to create test conditions.</span>
+    <span> Development of test conditions/cases, test scripts detailing the data elements, expected results and execution processes to test the product rules, based on the Detailed Design Specifications and Business Requirements.</span>
+    
+    <strong>REQUIRED:</strong>
+    <span>Experience in using programming language, </span>
+    <span>Experience in using SQL Programming,</span>
+    <span>Good collaboration and influence skills</span>
+    </p>
+    <h3>STATISTICIAN </h3>
+    <p>
+    <strong>OBJECTIVE</strong>
+    <span>The purpose of this position is to provide sstatistical support by:Participate in designing, analyzing and interpreting data,interacting with internal and external resources to achieve quality, timely and cost-effective study deliverables.The perfect candidate should be passionate about data modeling, statistics, data analysis and data interpretation through the use of statistical methods and their visualisation. He/She will be enthusiastic about modeling diverse data domains and understanding underling causes for observed data distributions.</span>
+    
+    <strong>REQUIRED:</strong>
+    <span>Degree in statistics or mathematics or equivalent with minimum of 2 years of relevant experience.</span>
+    <span>Good knowledge of statistical programming languages</span>
+    <span>Practical familiarity of deploying advanced statistical methods required. Methods you should be familiar with include cluster analysis, neural networks, factor graphs, Bayesian ranking, Gaussian prior factors.</span>
+    <span>High level of proficiency in presenting statistical findings using advanced charting methods, preferably those integrated into your tool of choice.</span>
+    <span>Experience of using relational databases (preferably MySQL) an advantage.</span>
+    <span>Experience of using functional and/or object orientated programming paradigms an advantage.</span>
+    <span>Responsibilities will include modelling website activity through analysis of site tracking data, prior background an advantage.</span>
+    <span>General project management skills.</span>
+    <span>Good oral and written communications skills.</span>
+    </p>
+    <h3>TECH SUPPORT </h3>
+    <p>
+	<strong>Basic Requirements</strong>
+    <span>Male 20 - 25 Years </span>
+    <span>Proficient in PHP</span>
+    <span>Proficient in MySQL</span>
+    <span>Knowloedge of various frameworks and tools such as Cake (PHP) or Spring or ANT (Java) </span>
+    <span>D3/S1 Education Level</span>
+    <span>2 Year experience in development using PHP & MySQL  </span>
+    <span>Understanding of Design Patterns and Relational Database Concepts </span>
+    <span>Good Algorithm skills & Logical Problem Solving Ability </span>
+    <span>Self-driven, able to work individually and as a team</span> 
+    </p>
+    <h3>CUSTOMER SUPPORT </h3>
+     <p>
+	<strong>Basic Requirements</strong>
+    <span>Male / Female</span> 
+    <span>Maximum age 28 years old</span> 
+    <span>Having min. 1 year experience as Customer Support/Service or the same field, in Life Insurance/ Banking/ Financial industry</span> 
+    <span>Diploma or Bachelor Degree in Faculty of Computer Science / Information Technology</span> 
+    <span>Energetic, self motivated, Good communication skill</span> 
+    <span>Proactive & Customer Service oriented</span> 
+    <span> Proficient in English</span> 
+    </p>
+    <h3>RECEPTIONIST </h3>
+<p>
+     <strong>Job Description:</strong>
+    <span>Receiving telephone calls/guests in a pleasant, courteous manner, demonstrating hospitality</span>
+    <span>Represents the company image as the front office stage</span>
+    <span>Handling administration activities such as correspondence and other documentation</span>
+    
+    <strong>Requirements:</strong>
+    <span>Female, with max. age 26 years old</span>
+    <span>Having Max. preferably from Diploma majoring in Secretarial / Administration</span>
+    <span>Have a minimum of 1 (two) years experience</span>
+    <span>Good looking and well groomed</span>
+    <span>Fast learner, discipline and independent</span>
+    <span>Hard worker and willing to work under pressure</span>
+    <span>Attractive, pleasant personality, customer service oriented </span>
+    <span>Fluent in both oral and written Bahasa Indonesia and English</span>
+    <span>Able to communicate well and good interpersonal skill</span>
+
+    </p>
+</div><br /><br />
+	<p>
+    If you are confident that you meet our requirements, please submit your application, with complete curriculum vitae, EXPECTED SALARY, indicating the job position to:
+	<a class="f18" href="mailto:recruitment@kamisitti.com">recruitment@kamisitti.com</a>
+</p>
+            </div>
+      	 </div>
+           
+      <div class="bottomContent"></div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <div class="wrapper">
+        <ul class="navFoot">
+                 <li><a href="term.html" target="_blank"> Syarat dan Ketentuan</a>|</li>
+                <li><a href="tentang-sitti.php">Tentang SITTI</a>|</li>
+                <li><a href="http://359.sitti.co.id/" target="_blank"> Beriklan di SITTI</a>|</li>
+      			<li><a href="tentang-sittizen.php">SITTIZEN</a>|</li>
+      			<li><a target="_blank" href="http://blog.belajarsitti.com/">Blog</a>|</li>
+       			<li><a href="career.php">Karir</a>|</li>
+                <li><a href="http://sitti.zendesk.com/anonymous_requests/new" target="_blank">Kontak Kami</a></li>
+        </ul>
+        <p class="copyRight">
+            Email: beriklan@sitti.zendesk.com<br />
+            © 2010 SITTI
+        </p>
+  </div>
+</div>
+</body>
+</html>

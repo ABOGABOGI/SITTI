@@ -1,0 +1,96 @@
+<div style="float:none">
+                <h3 class="headTitle">Recheck Your Ad</h3>
+                <form class="registerForm" action="buat.php" method="post" enctype="application/x-www-form-urlencoded">                           
+   					<div class="row noBorder" style="margin:0 0 20px 0; padding:0;">
+                        <p>You have completed the Ad creation process, please recheck  your Ads and choice of Keywords.<br />
+ Should you have designed a Landing Page, you may also change or edit it in this page.</p>
+							
+<!--                    	<h3 class="blue">Budget Anda</h3>
+                        <p>Anda dapat menentukan batas budget untuk total Iklan ini</p>
+                        <span class="budget">Rp. 1.000.0000</span>-->
+                    </div>
+                     
+                        	<h3 style="float:left; margin:0;">Keyword Option</h3><a onmouseover="tooltip.show('Change Your Keywords');" onmouseout="tooltip.hide();" class="editPage" style="float:right; margin:0;" href="buat.php?edit=1"></a> 
+                         <table border="0" cellspacing="0" cellpadding="0" class="list zebra" style="margin:5px 0 0 0;">
+                              <tr class="head">
+                                <td width="20">Keyword</td>
+                                <td width="20">CPC Average</td>
+                                <td width="20">Your Bid</td>
+                                <td width="20">Daily Budget</td>
+                                <td width="20">Max Budget</td>
+                              </tr>
+                              {section name=i loop=$keywords}
+                              <tr>
+                                <td>{$keywords[i].name|stripslashes|strip_tags}</td>
+                                <td>{$keywords[i].max_cpc|number_format}</td>
+                                <td>{$keywords[i].bid|number_format}</td>
+                                <td>{$keywords[i].budget|number_format}</td>
+                                <td>{$keywords[i].total|number_format}</td>
+                              </tr>
+                              {/section}
+                              <tr>
+                                <td colspan="3"></td>
+                                <td><strong>{$n_budget|number_format}</strong></td>
+                                <td><strong>{$n_total|number_format}</strong></td>
+                              </tr>
+                		  </table>
+                            <table  border="0" cellspacing="0" cellpadding="0" style="margin:30px 0">
+                              <tr>
+                                <td><h3 style="float:left; margin:0;">Your Ad</h3><a onmouseover="tooltip.show('Ganti Iklan Anda');" onmouseout="tooltip.hide();" class="editPage" style="float:right; margin:0;" href="buat.php?edit=2"></a> </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                    <div class="sampleIklan" style="margin:0;">
+                                                                <h1 class="titleAdv">{$rs1.judul|stripslashes|strip_tags}</h1>
+                                    <p style="clear:both; margin:0;">{$rs1.baris1|stripslashes|strip_tags}</p>
+                                    <p style="clear:both; margin:0;">{$rs1.baris2|stripslashes|strip_tags}</p>
+                                    
+                                    <a class="urlAdv" href="{$rs1.urlLink|stripslashes|strip_tags}" target="_blank">{$rs1.urlName|stripslashes|strip_tags}</a> <a class="adsby" href="#">ads by SITTI</a> 
+                                    </div>
+                                </td>
+                              </tr>
+                            </table>
+                    {if $landingSelected}
+              			 	  <h3 style="float:left; margin:0;">SITTI Home</h3><a onmouseover="tooltip.show('Change SITTI Home');" onmouseout="tooltip.hide();" class="editPage" style="float:right; margin:0;" href="preview_template.php?id={$rs2.id}"></a> 
+                          	<table border="0" cellspacing="0" cellpadding="0" class="addlist zebra"  style="margin:5px 0 0 0;">
+                              <tr>
+                                <td width="120">Page Name</td>
+                                <td width="450">{$rs2.page_title|stripslashes|strip_tags}</td>
+                              </tr>
+                              <tr>
+                                <td>Description</td>
+                                <td>{$rs2.meta_description|stripslashes|strip_tags}</td>
+                              </tr>
+                              <tr>
+                                <td>Contents</td>
+                                <td>{$rs2.content|stripslashes|strip_tags}</td>
+                              </tr>
+                              <tr>
+                                <td>Title</td>
+                                <td>{$rs2.header_title|stripslashes|strip_tags}</td>
+                              </tr>
+                              <tr>
+                                <td>Keyword</td>
+                                <td>{$rs2.meta_tags|stripslashes|strip_tags}</td>
+                              </tr>
+                            </table>
+                           
+                    	{/if}
+                  <div class="row">
+                        <input type="checkbox" name="agree" class="inputCheckbox" id="agree" value="1"/>
+                        <label class="labelChek"><a href="term.html" target="_blank">I agree with SITTI's Terms and Conditions</a></label>
+                    </div>
+                    <div class="row">
+                       <!-- <a href="beranda.php?buat_iklan=1&step=2" class="submitButton">Kembali</a>-->
+                       <input name="token" type="hidden" value="{token}">
+                        <input type="submit" value="Save and Process My Ads" class="submitButton" style="float:right" />
+                        
+                        <!--<p class="error">Semua field wajib diisi</p>-->
+                    </div>
+                    <input name="save" type="hidden" value="1">
+                </form>
+</div>
+<div style="margin:10px 0; background-color:#e5eff4;" class="quote">
+                <strong><span style="color:#C00">WARNING: Use of SITTI Ad must not violate legal and regulatory requirements that <br/> generally accepted in Indonesia or other countries concerned. For more details see <a target="_blank" href="term.html" style="color:#C00; text-decoration:underline;"><span >Terms and Conditions</span></a></span></strong>
+ 					</div>
+			

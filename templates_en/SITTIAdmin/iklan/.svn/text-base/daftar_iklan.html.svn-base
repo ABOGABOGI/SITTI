@@ -1,0 +1,75 @@
+
+<table border="0" cellspacing="0" cellpadding="10" class="addlist zebra" >
+
+    <!--start
+        pencarian iklan pending berdasarkan advertiser no akun (sittiID)
+        dibuat : 02-09-2010
+        modifikasi : --------
+    -->
+    <form method="get">
+    <tr>
+        <input type="hidden" name="s" value="sitti">
+        <input type="hidden" name="do" value="search">
+        <td>Pencarian Advertiser</td>
+        <td colspan="10">
+            <input type="text" name="txtsearch" size="20">
+            <input type="submit" name="act" id="button" value="GO">
+            {if $hasil}
+            <font color="green">{$hasil}</font>
+            {/if}
+        </td>
+    </tr>
+    </form>
+    <!--end-->
+
+    <tr class="head">
+        <td width="120"><strong>Tanggal Submit</strong></td>
+        <td><strong>nama</strong></td>
+        <td><strong>judul</strong></td>
+        <td><strong>text</strong></td>
+        <td><strong>advertiser</strong></td>
+
+
+        <td><strong>Action</strong></td>
+    </tr>
+    {section name=i loop=$list}
+    <tr>
+        <td height="108">{$list[i].created_date}</td>
+        <td>{$list[i].nama|stripslashes|strip_tags}</td>
+        <td>{$list[i].judul|stripslashes|strip_tags}</td>
+        <td><div style="overflow:auto;width:90%;height:70px; border:solid 1px #b5dfed; padding:10px">{$list[i].baris1|stripslashes|strip_tags}<br/>{$list[i].baris2|stripslashes|strip_tags}<br/><b>{$list[i].urlName|stripslashes|strip_tags}</b><br/>URL: {$list[i].urlLink|stripslashes|strip_tags}</div></td>
+        <td>{$list[i].advertiser_id|stripslashes|strip_tags}</td>
+
+
+        <td>
+            <form action="" method="get" enctype="application/x-www-form-urlencoded">
+                <select name="do">
+                    <option value="approve">Approve</option>
+                    <option value="deny1">REJECT - Isi iklan bermuatan SARA</option>
+                    <option value="deny2">REJECT - Kata kunci yang dipilih tidak berkaitan dengan isi iklan</option>
+                    <option value="deny3">REJECT - URL tujuan iklan (landing page) tidak valid</option>
+                    <option value="deny4">REJECT - URL tujuan iklan (landing page) bermuatan SARA</option>
+                    <option value="deny5">REJECT - Isi iklan berbahasa inggris</option>
+                    <option value="deny6">REJECT - Iklan Anda sedang ditayangkan</option>
+                    <option value="deny9">REJECT - Kembali & Edit Landing Page Anda</option>
+                </select>
+
+                <input type="submit" name="button" id="button" value="GO" />
+                <input name="s" type="hidden" id="s" value="sitti" />
+                <input name="r" type="hidden" id="r" value="ad" />
+                <input name="id" type="hidden" id="id" value="{$list[i].id}" />
+                <input name="st" type="hidden" id="id" value="{$start}" />
+        </form>
+        </td>
+
+    </tr>
+    <tr>
+        <td colspan="1" bgcolor="#CCCCCC">Keywords : </td>
+        <td colspan="7" bgcolor="#CCCCCC"><div style="width:900px; display:table">{$list[i].keywords}</div></td>
+    </tr>
+    {/section}
+
+    <tr>
+        <td colspan="10" align="center">{$paging}</td>
+    </tr>
+</table>

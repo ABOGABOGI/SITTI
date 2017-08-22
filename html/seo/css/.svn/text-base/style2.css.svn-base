@@ -1,0 +1,244 @@
+
+/* CSS Document */
+
+
+#page{
+	margin: 0 auto;
+	width:1000px;
+	text-align: left;
+	background-image:url(../images/css/background.png);
+}
+#header{
+
+	background-image:url(../images/css/but_head.png);
+}
+#menu	{
+	font-family: Arial, sans-serif;
+	font-weight: bold;
+	text-transform: uppercase
+	margin: 50px 0;
+	padding: 9px 76px;
+	list-style-type: none;
+	font-size: 13px;
+	height: 50px;
+
+}
+#menu li {
+	float: left;
+	margin: 0;
+}
+
+#menu li a {
+	text-decoration: none;
+	display: block;
+	padding: 0 10px;
+	line-height: 40px;
+	color	:#666;
+}
+#menu_wrapper li a {
+	color: #666060;
+}
+#menu_wrapper li a:hover {
+	color: #999;
+}
+
+#content_seo{
+  float: left;
+    margin-left: 1px;
+    margin-top: -14px;
+    width: 996px;
+}
+
+#seoimg{
+	
+	width:996px;
+	height:332px;
+	background-image:url(../images/css/banner.png);
+	background-repeat: no-repeat;
+}
+
+#hadimg{
+	
+	width:996px;
+	height:411px;
+	background-image:url(../images/css/hadiah.png);
+	background-repeat: no-repeat;
+}
+
+#contentinf{
+	width:455px;
+	float: right;
+}
+#inf{
+}
+#inf p a.situsmu {
+	display: block;
+	width: 255px; height: 45px;
+	background-image:url(../images/css/stickButton.png);
+	text-indent: -9999px;
+	background-repeat:no-repeat;
+	margin-right: 110px;
+    margin-top: 80px;
+	float:right;
+}
+
+#inf p a.situsmu:hover {
+	display: block;
+	width: 255px; height: 45px;
+	background-image:url(../images/css/stickButtonHover.png);
+	text-indent: -9999px;
+	background-repeat:no-repeat;
+	margin-right: 110px;
+    margin-top: 80px;
+	float:right;
+}
+
+#content2{
+
+	border-top: 2px solid #eee;
+	float: left;
+	margin-left: 5px;
+    width: 990px;
+	margin-top:10px;
+}
+#rounded{
+	
+	margin: 20px;
+}
+.head_round{
+background-image:url(../images/css/head_cont_2.png);
+height:26px;
+width:868px;
+
+}
+
+.mid_cont{
+background-image:url(../images/css/isi_cont_foot.png);
+width:868px;
+margin-top: -3px;
+overflow:hidden;
+
+}
+
+
+
+.bottom_round{
+background-image:url(../images/css/bot_cont_2.png);
+height:27px;
+width:868px;
+margin-top: -4px;
+
+
+}
+.bottom_round2{
+background-image:url(../images/css/bot_cont_2.png);
+height:27px;
+width:868px;
+margin-top: -7px;
+
+
+}
+.col5 {
+	margin-left: 35px;
+    width: 200px;
+	float:left;
+	margin-top: -20px;
+}
+.col50 {
+	margin-left: 35px;
+    width: 400px;
+	float:left;
+	margin-top: -20px;
+
+}
+.col50, .col25 p {
+	color: #666666;
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:11px;
+
+
+}
+.col25 {
+    width: 200px;
+	float:right;
+	margin-right: 130px;
+	margin-top: -20px;
+
+}
+h5 {
+	color: #3ba1d2;
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:11px;
+	margin-bottom: -5px;
+}
+h2	{
+	color:#0087c7;
+	text-shadow: 0 4px 7px #8f8f8f;
+}
+
+#con_rule{
+	margin-left: 28px;
+	margin-top: -20px;
+	width: 815px;
+	
+}
+/* ----------- My Form ----------- */
+.myform{
+margin:0 auto;
+width:400px;
+padding:14px;
+}
+
+/* ----------- stylized ----------- */
+#stylized{
+float:left;
+}
+
+
+#stylized .small{
+color:#666666;
+display:block;
+font-size:11px;
+font-weight:normal;
+text-align:left;
+width:95px;
+}
+#stylized input{
+float:left;
+font-size:12px;
+padding:4px 2px;
+border:solid 1px #aacfe4;
+width:200px;
+margin:2px 0 20px 10px;
+}
+#stylized button{
+clear:both;
+margin-left:150px;
+width:125px;
+height:31px;
+background:#666666 url(button.png) no-repeat;
+text-align:center;
+line-height:31px;
+color:#FFFFFF;
+font-size:11px;
+font-weight:bold;
+}
+
+/* ----------- form end----------- */
+#footer{
+	clear: both;
+	color: #666666;
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:11px;
+	border-bottom: 2px solid #999;
+
+}
+#footer p{
+	clear: both;
+	color: #666666;
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:8px;
+	margin-left:55px;
+	margin-bottom:20px;
+
+}

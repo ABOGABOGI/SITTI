@@ -1,0 +1,579 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>SITTI - Platform Iklan Kontekstual Berbahasa Indonesia, Iklan Kontekstual, Bahasa Indonesia</title>
+        <link href="css/sitti.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" language="javascript" src="js/iepngfix_tilebg.js"></script>
+        <script type="text/javascript" language="javascript" src="js/drop_table.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <link type="text/css" href="js/themes/hot-sneaks/ui.all.css" rel="stylesheet" />
+		<script type="text/javascript" src="js/iepngfix_tilebg.js"></script>
+        <script type="text/javascript" src="js/drop_table.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/ui/ui.core.js"></script>
+        <script type="text/javascript" src="js/ui/ui.datepicker.js"></script>
+        <script type="text/javascript" src="js/ui/i18n/ui.datepicker-id.js"></script>
+        <script type="text/javascript" src="js/flash.js"></script>
+           <script language="javascript" src="js/modal.popup.js"></script>
+           <script src="js/jquery.infieldlabel.min.js" type="text/javascript" charset="utf-8"></script>
+        {literal}
+		<script type="text/javascript">
+		
+          $(document).ready(function(){
+            $(".closeDialog").click(function(){
+				$("#kotakdialog").hide("slow");
+			});
+          });
+		 
+        </script>
+		<script type="text/javascript">
+            $(document).ready(function() {	
+                //When page loads...
+                $(".tab_content").hide(); //Hide all content
+                $("ul.tabjs li:first").addClass("active").show(); //Activate first tab
+                $(".tab_content:first").show(); //Show first tab content
+				
+				
+            
+            });
+            $(document).ready(function(){
+                $("#tanggalAwalBeranda,#tanggalAkhirBeranda,#tanggalAwalAkun,#tanggalAkhirAkun,#tanggalAwalPenempatan,#tanggalAkhirPenempatan,#tanggalAwalKatakunci,#tanggalAkhirKatakunci,#tanggalAwalTujuan,#tanggalAkhirTujuan,#tanggalAwalPeforma,#tanggalAkhirPeforma,#tanggalAwalGeografis,#tanggalAkhirGeografis,#tanggalAwalPenagihan,#tanggalAkhirPenagihan").datepicker();
+            });
+            function onPhraseClicked(obj){
+				//alert(obj.value);
+				$("input[name=keywords\\[\\]]").removeAttr("checked");
+				$("input[name=keywords\\[\\]]").attr("disabled","true");
+            }
+        </script>
+		<script type="text/javascript">
+        $(document).ready(function(){
+            
+            $(".accordion h3:first").addClass("active");
+            $(".accordion p:not(:first)").hide();
+        
+            $(".accordion h3").click(function(){
+                $(this).next("p").slideToggle("slow")
+                .siblings("p:visible").slideUp("slow");
+                $(this).toggleClass("active");
+                $(this).siblings("h3").removeClass("active");
+            });
+        
+        });
+        </script>
+{/literal}
+{literal}
+<script>
+var key = "";
+$(document).ready(function(){
+	function DayDiff(date1, date2) {
+		return (date2.getTime() - date1.getTime()) / 1000 / 60 / 60 / 24;
+	}
+	
+	$("#tanggalAwal,#tanggalAkhir").datepicker();
+
+    $('#tanggalAwal').bind('change', function () {
+        $('#tanggalAkhir').val('');     
+    });       
+       
+    $('#tanggalAkhir').bind('change', function () {
+        var tgl_awal = $('#tanggalAwal').datepicker("getDate");
+        var tgl_akhir = $('#tanggalAkhir').datepicker("getDate");
+        interval = DayDiff(tgl_awal, tgl_akhir);
+        
+        if (interval<=0){
+			$('#tanggalAkhir').val('');
+		}
+    });
+	
+	$('#product').bind('change', function () {
+		$("#lbl_key_usulan").hide();
+		$("#keyword_usulan").html("");
+		if ($("#product").val()!=""){
+			$("#keyword_usulan").html($("#product").val());
+			if (key!=""){
+				$("#keyword_usulan").html($("#keyword_usulan").html()+",");
+			}
+		}
+		$("#keyword_usulan").html($("#keyword_usulan").html()+key);
+    });
+});
+</script>
+{/literal}
+{literal}
+        <style type="text/css">
+		.iklan_w {
+			position:relative;
+		}
+		.f_wizard {
+			top:40px;
+			right:70px;
+		}
+		.p_wizard {
+			 height: 260px;
+    		 left: 0;
+   			 position: relative;
+             top: -333px;
+             width: 465px;
+		}
+		.salah
+		{ color: red; padding-left: 10px; }
+        </style>
+{/literal}
+ {literal}
+            <script>
+			//script Popup
+		function showOption(option) {
+            
+		//Change these values to style your modal popup
+		var align = 'center';									//Valid values; left, right, center
+		var top = 100; 											//Use an integer (in pixels)
+		var width = 500; 										//Use an integer (in pixels)
+		var padding = 10;										//Use an integer (in pixels)
+		var backgroundColor = '#FFFFFF'; 						//Use any hex code
+		var source = 'popup_wizard.php?option='+option; 								//Refer to any page on your server, external pages are not valid e.g. http://www.google.co.uk
+		var borderColor = '#ffffff'; 							//Use any hex code
+		var borderWeight = 1; 									//Use an integer (in pixels)
+		var borderRadius = 20; 									//Use an integer (in pixels)
+		var fadeOutTime = 300; 									//Use any integer, 0 = no fade
+		var disableColor = '#666666'; 							//Use any hex code
+		var disableOpacity = 40; 								//Valid range 0-100
+		var loadingImage = 'images/loading.gif';		//Use relative path from this page
+			
+		//This method initialises the modal popup
+		modalPopup(align, top, width, padding, disableColor, disableOpacity, backgroundColor, borderColor, borderWeight, borderRadius, fadeOutTime, source, loadingImage);
+    }
+			</script>
+            <SCRIPT LANGUAGE="JavaScript">
+			//radio link
+var myOption = false
+function initValue() {
+    myOption = document.forms[0].songs[3].checked
+}
+ function fullName(form) {
+	var link
+    for (var i = 0; i < form.songs.length; i++) {
+        if (form.songs[i].checked) {
+			link = form.songs[i].value;
+            break
+        }
+    }
+    window.location = link;
+}
+function setShemp(setting) {
+    myOption = setting
+}
+function exitMsg() {
+    if (myOption) {
+        alert("You like My Option?")
+    }
+}
+</SCRIPT>
+            {/literal}
+            {literal}
+            <script type="text/javascript" charset="utf-8">
+			//Infield Label
+		$(function(){ $("label").inFieldLabels(); });
+		</script>
+            {/literal}
+            {literal}
+            <script>
+			//disable form
+			function fdisable()
+			{
+			var get= $("#category option:selected").val();
+			if(get == 0)
+			{
+			$("#keyword_usulan").attr("disabled", "true");
+			$('.caution').show();
+			$("#keyword_usulan").html($("#product").val());
+			}
+			else
+			{
+				data=$('#jenis').val();
+				var len=data.length;
+				if(len<1)
+				{
+				$('.jenisproduk2','.kategoriIklan').next().show();
+				$('#keyword_usulan').attr('disabled',true);
+				$('.caution').show();
+				$("#keyword_usulan").html($("#product").val());
+				}
+				else
+				{
+				$('.jenisproduk2','.kategoriIklan').next().hide();
+				$('#keyword_usulan').removeAttr('disabled');
+				$('.caution').hide();
+				
+				$.get('buat.php',{get_key:1, cat:get, type:data}, function(data){
+					key = data;
+					$("#lbl_key_usulan").hide();
+					$("#keyword_usulan").html("");
+					if ($("#product").val()!=""){
+						$("#keyword_usulan").html($("#product").val()+",");
+					}
+					$("#keyword_usulan").html($("#keyword_usulan").html()+data);
+				});
+				}
+			
+			}
+			}
+			</script>
+           
+            <script type="text/javascript">
+             function validateForm()
+            {
+            var x=document.forms["validation"]["keyword","tanggalAwal","tanggalAkhir"].value;
+            if (x==null || x=="")
+              {
+              alert("Anda harus mengisi Keyword terlebih dahulu");
+              return false;
+              }
+            }
+			</script>
+            {/literal}
+            {literal}
+            <script type="text/javascript">
+             function validateForm()
+            {
+            var y=document.forms["validation"]["tanggalAwal","tanggalAkhir"].value;
+            if (y==null || y=="")
+              {
+              alert("Anda harus mengisi Durasi terlebih dahulu");
+              return false;
+              }
+            }
+			</script>
+            {/literal}
+        <link rel="shortcut icon" href="images/favicon.ico">
+        <link rel="icon" type="image/gif" href="images/animated_favicon.gif">
+
+    </head>
+
+    <body onload="init()">
+    
+      {if $takeOut}<div class="cLabel"><a href="http://www.sitti.co.id/UtakAtik/index.html"></a></div>{/if}
+	 {if $broadcast}
+	
+     <div id="kotakdialog" title="Pesan Hari Ini">
+     	<div class="isiDialog">
+       {$broadcast}
+        </div>
+	<a class="closeDialog" onmouseover="tooltip.show('Tutup Kotak Dialog');" onmouseout="tooltip.hide();"  href="#">&nbsp;</a>
+    </div>
+	{/if}
+    <table  border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr>
+    <td>
+        <div class="wrapper">
+			
+            <div class="header">
+             {if $isLogin}
+                <a class="logo" href="beranda.php">&nbsp;</a>
+                <a class="slogan" href="beranda.php">&nbsp;</a>
+                {*}<a class="bahasa" href="?lang=en">>> Can't speak Bahasa? Click here for English!</a>{/*}
+             {else}
+                <a class="logo" href="beranda.php">&nbsp;</a>
+                <a class="slogan" href="beranda.php">&nbsp;</a>
+                <a class="bahasa" href="?lang=en">>> Can't speak Bahasa? Click here for English!</a>
+             {/if}
+            </div>
+<!--             {if $msg}
+            <div class="messageBoxLogin" align="right">
+               
+               
+                <span class="sukses">{$msg}</span> 
+                {elseif $er}
+                
+                <span class="error">Anda tidak berhasil masuk. Periksa nama akun dan kata sandi anda.</span>
+                
+              
+            </div>
+              {/if}-->
+            {if $isLogin}
+			<div class="navigationBarAllLogin">
+			<div class="navigationRight">
+                 <ul class="menu navigation" id="menu">
+                    <li  style="margin:0 29px 0 0"><a class="dropmenu" href="profile.php">Profile Saya</a>
+                    	<ul>
+                            <li><a href="profile.php?modify=1">Ganti Profil</a>
+    <!--                            <ul>
+                                    <li><a href="profile.php?bank=1">Daftar Rekening Bank</a></li>
+                                    <li><a href="profile.php?cc=1">Daftar Kartu Kredit</a></li>
+                                </ul>-->
+                            </li>
+                            <li><a href="refer.php">Refer Teman</a></li>
+                  			<li><a href="pembayaran.php">Pembayaran</a></li>
+                  			<li><a href="pembayaran.php?mutasi=true">Mutasi Rekening</a></li>
+                            <li><a href="refer_report.php">Laporan Referral</a></li>
+                        </ul>
+                    </li>
+                    <li  style="margin:0 29px 0 0"><a href="beranda.php">Laporan</a></li>
+                    <li  style="margin:0 29px 0 0"><a href="pembayaran.php">Top Up</a></li>
+                    <li  style="margin:0 29px 0 0"><a target="_blank" href="http://sitti.zendesk.com/anonymous_requests/new">Kontak</a></li>
+                </ul>
+                <script type="text/javascript">var menu=new menu.dd("menu");menu.init("menu","menuhover");</script>
+             <a class="btnKeluar" href="index.php?logout=1"></a>
+             <a target="_blank" href="http://twitter.com/sittiID" class="twitterAtas" alt="http://twitter.com/sittiID"></a>
+             <a target="_blank" href="http://www.facebook.com/SITTI.ID" class="fbAtas" alt="http://www.facebook.com/SITTI.ID"></a>
+             </div>
+			
+            </div>
+            {else}
+            
+            <div class="navigationBarAll">
+            	<div class="navigationRight">
+                <ul class="navigation">
+                    <li><a href="tentang_kami.php">Tentang</a></li>
+                    <li><a href="uji_sitti.php">Simulasi</a></li>
+                     <li><a href="career.php">Karir</a></li>
+                    <li><a target="_blank" href="http://sitti.zendesk.com/anonymous_requests/new">Kontak Kami</a></li>
+                </ul>
+               		 <a class="daftarSITTI" href="index.php?registration=1">Daftar di SITTI</a>
+                    <form class="regForm" action="{$LOGIN_URL}" method="post" enctype="application/x-www-form-urlencoded">
+                	<input name="username" type="text" value="E-mail Anda" onfocus="blank(this)" onblur="unblank(this)" autocomplete="off">
+                    <input name="password" type="password" value="Kata Sandi" onfocus="blank(this)" onblur="unblank(this)" autocomplete="off">
+                    <input name="role" type="hidden" value="1" />
+                    <input type="submit" value="&nbsp;" />
+               		 </form>
+                    
+               </div>
+            </div>
+          
+            {/if}
+             {if $isLogin}
+         <div class="topUserMenu">
+         	<div class="topUserMenu-right">
+         	
+         	<div class="tum_info">
+         	<span class="namaPemilik">Nama Pemilik Akun</span>
+         	<span class="namaUser">{$info.name|strip_tags}</span>
+         	<span class="namaUser">{$info.sittiID}</span>
+         	</div>  	
+         	{if $is_ppa || !$is_cpm}<a class="tum_bantuan" href="faq.php"></a>{/if}
+            <a class="tum_bugdet" href="uji_sitti2.php"></a>
+         	<a class="tum_buat" href="javascript:showOption('a')"></a>
+            <a class="tum_kampanye" href="javascript:showOption('c')"></a>
+         	<a class="tum_notifikasi" href="{if $is_cpm}beranda.php?buat_campaign=1{else}beranda.php?notifikasi=true{/if}"></a>
+         	
+         	</div>
+         </div>
+         {/if}   
+          <div class="blockContent">   
+            <div class="content">
+                <div class="colLeft" style="width:1000px;">
+                <h3 class="headTitle">Spesifikasi Kampanye/Iklan</h3>
+                  <div class="w915">
+                  <div class="iklan_w">
+                  <table width="100%" cellspacing="0" cellpadding="0" border="0" class="addlist zebra" style="margin: 10px 0 0;">
+                    <tr>
+                    	<td width="450">
+                   <div class="f_wizard">
+                    <span class="sisa">Sisa Saldo Anda <span class="saldo">Rp. {$SALDO|number_format},-</span></span>
+                    <form name="validation" class="registerForm" enctype="application/x-www-form-urlencoded" method="POST" action="kampanye_wizard.php" onsubmit="return validateForm()">
+                   		<h2>Data Kampanye :</h2>
+                    	<br />
+  		  				<div class="row">
+							<label style="width:120px; float:left;">Nama Kampanye</label>
+                            <label for="kampanye" style="position:absolute; left:134px; margin-top:6px; color:#999; width:190px;">Contoh: Jual Aksesori Mobil</label>
+							<input class="inputText" type="text"  style="float:left;" name="name" id="kampanye" value="{if $campaign_name}{$campaign_name}{/if}">
+                      
+							<a class="helpIcon" onmouseout="tooltip.hide();" onmouseover="tooltip.show('Nama Kampanye/Iklan Anda supaya mudah 									                             dikenali, bisa berupa keterangan produk atau waktu beriklan');">&nbsp;</a>
+                        </div>
+                        <div class="row">
+							<label style="width:120px; float:left;">Durasi</label>
+							<input class="inputText" type="text" style="float:left; width:70px;" name="tanggalAwal" id="tanggalAwal" value="{if $tanggalAwal}{$tanggalAwal}{/if}"/>
+                            <label style="width:25px; float:left;">&nbsp;s.d&nbsp;</label>
+							<input class="inputText" type="text" style="float:left; width:70px;" name="tanggalAkhir" id="tanggalAkhir" value="{if $tanggalAkhir}{$tanggalAkhir}{/if}"/>
+							<a class="helpIcon" onmouseout="tooltip.hide();" onmouseover="tooltip.show('Tanggal mulai dan berakhirnya Kampanye/Iklan Anda');">&nbsp;</a>
+                        </div>
+                       
+                        <h2>Data Produk :</h2>
+                    	<br />
+                        <div class="row">
+							<label style="width:120px; float:left;">Nama Produk</label>
+                           <label for="product" style="position:absolute; left:134px; margin-top:6px; color:#999; width:170px;">Contoh: Aksesori Auto21</label>
+							<input class="inputText" type="text"style="float:left;" name="product_name" id="product" value="{if $product_name}{$product_name}{/if}" >
+							<a class="helpIcon" onmouseout="tooltip.hide();" onmouseover="tooltip.show('Nama/Merek produk Anda');">&nbsp;</a>
+                        </div>
+                        <div class="row">
+							<label style="width:120px; float:left;">Jenis Produk</label>
+                            <label for="jenis" style="position:absolute; left:134px; margin-top:6px; color:#999; width:127px;">Contoh: Aksesori mobil</label>
+							<input class="jenisproduk2" type="text"style="float:left;" name="type" id="jenis" value="{if $type}{$type}{/if}" onchange="fdisable()">
+							<a class="helpIcon" onmouseout="tooltip.hide();" onmouseover="tooltip.show('Jenis produk Anda');">&nbsp;</a>
+                            
+                        </div>
+                        <div class="row">
+							<label style="width:120px; float:left;">Kategori</label>
+							<select id="category" class="kategoriIklan" name="category" style="float:left;" onchange="fdisable()">
+                            <option value="0">-- Pilih Kategori --</option>{section name=i loop=$adCategory}
+                        <option value="{$adCategory[i].id}">{$adCategory[i].categoryName}</option>
+                        {/section}
+                            </select>
+							<script>
+								document.getElementById('category').value="{if $category}{$category}{else}0{/if}";
+							</script>
+							<a class="helpIcon" onmouseout="tooltip.hide();" onmouseover="tooltip.show('Kategori dari produk yang Anda Iklankan');">&nbsp;</a>
+                        </div>
+                        
+                        <div class="row">
+							<label style="width:120px; float:left;">Keyword Terkait</label>
+                            <label style="position:absolute; left:132px; margin-top:8px; width:184px; height:175px; z-index:2;" class="caution" onclick="alert('Harap isi Jenis Produk dan Kategori terlebih dahulu')"></label>
+                            <label id="lbl_key" for="keyword" style="position:absolute; left:134px; margin-top:6px; color:#999; width:160px; z-index:1p;">Contoh: mobil,jual aksesori, aksesori mobil, unik, .......</label>
+							<textarea id="keyword" class="keyword" rows="10" name="keyword" style="float:left;">{if $keyword}{$keyword}{/if}</textarea>
+							<a class="helpIcon" onmouseout="tooltip.hide();" onmouseover="tooltip.show('Isikan kata kunci yang paling sesuai dengan Merek/Produk yang ingin Anda iklankan di SITTI');">&nbsp;</a>
+							<script>
+								fdisable();
+							</script>
+                        </div>
+                        <div class="row">
+							<label style="width:120px; float:left;">Keyword Usulan</label>
+                            <label style="position:absolute; left:132px; margin-top:8px; width:184px; height:175px; z-index:2;" class="caution" onclick="alert('Harap isi Jenis Produk dan Kategori terlebih dahulu')"></label>
+                            <label id="lbl_key_usulan" for="keyword_usulan" style="position:absolute; left:134px; margin-top:6px; color:#999; width:160px; z-index:1p;">Contoh: mobil,jual aksesori, aksesori mobil, unik, .......</label>
+							<textarea id="keyword_usulan" class="keyword" rows="10" name="keyword_usulan" style="float:left;" disabled="disabled">{if $keyword_usulan}{$keyword_usulan}{/if}</textarea>
+							<a class="helpIcon" onmouseout="tooltip.hide();" onmouseover="tooltip.show('Kata kunci usulan dari SITTI');">&nbsp;</a>
+							<script>
+								fdisable();
+							</script>
+                        </div>
+                        <h2>Tujuan Iklan Anda</h2>
+                    	<br />
+                        <div class="row">
+							<label style="width:120px; float:left;">Alamat Situs Anda</label>
+                            <label for="alamat_situs" style="position:absolute; left:132px; margin-top:6px; color:#999; width:250px;">Contoh: http://www.auto21.com/mobil.html</label>
+							<input class="inputText" type="text"style="float:left; width:240px;" name="urlLink" id="alamat_situs" value="{if $urlLink}{$urlLink}{/if}" >
+							<a class="helpIcon" onmouseout="tooltip.hide();" onmouseover="tooltip.show('Halaman judul yang dituju apabila iklan Anda diklik');">&nbsp;</a><br /><br /><span class="blue" style="padding:0 0 0 122px; font-size:11px;">(Harus lengkap dengan http://)</span>
+                        </div>
+                        <div class="row">
+							<label style="width:120px; float:left;">Nama Situs yang di tampilkan</label>
+                            <label for="nama_situs" style="position:absolute; left:134px; margin-top:6px; color:#999; width:160px;">Contoh: www.mobil.com</label>
+							<input class="inputText" type="text" value="{if $urlName}{$urlName}{/if}"  id="nama_situs" style="float:left;" name="urlName"  onKeyDown="limitText(this,this.form.cdSitus,30);" onKeyUp="limitText(this,this.form.cdSitus,30);" style="float:left;"/>
+                    	<span style="padding:0 0 0 7px; font-size:11px;margin: 3px 0 0;" class="blue"><a class="helpIcon" onmouseout="tooltip.hide();" onmouseover="tooltip.show('Nama yang ingin Anda tampilkan untuk situs Anda');">&nbsp;</a><br /><br /><span style="padding:0 0 0 115px; font-size:11px;margin: 3px 0 0;float:left;" class="blue"><input readonly type="text" name="cdSitus" size="3" value="30" style="border:none;background:none;font-size:12px;width:18px;">karakter yang tersisa.</span>
+                        </div>
+                        <div class="row">
+							<input name="do" type="hidden" id="do" value="create_campaign">
+							<input name="wizard" type="hidden" id="wizard" value="1">
+							<div id="result"><input type="submit" value="Lanjut" class="submitButton"></div>
+						</div>
+                      </form>
+                      </div>
+                      </td>
+                      <td>
+                       <div class="p_wizard">
+                       <h2 class="blue" style="padding-top:10px;">Petunjuk Pengisian</h2>
+                        <p><h3>Simple Mode</h3></p>
+<p>
+Simple Mode merupakan pilihan jenis pembuatan kampanye iklan yang cepat, praktis dan mudah. Dengan waktu yang singkat, maka iklan Anda dapat langsung terpasang di jaringan SITTI di seluruh Indonesia. 
+</p>
+<p>Untuk membuat kampanye iklan dengan Simple Mode, Anda hanya harus melakukan dua tahap berikut</p>
+<h3>Spesifikasi Kampanye/Iklan</h3>
+<p style="margin-bottom:-9px; color:#333;"><strong>Pengisian Data Produk</strong></p>
+<p>Di halaman ini, Anda diminta untuk mengisi secara rinci tentang produk yang akan Anda kampanyekan. Sebelum memulai pembuatan kampanye iklan, pastikan saldo Anda mencukupi untuk penayangan iklan. Isi form disamping dengan jelas dan lengkap. Atur durasi penayangan iklan Anda sesuai keinginan. Iklan Anda akan aktif tayang berdasarkan durasi yang Anda tentukan atau dari jumlah sisa saldo Anda. Apabila dalam pengisian field masih ada yang kurang jelas, <span style="color:#1dadff; ">Anda dapat mengarahkan kursor mouse pada tanda tanya yang terdapat di samping field.</span></p>
+<h3>Pembuatan Teks Iklan</h3>
+<p style="margin-bottom:-9px; color:#333;"><strong>Input Text Iklan</strong></p>
+<p>Setelah melakukan pengisian informasi data produk, Anda dapat mulai membuat lima input iklan sesuai keinginan Anda. Tampilan iklan dapat dilihat di samping masing-masing input iklan yang Anda buat. Input iklan inilah yang akan tayang di halaman situs-situs pada jaringan SITTI.  </p>
+<p>&nbsp;</p>
+<p>Setelah melakukan dua tahap ini, maka kampanye iklan Anda telah selesai dibuat dan akan dapat segera ditayangkan di situs-situs yang termasuk dalam jaringan SITTI di seluruh Indonesia. Apabila saldo Anda tidak mencukupi untuk pembuatan kampanye iklan, silahkan top up terlebih dahulu untuk mengaktifkan kampanye iklan Anda.</p>
+                        </div>
+                        </td>
+                        </tr>
+                        </table>
+                      </div>
+                  </div>
+                    
+	<br />
+<br />
+                </div>
+                
+				
+				 <div class="bottomContent"> </div>
+            </div>
+         </div>
+           
+        </div>
+  </td>
+  </tr>
+</table>
+       <div class="footer">
+            <div class="wrapper">
+                <ul class="navFoot">
+                    <li><a href="tentang_kami.php">Tentang Kami</a>|</li>
+                    <li><a href="term.html" target="_blank"> Syarat dan Ketentuan</a>|</li>
+                    <li><a href="privasi.html" target="_blank">Kebijakan Privasi</a>|</li>
+                    <li><a href="http://blog.belajarsitti.com/" target="_blank">Blog</a>|</li>
+                    <li><a href="http://sittizen.sitti.co.id/" target="_blank"> Jadi SITTIZEN</a>|</li>
+                    <li><a href="http://sitti.zendesk.com/anonymous_requests/new" target="_blank">Kontak Kami</a></li>
+                </ul>
+                <p class="copyRight">
+                    Email: beriklan@sitti.zendesk.com<br />
+                    © 2010 SITTI
+                </p>
+            </div>
+        </div>
+ {literal}
+		 <script type="text/javascript">
+        function blank(a) { if(a.value == a.defaultValue) a.value = ""; }
+        function unblank(a) { if(a.value == "") a.value = a.defaultValue; }
+        </script> 
+{/literal}
+	 {literal}
+     <script type="text/javascript">
+
+			  var _gaq = _gaq || [];
+			  _gaq.push(['_setAccount', 'UA-16501037-1']);
+			  _gaq.push(['_setDomainName', 'sitti.co.id']);
+			  _gaq.push(['_trackPageview']);
+			
+			  (function() {
+			    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			    var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga, s);
+			  })();
+
+		</script>
+		
+	{/literal}  
+                      {literal}
+                	<script type="text/javascript">   
+					//url 5        	
+					function linkAsli(url){
+						$("#setJudulURL5").attr("href",url);
+						$("#setContentURL5").attr("href",url);
+						$("#setUrl5").attr("href",url);
+						}
+					function judulIklan5(judul5){ //membuat header (judul utama)
+						document.getElementById("setJudul5").innerHTML = judul5;
+						//alert(titlePage);
+					}
+					function barisPertama5(baris15){ //membuat header (judul utama)
+						document.getElementById("setBaris15").innerHTML = baris15;
+						//alert(titlePage);
+					}
+					function barisKedua(baris2){ //membuat header (judul utama)
+						document.getElementById("setBaris22").innerHTML = baris2;
+						//alert(titlePage);
+					}
+					function urlTampil(urlName){ //membuat header (judul utama)
+						document.getElementById("setUrl2").innerHTML = urlName;
+						//alert(titlePage);
+					}
+					function uncheckedAll(){
+						$('#allcity').attr("checked","");
+					}
+					function toggleAllCity(){
+						$.each($("input[name='tcity[]']:checked"), function() {
+								$(this).attr('checked',false);
+							});
+															
+					}
+					function limitText(limitField, limitCount, limitNum) {
+						if (limitField.value.length > limitNum) {
+							limitField.value = limitField.value.substring(0, limitNum);
+						} else {
+							limitCount.value = limitNum - limitField.value.length;
+						}
+					}
+					</script>
+                {/literal}
+    </body>
+</html>

@@ -1,0 +1,7 @@
+Hallo,<br/>
+teman anda, {$profile.name} ({$profile.email})<br/>
+mengajak anda untuk menggunakan sitti.
+Silahkan kunjungi situs sitti di <a href="http://www.sitti.co.id/">http://www.sitti.co.id/</a><br/><br/>
+
+Salam,<br/>
+Tim Sitti<br/>

@@ -1,0 +1,166 @@
+<script type="text/javascript">
+var interval = 1;
+{literal}
+
+function DayDiff(date1, date2) {
+	return (date2.getTime() - date1.getTime()) / 1000 / 60 / 60 / 24;
+}
+
+$(function() {
+
+	$("#tglAwalKampanye,#tglAkhirKampanye").datepicker({ 
+		dateFormat: 'yy-mm-dd'
+	});
+
+	$('#tglAwalKampanye').change( function () {
+		$('#tglAkhirKampanye').val('');		
+	});
+
+	$('#tglAkhirKampanye').change(function () {	
+		var awal = $('#tglAwalKampanye').datepicker("getDate");
+		var akhir = $('#tglAkhirKampanye').datepicker("getDate");
+		interval = DayDiff(awal, akhir) + 1;
+		
+		$('#interval').val(interval);
+	});
+
+	$('input#allcity').click(function () {
+        if ($(this).is(':checked')) {
+            $('input[name="tcity[]"]').attr('checked', false);
+        }
+    });
+
+    $('input[name="tcity[]"]').click(function () {
+        if ($(this).is(':checked')) {
+            $('input#allcity').attr('checked', false);
+        }
+    });
+
+});
+{/literal}
+</script>
+
+<form method="post" action="buat.php?ad_ppa=true" name="ppa_konfigurasi" id="ppa_konfigurasi">
+<div style="width:900px;">
+
+	<h3 class="headTitle">Buat Kampanye/Produk Iklan</h3>
+	<p>Kampanye adalah sekumpulan iklan untuk 1 produk inventaris Anda.</p>
+	
+	
+	<table cellspacing="0" cellpadding="0" border="0" style="margin-top:30px;" class="list zebra">
+	<tbody><tr class=" oddRow">
+	<td>
+	<h3 class="blue noMargin">Nama Kampanye/Produk Anda</h3></td>
+	</tr>
+	<tr class=" evenRow">
+	<td>
+			<input type="text" value="" name="nama" id="nama" /></td>
+	</tr>
+	
+	</tbody></table>
+	<table cellspacing="0" cellpadding="0" border="0" style="margin-top:30px;" class="list zebra">
+	<tbody>
+	<tr class=" oddRow">
+	<td>
+	<h3 class="blue noMargin">URL / Alamat Situs Produk </h3></td>
+	</tr>
+	<tr class=" evenRow">
+	<td>
+			<input type="text" value="" name="url" id="url" /></td>
+	</tr>
+	
+	</tbody></table>
+	<table cellspacing="0" cellpadding="0" border="0" style="margin-top:30px;" class="list zebra">
+	<tbody>
+	<tr class=" oddRow">
+	<td>
+	<h3 class="blue noMargin">Harga Satuan</h3></td>
+	</tr>
+	<tr class=" evenRow">
+	<td>
+	Rp.		<input type="text" value="" name="harga" id="harga" /></td>
+	</tr>
+	
+	</tbody></table>
+	<table cellspacing="0" cellpadding="0" border="0" style="margin-top:30px;" class="list zebra">
+	<tbody>
+	<tr class="oddRow">
+	<td>
+	<h3 class="blue noMargin">Berapa % Komisi Yang Ingin Anda Berikan?</h3></td>
+	</tr>
+	<tr class=" evenRow">
+	<td>
+			<input type="text" value="" name="komisi" id="komisi" /></td>
+	</tr>
+	
+	</tbody></table>
+	<table cellspacing="0" cellpadding="0" border="0" style="margin-top:30px;" class="list zebra">
+	<tbody>
+	<tr class=" oddRow">
+	<td>
+	<h3 class="blue noMargin">Berapa Variasi Iklan yang Ingin Anda Buat?</h3></td>
+	</tr>
+	<tr class=" evenRow">
+	<td>
+			<input type="text" value="" name="variasi" id="variasi" /></td>
+	</tr>
+	<tr class=" oddRow">
+	<td>
+	<div style="font-size:10px">* Buatlah sebanyak mungkin variasi iklan untuk mendapatkan hasil yang maksimal</div></td>
+	</tr>
+	</tbody>
+	</table>
+	<table cellspacing="0" cellpadding="0" border="0" style="margin-top:30px;" class="list zebra">
+	<tbody><tr class=" oddRow">
+	<td><h3 class="blue noMargin">Durasi Kampanye Anda</h3></td>
+	</tr>
+	<tr class=" evenRow">
+	<td>
+	 <input name="tglAwalKampanye" id="tglAwalKampanye" class="inputText" style="width: 100px;" type="text" value="{$current_date}" /> sampai
+	 <input name="tglAkhirKampanye" id="tglAkhirKampanye" class="inputText" style="width: 100px;" type="text" value="{$current_date}" />
+	</td>
+	</tr>
+	</tbody></table>
+	
+	<table cellspacing="0" cellpadding="0" border="0" style="margin-top:30px;" class="list zebra">
+	<tr class=" oddRow">
+	<td><h3 class="blue noMargin">Target Kota Iklan</h3></td>
+	</tr>
+	<tr class=" evenRow">
+	<td>
+	 <table width="100%">
+        	<tr>
+        		<td colspan="6">
+        			<input checked="checked" value="ALLCITY" class="pilihKota" name="tcity" id="allcity" selected="selected" type="checkbox"><span class="kotaTujuan">Seluruh Kota</span>
+        		</td>
+        	</tr>
+        	<tr>
+        		<td>
+        			<input class="pilihKota" value="MEDAN" name="tcity[]" id="tcity[]" type="checkbox"><span class="kotaTujuan">Medan</span>
+        		</td>
+        		<td>
+        			<input class="pilihKota" value="JABODETABEKBAN" name="tcity[]" id="tcity[]" type="checkbox"><span class="kotaTujuan">Jabotabek &amp; Bandung</span>
+        		</td>
+        		<td>
+        			<input class="pilihKota" value="YOGYAKARTA" name="tcity[]" id="tcity[]" type="checkbox"><span class="kotaTujuan">Yogyakarta</span>
+        		</td>
+        		<td>
+        			<input class="pilihKota" value="BALI" name="tcity[]" id="tcity[]" type="checkbox"><span class="kotaTujuan">Bali</span>
+        		</td>
+        		<td>
+        			<input class="pilihKota" value="UJUNG PANDANG" name="tcity[]" id="tcity[]" type="checkbox"><span class="kotaTujuan">Ujung Pandang/Makasar</span>
+        		</td>
+        	</tr>
+        </table>
+	</td>
+	</tr>
+	</table>
+		
+	<div style="margin-top:10px">
+		<input type="hidden" name="next" value="2" />
+		<input type="hidden" id="interval" name='interval' value='1' />
+		<input type="submit" value="Lanjut" name="simpanKonversi" class="submitButton">
+	</div>
+	
+</div>
+</form>

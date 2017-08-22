@@ -1,0 +1,32 @@
+{if $list}
+<p>Menampilkan data mutasi rekening dari tanggal <strong>{$from}</strong> sampai dengan <strong>{$to}</strong></p>
+<table width="713" border="0" cellspacing="0" cellpadding="0" class="list zebra">
+  <tr class="head2">
+    <td width="30">No</td>
+    <td>Tanggal</td>
+    <td>Jenis</td>
+    <td>Kredit</td>
+    <td>Debet</td>
+    <td>Saldo</td>
+  </tr>
+  {section name=i loop=$list}
+  <tr>
+    <td>{$smarty.section.i.index_next}</td>
+    <td>{$list[i].datee}</td>
+    <td>{$list[i].transaksi|capitalize}</td>
+    <td>{if $list[i].credit && $list[i].credit != 0}Rp.{$list[i].credit|number_format}{else}-{/if}</td>
+    <td>{if $list[i].debit && $list[i].debit != 0}Rp.{$list[i].debit|number_format}{else}-{/if}</td>
+    <td>{if $list[i].saldo}{if $smarty.section.i.last}<strong>Rp.{$list[i].saldo|number_format}</strong>{else}Rp.{$list[i].saldo|number_format}{/if}{else}-{/if}</td>
+  </tr>
+  {/section}
+  <tr style="background-color:#c7d7e4; font-weight:bold;">
+  	<td colspan="2">&nbsp;</td>
+  	<td>Total</td>
+  	<td>{if $total_credit != 0}Rp.{$total_credit|number_format}{else}-{/if}</td>
+  	<td>{if $total_debit != 0}Rp.{$total_debit|number_format}{else}-{/if}</td>
+  	<td>&nbsp;</td>
+  </tr>
+</table>
+{else}
+<p>{$message}</p>
+{/if}

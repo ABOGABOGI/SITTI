@@ -1,0 +1,6 @@
+<p><span class="style1">{$CATEGORY_NAME}</span><BR />
+        <span class="style2">{$rs.title|strtoupper|stripslashes}</span><BR />
+        <span class="testi">{$rs.posted} on {$rs.time}</span></p>
+        <p>{$rs.detail|stripslashes}</p>
+{if $rs.attachment}
+         <p><a href="download.php?get={$rs.attachment}" target="_blank"><strong>Download Document</strong></a></p>{/if}

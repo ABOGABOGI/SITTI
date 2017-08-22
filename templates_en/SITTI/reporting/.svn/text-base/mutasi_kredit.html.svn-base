@@ -1,0 +1,11 @@
+<script type="text/javascript">
+{literal}
+$(document).ready(function(){
+	$("#tab09").html("<span style='text-align:center;' align='center'><img src='images/loader.gif'/></span>");
+	$("#tab09").load('report.php?t=8');
+});
+{/literal}
+</script>
+
+<h2 class="blue">Account Mutations</h2>
+<div id="tab09" style="margin-top:25px;"></div>

@@ -1,0 +1,160 @@
+<table width="650" border="0" cellspacing="0" cellpadding="0" class="list zebra" >
+                  <tr class="head">
+                    <td width="20">No.</td>
+                    <td>Kata Kunci</td>
+                    <td>Tawaran Tertinggi CPC</td>
+                    <td>Tawaran Anda</td>
+                    <td>Budget/Hari</td>
+                    <td>Total Budget</td>
+                 
+                  </tr>
+                  {assign var=num value=0}
+                  {section name=i loop=$list}
+                  {if $list[i].keyword}
+                  <tr>
+                    <td>{$smarty.section.i.iteration}</td>
+                    <td>{$list[i].keyword|trim|stripslashes|strip_tags}</td>
+                    <td>{$list[i].max_cpc|number_format}</td>
+                    <td style="width:160px">
+                    	<div style="position:relative;">
+	                    	<input name="keyword[]" type="hidden" value="{$list[i].keyword|stripslashes|strip_tags|mysql_escape_string}"/>
+	                      	<input name="bid[]" type="text" value="{$list[i].bid|round}"  class="inputPoint bidval bid{$num} bidAp" no="{$num}" style="width:100px;text-align:right;" onkeydown="return isNumberKey(event)"/>
+	                      	                	
+	                    	{if $num eq 0}
+	                    	<a onmouseover="tooltip.show('Harga yang Anda tawar untuk membeli Kata Kunci');" onmouseout="tooltip.hide();"  class="helpIcon biddingnotif" style="float:none; height: 18px;display:block;position:absolute;right: 0;top: -37px;">&nbsp;</a>
+	                    	<a class="apply" no="1a" style="position: absolute; top:6px;right:2px;text-decoration:underline;cursor:pointer;font-size:10px;">Apply All</a>
+                    		{/if}
+                    	</div>
+                    </td>
+                    <td style="width:160px">
+                    	<div style="position:relative;">
+	                    	<input name="budget[]" type="text" value="{$list[i].budget|round}" class="inputPoint budval budgets{$num} budAp" no="{$num}" style="width:100px;text-align:right;" onkeydown="return isNumberKey(event)" />
+	                    	
+                    		{if $num eq 0}
+                    		<a onmouseover="tooltip.show('Nilai maksimal perhari yang ingin Anda keluarkan untuk Kata Kunci ini');" onmouseout="tooltip.hide();"  class="helpIcon budgetnotif" style="float:none; height: 18px;display:block;position:absolute;right: 0;top: -37px;">&nbsp;</a>
+                    		<a class="apply" no="1b" style="position: absolute; top:6px;right:2px;text-decoration:underline;cursor:pointer;font-size:10px;">Apply All</a>
+                    		{/if}
+                    	</div>
+                    </td>
+                    <td style="width:160px">
+                    	<div style="position:relative;">
+	                    	<input name="total[]" type="text" value="{$list[i].total|round}" class="inputPoint totval totals{$num} totAp" no="{$num}" style="width:100px;text-align:right;" onkeydown="return isNumberKey(event)"/>
+	                    	                    	
+                    		{if $num eq 0}
+                    		<a onmouseover="tooltip.show('Nilai maksimal yang ingin Anda keluarkan untuk Kata Kunci ini selama kampanye iklan Anda berlangsung');" onmouseout="tooltip.hide();"  class="helpIcon totalnotif" style="float:none; height: 18px;display:block;position:absolute;right: 0;top: -37px;">&nbsp;</a>	
+                    		<a class="apply" no="1c" style="position: absolute; top:6px;right:2px;text-decoration:underline;cursor:pointer;font-size:10px;">Apply All</a>
+                    		{/if}
+                    	</div>
+                    </td>
+                   
+                  </tr>
+                  {/if}
+                  {assign var=num value=$num+1}
+                  {/section}
+                </table>
+                
+{literal}
+	<script type="text/javascript">
+	var initial_val;
+	var col;
+	$(".apply").click(function(){
+		var diff = $(this).attr('no');
+		if (diff == '1a'){
+			initial_val = $(".bid0").val();
+			col='input.bidAp';cols='.bid';
+		}else if(diff == '1b'){
+			initial_val = $(".budgets0").val();
+			col = 'input.budAp';cols='.budgets';
+		}else if(diff == '1c'){
+			initial_val = $(".totals0").val();
+			col = 'input.totAp';cols='.totals';
+		}
+		
+		$(col).each(function(index){
+			$(cols+index).val(initial_val);
+			});
+	});
+	 $(".bidval").blur(function(){
+			var no = $(this).attr('no');
+			var bid_val = parseInt(600);
+			var bid = parseInt($(".bid"+no).val(),10);
+			var budget = parseInt($(".budgets"+no).val(),10);
+			var total = parseInt($(".totals"+no).val(),10);
+			
+			$(".bid"+no).val(modulus(bid));
+			bid = parseInt($(".bid"+no).val());
+			
+			if (bid < bid_val){
+				alert('Minimal nilai tawaran adalah Rp. 600');				
+				$(".bid"+no).val(600);
+			}else{
+				$(".bid"+no).val(bid);
+			}
+		 });
+  	
+  		$(".budval").blur(function(){
+			var no = $(this).attr('no');
+			var tawaran = parseInt($(".bid"+no).val());
+			var budget = parseInt($(".budgets"+no).val(),10);
+			
+			if(budget < tawaran || budget == "" || budget == null){				
+				alert('Anggaran Harian Anda harus lebih besar dari Tawaran Harian Anda.');
+				$(".budgets"+no).val(tawaran);
+				updateTotal();
+			}else if (isNaN(budget) == true) {
+				budget = 0;
+			}else{
+				$(".budgets"+no).val(modulus(budget));
+				budget = parseInt($(".budgets"+no).val());
+				$(".budgets"+no).val();
+				updateTotal();
+			}
+					
+		});
+		
+  		$(".totval").blur(function(){
+			var no = $(this).attr('no');
+			var tawaran = parseInt($(".bid"+no).val());
+			var budget = parseInt($(".budgets"+no).val());
+			var total = parseInt($(".totals"+no).val(),10);
+			if(total < budget || total < tawaran ){
+				//$(this).val(0);
+				alert('Anggaran Total Anda harus lebih besar dari Anggaran Harian Anda');
+				$(".totals"+no).val(budget);
+				total = parseInt($(".totals"+no).val());
+				updateTotal();
+				
+			}else if (isNaN(total) == true) {
+				budget = 0;
+			}else{
+				$(".totals"+no).val(modulus(total));
+				total = parseInt($(".totals"+no).val());
+				$(".totals"+no).val();
+				updateTotal();
+			}
+		});
+		
+		 function modulus(mod){
+		var modulus = mod%50;
+			var bidUtuh = mod-modulus;
+			var rround;
+			if (modulus >= 25){
+				rround = 50;
+			}else{
+				rround = 0;
+			}
+			mod = bidUtuh + rround;
+			return mod;
+	}
+	 
+	function isNumberKey(evt)
+	  {
+	     var charCode = (evt.which) ? evt.which : event.keyCode
+	     if (charCode > 31 && (charCode < 48 || charCode > 57) && (charCode < 96 || charCode > 105))
+	        return false;
+
+	     return true;
+	  }
+	
+	</script>
+{/literal}

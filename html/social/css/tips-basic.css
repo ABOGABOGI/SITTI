@@ -1,0 +1,34 @@
+
+/* tooltip styling */
+#demotip {
+	display:none;
+	background:transparent url(../images/ver2/black_arrow.png);
+	font-size:12px;
+	height:19px;
+	width:117px;
+	padding:25px;
+	color:#fff;	
+}
+
+/* style the trigger elements */
+#demo img {
+	border:0;
+	cursor:pointer;
+	margin:0 8px;
+}
+
+/* end tooltip styling */
+
+body {
+	padding:150px 50px;
+	font-family:"Lucida Grande","Lucida Sans Unicode","bitstream vera sans","trebuchet ms",verdana;
+}
+
+/* get rid of those system borders being generated for A tags */
+a:active {
+  outline:none;
+}
+
+:focus {
+  -moz-outline-style:none;
+}

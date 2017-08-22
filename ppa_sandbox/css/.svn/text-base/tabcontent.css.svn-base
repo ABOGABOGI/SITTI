@@ -1,0 +1,242 @@
+ul.tabjs {
+	margin: 0 0 1px 0;
+	padding: 0;
+	float: left;
+	list-style: none;
+	height: 31px; /*--Set height of tabs--*/
+	width: 100%;
+}
+ul.tabjs li {
+	float: left;
+	margin: 0 3px 0 0;
+	padding: 0;
+	height: 31px; /*--Subtract 1px from the height of the unordered list--*/
+	line-height: 31px; /*--Vertically aligns the text within the tab--*/
+	overflow: hidden;
+	position: relative;
+	background: #e0e0e0;
+	-moz-border-radius:7px 7px 0 0;
+	-webkit-border-radius:7px 7px 0 0;
+	border-radius:7px 7px 0 0;
+	border:solid 1px #005f96;
+	border-bottom:none;
+	-moz-box-shadow:2px -2px 5px 0px #CBCBCB;
+	-webkit-box-shadow:2px -2px 5px 0px #CBCBCB;
+	box-shadow:2px -2px 5px 0px #CBCBCB;
+}
+ul.tabjs li a {
+	text-decoration: none;
+	color: #000;
+	display: block;
+	padding: 0 20px;
+	border: 1px solid #fff; /*--Gives the bevel look with a 1px white border inside the list item--*/
+	outline: none;
+	border-bottom:none;
+	-moz-border-radius:7px 7px 0 0;
+	-webkit-border-radius:7px 7px 0 0;
+	border-radius:7px 7px 0 0;
+	font-weight:bold;
+}
+ul.tabjs li a:hover {
+	background: #ccc;
+}
+html ul.tabjs li.active, html ul.tabjs li.active a:hover  { /*--Makes sure that the active tab does not listen to the hover properties--*/
+	background: #005f96;/*--Makes the active tab look like it's connected with its content--*/
+	-moz-border-radius:7px 7px 0 0;
+	-moz-box-shadow:2px -2px 5px 0px #CBCBCB;
+}
+html ul.tabjs li.active a{
+	color:#fff;
+	border: 1px solid #3985b0;
+}
+.tab_container {
+	overflow: hidden;
+	clear: both;
+	float: left; width: 100%;
+	border:solid 1px #005f96;
+	border-top:solid 3px #005f96;
+	padding-bottom:30px;
+	-moz-box-shadow:1px 2px 6px 3px #CBCBCB;
+	-webkit-box-shadow:1px 2px 6px 3px #CBCBCB;
+	box-shadow:1px 2px 6px 3px #CBCBCB;
+	font-family:Arial, Helvetica, sans-serif;
+
+}
+.shorter h1{
+	text-shadow:none;
+	margin:0;
+	font-size:14px;
+	color:#007297;
+	display:inline;
+	float:left;
+}
+.tab_content h1{
+	text-shadow:none;
+	margin:0;
+	font-weight:700;
+	font-size:18px;
+	line-height:20px;
+	display:inline;
+}
+.tab_content {
+	
+}
+.tab_pad{
+	padding: 20px;
+	background:url(../images/bg_tab_content.gif) top repeat-x;}
+.shorter{
+	height:20px;
+	padding:10px 20px;
+	display:block;
+	background-color:#efefef;
+	border-bottom:solid 1px #d0d0d0;
+}
+.peringatan{
+	height:20px;
+	padding:10px 20px 10px 40px;
+	display:block;
+	background:url(../images/warning.png) no-repeat #EA0000 8px 7px;
+	border-bottom:solid 1px #d0d0d0;
+}
+.peringatan a{
+	color:#FFF;
+	text-decoration:none;
+}
+.peringatan a:hover{
+	color:#F90;
+}
+.peringatan strong{
+	text-decoration:underline;
+}
+.titleBerandaZen{
+	clear:both;
+	display:block;
+	padding:7px;
+	margin:25px 0 0px 0;
+}
+.titleBerandaZen h1{
+	color:#000;
+	font-weight:700;
+	font-size:18px;
+	line-height:20px;
+	display:inline;
+}
+.pilihWaktu{
+	float:right;
+	margin:-3px 0 0 0;
+}
+.scoreGreen,.scoreRed,.scoreYellow{
+	width:6px;
+	height:6px;
+	margin:0 10px 0 5px;
+}
+#custom{
+	float:right;
+	margin:-3px 0 0 10px;
+}
+.pilihWaktu select{
+	border:solid 1px #CCC;
+	padding:5px;
+	-moz-border-radius:7px;
+	-webkit-border-radius:7px;
+	border-radius:7px;
+	margin:0;
+	behavior: url(ie-css3.htc);
+}
+.goSubmit{
+	float:right;
+	margin:-3px 0 0 10px;
+}
+.goSubmit input[type=submit].submitButton{
+	height:26px;
+	padding:0 10px;
+}
+a.shortTitle{
+	color:#555;
+	font-weight:bold;
+	text-decoration:none;
+}
+.shotIcon{
+	margin:0 0 0 5px;
+	display:none;
+	visibility:hidden;
+}
+.col_best,.col_warning{
+	float:left;
+	width:250px; min-height:225px;
+	padding:0 20px;
+	overflow:hidden;
+	background:#f5f5f5;
+	border:solid 1px #ebebeb;
+}
+.col_warning{
+	background:#ededed;
+	margin:0 0 0 30px;
+	-moz-border-radius:7px;
+	-webkit-border-radius:7px;
+	border-radius:7px;
+}
+.col_best h3.titlealert,.col_warning h3.titlealert{
+	font-size:16px;
+	font-weight:800;
+	display:block;
+	background-color:#FFF;
+	padding:7px 10px;
+	-moz-border-radius:7px;
+	-webkit-border-radius:7px;
+	border-radius:7px;
+	-moz-box-shadow:1px 2px 4px -1px #CBCBCB;
+	-webkit-box-shadow:1px 2px 4px -1px #CBCBCB;
+	box-shadow:1px 2px 4px -1px #CBCBCB;
+}
+.col_best h3{
+	padding:7px 10px;
+}
+.col_best_list{
+	float:left;
+	width:250px; min-height:55px;
+	padding:0 20px;
+	overflow:hidden;
+	background:#f5f5f5;
+	border:solid 1px #ebebeb;
+	-moz-border-radius:7px;
+	-webkit-border-radius:7px;
+	border-radius:7px;
+	-moz-box-shadow:1px 2px 4px -1px #CBCBCB;
+	-webkit-box-shadow:1px 2px 4px -1px #CBCBCB;
+	box-shadow:1px 2px 4px -1px #CBCBCB;
+	margin:0 20px 0 0;
+}
+.colLoader{
+	float:left;
+	display:block;
+	clear:both;
+	padding:10px;
+	overflow:hidden;
+	background:#f5f5f5;
+	border:solid 1px #ebebeb;
+	-moz-border-radius:7px;
+	-webkit-border-radius:7px;
+	border-radius:7px;
+	-moz-box-shadow:1px 2px 4px -1px #CBCBCB;
+	-webkit-box-shadow:1px 2px 4px -1px #CBCBCB;
+	box-shadow:1px 2px 4px -1px #CBCBCB;
+	margin:20px 0;
+}
+.rangkuman{
+	clear:both;
+	display:table;
+}
+.inlineImage{
+	display:inline;
+	border:none;
+	float:left;
+	margin:-3px 8px 0 0;
+}
+.titleSukses{
+	display:block;
+	padding:0 0 8px 0;
+}
+.bold{
+	font-family:"Arial Black", Gadget, sans-serif;
+}

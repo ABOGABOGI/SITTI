@@ -1,0 +1,143 @@
+<script type="text/javascript" src="js/jquery_swfobject.js"></script>
+<script>
+var tglAwal = '';
+var tglAkhir = '';
+var print_link_invoice_awal = 'report.php?t=8&invoice=1&id={$sitti_id}{if $selected_campaign}&campaign={$selected_campaign}{/if}';
+{literal}
+$("a#showMutasiByDate").click(function() { 
+  var billing_report_link = 'report.php?t=8';
+  if($('input#tanggalAwalMutasi').val() == '' || $('input#tanggalAkhirMutasi').val() == '') {
+    alert('Kedua kolom tanggal mutasi harus diisi!');
+  } else {
+    tglAwal = $('input#tanggalAwalMutasi').val();
+    tglAkhir = $('input#tanggalAkhirMutasi').val();
+    billing_report_link += "&from=" + tglAwal + "&to=" + tglAkhir;
+    if ($('select#campaign').val() != 'none') {
+      campaign_id = $('select#campaign').val();
+      billing_report_link += "&campaign=" + campaign_id;
+    }
+    $("#tab09").load(billing_report_link);
+  }
+});
+
+$("#bulan_invoice").change(function() {
+  if ($(this).val() != 'none') {
+    print_link_invoice = print_link_invoice_awal + "&bulantahun=" + $(this).val();
+  } else {
+    print_link_invoice = "javascript:void();";
+  }
+  $('#cetakInvoice').attr('href', print_link_invoice);
+});
+
+$('#cetakInvoice').click(function() {
+  if ($("#bulan_invoice").val() == 'none') {
+    alert('Anda harus memilih bulan invoice yang akan dicetak');
+  }
+});
+
+$(document).ready(
+		function() {
+			//$("#grafik1").flash({swf:'chart.swf',width:'100%',height:193});
+      $("#tanggalAwalMutasi,#tanggalAkhirMutasi").datepicker();
+});
+
+</script>
+{/literal}
+<!--<div id="grafik1" class="grafik"></div>-->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td> </td>
+    <td valign="bottom"><a class="submitButton" style="text-decoration:none;" href="pembayaran.php">Klik di sini untuk Top-Up Akun</a></td>
+  </tr>
+</table>
+
+<div class="titleBerandaZen" style="margin:10px 0 0 0"><!-- 
+<form style="float:left;">
+<div class="goSubmit">
+    <input type="submit" class="submitButton" value="GO" />
+</div>
+
+<div id="custom">
+  <div class="pilihHariBeranda">
+    <input id="tanggalAwalPenagihan" type="text">
+    <span>s/d</span>
+    <input id="tanggalAkhirPenagihan" type="text">
+  </div>
+</div>
+<div class="pilihWaktu">
+  <select name="ad_type" id="pilihWaktuPenagihan" onchange="wiz_dirty(); updateCodeField()">
+    <option>Hari Ini</option>
+    <option>Kemarin</option>
+    <option>3 Hari Lalu</option>
+    <option>7 Hari Lalu</option>
+    <option>14 Hari Lalu</option>
+    <option>30 Hari Lalu</option>
+  </select>
+</div> 
+</form>-->
+ <!--<a class="tambahIcon" onmouseover="tooltip.show('Pindahkan ke Beranda');" onmouseout="tooltip.hide();"  href="#">&nbsp;</a>
+<a class="excel" onmouseover="tooltip.show('Export ke CSV');" onmouseout="tooltip.hide();"  href="#" target="_blank">&nbsp;</a>-->
+{if $LAST_UPDATE}<span style="font-weight:bold; font-size:14px;">Mutasi Akun SITTI Anda Data ini diupdate terakhir pada tanggal : {$LAST_UPDATE}</span>{/if}
+</div>
+<p>
+  Lihat data mutasi dari <input type="text" id="tanggalAwalMutasi" value="{$tglAwal}" /> 
+  sampai <input type="text" id="tanggalAkhirMutasi" value="{$tglAkhir}" />
+  untuk kampanye 
+  <select name="campaign" id="campaign">
+    <option value='none'>Semua Kampanye</option>
+    {if $list_campaign} 
+    {section name=i loop=$list_campaign}
+    <option value="{$list_campaign[i].enc_campaign_id}" {if $selected_campaign == $list_campaign[i].enc_campaign_id }selected="selected"{/if} >{$list_campaign[i].name}</option>
+    {/section}
+    {/if}
+  </select>
+  <a href="javascript:void(0)" id="showMutasiByDate" style="text-decoration: none;" class="submitButton">Tampilkan</a>
+</p>
+{if $list}
+<table width="713" border="0" cellspacing="0" cellpadding="0" class="list zebra">
+  <tr class="head2">
+    <td width="30">No</td>
+    <td>Tanggal</td>
+    <td>Jenis</td>
+    {if not isset($selected_campaign)}<td>Kredit</td>{/if}
+    <td>Debet</td>
+    {if not isset($selected_campaign)}<td>Saldo</td>{/if}
+  </tr>
+ {section name=i loop=$list}
+  <tr>
+    <td>{$list[i].no}</td>
+    <td>{$list[i].tgl}</td>
+    <td>{$list[i].jenis}</td>
+    {if not isset($selected_campaign)}<td>{if $list[i].credit}Rp.{$list[i].credit|number_format}{else}-{/if}</td>{/if}
+    <td>{if $list[i].debit}Rp.{$list[i].debit|number_format}{else}-{/if}</td>
+    {if not isset($selected_campaign)}<td>{if $smarty.section.i.last}<strong>Rp.{$list[i].saldo|number_format}</strong>{else}Rp.{$list[i].saldo|number_format}{/if}</td>
+  </tr>{/if}
+ {/section}
+ {if $total_debet}
+  <tr style="background-color:#c7d7e4; font-weight:bold;">
+    <td colspan="6">&nbsp;</td>
+    {*}
+    <td>Total</td>
+    {if not isset($selected_campaign)}<td>Rp. {$total_kredit|number_format}</td>{/if}
+    <td>Rp. {$total_debet|number_format}</td>
+    {if not isset($selected_campaign)}<td>&nbsp;</td>{/if}
+    {/*}
+  </tr>
+  {/if}
+</table>
+{else}
+  {if $tglAwal and $tglAkhir}
+  <p>Tidak ada data untuk tanggal tersebut.</p>
+  {else}
+  <p>Tidak ada data, silakan pilih tanggal awal dan akhir mutasi rekening.</p>
+  {/if}
+{/if}
+<div class="catatan">
+	<p><strong>Catatan : </strong> Perincian akun adalah di jumlahkan setiap harinya. Jumlah klik adalah gabungan dari semua kampanye. <br />
+Apabila anda ingin mengetahui penggunaan dana, Anda dapat melihat pada bagian performa akun.</p>
+</div>
+{if $list}
+<p>
+<a class="excel" href="report.php?t=8{if $tglAwal}&from={$tglAwal}{/if}{if $tglAkhir}&to={$tglAkhir}{/if}{if $selected_campaign}&campaign={$selected_campaign}{/if}&xls=1" id="exportExcel" onmouseout="tooltip.hide();" onmouseover="tooltip.show('Export ke Excel');">&nbsp;</a>
+</p>
+{/if}

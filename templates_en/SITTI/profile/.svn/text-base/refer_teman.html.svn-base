@@ -1,0 +1,18 @@
+<div class="w915">
+                <h3 class="f18 blue">Are you satisfied with SITTI ?</h3>
+                <p>Refer SITTI to your friends by filling the form below.</p>
+                <form>
+                	<div class="row">
+                    	<label>Name</label>
+                        <input type="text" class="inputText" />
+                    </div>
+                    <div class="row">
+                    	<label>E-Mail</label>
+                        <input type="text" class="inputText" />
+                    </div>
+                    <div class="row">
+                    <input type="submit" class="submitButton" value="Send" />
+                    </div>
+                </form>
+  				  <p>Thank you for referring SITTI to your friend.</p>
+            </div>

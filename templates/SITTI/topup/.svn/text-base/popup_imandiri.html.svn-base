@@ -1,0 +1,36 @@
+{literal}
+<style type="text/css">
+html {
+    color: #343434;
+    font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    line-height: 18px;
+}
+</style>
+{/literal}
+<html>
+<h2 class="blue">Internet Banking Mandiri</h2>
+<p><img src="images/internet_mandiri.jpg" />
+<ol>
+        <li>Klik tombol <strong>"Top Up" </strong>di bawah;</li>
+        <li>Pilih metode pembayaran<strong> Internet Banking Mandiri;</strong></li>
+        <li>Isi field yang diperlukan, yaitu<strong> 16 digit nomor kartu ATM Anda</strong> dan Jumlah<strong> Top Up</strong> dengan minimal Rp. 100.000,-;</li>
+        <li>Gunakan token anda, lalu lakukan hal berikut ini: ;</li>
+        <ul style="padding-left:20px;">
+			<li>
+	    Pilih <strong>apply 3</strong>, </li>
+            <li>
+        Masukan <strong>10 digit terakhir dari no kartu ATM anda</strong>, </li>
+            <li>
+        Masukkan jumlah <strong>Top Up</strong> yang anda sebutkan di langkah 3, </li>
+            <li>
+          Masukkan 16 digit <strong>Kode Transaksi (Challenge Code) </strong></li>
+    	</ul>
+<li>Setelah melakukan langkah 4., token mandiri akan men-generate 6 digit no token. Masukkan no token tersebut ke dalam field <strong>No Token</strong> di web, lalu tekan tombol <strong>"Lanjut"</strong>;</li>
+        <li> Dana akan dimasukkan ke akun SITTI Anda. Apabila dalam waktu 30 menit akun Anda belum ter-update, silahkan kontak <a href="mailto:billing@sitti.co.id">billing@sitti.co.id</a>.
+        </li>
+</ol>
+<p>
+Catatan: Pastikan bahwa Anda telah mengaktivasi <strong>Mandiri Clickpay</strong> anda di <a href="http://www.bankmandiri.co.id/">www.bankmandiri.co.id</a> untuk dapat melakukan Top Up melalui Internet Banking Mandiri.
+</p>
+</html>

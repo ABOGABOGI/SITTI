@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/sittiweb/!svn/ver/67/branches/phase03-03/com/SITTIAdmin
+END
+SITTIAdminController.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/sittiweb/!svn/ver/67/branches/phase03-03/com/SITTIAdmin/SITTIAdminController.php
+END
+SITTIReportOverview.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/sittiweb/!svn/ver/67/branches/phase03-03/com/SITTIAdmin/SITTIReportOverview.php
+END
+SITTIAdvertiserManager.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/sittiweb/!svn/ver/67/branches/phase03-03/com/SITTIAdmin/SITTIAdvertiserManager.php
+END
+SITTIAdPerformance.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/sittiweb/!svn/ver/67/branches/phase03-03/com/SITTIAdmin/SITTIAdPerformance.php
+END
+SITTIPublisherManager.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/sittiweb/!svn/ver/67/branches/phase03-03/com/SITTIAdmin/SITTIPublisherManager.php
+END

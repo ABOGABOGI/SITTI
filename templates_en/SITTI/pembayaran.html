@@ -1,0 +1,565 @@
+<!--template data pembayaran-->
+
+{literal}
+<script type="text/javascript" src="js/jquery.numberformatter-1.1.0.js"></script>
+<script language="javascript" type="text/javascript">
+<!--
+function popitup(url) {
+	newwindow=window.open(url,'name','height=400,width=600');
+	if (window.focus) {newwindow.focus()}
+	return false;
+}
+
+// -->
+</script>
+<script type="text/javascript">
+						  $(document).ready(function() {
+								$('#tahap2a,#tahap2v,#tahap2b,#tahap2c,#tahap3,#tahap3v,#tahap4,#tahap4b,#tahaploading,#tahap5,#tahap6,#tahap6b,#tahap6c,#tahap6d,#tahap7,#tahap7b').hide();
+								$(".next1").click(function() {
+									$("#tahap1").fadeOut("slow");
+									open_sub_page($(":checked").val());
+									$(".error").hide();
+								});
+								$(".next2a").click(function() {
+									$("#tahap2a").fadeOut("slow");
+									//$("#tahap2b").fadeIn("slow");
+									$("#tahaploading").fadeIn("slow");
+									$(".error").hide();
+									$.ajax({
+  											url: 'pembayaran.php',
+											type: "POST",
+											data: "klikbca_login="+$("#klikbca_login").val()+"&topup="+$("#topup").val()+"&kupon="+$("#voucher").val()+"&save=1",
+											success: function(data) {
+											var rsp = eval('(' + data + ')');
+    										if(rsp.status=="1"){
+												$("#tahap3").fadeIn("slow");
+											}else if(rsp.status=="-1"){
+												$(".error").show();
+												$("#tahap2a").fadeIn("slow");
+											}else if(rsp.status=="66"){
+												//$("#tahap2a").fadeIn("slow");
+												$("#tahap6d").fadeIn("slow");
+												$("#error_msg").html(rsp.message);
+											}else{
+												//$("#tahap2a").fadeIn("slow");
+												$("#tahap6").fadeIn("slow");
+											}
+    										
+											$("#tahaploading").hide();
+											$("#metodepay2").html("[klikBCA]");
+											//$("#topupval").html($("#topup").val()).format({format:"#,###", locale:"en"});
+											$("#topupval").html($("#topup").val()).format({format:"#,###", locale:"en"});
+											$("#kode_transaksi1").html(rsp.transaction_code);
+											//$("#tax").html(Math.floor(eval($("#topup").val()*0.1))).format({format:"#,###", locale:"en"});
+											//$("#subtotal").html((Math.ceil(eval(eval($("#topup").val())+Math.floor(eval($("#topup").val()*0.1)))))).format({format:"#,###", locale:"en"});
+
+									}
+									});
+									//$("#tahap3").fadeIn("slow");
+								});
+								$(".next2v").click(function() {
+									
+									$("#tahap2v").fadeOut("slow");
+									//$("#tahap2b").fadeIn("slow");
+									$("#tahaploading").fadeIn("slow");
+									$(".error").hide();
+									$.ajax({
+  											url: 'pembayaran.php',
+											type: "POST",
+											data: "redeem="+$("#redeem_code").val()+"&save=1",
+											success: function(data) {
+											var rsp = eval('(' + data + ')');
+    										if(rsp.status=="1"){
+												$("#tahap3v").fadeIn("slow");
+											}else if(rsp.status=="-1"){
+												$(".error").show();
+												$("#tahap2v").fadeIn("slow");
+											}else if(rsp.status=="99"){
+												$(".error").show();
+												$("#tahap6c").fadeIn("slow");
+											}else{
+												//$("#tahap2a").fadeIn("slow");
+												$("#tahap6b").fadeIn("slow");
+											}
+											$("#tahaploading").hide();
+											$("#metodepay2").html("[Voucher SITTI]");
+											
+											
+											$("#topupval3v").html(eval(rsp.topup)).format({format:"#,###", locale:"en"});
+											$("#kode_transaksi3").html(rsp.transaction_code);
+											//$("#tax").html(Math.floor(eval($("#topup").val()*0.1))).format({format:"#,###", locale:"en"});
+											//$("#subtotal").html((Math.ceil(eval(eval($("#topup").val())+Math.floor(eval($("#topup").val()*0.1)))))).format({format:"#,###", locale:"en"});
+
+									}
+									});
+									//$("#tahap3").fadeIn("slow");
+								});
+								$(".next7").click(function() {
+									
+									$("#tahap7").fadeOut("slow");
+									//$("#tahap2b").fadeIn("slow");
+									$("#tahaploading").fadeIn("slow");
+									$(".error").hide();
+									$.ajax({
+  											url: 'pembayaran.php',
+											type: "POST",
+											data: "redeem="+$("#redeem_multiply").val()+"&multiply=1",
+											success: function(data) {
+											var rsp = eval('(' + data + ')');
+    										if(rsp.status=="1"){
+												$("#tahap7b").fadeIn("slow");
+											}else if(rsp.status=="-1"){
+												$(".error").show();
+												$("#tahap7").fadeIn("slow");
+											}else if(rsp.status=="99"){
+												$(".error").show();
+												$("#tahap6c").fadeIn("slow");
+											}else{
+												//$("#tahap2a").fadeIn("slow");
+												$("#tahap6b").fadeIn("slow");
+											}
+											$("#tahaploading").hide();
+											$("#metodepay2").html("[Voucher Multiply]");
+											
+											
+											$("#topupval7").html(eval(rsp.topup)).format({format:"#,###", locale:"en"});
+											$("#kode_transaksi7").html(rsp.transaction_code);
+											//$("#tax").html(Math.floor(eval($("#topup").val()*0.1))).format({format:"#,###", locale:"en"});
+											//$("#subtotal").html((Math.ceil(eval(eval($("#topup").val())+Math.floor(eval($("#topup").val()*0.1)))))).format({format:"#,###", locale:"en"});
+
+									}
+									});
+									//$("#tahap3").fadeIn("slow");
+								});
+								$(".next2b").click(function() {
+									$("#tahap2b").fadeOut("slow");
+									$("#tahaploading").fadeIn("slow");
+									$(".error").hide();
+									$.ajax({
+  											url: 'pembayaran.php',
+											type: "POST",
+											data: "mandiri="+$("#mandiri").val()+"&topup="+$("#topup2").val()+"&kupon="+$("#voucher2").val()+"&save=1",
+											success: function(data) {
+											var rsp = eval('(' + data + ')');
+    										if(rsp.status=="1"){
+												$("#tahap4").fadeIn("slow");
+											}else if(rsp.status=="-1"){
+												$(".error").show();
+												$("#tahap2b").fadeIn("slow");
+											}else if(rsp.status=="66"){
+												//$("#tahap2a").fadeIn("slow");
+												$("#tahap6d").fadeIn("slow");
+												$("#error_msg").html(rsp.message);
+											}else{
+												//$("#tahap2b").fadeIn("slow");
+												$("#tahap6").fadeIn("slow");
+											}
+											
+											$("#tahaploading").hide();
+											$("#metodepay2").html("[SMS-Mandiri]");
+											$("#topupval3").html($("#topup2").val()).format({format:"#,###", locale:"en"});
+											//$("#tax").html(Math.floor(eval($("#topup2").val()*0.1))).format({format:"#,###", locale:"en"});
+											//$("#subtotal").html((Math.ceil(eval(eval($("#topup2").val())+Math.floor(eval($("#topup2").val()*0.1)))))).format({format:"#,###", locale:"en"});
+									}
+									});
+									//$("#tahap3").fadeIn("slow");
+								});
+								$(".next2c").click(function() {
+									$("#tahap2c").fadeOut("slow");
+									$("#tahaploading").fadeIn("slow");
+									$(".error").hide();
+									$.ajax({
+  											url: 'pembayaran.php',
+											type: "POST",
+											data: "mandiri_internet="+$("#mandiri2").val()+"&topup="+$("#topup3").val()+"&token="+$("#token").val()+"&kupon="+$("#voucher3").val()+"&save=1",
+											success: function(data) {
+											var rsp = eval('(' + data + ')');
+    										if(rsp.status=="1"){
+												$("#tahap4b").fadeIn("slow");
+											}else if(rsp.status=="-1"){
+												$(".error").show();
+												$("#tahap2c").fadeIn("slow");
+											}else if(rsp.status=="66"){
+												//$("#tahap2a").fadeIn("slow");
+												$("#tahap6d").fadeIn("slow");
+												$("#error_msg").html(rsp.message);
+											}else{
+												//$("#tahap2c").fadeIn("slow");
+												$("#tahap6").fadeIn("slow");
+											}
+											
+											$("#tahaploading").hide();
+											$("#metodepay2").html("[Internet Mandiri]");
+											$("#topupval3c").html($("#topup3").val()).format({format:"#,###", locale:"en"});
+											//$("#tax").html(Math.floor(eval($("#topup2").val()*0.1))).format({format:"#,###", locale:"en"});
+											//$("#subtotal").html((Math.ceil(eval(eval($("#topup2").val())+Math.floor(eval($("#topup2").val()*0.1)))))).format({format:"#,###", locale:"en"});
+									}
+									});
+									//$("#tahap3").fadeIn("slow");
+								});
+								$(".next3").click(function() {
+									$("#tahap3").fadeOut("slow");
+									//$("#tahap4").fadeIn("slow");
+									document.location="beranda.php";
+								});
+								$(".next4").click(function(){
+									$("#tahaploading").fadeIn("slow");
+									$("#tahap4").fadeOut("slow");
+									$(".error").hide();
+									$.ajax({
+  											url: 'pembayaran.php',
+											type: "POST",
+											data: "manual=1"+"&save=1",
+											success: function(data) {
+    										if(data=="1"){
+												$("#tahap5").fadeIn("slow");
+											}else if(data=="-1"){
+												$(".error").show();
+												$("#tahap4").fadeIn("slow");
+											}else{
+												$("#tahap4").fadeIn("slow");
+											}
+											$("#tahaploading").hide();
+											
+											$("#topupval3").html($("#topup3").val()).format({format:"#,###", locale:"en"});
+											//$("#tax3").html(Math.floor(eval($("#topup3").val()*0.1))).format({format:"#,###", locale:"en"});
+											//$("#subtotal3").html((Math.ceil(eval(eval($("#topup3").val())+Math.floor(eval($("#topup3").val()*0.1)))))).format({format:"#,###", locale:"en"});
+
+									}
+									});	
+								});
+								$(".back1a").click(function() {
+									$("#tahap2a").fadeOut("slow");
+									$("#tahap1").fadeIn("slow");
+								});
+								$(".back1v").click(function() {
+									$("#tahap2v").fadeOut("slow");
+									$("#tahap7").fadeOut("slow");
+									$("#tahap1").fadeIn("slow");
+								});
+								$(".back1b").click(function() {
+									$("#tahap2b").fadeOut("slow");
+									$("#tahap4").fadeOut("slow");
+									$("#tahap1").fadeIn("slow");
+								});
+								$(".back1c").click(function() {
+									
+									$("#tahap2c").fadeOut("slow");
+									$("#tahap1").fadeIn("slow");
+								});
+								$(".back2").click(function() {
+									$("#tahap3").fadeOut("slow");
+									$("#tahap2a").fadeIn("slow");
+								});
+								$(".back3").click(function() {
+									$("#tahap4").fadeOut("slow");
+									$("#tahap5").fadeOut("slow");
+									//$("#tahap3").fadeIn("slow");
+									$("#tahap1").fadeIn("slow");
+								});
+							});
+							function open_sub_page(type){
+								
+								if(type=="1"){
+									$("#tahap2a").fadeIn("slow");
+									//alert($("#tahaploading").html());
+									
+									$("#metodepay").html("[klikBCA]");
+									
+								}else if(type=="2"){
+									$("#tahap2b").fadeIn("slow");
+									$("#metodepay").html("[SMS-Mandiri]");
+									
+								}else if(type=="6"){
+									$("#tahap2v").fadeIn("slow");
+								}else if(type=="7"){
+									$("#tahap7").fadeIn("slow");
+								}else{
+									$("#tahap2c").fadeIn("slow");
+								}
+							}
+							function saveBCA(){
+							}
+							function saveMandiri(){
+								
+							}
+							function saveManual(){
+								
+							}
+						</script>
+{/literal}
+<div id="tahap1" class="w915">
+  <h2 class="blue">Payment Methods</h2>
+  <p>You can do top-up or filling Sitti account here.</p>
+  	<div class="quote" style="margin:10px 0 10px 0;">
+  	<table>
+  	<tr><td valign="top">
+  	<h3 style="margin:0 0 10px 0;">Top Up Nominal Terms</h3>
+	<ul style="margin:0 0 0 20px;">
+		<li>Minimum Top Up Rp. 100,000.</li>
+		<li>For a nominal amount Topup 100,000 up to 1,000,000, the topup is a multiple of 100,000.</li>
+		<li>For a nominal amount Topup 1,000,000 and so on, the topup is a multiple of 1,000,000.</li>
+	</ul>
+	</td>
+	<td><div style="width:50px"></div></td>
+	<td valign="top">
+		<h3 style="margin:0 0 20px 0;">Your Balance</h3>
+		<div class="saldoAnda">
+                      <span class="f18 green bold">Rp. {$SALDO|number_format},-</span>
+                    </div>
+	</td>
+	</tr>
+	</table>
+    </div>
+  
+  <p> <strong>Please choose Top Up method below::</strong></p>
+  <table class="bankList">
+    <tr>
+      <td width="20"><input type="radio" id="payment_type" name="payment_type" value="1"/></td>
+      <td width="70"><img src="images/bank_klik_bca.jpg" /></td>
+      <td>Klik BCA<a href="pembayaran.php?popup=1&type=bca" class="helpIcon" style="float:none;" onClick="return popitup('pembayaran.php?popup=1&type=bca')">&nbsp;</a></td>
+    </tr>
+    <tr>
+      <td><input type="radio" id="payment_type" name="payment_type" value="2"/></td>
+      <td><img src="images/bank_sms_mandiri.jpg" /></td>
+      <td>SMS Mandiri<a href="pembayaran.php?popup=1&type=mandiri" class="helpIcon" style="float:none;" onClick="return popitup('pembayaran.php?popup=1&type=mandiri')">&nbsp;</a></td>
+    </tr>
+    <tr>
+      <td><input type="radio" id="payment_type" name="payment_type" value="3"/></td>
+      <td><img src="images/internet_mandiri.jpg" /></td>
+      <td>Internet Mandiri<a href="pembayaran.php?popup=1&type=imandiri" class="helpIcon" style="float:none;" onClick="return popitup('pembayaran.php?popup=1&type=imandiri')">&nbsp;</a></td>
+    </tr>
+    <tr>
+      <td><input type="radio" id="payment_type" name="payment_type" value="6"/></td>
+      <td><img src="images/voucher-kredit-icon.jpg" /></td>
+      <td>Voucher Kredit<a href="pembayaran.php?popup=1&type=voucher" class="helpIcon" style="float:none;" onClick="return popitup('pembayaran.php?popup=1&type=voucher')">&nbsp;</a></td>
+    </tr>
+    
+    <tr>
+      <td><input type="radio" id="payment_type" name="payment_type" value="7"/></td>
+      <td><img src="images/multiply-voucher.jpg" /></td>
+      <td>Voucher Multiply<a href="pembayaran.php?popup=1&type=multiply" class="helpIcon" style="float:none;" onClick="return popitup('pembayaran.php?popup=1&type=multiply')">&nbsp;</a></td>
+    </tr>
+    
+  </table>
+  <p>Choose one of the Top Up methods above and click the button below to continue</p>
+  <button class="next1 submitButton">Next</button>
+</div>
+<div id="tahap2v" class="w635"  style="float:none; position:absolute;">
+  <h2 class="blue">You have chosen a method :</h2>
+  <p><img src="images/voucher-kredit-icon.jpg" /></p>
+  <div class="row noBorder">
+    <p>Please enter your Voucher Code below</p>
+    <input type="text" class="inputText" name="redeem_code" id="redeem_code"/>
+  </div>
+  <button class="back1v submitButton">Back</button>
+  <button class="next2v submitButton">Continue</button>
+  <p class="blue">* Sitti always maintain your privacy in doing top-up account
+     to transmit your data over the Internet encrypted channels
+     (HTTPS)</p>
+</div>
+<div id="tahap7" class="w635"  style="float:none; position:absolute;">
+  <h2 class="blue">You have chosen a method :</h2>
+  <p><img src="images/multiply-voucher.jpg" /></p>
+  <div class="row noBorder">
+    <p>Please enter your Voucher Code below</p>
+    <input type="text" class="inputText" name="redeem_multiply" id="redeem_multiply"/>
+  </div>
+  <button class="back1v submitButton">Back</button>
+  <button class="next7 submitButton">Continue</button>
+  <p class="blue">* Sitti always maintain your privacy in doing top-up account
+     to transmit your data over the Internet encrypted channels
+     (HTTPS)</p>
+</div>
+<div id="tahap2a" class="w635"  style="float:none; position:absolute;">
+  <h2 class="blue">You have chosen a method :</h2>
+  <p><img src="images/bank_klik_bca.jpg" /></p>
+  <div class="row noBorder" style="padding:0 0 15px 0">
+    <p>Please enter your KlikBCA ID below</p>
+    <input type="text" class="inputText" name="klikbca_login" id="klikbca_login"/>
+    <p> Number of Top Up</p>
+    <input type="text" class="inputText" name="topup" id="topup"/>
+    <p><img src="images/voucher-topup-icon.jpg" style="float:left" />If you have a voucher top up like this, <br />
+       enter the voucher code below</p>
+    <input style="clear:both" type="text" class="inputText" name="voucher" id="voucher"/>
+    <br />
+    <br />
+    <div class="error">Topups must be in 100,000 or 1,000,000 denominations</div>
+  </div>
+  <button class="back1a submitButton">Back</button>
+  <button class="next2a submitButton">Continue</button>
+  <p class="blue">* Sitti always maintain your privacy in doing top-up account
+     to transmit your data over the Internet encrypted channels
+     (HTTPS)</p>
+</div>
+<div id="tahap2b" class="w635"  style="float:none; position:absolute;">
+  <h2 class="blue">You have chosen a method :</h2>
+  <p><img src="images/bank_sms_mandiri.jpg" /><br />
+  <div class="row noBorder" style="padding:0 0 15px 0;">
+    <p>Enter your phone number:</p>
+    <input type="text" class="inputText" id="mandiri" name="mandiri"/>
+    <p> Number of Top Up</p>
+    <input type="text" class="inputText" id="topup2" name="topup2"/>
+    <p><img src="images/voucher-topup-icon.jpg" style="float:left" />If you have a voucher top up like this, <br />
+       enter the voucher code below</p>
+    <input style="clear:both" type="text" class="inputText" name="voucher2" id="voucher2"/>
+    <br />
+    <br />
+    <div class="error">Topups must be in 100,000 or 1,000,000 denominations</div>
+  </div>
+  <button class="back1b submitButton">Back</button>
+  <button class="next2b submitButton">Continue</button>
+  <p class="blue">* Sitti always maintain your privacy in doing top-up account
+     to transmit your data over the Internet encrypted channels
+     (HTTPS)</p>
+</div>
+<div id="tahap2c" class="w635"  style="float:none; position:absolute;">
+  <h2 class="blue">You have chosen a method :</h2>
+  <p><img src="images/internet_mandiri.jpg" /><br />
+  <div class="row noBorder" style="padding:0 0 15px 0;">
+    <p>Enter your ATM number:</p>
+    <input type="text" class="inputText" id="mandiri2" name="mandiri2"/>
+    <p>Number of Top Up</p>
+    <input type="text" class="inputText" id="topup3" name="topup3"/>
+    <p>No Token</p>
+    <input type="text" class="inputText" id="token" name="token" maxlength="12"/>
+    <p><img src="images/voucher-topup-icon.jpg" style="float:left" />If you have a voucher top up like this, <br />
+       enter the voucher code below</p>
+    <input style="clear:both" type="text" class="inputText" name="voucher3" id="voucher3"/>
+    <br />
+    <br />
+    <div class="error">Topups must be in 100,000 or 1,000,000 denominations</div>
+  </div>
+  <button class="back1c submitButton">Back</button>
+  <button class="next2c submitButton">Continue</button>
+  <p class="blue">* Sitti always maintain your privacy in doing top-up account
+     to transmit your data over the Internet encrypted channels
+     (HTTPS)</p>
+</div>
+<div id="tahap3" class="w635" style="float:none; position:absolute;">
+  <h2 class="blue">Thank You. You have managed to do top-up account SITTI through <span id="metodepay">klikBCA</span> for <span class="green">Rp.</span> <span id="topupval" class="green">0</span></h2>
+  <p>Below is the nominal of your Top Up.</p>
+  <!--<p>kode transaksi Anda adalah <br />
+					<span class="bold blue" id="kode_transaksi1">XXXXXXXXXX</span></p> -->
+  <p>Follow the steps below to complete the process of top-ups:</p>
+  <ol>
+    <li>Login to KlikBCA website,</li>
+    <li>Go into the "e-Commerce Payment" menu. Choose the category ‘Others’, and then choose "Indomog",</li>
+    <li>Confirm your SITTI Top Up transaction</li>
+    <li>You will get a Confirmation SMS / Email from KlikBCA</li>
+    <li>Your balance in your account would updated.</li>
+  </ol>
+  <strong>Important:</strong>
+  <ol>
+    <li>Should you have not confirmed to the KlikBCA within 60 minutes, your TOP UP request would be cancelled.</li>
+    <li> Should you have any problem regarding your TOP UP process, please send an email to <a href="mailto:billing@sitti.co.id">billing@sitti.co.id</a> Don’t forget to enclose your Transaction Code</li>
+  </ol>
+  <p>Thank you for being SITTI advertiser.</p>
+  <br />
+
+  <!-- <button class="back2 submitButton">Back</button> -->
+ <button class="next3 submitButton">Go to the Account page</button>
+</div>
+<div id="tahap4" class="w635" style="float:none; position:absolute;">
+  <h2 class="blue">Thank you. Your SITTI account TOP UP has succeeded via<span id="metodepay"> Bank Mandiri Mobile Banking </span> With the amount of<span class="green">Rp.</span> <span id="topupval3" class="green">0</span> </h2>
+
+  <!--<p>kode transaksi Anda adalah <span class="bold blue" id="kode_transaksi2">XXXXXXXXXX</span></p>-->
+  <p> Next step, please follow the instruction from your Handphone to finalise your TOP UP process.
+Should you have any problem, please email to <a href="mailto:billing@sitti.co.id">billing@sitti.co.id</a> Don’t forget to enclose your Transaction Code </p>
+  <p> Thank you for being SITTI advertiser. </p>
+
+  <br />
+  <!-- <button class="back2 submitButton">Back</button> -->
+    <button class="next3 submitButton"> Go to the Account page </button>
+</div>
+<div id="tahap4b" class="w635" style="float:none; position:absolute;">
+  <h2 class="blue"> Thank you. Your SITTI account TOP UP has succeeded via <span id="metodepay"> Mandiri Internet </span> With the amount of <span class="green">Rp.</span> <span id="topupval3c" class="green">0</span> </h2>
+
+  <!--<p>kode transaksi Anda adalah <span class="bold blue" id="kode_transaksi2">XXXXXXXXXX</span></p>-->
+  <p> The fund would be entered to your SITTI.
+Should your account has not been updated in 30 minutes, please send an email to<a href="mailto:billing@sitti.co.id">billing@sitti.co.id</a> Don’t forget to enclose your Transaction Code </p>
+  <p> Thank you for being SITTI advertiser. </p>
+  <br />
+
+  <!-- <button class="back2 submitButton">Back</button> -->
+  <button class="next3 submitButton"> Go to the Account page </button>
+</div>
+<div id="tahap3v" class="w635" style="float:none; position:absolute;">
+  <h2 class="blue"> Thank you. Your SITTI account TOP UP has succeeded via <span class="green">Rp.</span> <span id="topupval3v" class="green">0</span> </h2>
+  <p>Your Transaction Code is 
+<span class="bold blue" id="kode_transaksi3">XXXXXXXXXX</span></p>
+  <p> Should you have any problem regarding your TOP UP process, please send an email to <a href="mailto:billing@sitti.co.id">billing@sitti.co.id</a> Don’t forget to enclose your Transaction Code </p>
+  <p> Thank you for being SITTI advertiser. </p>
+  <br />
+
+  <!-- <button class="back2 submitButton">Back</button> -->
+  <button class="next3 submitButton">Go to the Account Page</button>
+</div>
+<div id="tahap7b" class="w635" style="float:none; position:absolute;">
+  <h2 class="blue"> Thank you. Your SITTI account TOP UP has succeeded using Multiply Voucher, with the amount of<span class="green">Rp.</span> <span id="topupval7" class="green">0</span> </h2>
+  <p>Your Transaction Code is 
+<span class="bold blue" id="kode_transaksi7">XXXXXXXXXX</span></p>
+  <p> Should you have any problem regarding your TOP UP process, please send an email to <a href="mailto:billing@sitti.co.id">billing@sitti.co.id</a> Don’t forget to enclose your Transaction Code </p>
+  <p> Thank you for being SITTI advertiser. </p>
+  <br />
+
+  <!-- <button class="back2 submitButton">Back</button> -->
+  <button class="next3 submitButton"> Go to the Account Page </button>
+</div>
+<div id="tahap5" class="w635" style="float:none; position:absolute;">
+  <h2 class="blue">Please have your TOP UP with the method <span id="metodepay">[Bank Mandiri]</span></h2>
+  <p>Below is the amount of your Top Up.</p>
+  <table width="300" style="width:300px" border="0" cellspacing="0" cellpadding="0" class="addlist zebra">
+    <tr>
+      <td>Top Up</td>
+      <td style="text-align: right">Rp. <span id="topupval3">0</span></td>
+    </tr>
+
+    <!-- <tr>
+                        <td>PPN 10%</td>
+                        <td style="text-align: right">Rp. <span id="tax3">0</span></td>
+                      </tr>
+                      <tr>
+                        <td><strong>Total</strong></td>
+                        <td style="text-align: right"><strong>Rp. <span id="subtotal3">0</span></strong></td>
+                      </tr> -->
+    </table>
+  <p>Please Sign In to you Mandiri SMS Banking Account to finalise your payment. </p>
+  <p> Should you have any question or complain regarding the Top Up process, please send an email to
+ <a href="mailto:billing@sitti.co.id">billing@sitti.co.id</a> </p>
+  <p> Thank you for using SITTI. </p>
+
+  <!--<p>Setelah melakukan deposit, Anda dapat melakukan konfirmasi pembayaran disini. </p>-->
+  <br />
+  <button class="submitButton" onclick="document.location='beranda.php';return false;">Back</button>
+  <!--<button class="next5 submitButton">Konfirmasi Pembayaran</button>-->
+</div>
+<div id="tahap6" class="w635" style="float:none; position:absolute;">
+  <h2 class="blue">Transaction Not Successful.</span></h2>
+  <p>An error occured when trying to communicate with payment gateway. Please contact support.</p>
+  <button class="submitButton" onclick="document.location='beranda.php';return false;">Back</button>
+  <!--<button class="next5 submitButton">Konfirmasi Pembayaran</button>-->
+</div>
+<div id="tahap6b" class="w635" style="float:none; position:absolute;">
+  <h2 class="blue">Transaction Not Successful.</span></h2>
+  <p>This voucher code is no longer valid.</p>
+  <button class="submitButton" onclick="document.location='beranda.php';return false;">Back</button>
+  <!--<button class="next5 submitButton">Konfirmasi Pembayaran</button>-->
+</div>
+<div id="tahap6c" class="w635" style="float:none; position:absolute;">
+  <h2 class="blue">Transaction Not Successful.</span></h2>
+  <p>Failed to conduct payment transactions to the gateway. Please try again.</p>
+  <button class="submitButton" onclick="document.location='beranda.php';return false;">Back</button>
+  <!--<button class="next5 submitButton">Konfirmasi Pembayaran</button>-->
+</div>
+<div id="tahap6d" class="w635" style="float:none; position:absolute;">
+  <h2 class="blue">Transaction Not Successful.</span></h2>
+  <p id="error_msg"></p>
+  <button class="submitButton" onclick="document.location='beranda.php';return false;">Back</button>
+  <!--<button class="next5 submitButton">Konfirmasi Pembayaran</button>-->
+</div>
+<div id="tahaploading" class="w635" style="float:none; position:absolute;"> <img src="images/loader.gif" border="0"/> </div>
+<!-- template data pembayaran  end-->
+<script>
+                   $(".error").hide();
+                   </script>

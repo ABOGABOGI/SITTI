@@ -1,0 +1,278 @@
+{literal}
+<script>
+$(document).ready(function(){
+	function DayDiff(date1, date2) {
+		return (date2.getTime() - date1.getTime()) / 1000 / 60 / 60 / 24;
+	}
+	
+	$("#tanggalAwal,#tanggalAkhir").datepicker();
+
+    $('#tanggalAwal').bind('change', function () {
+        $('#tanggalAkhir').val('');     
+    });       
+       
+    $('#tanggalAkhir').bind('change', function () {
+        var tgl_awal = $('#tanggalAwal').datepicker("getDate");
+        var tgl_akhir = $('#tanggalAkhir').datepicker("getDate");
+        interval = DayDiff(tgl_awal, tgl_akhir);
+        
+        if (interval<=0){
+			$('#tanggalAkhir').val('');
+		}
+    });
+});
+</script>
+{/literal}
+        	<div class="w915">
+                <h3 class="headTitle">Kampanye/Program</h3>
+                <p><strong>Kampanye iklan adalah kumpulan beberapa alternatif iklan dalam satu tema. Misalnya, Anda membuat kampanye iklan "Promo Akhir Tahun", isi iklan-iklan tersebut dapat berisikan jasa atau barang yang ingin Anda iklankan seperti iklan promo baju, iklan promo sepatu, dan seterusnya.</strong></p>
+            	<form class="registerForm" action="beranda.php" method="POST" enctype="application/x-www-form-urlencoded">
+            	<div class="row">
+                	<label style="width:120px; float:left;">Nama Kampanye/Program</label>
+                    <input type="text" name="name" class="inputText" style="float:left;" /><a onmouseover="tooltip.show('Beri nama kampanye iklan supaya mudah dikenali');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+                </div>
+            	<div class="row">
+               	  <label style="width:120px; float:left;">Deskripsi</label>
+                    <textarea name="deskripsi" cols="40" rows="10" id="deskripsi" style="float:left;"></textarea><a onmouseover="tooltip.show('Deskripsi adalah catatan tambahan untuk memperjelas maksud dan tujuan kampanye iklan SITTI');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+                </div>
+                <div class="row">
+                    <label style="width:120px; float:left;">Mulai</label> 
+                    <input type="text" name="tanggalAwal" id="tanggalAwal" value="" maxlength="12" style="float:left;"/>
+                        <a onmouseover="tooltip.show('Tanggal kampanye akan di aktifasi');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+                </div>
+            	<div class="row">
+                	<label style="width:120px; float:left;">Selesai</label> 
+					<input type="text" name="tanggalAkhir" id="tanggalAkhir" value="" maxlength="12" style="float:left;"/>	
+                        <a onmouseover="tooltip.show('Tanggal kampanye akan non-aktifkan');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+                </div>
+<!--            	<div class="row">
+                    <script>
+                        {literal}
+                        var now = new Date();
+                        var monthDate = now.getMonth() + 1; //array dimulai dari 0, maka +1
+                        var dayDate    = now.getDate();
+                        var year        = now.getYear() + 1900;
+                        //alert(year);
+                    {/literal}
+                    </script>
+
+                    <label style="width:120px; float:left;">Mulai</label>
+						<select id="tgl_mulai" name="tgl_mulai" style="float:left; margin:4px 10px 0 0;">
+                        <script>
+						{literal}
+						for(var i=1;i<=31;i++){
+							if(i<10){
+                                if(dayDate<10){
+                                    d="0"+dayDate;
+                                }else{
+                                    d=dayDate;
+                                }
+
+                                if(i==d){
+                                    n = d;
+                                    document.write("<option value=\""+n+"\" selected>"+n+"</option>");
+                                }else{
+                                    n = "0"+i;
+                                    document.write("<option value=\""+n+"\">"+n+"</option>");
+                                }
+								
+							}else{
+                                if(dayDate<10){
+                                    d="0"+dayDate;
+                                }else{
+                                    d=dayDate;
+                                }
+                                
+                                if(i==d){
+                                    n = d;
+                                    document.write("<option value=\""+n+"\" selected>"+n+"</option>");
+                                }else{
+                                    n = i;
+                                    document.write("<option value=\""+n+"\">"+n+"</option>");
+                                }
+                                
+							}
+							
+						}
+					 	{/literal}
+                        </script>
+                        </select>
+                    	<select id="bln_mulai" name="bln_mulai" style="float:left; margin:4px 10px 0 0;">
+                        <script>
+						{literal}
+						for(var i=1;i<=12;i++){
+							if(i<10){
+								if(monthDate<10){
+                                    d="0"+monthDate;
+                                }else{
+                                    d=monthDate;
+                                }
+
+                                if(i==d){
+                                    n = d;
+                                    document.write("<option value=\""+n+"\" selected>"+n+"</option>");
+                                }else{
+                                    n = "0"+i;
+                                    document.write("<option value=\""+n+"\">"+n+"</option>");
+                                }
+							}else{
+                                if(monthDate<10){
+                                    d="0"+monthDate;
+                                    if(i==d){
+                                        n = d;
+                                        document.write("<option value=\""+n+"\">"+n+"</option>");
+                                    }else{
+                                        n = i;
+                                        document.write("<option value=\""+n+"\">"+n+"</option>");
+                                    }
+                                }else{
+                                    d=monthDate;
+                                    if(i==d){
+                                        n = d;
+                                        document.write("<option value=\""+n+"\" selected>"+n+"</option>");
+                                        
+                                    }else{
+                                        n = i;
+                                        document.write("<option value=\""+n+"\">"+n+"</option>");
+                                        
+                                    }
+                                }
+							}
+							
+						}
+					 	{/literal}
+                        </script>
+                        </select>
+                    	<select id="thn_mulai" name="thn_mulai" style="float:left; margin:4px 10px 0 0;">
+                        <script>
+						{literal}
+						for(var i=2010;i<=2030;i++){
+
+                            if(i==year){
+                                n=year;
+                                document.write("<option value=\""+n+"\" selected>"+n+"</option>");
+                            }else{
+                                n = i;
+                                document.write("<option value=\""+n+"\">"+n+"</option>");
+                            }
+							
+							
+						}
+					 	{/literal}
+                        </script>
+                        </select>
+                        <a onmouseover="tooltip.show('Tanggal kampanye akan di aktifasi');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+                </div>
+            	<div class="row">
+                	<label style="width:120px; float:left;">Selesai</label> 
+						<select id="tgl_fin" name="tgl_fin" style="float:left; margin:4px 10px 0 0;">
+                        <script>
+						{literal}
+						for(var i=1;i<=31;i++){
+							if(i<10){
+								if(dayDate<10){
+                                    d="0"+dayDate;
+                                }else{
+                                    d=dayDate;
+                                }
+
+                                if(i==d){
+                                    n = d;
+                                    document.write("<option value=\""+n+"\" selected>"+n+"</option>");
+                                }else{
+                                    n = "0"+i;
+                                    document.write("<option value=\""+n+"\">"+n+"</option>");
+                                }
+							}else{
+                                if(dayDate<10){
+                                    d="0"+dayDate;
+                                }else{
+                                    d=dayDate;
+                                }
+
+                                if(i==d){
+                                    n = d;
+                                    document.write("<option value=\""+n+"\" selected>"+n+"</option>");
+                                }else{
+                                    n = i;
+                                    document.write("<option value=\""+n+"\">"+n+"</option>");
+                                }
+
+							}
+						}
+					 	{/literal}
+                        </script>
+                        </select>
+                    	<select id="bln_fin" name="bln_fin" style="float:left; margin:4px 10px 0 0;">
+                        <script>
+						{literal}
+						for(var i=1;i<=12;i++){
+							if(i<10){
+								if(monthDate<10){
+                                    d="0"+monthDate;
+                                }else{
+                                    d=monthDate;
+                                }
+
+                                if(i==d){
+                                    n = d;
+                                    document.write("<option value=\""+n+"\" selected>"+n+"</option>");
+                                }else{
+                                    n = "0"+i;
+                                    document.write("<option value=\""+n+"\">"+n+"</option>");
+                                }
+							}else{
+                                if(monthDate<10){
+                                    d="0"+monthDate;
+                                    if(i==d){
+                                        n = d;
+                                        document.write("<option value=\""+n+"\">"+n+"</option>");
+                                    }else{
+                                        n = i;
+                                        document.write("<option value=\""+n+"\">"+n+"</option>");
+                                    }
+                                }else{
+                                    d=monthDate;
+                                    if(i==d){
+                                        n = d;
+                                        document.write("<option value=\""+n+"\" selected>"+n+"</option>");
+
+                                    }else{
+                                        n = i;
+                                        document.write("<option value=\""+n+"\">"+n+"</option>");
+
+                                    }
+                                }
+							}
+
+						}
+					 	{/literal}
+                        </script>
+                        </select>
+                    	<select id="thn_fin" name="thn_fin" style="float:left; margin:4px 10px 0 0;">
+                        <script>
+						{literal}
+						for(var i=2010;i<=2030;i++){
+							if(i==year){
+                                n=year;
+                                document.write("<option value=\""+n+"\" selected>"+n+"</option>");
+                            }else{
+                                n = i;
+                                document.write("<option value=\""+n+"\">"+n+"</option>");
+                            }
+							
+						}
+					 	{/literal}
+                        </script>
+                        </select>
+                        <a onmouseover="tooltip.show('Tanggal kampanye akan non-aktifkan');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+                </div>-->
+                <div class="row">                  
+                	<input type="submit" value="Simpan & lanjut ke pembuatan iklan" class="submitButton" />
+                	<input name="do" type="hidden" id="do" value="create_campaign" /><br /><br />
+                	<input name="ch" type="hidden" id="ch" value="{token}"/>
+                    <font color="red" style="font-size:10px;"> Semua Wajib Diisi, Kecuali Deskripsi.</font>
+                </div>
+                </form>
+            </div>
+            

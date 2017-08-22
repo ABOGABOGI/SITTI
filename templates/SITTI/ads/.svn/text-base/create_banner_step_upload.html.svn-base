@@ -1,0 +1,104 @@
+<form id="frmupload" action="buat.php?ad_banner=1" method="post" enctype="application/x-www-form-urlencoded">
+<div style="width:900px;">
+
+	<h3 class="headTitle">Upload File</h3>
+	<p>Silahkan upload materi iklan banner Anda. Agar iklan dapat tampil di setiap publisher SITTI, kami menyarankan agar Anda mengisi setiap ukuran sesuai dengan kanvas SITTI. 
+	</p>
+	{$uploader}
+	<div style="margin-top:10px">
+	<input type="hidden" name="fileID" value="{$fileID}" />
+		{if $img_ext}
+		<input type="hidden" name="img_ext" value="{$img_ext}" />
+		{/if}
+		<input type="hidden" name="do" value="confirm" />
+		<input type="button" value="Lanjut" name="simpanKonversi" class="submitButton" onclick="do_submit();return false;">
+	</div>
+</div>
+</form>
+<div id="previews">
+</div>
+<div id="backgroundPopup"></div>
+<script>
+var uri = "{$banner_url}";
+var n_file = 0;
+
+var ad_type = {$ad_type|intval};
+var n_total = {$total_assets|intval};
+var ads = [null,
+           ['popup300x250',300,250],
+           ['popup336x280',336,280],
+           ['popup728x90',728,90],
+           ['popup160x600',160,600],
+           ['popup610x60',610,60],
+           ['popup300x160',300,160],
+           ['popup940x70',940,70],
+           ['popup520x70',520,70],
+           ['popup468x60',468,60],
+           ['popup250x250',250,250]
+		   ];
+{literal}
+function upload_notify(o){
+	n_file+=1;
+	var f_id = o.f_id;
+	var t = o.no;
+	if(!isNaN(t)){
+		if(ads[t]!=null){
+			//generate preview
+			var str="";
+			if(ad_type==3){
+				str+="<div id='"+ads[t][0]+"' class=\"popupBox\"><div class='banner'><a class=\"popupClose\">x</a>";
+				str+="<div id='b_"+f_id+"'></div>";
+				str+="</div></div>";
+				$("#previews").append(str);
+				$('#b_'+f_id).flash(
+					{
+						// test_flashvars.swf is the flash document
+						swf: uri+f_id+".swf",
+						width: ads[t][1],
+						height: ads[t][2]
+					}
+				);
+			}else{
+				str+="<div id='"+ads[t][0]+"' class=\"popupBox\"><div class='banner'><a class=\"popupClose\">x</a>";
+				{/literal}
+				
+				str+="<img src='"+uri+f_id+".{$img_ext}"+"' width='"+ads[t][1]+"' height='"+ads[t][2]+"'/>";
+				{literal}
+				str+="</div></div>";
+				$("#previews").append(str);
+			}
+			//alert($("#previews").html());
+			//-->
+		}
+	}
+	//alert(t);
+	 if(isNaN(t)){
+		 $("#d_"+f_id+"_img").hide();
+		 $("#d_"+f_id+"_img_menu").show();
+	 }else{
+		 $("#d_"+f_id).hide();
+		 $("#d_"+f_id+"_menu").show();
+	 }
+	//if(n_file==n_total){
+	//	$('#frmupload').submit();
+	//}
+}
+function toggle_edit(f_id){
+	
+	$("#"+f_id).show();
+	$("#"+f_id+"_menu").hide();
+}
+function toggle_edit_img(f_id){
+	
+	$("#"+f_id+"").show();
+	$("#"+f_id+"_menu").hide();
+}
+function do_submit(){
+	if(n_file>=1){
+		$('#frmupload').submit();
+	}else{
+		alert("Anda wajib mengupload materi iklan terlebih dahulu.");
+	}
+}
+{/literal}
+</script>

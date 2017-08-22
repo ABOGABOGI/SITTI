@@ -1,0 +1,19 @@
+<div class="w915">
+                <h3 class="f18 blue">Puas dengan SITTI ?</h3>
+                <p>Referensikan layanan SITTI ke teman Anda dengan mengisi formulir di bawah ini</p>
+                <form method="POST" action="refer.php">
+                	<div class="row">
+                    	<label>Nama</label>
+                        <input type="text" class="inputText" name="nama" autocomplete="off"/>
+                    </div>
+                    <div class="row">
+                    	<label>E-Mail</label>
+                        <input type="text" class="inputText" name="email" autocomplete="off"/>
+                    </div>
+                    <div class="row">
+                    <a href="beranda.php" class="submitButton">Kembali</a>
+                    <input type="submit" class="submitButton" value="KIRIM" />
+                    </div>
+                </form>
+  				  <p>Terima kasih telah mereferensikan teman Anda menggunakan layanan SITTI</p>
+            </div> 

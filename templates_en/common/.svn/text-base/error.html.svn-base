@@ -1,0 +1,9 @@
+<div align="center" style="padding:100px 0 0 0; min-height:355px;">
+    <div align="center" class="errorMessage">
+      <p>
+          {$er}
+      </p>
+      
+      <p><a class="continueErr" href="{$url}">Continue</a></p>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+{if is_array($campaign_list)}
+<span style=" float:right">Update terakhir : {$campaign_list[0].last_update|date_format:"%e %B %Y"}</span>
+ <table cellspacing="0" cellpadding="0" border="0" class="list zebra">
+  <tbody><tr class="head2 oddRow">
+    <td>Kampanye</td>
+    {*<td>Anggaran Harian</td>*}
+    <td>Impresi</td>
+    <td>Klik</td>
+    <td>CTR</td>
+    {*}<td>AVG CPC</td>{/*}
+  </tr>
+  {section name=i loop=$campaign_list} 
+  <tr>
+  	<td><a href="javascript:void(0);" onclick="onCampaignDetail('{$campaign_list[i].enc_campaign_id}');return false;">{$campaign_list[i].campaign_name}</a></td>
+    {*<td>Rp. {$campaign_list[i].budget_dailies|number_format} / hari</td>*}
+    <td><strong>{$campaign_list[i].imp|number_format}</strong>
+    {if $campaign_list[i].imp_change > 0}
+    <span style="padding-left:10px;"><img src="images/ppc/arrow_up.png" onmouseout="tooltip.hide();" onmouseover="tooltip.show('{$campaign_list[i].imp_change|number_format:2}%');" /></span>
+    {elseif $campaign_list[i].imp_change < 0}
+    <span style="padding-left:10px;"><img src="images/ppc/arrow_down.png" onmouseout="tooltip.hide();" onmouseover="tooltip.show('{$campaign_list[i].imp_change|number_format:2}%');" /></span>
+    {else}
+    <span style="padding-left:10px;"><img src="images/ppc/green.gif" /></span>
+    {/if}
+    </td>
+    <td><strong>{$campaign_list[i].click|number_format}</strong>
+    {if $campaign_list[i].klik_change > 0}
+    <span style="padding-left:10px;"><img src="images/ppc/arrow_up.png" onmouseout="tooltip.hide();" onmouseover="tooltip.show('{$campaign_list[i].klik_change|number_format:2}%');" /></span>
+    {elseif $campaign_list[i].klik_change < 0}
+    <span style="padding-left:10px;"><img src="images/ppc/arrow_down.png" onmouseout="tooltip.hide();" onmouseover="tooltip.show('{$campaign_list[i].klik_change|number_format:2}%');" /></span>
+    {else}
+    <span style="padding-left:10px;"><img src="images/ppc/green.gif" /></span>
+    {/if}
+    </td>
+    <td><strong>{$campaign_list[i].ctr}%</strong>
+    {if $campaign_list[i].ctr_change > 0}
+    <span style="padding-left:10px;"><img src="images/ppc/arrow_up.png" onmouseout="tooltip.hide();" onmouseover="tooltip.show('{$campaign_list[i].ctr_change|number_format:2}%');" /></span>
+    {elseif $campaign_list[i].ctr_change < 0}
+    <span style="padding-left:10px;"><img src="images/ppc/arrow_down.png" onmouseout="tooltip.hide();" onmouseover="tooltip.show('{$campaign_list[i].ctr_change|number_format:2}%');" /></span>
+    {else}
+    <span style="padding-left:10px;"><img src="images/ppc/green.gif" /></span>
+    {/if}
+    </td>
+	{*}<td><strong>{$campaign_list[i].avg_cpc}</strong>
+    {if $campaign_list[i].avg_cpc_change > 0}
+    <span style="padding-left:10px;"><img src="images/ppc/arrow_up.png" onmouseout="tooltip.hide();" onmouseover="tooltip.show('{$campaign_list[i].avg_cpc_change|number_format:2}');" /></span>
+    {elseif $campaign_list[i].avg_cpc_change < 0}
+    <span style="padding-left:10px;"><img src="images/ppc/arrow_down.png" onmouseout="tooltip.hide();" onmouseover="tooltip.show('{$campaign_list[i].avg_cpc_change|number_format:2}');" /></span>
+    {else}
+    <span style="padding-left:10px;"><img src="images/ppc/green.gif" /></span>
+    {/if}
+    </td>{/*}
+   </tr>
+   {/section}
+</tbody>
+</table>
+{else}
+<p>Anda tidak mempunyai kampanye aktif.</p>
+{/if}

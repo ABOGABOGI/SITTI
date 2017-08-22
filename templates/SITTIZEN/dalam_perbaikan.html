@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="icon" type="image/gif" href="images/animated_favicon.gif">
+<title>SITTI - Platform Iklan Kontekstual Berbahasa Indonesia, Iklan Kontekstual, Bahasa Indonesia</title>
+<link href="css/sitti.css" rel="stylesheet" type="text/css" />
+{literal}
+<script type="text/javascript" language="javascript" src="js/iepngfix_tilebg.js"></script>
+<script type="text/javascript" language="javascript" src="js/drop_table.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/ui/ui.core.js"></script>
+<script type="text/javascript" src="js/ui/ui.datepicker.js"></script>
+<script type="text/javascript" src="js/ui/i18n/ui.datepicker-id.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#text_img_format').change(function() {
+			$('#ads').hide();
+			if ($('#text_img_format').val() == 1){
+				$('.w300').show(); $('.w160').hide(); $('.w336').hide(); $('.w728').hide(); $('.w610').hide(); $('.w3002').hide(); $('.w940').hide(); $('.w520').hide();
+			}
+			if ($('#text_img_format').val() == 2){
+				$('.w336').show(); $('.w300').hide(); $('.w728').hide(); $('.w160').hide(); $('.w610').hide(); $('.w3002').hide(); $('.w940').hide(); $('.w520').hide();
+			}
+			if ($('#text_img_format').val() == 3){
+				$('.w728').show(); $('.w160').hide(); $('.w336').hide(); $('.w300').hide(); $('.w610').hide(); $('.w3002').hide(); $('.w940').hide(); $('.w520').hide();
+			}
+			if ($('#text_img_format').val() == 4){
+				$('.w160').show(); $('.w728').hide();  $('.w336').hide();  $('.w300').hide(); $('.w610').hide(); $('.w3002').hide(); $('.w940').hide(); $('.w520').hide();
+			}
+			if ($('#text_img_format').val() == 5){
+				$('.w610').show(); $('.w728').hide();  $('.w336').hide();  $('.w300').hide(); $('.w160').hide(); $('.w3002').hide(); $('.w940').hide(); $('.w520').hide();
+			}
+			if ($('#text_img_format').val() == 6){
+				$('.w3002').show(); $('.w728').hide();  $('.w336').hide();  $('.w300').hide(); $('.w160').hide(); $('.w610').hide(); $('.w940').hide(); $('.w520').hide();
+			}
+			
+			if ($('#text_img_format').val() == 7){
+				$('.w940').show(); $('.w728').hide();  $('.w336').hide();  $('.w300').hide(); $('.w160').hide(); $('.w610').hide(); $('.w3002').hide(); $('.w520').hide();
+			}
+			if ($('#text_img_format').val() == 8){
+				$('.w520').show(); $('.w728').hide();  $('.w336').hide();  $('.w300').hide(); $('.w160').hide(); $('.w610').hide(); $('.w3002').hide(); $('.w940').hide();
+			}
+			$('#ads').show('fast');
+		});
+		$('#text_img_format').change();
+	});
+
+ </script>
+ {/literal}
+</head>
+<body onload="init()">
+{if $takeOut}<div class="cLabel"><a href="http://www.sitti.co.id/UtakAtik/index.html"></a></div>{/if}
+<div class="wrapper">
+  <div class="header"> <a class="logoZen" href="index.php">&nbsp;</a> <a class="sloganZen" href="index.php">&nbsp;</a> </div>
+  <div class="navigationBar">
+    <ul class="navigation">
+      <li><a href="tentang-sitti.php">Tentang SITTI</a></li>
+      <li><a href="tentang-sittizen.php">SITTIZEN</a></li>
+      <li><a target="_blank" href="http://blog.belajarsitti.com/">Blog</a></li>
+      <li><a href="career.php">Karir</a></li>
+      <li><a target="_blank" href="http://sitti.zendesk.com/anonymous_requests/new">Kontak Kami</a></li>
+    </ul>
+    <div class="daftar">
+        {if $isLogin}<a href="index.php?logout=1">KELUAR</a>{else}<a href="index.php?login=1">MASUK</a> | <a href="daftar.php">DAFTAR SITTI</a>{/if}
+    </div></div>
+  <div class="subNav">
+    <ul class="menu" id="menu">
+      <li><a href="beranda.php">Beranda</a></li>
+      <li><a href="beranda.php?daftar=1">Buat Slot Iklan Baru</a></li>
+      <li><a href="beranda.php">Laporan</a></li>
+       <li><a href="download.php">Plugins</a></li>
+      <li><a href="mailto:beriklan@sitti.zendesk.com">Bantuan</a></li>
+    </ul>
+    <script type="text/javascript">var menu=new menu.dd("menu");menu.init("menu","menuhover");</script>
+    <!--    <ul class="navigator">
+      <li><a href="index.html">HOME</a></li>
+      <li><span class="currentPage">SITTI 359</span></li>
+    </ul>-->
+  </div>
+  <div class="blockContent">
+    <div class="content">
+    	 <div class="colLeft">
+    	  	<p><strong>Halaman ini sedang kami perbaharui</strong></p>
+      	 </div>
+            <div class="w242">
+             {if $isLogin}
+                <div class="userSitti">
+                    <span class="namaPemilik">Nama Pemilik</span>
+                    <span class="namaUser">{$info.name}</span>
+                </div>
+                <div class="idUser">
+                  <span class="f14">SITTI ID :</span><span> {$info.sittiID}</span>
+                </div>
+             {/if} 
+            	<!-- Cuma tampil di daftar website 2 --> 
+            	<!--<div class="downloadPlugin">
+            	   <a onmouseover="tooltip.show('SITTI Widget for Wordpress Blogs');" onmouseout="tooltip.hide();" class="downloadPlugin" style="margin-top:30px;" href="#"><img src="images/wp_download.png" width="200" height="50" /></a> 
+                   <a onmouseover="tooltip.show('SITTI Gadget for Blogspot Accounts');" onmouseout="tooltip.hide();" class="downloadPlugin" href="#"><img src="images/blogger_download.png" width="200" height="50" /></a> 
+                </div>-->
+                <!-- Cuma tampil di daftar website 2 Sampe Sini --> 
+                <div class="sideBox">
+                    <h3> Bingung menggunakan SITTI?</h3>
+                         Silakan kirim pertanyaan, masukan atau masalah yang Anda 
+temukan pada saat mendaftarkan website Anda di SITTI ke:<br />
+                     <a href="mailto:support@sitti.zendesk.com">support@sitti.zendesk.com</a>
+                </div>
+            </div>		
+      <div class="bottomContent"></div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <div class="wrapper">
+        <ul class="navFoot">
+                <li><a href="term.html" target="_blank"> Syarat dan Ketentuan</a>|</li>
+                <li><a href="http://sittibelajar.com" target="_blank"> Beriklan di SITTI</a>|</li>
+                <li><a href="http://sitti.zendesk.com/anonymous_requests/new" target="_blank">Kontak Kami</a></li>
+        </ul>
+        <p class="copyRight">
+            Email: beriklan@sitti.zendesk.com<br />
+            © 2010 SITTI
+        </p>
+  </div>
+</div>
+   {literal}
+	<script type="text/javascript">
+
+			  var _gaq = _gaq || [];
+			  _gaq.push(['_setAccount', 'UA-16501037-1']);
+			  _gaq.push(['_setDomainName', 'sitti.co.id']);
+			  _gaq.push(['_trackPageview']);
+			
+			  (function() {
+			    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			    var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga, s);
+			  })();
+
+	</script>	
+	{/literal}
+</body>
+</html>

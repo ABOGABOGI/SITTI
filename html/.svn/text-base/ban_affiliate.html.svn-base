@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>SITTI - Platform Iklan Kontekstual Berbahasa Indonesia, Iklan Kontekstual, Bahasa Indonesia</title>
+<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="icon" type="image/gif" href="images/animated_favicon.gif">
+
+<link rel="stylesheet" type="text/css" href="css/sitti.css" />
+<style type="text/css">
+	strong{ font-size:14px;}
+	.term{
+		-moz-border-radius:15px;
+		-webkit-border-radius:15px;
+		border-radius:15px;
+		-moz-box-shadow:1px 0 5px #000;
+		-webkit-box-shadow:1px 0 5px #000;
+		box-shadow:1px 0 5px #000;
+		padding:20px;
+		background:#fff;
+		text-align:left;
+	}
+	#column1{
+		height:600px;
+		width:120px;
+		float:left;
+		padding:20px;
+	}
+	#column2{
+		height:600px;
+		width:160px;
+		float:left;
+		padding:20px;
+	}
+	#column3{
+		height:200px;
+		width:200px;
+		float:left;
+		padding:20px;
+	}
+	#column4{
+		height:250px;
+		width:300px;
+		float:left;
+		padding:20px;
+	}
+	
+	#column5{
+		height:280px;
+		width:336px;
+		float:left;
+		padding:20px;
+	}
+	#column6{
+		height:60px;
+		width:468;
+		float:left;
+		padding:20px;
+	}
+	#column7{
+		height:90px;
+		width:728;
+		float:left;
+		padding:20px;
+	}
+	#banner{
+		padding-left:100px;
+	}
+</style>
+</head>
+
+<body style="width:960px"> 
+  <div class="header" style="margin:0 0 20px 0"> <a class="logo" href="index.php">&nbsp;</a> <a class="slogan" href="index.php">&nbsp;</a> </div>
+<div align="center" class="term">
+	<h3 class="f18 blue">Banner SITTI Affiliate</h3>
+    <div id="banner">
+    <div class="row">
+    <div id="column1">
+    <img src="images/affiliate/(120x600)_afiliates.jpg" />
+    <p>Ukuran (120x600)</p>
+    </div>
+   <div id="column2">
+   <img src="images/affiliate/(160x600)_afiliates.jpg" />
+    <p>Ukuran (160x600)</p>
+    </div>
+   <div id="column3">
+   <img src="images/affiliate/(200 x 200)_afiliates.jpg" />
+    <p>Ukuran (200x200)</p>
+    <img src="images/affiliate/(250 x 250)_afiliates.jpg" />
+    <p>Ukuran (250x250)</p>
+    </div> 
+	</div>
+     <div class="row">
+       <div id="column4">
+       <img src="images/affiliate/(300 x 250)_afiliates.jpg" />
+    	<p>Ukuran (300x250)</p>
+    	</div>
+        <div id="column5">
+       <img src="images/affiliate/(336 x 280)_afiliates.jpg" />
+    	<p>Ukuran (336x280)</p>
+    	</div>
+     </div>
+      <div class="row">
+      	<div id="column6">
+       	<img src="images/affiliate/(468 x 60)_afiliates.jpg" />
+    	<p>Ukuran (468x60)</p>
+        </div>
+        <div id="column7">
+       	<img src="images/affiliate/(728 x 90)_afiliates.jpg" />
+    	<p>Ukuran (728x90)</p>
+    	</div> 
+      </div>
+      </div>
+</div>
+</div>
+</body>
+
+	<script type="text/javascript">
+
+			  var _gaq = _gaq || [];
+			  _gaq.push(['_setAccount', 'UA-16501037-1']);
+			  _gaq.push(['_setDomainName', 'sitti.co.id']);
+			  _gaq.push(['_trackPageview']);
+			
+			  (function() {
+			    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			    var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga, s);
+			  })();
+
+	</script>	
+
+</html>

@@ -1,0 +1,28 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="addlist zebra">
+  <tr>
+    <td width="100%"><strong>KEYWORD CTR</strong></td>
+  </tr>
+</table>
+Total Keyword used : <strong>{$total_keywords|number_format}</strong><br />
+<br />
+{$paging} 
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="list zebra">
+  <tr class="head">
+    <td><strong>Keyword</strong></td>
+    <td><strong>Impressions</strong></td>
+    <td><strong>Clicks</strong></td>
+    <td><strong>CTR</strong></td>
+    <td><strong>Last Update</strong></td>
+  </tr>
+  {section name=i loop=$list}
+  <tr>
+    <td>{$list[i].keyword|stripslashes|strip_tags|trim}</td>
+    <td>{$list[i].impression|number_format}</td>
+    <td>{$list[i].click|number_format}</td>
+    <td>{$list[i].ctrz} %</td>
+    <td>{$list[i].last_update}</td>
+  </tr>
+  {/section}
+</table>
+<br />
+{$paging}

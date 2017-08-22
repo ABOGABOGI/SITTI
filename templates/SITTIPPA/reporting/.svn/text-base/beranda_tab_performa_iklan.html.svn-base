@@ -1,0 +1,25 @@
+{if $list}
+
+<table class="list zebra" cellspacing="0" cellpadding="0" border="0">
+<tr class="head2">
+	<td width="25">No</td>
+	<td>Nama</td>
+	<td>Impresi</td>
+	<td>Hit</td>
+	<td>CTR</td>
+	<td>Konversi</td>
+</tr>
+
+{section name=iklan loop=$list}
+<tr>
+	<td>{$smarty.section.iklan.iteration}</td>
+	<td>{$list[iklan].nama}</td>
+	<td>{$list[iklan].jum_imp|number_format}</td>
+	<td>{$list[iklan].jum_hit|number_format}</td>
+	<td>{$list[iklan].ctr|number_format:4} %</td>
+	<td>{$list[iklan].jum_konversi|number_format}</td>
+</tr>
+{/section}
+</table>
+
+{/if}

@@ -1,0 +1,31 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="10">
+  <tr>
+    <td><strong>System Wide Configuration</strong></td>
+  </tr>
+  <tr>
+    <td><form name="form1" method="post" action="">
+      Enable Broadcast Message
+      <input name="show_broadcast" type="radio" id="show_broadcast" value="1" {if $rs.show_broadcast eq '1'}checked{/if}>
+    Yes
+    <input name="show_broadcast" type="radio" id="show_broadcast" value="0" {if $rs.show_broadcast eq '0'}checked{/if}>
+No
+    <br>
+    <br>
+    <strong> Notification Text : <br>
+    <textarea name="broadcast_message" id="broadcast_message" cols="100" rows="5">{$rs.broadcast_message|stripslashes}</textarea>
+    </strong>
+    <br>
+    <br>
+    Maintenance Mode <input name="maintenance_mode" type="radio" id="maintenance_mode" value="1" {if $rs.maintenance_mode eq '1'}checked{/if}>
+    Yes
+    <input name="maintenance_mode" type="radio" id="maintenance_mode" value="0" {if $rs.maintenance_mode eq '0'}checked{/if}>
+No
+    
+<br>
+    <input name="s" type="hidden" id="s" value="system">
+    <input name="r" type="hidden" id="r" value="update">
+    <br>
+    <input type="submit" name="button" id="button" value="SAVE">
+    </form></td>
+  </tr>
+</table>

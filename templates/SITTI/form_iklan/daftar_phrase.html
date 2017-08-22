@@ -1,0 +1,20 @@
+			<div class="phraseTab">
+               <h3 class="titlePhrase">Frase yang cocok dengan kata kunci pilihan Anda </h3>
+               <div class="phraseContent">
+               <table width="100%" border="0" cellspacing="0" cellpadding="0" class="list zebra" style="margin:0;">
+                  <tr class="head" style="background:url(images/bg_head2.gif) repeat-x;">
+                    <td width="30"></td>
+                    <td>Daftar Frasa</td>
+                    <td>Perkiraan impresi</td>
+                  </tr>
+                  {section name=i loop=$list}
+                  <tr>
+                    <td><input type="checkbox" class="chekKeyword" id="phrase[]" name="phrase[]" value="{$list[i].combo_encrypted}" onClick="onPhraseClicked(this);"/></td>
+                    <td><span style="text-transform:lowercase">{$list[i].kata1} {$list[i].kata2}</span></td>
+                    <td>{$list[i].jumlah|number_format}</td>
+                  </tr>
+                  {/section}
+                </table>
+                </div>
+             </div>
+       

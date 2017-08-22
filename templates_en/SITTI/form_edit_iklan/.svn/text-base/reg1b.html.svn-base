@@ -1,0 +1,220 @@
+ <script>
+ 	var random='{$random}';
+ 	var iklan_id = "{$rs.id|mysql_escape_string|strip_tags}";
+ {literal}
+  $(document).ready(function(){
+	$("#listkeyword").html("<span style='text-align:center;'><img src='images/loader.gif'/></span>");
+	$("#listkeyword").load("beranda.php?selected_keywords=2&id="+iklan_id);
+   });
+  
+  function deleteKeyword(keyword){
+	  $("#listkeyword").html("<span style='text-align:center;'><img src='images/loader.gif'/></span>");
+	 $("#listkeyword").load("beranda.php?delete_selected_key=1&k="+escape(keyword));
+  }
+  {/literal}
+ </script>
+
+
+<h3 class="headTitle">Edit Ad</h3>
+<p><strong>These following steps will guide you to edit an Ad in SITTI</strong></p>
+<form class="registerForm" action="beranda.php" method="post" enctype="application/x-www-form-urlencoded"> 
+	
+  <h3 class="blueArrow">Edit Your Ad Content</h3>
+    <p><strong>Please fill in the information of the ads that will appear in SITTI.</strong></p>
+    <div class="w315L">
+        <div class="row">
+            <label style="float:left;">Ad Name</label>
+            <input name="nama" type="text" class="inputText" id="nama" style="float:left; width:170px;" value="{$rs.nama|stripslashes|strip_tags}" /><a onmouseover="tooltip.show('Fill in your Ad name');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+        </div>
+
+        <div class="row">
+            <label style="float:left;">Ad contents (1st row)</label>
+          <input name="baris1" type="text" class="inputText" id="baris1" style="float:left; width:170px;" value="{$rs.baris1|stripslashes|strip_tags}" maxlength="30"/><a onmouseover="tooltip.show('<img src=images/thumb_iklan.gif>');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+        </div>
+      
+      <div class="row">
+			 <h3 class="blueArrow">Your Ad URL Destination Address</h3>  
+                
+            {if $rs.landing_page} <!--kalau advertiser punya landing page, maka akan diambil landing page yang paling terakhir-->
+                <input name="target_web" type="radio" value="sitti" onClick="return rbPkg_onclick(this.value)" style="float:left; margin:4px 10px 0 0" checked>
+                <span style="float:left; display:inline; margin:0 10px 0 0;">
+                    <span style="float:left; display:inline; margin:0 10px 0 0;">
+                        {$rs.landing_page.page_title}
+                    </span>
+                    <span style="float:left; display:inline; margin:0 10px 0 0;">
+                        <a href="lp/index.php?id={$rs.landing_page.id}" target="_BLANK">
+                            (Lihat)
+                        </a>
+                    </span>
+
+                    <span style="float:left; display:inline; margin:0 10px 0 0;">
+                        <a href="modif_edit_template.php?id={$rs.landing_page.id}&param=edit_layout&edit_pending=1&id_iklan={$rs.id}&c={$campaign_id|stripslashes|strip_tags}" target="_BLANK">
+                            (Ganti)
+                        </a>
+                    </span>
+                    
+                </span>
+                <!--
+                <a style="margin:-3px 0 0 0;" onmouseover="tooltip.show('Apabila Anda tidak mempunyai website atau ingin mendapatkan hasil yang lebih optimal, Anda dapat membuat halaman utama sendiri dengan SITTI');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+                -->
+                
+                <!--
+                <input name="target_web" type="radio" value="sitti" onClick="return rbPkg_onclick(this.value)" style="float:left; margin:4px 10px 0 0">
+                <span style="float:left;">SITTI Landing Page</span><a style="margin:-3px 0 0 0;" onmouseover="tooltip.show('Apabila Anda tidak mempunyai website atau ingin mendapatkan hasil yang lebih optimal, Anda dapat membuat halaman utama sendiri dengan SITTI');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+                -->
+            {/if}
+            
+        </div>
+        <!--
+        <div class="row">
+            <label>URL Tampil Iklan</label>
+            <input name="urlName" type="text" class="inputText" id="urlName" />
+        </div>-->
+    </div>
+    <div class="w315R">
+        <div class="row">
+            <label style="float:left;">Ad Title</label>
+            <input name="judul" type="text" class="inputText" id="judul"  style="float:left; width:170px;" value="{$rs.judul|stripslashes|strip_tags}"/><a onmouseover="tooltip.show('<img src=images/thumb_iklan.gif>');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+        </div>
+        <div class="row">
+            <label style="float:left;">Ad Contents (2nd row)</label>
+            <input name="baris2" type="text" class="inputText" id="baris2" style="float:left; width:170px;" value="{$rs.baris2|stripslashes|strip_tags}" maxlength="30"/><a onmouseover="tooltip.show('<img src=images/thumb_iklan.gif>');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+        </div>
+
+      
+      <div class="row">
+		<h3 class="blueArrow" style="background-image:none;">&nbsp;</h3>
+            <input name="target_web" type="radio" value="url" onclick="return rbPkg_onclick(this.value)" style="float:left; margin:4px 10px 0 0" {if $rs.landing_page eq ''}checked{/if}>
+            <span style="float:left;">Your Website</span><a style="margin:-3px 0 0 0;" onmouseover="tooltip.show('Navigate SITTI ads directly to your site');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+        </div>
+        
+     </div>
+    <div class="row" style="clear:both; border:none; padding:0;">
+        
+        <div class="w315L" style="padding:15px 0">
+            <p id="element">
+            {if $rs.landing_page}<br>
+                <label>Url Ad Show</label>
+                <br/>
+                {$rs.urlName|stripslashes|strip_tags}
+                <br><br/>
+                <label>Url Ad Destination</label>
+                <br/>
+                {$rs.urlLink|stripslashes|strip_tags}
+                <input name="urlName" type="hidden" id="urlName" value="{$rs.urlName|stripslashes|strip_tags}"/>
+                <input name="urlLink" type="hidden" id="urlLink" value="{$rs.urlLink|stripslashes|strip_tags}"/>
+
+            {else}
+                <label>Url Ad Show</label><br><br>
+                <input name="urlName" type="text" class="inputText" id="urlName" value="{$rs.urlName|stripslashes|strip_tags}"/>
+                <br><br>
+                <label>Url Ad Destination</label><br><br>
+                <input name="urlLink" type="text" class="inputText" id="urlLink" value="{$rs.urlLink|stripslashes|strip_tags}"/>
+            {/if}
+            </p>
+            
+        </div>
+    </div>
+    <div class="w315L">     
+        <div class="row">
+            <h3 class="blueArrow" style="margin-top:0;">Your Ad Category</h3>
+            <select name="category" class="kategoriIklan" id="category">
+                {section name=i loop=$adCategory}
+                <option value="{$adCategory[i].id}">{$adCategory[i].categoryName}</option>
+                {/section}
+            </select>
+            <script>
+			document.getElementById('category').value="{$rs.category_id|stripslashes|strip_tags}";
+			</script>
+        </div>
+    </div>
+    <div class="w315R">
+        <!--
+        <div class="row">
+            <label>URL Tujuan Iklan</label>
+            <input name="urlLink" type="text" class="inputText" id="urlLink" value="http://"/>
+        </div>-->
+        <div class="row">
+            <h3 class="blueArrow" style="margin-top:0;">Your Ad Target Market</h3>
+            <select class="kategoriIklan" name="target_market" id='target_market'>
+                {section name=i loop=$adGenre}
+                <option value="{$adGenre[i].id}">{$adGenre[i].categoryName}</option>
+                {/section}
+            </select>
+             <script>
+			document.getElementById('target_market').value="{$rs.genre_id|stripslashes|strip_tags}";
+			</script>
+        </div>
+    </div>
+   <div class="row">
+     <h3 class="blue">Purchase Keyword and Place Suggestion Ad</h3>
+                <div id="listkeyword">
+ 				
+                </div>
+<!--                    <div class="row">
+                         *Pengumuman: Fungsi mengubah nilai bidding untuk pada menu edit iklan sementara waktu tidak dapat dilakukan karena adanya perbaikan pada website kami.
+                    </div>-->
+     </div>
+    <div class="row">
+        <input type="submit" value="Save Changes" class="submitButton" />
+    </div>
+
+  <input name="id" type="hidden" id="id" value="{$rs.id|stripslashes|strip_tags}" />
+  <input name="c" type="hidden" id="c" value="{$rs.ox_campaign_id|stripslashes|strip_tags}" />
+  <input name="edit_pending" type="hidden" value="1"/>
+  <input name="do" type="hidden" value="update_pending" />
+</form>
+
+
+<script language="Javascript">
+    function rbPkg_onclick(pilih){literal}{{/literal}
+        
+        {literal }var copyText=""; {/literal}
+
+        
+        {literal}
+        if(pilih=='url'){
+        {/literal}
+            copyText+='<div class="row" style="padding:25px 0 15px 0; border:none;"><label>Url Show Ad</label>';
+            copyText+='<input name="urlName" type="text" class="inputText" id="urlName" value="{$rs.urlName|stripslashes|strip_tags}" /></div>';
+            copyText+='<div class="row" style="padding:0px 0 10px 0; border:none;"><label>Url Destination Ad</label>';
+            copyText+='<input name="urlLink" type="text" class="inputText" id="urlLink" value="{$rs.urlLink|stripslashes|strip_tags}"/></div>';
+            
+        {literal}
+        }
+        {/literal}
+
+        
+
+        {literal}
+        if(pilih=='none'){
+        {/literal}
+            copyText+='';
+        {literal}
+        }
+        {/literal}
+
+
+        
+        {literal}
+        if(pilih=='sitti'){
+        {/literal}
+            
+            //url tampil iklan
+            copyText+= '<div class="row" style="padding:25px 0 15px 0; border:none;"><label>Url Show Ad</label><br/>{$rs.urlName|stripslashes|strip_tags}<br/><br/>';
+
+            //url tujuan iklan
+            copyText+= '<div class="row" style="padding:0px 0 10px 0; border:none;"><label>Url Destination Ad</label><br/>{$rs.urlLink|stripslashes|strip_tags}';
+
+        {literal}
+        }
+        {/literal}
+
+        document.getElementById('element').innerHTML=copyText;
+        
+        
+    {literal}}{/literal}
+
+    //
+
+</script>

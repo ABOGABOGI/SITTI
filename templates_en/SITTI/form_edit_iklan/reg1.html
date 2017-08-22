@@ -1,0 +1,193 @@
+ <script>
+ 	var random='{$random}';
+ 	var iklan_id = "{$rs.id|mysql_escape_string|strip_tags}";
+ {literal}
+  $(document).ready(function(){
+	
+	$("#listkeyword").html("<span style='text-align:center;'><img src='images/loader.gif'/></span>");
+ 	$("#listkeyword").load("beranda.php?selected_keywords=3&id="+iklan_id);
+   });
+  
+  function deleteKeyword(keyword){
+	  $("#listkeyword").html("<span style='text-align:center;'><img src='images/loader.gif'/></span>");
+	 $("#listkeyword").load("beranda.php?delete_selected_key=1&k="+escape(keyword));
+  }
+  {/literal}
+ </script>
+<h3 class="headTitle">Edit Ad</h3>
+<h3>These following steps will guide you to edit an Ad in SITTI</h3><br /><br />
+<form class="registerForm" action="beranda.php" method="post" enctype="application/x-www-form-urlencoded"> 
+	<h3 class="circleTitle"><span class="circle">1</span><span class="circleText">Edit Your Ad Content</span></h3>
+    	<div class="isiForm">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="addlist zebra">
+      <tr class="head">
+      	<td colspan="2">
+        	<h3 class="subtitleReg">Please fill in the information of the ads that will appear in SITTI.</h3>
+        </td>
+      </tr>
+      <tr>
+        <td width="100">Ad Name</td>
+        <td><input name="nama" type="text" class="inputText" id="nama" style="float:left; width:350px;" value="{$rs.nama|stripslashes|strip_tags}" /><a onmouseover="tooltip.show('Fill in your Ad name');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a></td>
+      </tr>
+      <tr>
+        <td width="100">Ad Contents</td>
+        <td><input name="baris1" type="text" class="inputText" id="baris1" style="float:left; width:350px;" value="{$rs.baris1|stripslashes|strip_tags}" size="70" maxlength="60"/><a onmouseover="tooltip.show('<img src=images/thumb_iklan.gif>');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a></td>
+      </tr>
+      <tr>
+        <td width="100">Ad Title</td>
+        <td><input name="judul" type="text" class="inputText" id="judul"  style="float:left; width:350px;" value="{$rs.judul|stripslashes|strip_tags}" maxlength="70"/><a onmouseover="tooltip.show('<img src=images/thumb_iklan.gif>');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a></td>
+      </tr>
+    </table>
+        </div>
+	<hr />
+    	<h3 class="circleTitle"><span class="circle">2</span><span class="circleText">Your Ad URL Destination Address</span></h3>
+ 			<div class="isiForm"> 
+          	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="addlist zebra">
+    			<tr style="display:none;">
+        			<td>
+                       <input name="target_web" type="radio" disabled="disabled" value="sitti" onClick="return rbPkg_onclick(this.value)" style="float:left; margin:4px 10px 0 0">
+                  	</td>
+                    <td colspan="2">
+                    	
+            <span style="float:left;">SITTI Landing Page</span><a style="margin:-3px 0 0 0;" onmouseover="tooltip.show('If you do not have a website or want to obtain more optimal results, you can create your own main page with SITTI');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+                    </td>
+                 </tr>
+    			<tr>
+        			<td>
+                      <input name="target_web" type="radio" value="url" onclick="return rbPkg_onclick(this.value)" style="float:left; margin:4px 10px 0 0" checked="true">
+                  	</td>
+                    <td colspan="2">
+                    	<span style="float:left;">Your Website</span><a style="margin:-3px 0 0 0;" onmouseover="tooltip.show('Navigate SITTI ads directly to your site');" onmouseout="tooltip.hide();"  class="helpIcon">&nbsp;</a>
+                    </td>
+                 </tr>
+				<tr>
+                	<td></td>
+                	<td>
+                    	Shown Site Address
+                    </td>
+                    <td>
+                    	<input name="urlName" type="text" class="inputText" id="urlName" style="width:300px;" value="{$rs.urlName|stripslashes|strip_tags}" />
+                    </td>
+                 </tr>
+                 <tr>
+                 	<td></td>
+                	<td>
+                    	Actual Site Address
+                    </td>
+                    <td>
+                    <input name="urlLink" type="text" class="inputText" id="urlLink" value="{$rs.urlLink|stripslashes|strip_tags}"/><span class="blue" style="padding:0 0 0 7px; font-size:11px;">(Address should be complete with http://)</span>
+					</td>
+                 </td>
+             </table>   
+         </div>
+         <hr />
+  <h3 class="circleTitle"><span class="circle">3</span><span class="circleText">Your Ad Category</span></h3>
+         <div class="isiForm"> 
+         <table width="100%" border="0" cellspacing="0" cellpadding="0" class="addlist zebra">
+    			<tr class="head">
+        			<td colspan="2">
+                  	  <h3 class="subtitleReg">A correct category will makes it easier for SITTI to match your Ads with the publisher</h3>
+                    </td>
+                </tr>
+                <tr>
+                	<td>
+                    	 <select name="category" class="kategoriIklan" id="category">
+                {section name=i loop=$adCategory}
+                <option value="{$adCategory[i].id}">{$adCategory[i].categoryName_en}</option>
+                {/section}
+            </select>
+            <script>
+			document.getElementById('category').value="{$rs.category_id|stripslashes|strip_tags}";
+			</script>
+                    </td>
+                </tr>
+		</table>
+        </div>
+         <hr />
+         <h3 class="circleTitle"><span class="circle">4</span><span class="circleText">Your Ad Target Market</span></h3>
+         <div class="isiForm"> 
+         <table width="100%" border="0" cellspacing="0" cellpadding="0" class="addlist zebra">
+    			<tr class="head">
+        			<td colspan="2">
+                  	  <h3 class="subtitleReg">The correct target market will make it easier for SITTI to match your Ads with the publisher</h3>
+                    </td>
+                </tr>
+                <tr>
+                	<td>
+                    <select class="kategoriIklan" name="target_market" id="target_market">
+                {section name=i loop=$adGenre}
+                <option value="{$adGenre[i].id}">{$adGenre[i].categoryName_en}</option>
+                {/section}
+            </select>
+             <script>
+			document.getElementById('target_market').value="{$rs.genre_id|stripslashes|strip_tags}";
+			</script>
+                    </td>
+                </tr>
+		</table>
+        </div>
+		<hr />
+ 		 <h3 class="circleTitle"><span class="circle">5</span><span class="circleText">Purchase Keyword and Place Suggestion Ad</span></h3>
+         <div class="isiForm"> 
+                <div id="listkeyword">
+ 				
+                </div>
+                   <div class="row noBorder">
+                       <a href="beranda.php?edit_keyword=1&id={$rs.id|stripslashes|strip_tags}">Delete Keyword</a>
+                       &nbsp;&nbsp;
+                       <a href="beranda.php?tambah_keyword=1&id={$rs.id|stripslashes|strip_tags}">Add Keyword</a>
+                    </div>
+    	 </div>
+      
+      <hr />
+ 		 <h3 class="circleTitle"><span class="circle">6</span><span class="circleText">Please select the city or area you want to target (Geo Targeting)</span></h3>
+         <div class="isiForm"> 
+              <table>
+               <tr>
+                	<td colspan="6">
+                    	<input id="allcity" name="allcity" type="checkbox" class="pilihKota" value="1" onchange="toggleAllCity();return false;" {if $ALL}checked="true"{/if}/><span class="kotaTujuan">All Cities</span>
+                    </td>
+                </tr>
+                <tr>
+                	<td>
+                    	<input id="tcity[]" name="tcity[]" value="MEDAN" type="checkbox" class="pilihKota" onchange="uncheckedAll();return false;" {$MEDAN}/><span class="kotaTujuan">Medan</span>
+                    </td>
+                	<td>
+                    	<input id="tcity[]" name="tcity[]" value="JABODETABEKBAN" type="checkbox" class="pilihKota" onchange="uncheckedAll();return false;" {$JABODETABEKBAN}/><span class="kotaTujuan">Jabotabek & Bandung</span>
+                    </td>
+                	<td>
+                    	<input id="tcity[]" name="tcity[]" value="YOGYAKARTA" type="checkbox" class="pilihKota" onchange="uncheckedAll();return false;" {$YOGYAKARTA}/><span class="kotaTujuan">Yogyakarta</span>
+                    </td>
+                	<td>
+                    	<input id="tcity[]" name="tcity[]" value="BALI" type="checkbox" class="pilihKota" onchange="uncheckedAll();return false;" {$BALI}/><span class="kotaTujuan">Bali</span>
+                    </td>
+                	<td>
+                    	<input id="tcity[]" name="tcity[]" value="UJUNG PANDANG" type="checkbox" class="pilihKota" onchange="uncheckedAll();return false;" {$UJUNG_PANDANG}/><span class="kotaTujuan">Ujung Pandang/Makasar</span>
+                    </td>
+                </tr>
+              </table>  
+    	 </div>
+      <hr />
+    <div class="row">
+        <input type="submit" value="Save Changes" class="submitButton" />
+    </div>
+
+  <input name="id" type="hidden" id="id" value="{$rs.id|stripslashes|strip_tags}" />
+  <input name="c" type="hidden" id="c" value="{$rs.ox_campaign_id|stripslashes|strip_tags}" />
+  <input name="edit_iklan" type="hidden" value="1"/>
+  <input name="token" type="hidden" value="{token}"/>
+  <input name="do" type="hidden" value="update" />
+</form>
+<script>
+{literal}
+function uncheckedAll(){
+	$('#allcity').attr("checked","");
+}
+function toggleAllCity(){
+	$.each($("input[name='tcity[]']:checked"), function() {
+			$(this).attr('checked',false);
+		});
+										
+}
+{/literal}
+</script>

@@ -1,0 +1,157 @@
+{literal}
+<!--        <script type="text/javascript">
+		
+            $(document).ready(function() {
+				
+                // choose text for the show/hide link - can contain HTML (e.g. an image)
+                var showText='Tampilkan Saran Kata';
+                var hideText='Hide';
+
+                // initialise the visibility check
+                var is_visible = false;
+
+                // append show/hide links to the element directly preceding the element with a class of "toggle"
+                $('.toggle').prev().append(' <a href="#" class="toggleLink submitButton">'+showText+'</a>');
+
+                // hide all of the elements with a class of 'toggle'
+                $('.toggle').hide();
+
+                // capture clicks on the toggle links
+                $('a.toggleLink').click(function() {
+					
+					//if(!is_visible){
+						// cari kata
+						//search_words();
+					//}
+                    // switch visibility
+                    is_visible = !is_visible;
+					
+                    // change the link depending on whether the element is shown or hidden
+                    $(this).html( (!is_visible) ? showText : hideText);
+
+                    // toggle the display - uncomment the next line for a basic "accordion" style
+                    //$('.toggle').hide();$('a.toggleLink').html(showText);
+                    $(this).parent().next('.toggle').toggle('slow');
+
+                    // return false so any link destination is not followed
+                    return false;
+
+                });
+            });
+
+        </script>-->
+        <script>
+{/literal}
+			var n_key={$total_keyword_selected};
+			{literal}
+            // When the document loads do everything inside here ...
+            $(document).ready(function(){
+				
+                // When a link is clicked
+                $("a.tab").click(function () {
+					
+
+                    // switch all tabs off
+                    $(".active").removeClass("active");
+
+                    // switch this tab on
+                    $(this).addClass("active");
+
+                    // slide all content up
+                    $(".contentTab").slideUp();
+
+                    // slide this content up
+                    var content_show = $(this).attr("title");
+                    $("#"+content_show).slideDown();
+
+                });
+
+            });
+			
+			function search_words(){
+				//alert("yey");
+				if(document.getElementById('q').value.length>0){
+					$("#content_1").html("<span style='text-align:center;'><img src='images/loader.gif'/></span>");
+					$("#content_2").html("<span style='text-align:center;'><img src='images/loader.gif'/></span>");
+					$("#content_1").load("uji_sitti.php?q="+escape(document.getElementById('q').value)+"&t=1");
+					$("#content_2").load("uji_sitti.php?q="+escape(document.getElementById('q').value)+"&t=2");
+					//$('.toggle').show();
+					//$('a.toggleLink').html(showText);
+					//is_visible = true;
+				}
+			}
+			function keywordClicked(obj){
+				if(obj.checked){
+					n_key++;
+				}else{
+					n_key--;	
+				}
+				if(n_key>2){
+					alert("Sorry, for now you just can choose minimum 2 keyword \nIf you want to try different keywords, please make some ads with the purpose and content of different pages to test the accuracy of your ad");
+					//for(var i=0;i<document.getElementById('keywords'
+					//obj.checked = false;
+				}
+			}
+	function continueToStep3(){
+				if(n_key!=0&&n_key<=2){
+					document.getElementById('frm01').submit();
+				}else{
+					alert("Sorry, for now you just can choose minimum 1 keyword dan maximal 2 keyword. \nIf you want to try different keywords, please make some ads with the purpose and content of different pages to test the accuracy of your ad");
+				}
+			}
+			function gotoRegister(){
+				document.location = "index.php?registration=1";
+			}
+        </script>
+        {/literal}
+                <h3 class="headTitle">Create New Ad</h3>
+                <p>These following steps will guide you to create a new Ad in SITTI</p>
+                <form class="registerForm" action="beranda.php" method="post" enctype="application/x-www-form-urlencoded" id="frm01">
+                <h3 class="blue">Define Your Ad Keywords</h3>
+                <p>Here, you can use Sitti to get the most appropriate keywords for your product or service.
+                     Enter a Keyword that best suits your products in Indonesian Language<br />
+                    (i.e Sepatu, Baju, Asuransi Murah)</p>
+                    <div class="row">
+                        <input type="text" class="inputText" id="q" name="q" onchange="search_words();"/> <a style="margin:0 0 0 20px" class="submitButton" onclick="search_words()" >Show Keyword Suggestions</a>
+                    </div>
+                    <div class="row">
+                    
+                        <div class="toggle">
+                           
+							<span>The words most associated by SITTI</span>
+                           <div id="tabbed_box_1" class="tabbed_box">
+                            <div class="tabbed_area">
+                            
+                                <ul class="tabs">
+                                    <li><a title="content_1" class="tab">SITTI Data</a></li>
+                                    <li><a title="content_2" class="tab">Web Data</a></li>
+                                </ul>
+                                
+                                <div id="content_1" class="contentTab">
+                                        
+                                </div>
+                                <div style="display: none;" id="content_2" class="contentTab">
+                                    
+                                </div>
+                            </div>   
+                            <p><a class="black" href="beranda.php?edit_iklan=1&step=2&id={$iklan_id|stripslashes|strip_tags}&c={$campaign_id|stripslashes|strip_tags}&advanced=1"> Want to get more choice of words? click here to try the "Advanced Keyword Suggestion" SITTI</a></p>
+                                <p><strong class="blue"> * Sitti Data</strong><br />
+                                Related words are taken from the print media or offline media
+                                 </p>
+                                 <p>
+                                <strong class="blue">* Web Data</strong><br />
+                                Related words are taken from the Internet such as websites and blogs  
+                                </p>
+                        </div>
+                        </div>
+                        
+                    </div>
+                <div class="row">
+                 <input name="id" type="hidden" id="id" value="{$iklan_id|stripslashes|strip_tags}" />
+                 <input name="c" type="hidden" id="c" value="{$campaign_id|stripslashes|strip_tags}" />
+					  <input name="edit_iklan" type="hidden" value="1"/>
+					  <input name="step" type="hidden" value="3" />
+                	<input type="button" value="Select Keywords and Continue" class="submitButton" onClick="continueToStep3();return false;"/>
+                    <!-- <p class="error">Semua field wajib diisi</p>-->
+                </div>
+                </form>

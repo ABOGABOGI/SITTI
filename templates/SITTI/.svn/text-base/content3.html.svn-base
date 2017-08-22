@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>SITTI Technology</title>
+<link rel="stylesheet" href="css/SITTI_newface.css" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.6.4.min.js"></script> 
+</head>
+
+<body>
+	<div id="header">
+    	<div class="content relative">
+        	<img class="logo absolute" src="images/logo.png" width="330" height="176" />
+            <div class="control absolute">
+            	<div class="login">
+                   <form id="sittiType" name="sittiTipe" action="https://359.sitti.co.id/login.php" method="post" enctype="application/x-www-form-urlencoded">
+                    <input class="round-5 border-no margin-right-15" onfocus="blank(this)" onblur="unblank(this)" type="text" name="username" value="username" maxlength="40" autocomplete="off" />
+                    <input class="round-5 border-no margin-right-15" onfocus="blank(this)" onblur="unblank(this)" type="password" name="password" value="password" maxlength="40" autocomplete="off" />                                  
+                    <div class="select_style round-5 border-no margin-right-15">
+                        <select class="round-5 border-no" name="sittiT" id="sitti-type" onchange="sitti();">
+                          <option value="https://359.sitti.co.id/login.php">Advertiser</option>
+                          <option value="https://sittizen.sitti.co.id/login.php">Blogger</option>
+                        </select>
+                    </div> 
+                    <input name="login" type="hidden" value="1" />
+                     <input name="role" type="hidden" value="1" />
+                    <input class="round-20 border-no" type="submit" value="Login" />                   
+            	</form>               
+            	</div>
+        	</div>
+            <a class="home absolute" href="index.php"></a>
+            <div class="menu-top absolute">
+            	<a class="dot-vertical" href="tentang-sitti.php">TENTANG SITTI</a>
+                <a class="dot-vertical" href="advertiser.php">ADVERTISER</a>
+                <a class="dot-vertical" href="blogger.php">BLOGGER</a>
+                <a id="faq" class="dot-vertical" href="#">FAQ</a>
+                <a class="dot-vertical" href="http://www.sitti.co.id/blog/" target="_blank">BLOG SITTI</a>
+                <a href="http://sitti.zendesk.com/anonymous_requests/new" target="_blank">HUBUNGI KAMI</a>
+            </div>
+            <div id="faq-choice" class="absolute round-5">
+             	<a class="faq-items" href="faqAdvertiser.php">Advertiser</a> /
+             	<a class="faq-items" href="faqBlogger.php">Blogger</a>
+    		</div>
+        </div>
+    </div>
+	<div id="main-content" class="margin-top-120">
+    	<div class="content relative round-5 bg_white" style="padding: 130px 80px 0;width: 800px; text-align:center;">
+        	
+           {$mainContent}
+           
+        <div id="feed-form" class="absolute round-5">
+                	<div style="position:relative">
+                    	<span id="close" style="color: #999999;
+    right: 2px;
+    top: -22px;
+    width: 65px;
+    position:absolute;
+    font-size:10px;
+    cursor:pointer;
+">CLOSE X</span>
+                    </div>
+    			 <form action="feedback.php" method="post" enctype="application/x-www-form-urlencoded"> 
+    			<input class="round-5 border-no margin-right-15" onfocus="blank(this)" onfocus="unblank(this)" type="text" name="name" value="NAMA" />
+                <input class="round-5 border-no margin-right-15" onfocus="blank(this)" onfocus="unblank(this)" type="text" name="email" value="E-MAIL" />
+                <textarea class="round-5 border-no margin-right-15" name="saran" cols="30" rows="5"></textarea>
+                <input type="submit" value="SEND" name="send" class="round-20 border-no">
+                <input type="reset" value="RESET" name="reset" class="round-20 border-no">
+                </form>
+    		</div>
+           
+        </div>
+        
+    </div>
+    <div id="footer">
+    	<div class="content relative">
+        	 <div id="toc-choice" class="absolute round-5">
+             	<a class="toc-items" href="https://359.sitti.co.id/term.html" target="_blank">Advertiser</a> /
+             	<a class="toc-items" href="https://sittizen.sitti.co.id/term.html" target="_blank">Blogger</a>
+    		</div>
+        	<div class="link-footer">
+            	<a href="tentang-sitti.php">TENTANG SITTI</a>    /     <a id="feeds" href="#feed-form">feedback form</a>    /   <a href="http://sitti.zendesk.com/anonymous_requests/new" target="_blank">contact us</a>    /   <a id="toc" href="#toc-choice">terms and conditions</a>    /   <a href="#">top 100 publisher</a>    /   <a href="#">kumpulan tips</a>
+            </div>
+            <div class="copyright absolute"></div>
+            <div class="social absolute">
+            	<span>Join us on social media: </span>
+            	<a class="fb" href="http://www.facebook.com/SITTI.ID" target="_blank"></a>
+                <a class="twit" href="http://twitter.com/sittiID" target="_blank"></a>
+            </div>
+        </div>
+    </div>
+    <script>
+    {literal}
+			$("#feeds").click(function(){
+				$("#feed-form").fadeToggle("slow");						  
+			});
+			$("#close").click(function(){
+				$("#feed-form").fadeOut("slow");						  
+			});
+			
+			$("#toc").hover(
+				function(){
+					$("#toc-choice").stop(true, true).fadeIn("fast");},
+				function(){
+					$("#toc-choice").stop(true, true).fadeOut("slow");	
+				}
+			);
+			
+			$("a.toc-items").hover(
+				function(){
+					$("#toc-choice").stop(true, true).fadeIn("fast");},
+				function(){
+					$("#toc-choice").stop(true, true).fadeOut("slow");	
+				}
+			);
+			
+			function blank(a) { if(a.value == a.defaultValue) a.value = ""; }
+        	function unblank(a) { if(a.value == "") a.value = a.defaultValue; }
+			function sitti(){
+					document.getElementById("sittiType").action = document.sittiTipe.sittiT.value;
+					return;
+				}
+			$("#faq").hover(
+				function(){
+					$("#faq-choice").stop(true, true).fadeIn("fast");},
+				function(){
+					$("#faq-choice").stop(true, true).fadeOut("slow");	
+				}
+			);
+			
+			$("a.faq-items").hover(
+				function(){
+					$("#faq-choice").stop(true, true).fadeIn("fast");},
+				function(){
+					$("#faq-choice").stop(true, true).fadeOut("slow");	
+				}
+			);
+			{/literal}
+	</script>
+  	{literal}
+        <script type="text/javascript">
+
+			  var _gaq = _gaq || [];
+			  _gaq.push(['_setAccount', 'UA-16501037-1']);
+			  _gaq.push(['_setDomainName', 'sitti.co.id']);
+			  _gaq.push(['_trackPageview']);
+			
+			  (function() {
+			    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			    ga.src = ('https:' == document.location.protocol ? 'https://ssl' :
+			'http://www') + '.google-analytics.com/ga.js';
+			    var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(ga, s);
+			  })();
+
+		</script>
+		
+	{/literal}  
+	
+</body>
+</html>

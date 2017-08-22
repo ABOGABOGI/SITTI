@@ -1,0 +1,23 @@
+{literal}
+<style type="text/css">
+html {
+    color: #343434;
+    font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    line-height: 18px;
+}
+</style>
+{/literal}
+<html>
+<h2 class="blue">Internet Banking Mandiri</h2>
+<p><img src="images/internet_mandiri.jpg" />
+<ol>
+        <li>Click the "Top Up" button below;</li>
+        <li>Choose Internet Bank Mandiri as your payment method;</li>
+        <li>Fill in the required fields; your amount of Top Up and your ATM card number;</li>
+        <li>To proceed, use your token, and enter the following requirements into your token: the last 10 digits of your ATM card number and the amount of TOP UP with a minimum of Rp 10,000, -;</li>
+        <li>After entering all the requirements into the token, enter the number that has been generated from the token into the last field on the web and press "Continue";</li>
+        <li> Your balance in SITTI would be updated. If nothing happens in 30 minutes, please contact <a href="mailto:billing@sitti.co.id">billing@sitti.co.id</a>.
+        </li>
+</ol>
+</html>

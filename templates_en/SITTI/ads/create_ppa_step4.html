@@ -1,0 +1,29 @@
+<form action="buat.php?ad_ppa=true" method="post">
+<div style="width:900px;">
+
+	<h3 class="headTitle">Konfirmasi Kampanye Anda</h3>
+	<p>Silahkan konfirmasi kampanye Anda dibawah ini. Setelah konfirmasi, iklan Anda akan mulai di tayangkan setelah melalui prosess moderasi oleh SITTI.</p>
+	
+	<table cellspacing="0" cellpadding="0" border="0" style="margin-top:30px;margin-bottom:30px;" class="list zebra">
+	<tbody><tr class=" oddRow">
+	<td>
+	<h3 class="blue noMargin">{$nama_produk}</h3></td></tr>
+	<tr class="evenRow">
+	<td>
+	<p class="noMargin">{$url_produk}</p></td></tr></tbody></table>
+	<div>
+	<div class="sampleIklan noMargin">
+	<h1 class="titleAdv">{$judul_iklan}</h1>
+    <p style="clear:both; margin:0;">{$isi_iklan}</p>
+    <p style="clear:both; margin:0;"></p>
+
+	<a target="_blank" href="{$url_produk}" class="urlAdv">{$url_produk}</a> <a href="#" class="adsby">ads by SITTI</a> 
+	</div><br />
+	</div>
+	<div style="margin-top:10px">
+		<input type="hidden" name="next" value="5" />
+		<input type="submit" value="Simpan" name="simpan_ppa" class="submitButton">
+	</div>
+	
+</div>
+</form>

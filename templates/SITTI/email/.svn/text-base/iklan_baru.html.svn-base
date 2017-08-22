@@ -1,0 +1,27 @@
+<p>Hallo {$nama},</p>
+<p><strong>Terima Kasih telah menggunakan SITTI. Iklan Anda “{$judul_iklan}” sudah masuk ke dalam database kami dan siap untuk di 
+tayangkan.</strong></p>  
+<p>Supaya iklan Anda dapat tampil tanpa gangguan, mohon memperhatikan hal‐hal berikut :
+<ul>
+<li> Saldo Anda mencukupi. </li> 
+<li> Iklan Anda telah sesuai dengan syarat dan ketentuan SITTI </li>
+<li> Iklan Anda dalam keadaan aktif </li>
+<li> Isi iklan tidak bertentangan dengan norma‐norma yang berlaku di masyarakat dan sudah menaati ketentuan hukum yang berlaku di 
+Indonesia. </li>
+</ul>
+</p>
+<p><strong>Berikut beberapa tips yang dapat membantu memaksimalkan iklan Anda untuk hasil terbaik :</strong>
+<ul>
+<li> Perhatikan terus kinerja iklan Anda pada bagian “laporan”. Anda dapat merubah‐rubah isi iklan sesering mungkin tanpa
+berpengaruh pada anggaran iklan. Cobalah beberapa kombinasi kata dan judul beberapa hari sekali sampai Anda menemukan isi
+iklan yang paling sesuai dengan target pasar Anda. </li>
+<li> Perhatikanan saldo Anda. Agar iklan dapat berjalan dengan baik dan tanpa gangguan, jagalah terus saldo akun Anda </li>
+<li> Anda dapat memberhentikan iklan sementara (pause)  tanpa dikenakan biaya tambahan </li>
+<li> Lakukan eksperimen dengan beberapa kombinasi kata kunci untuk iklan Anda.  Anda dapat menambah atau mengurangi kata kunci
+iklan Anda pada kampanye yang sedang berjalan. Anda hanya  dikenakan  (atau dikurangi) biaya sesuai dengan tambahan atau
+pengurangan kata kunci yang telah Anda lakukan. </li>
+</ul>
+</p>
+<p><strong>Apabila Anda ingin Top Up akun SITTI, Silahkan <a href="{$site_url}pembayaran.php">klik disini</a>.</strong></p>
+<p>Salam dan Selamat Beriklan!<br />
+Tim SITTI</p>

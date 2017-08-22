@@ -1,0 +1,13 @@
+K 10
+svn:ignore
+V 11
+config
+tmp
+
+K 13
+svn:mergeinfo
+V 62
+/branches/maintenance:66
+/branches/phase03-02:4-66
+/trunk:2-65
+END

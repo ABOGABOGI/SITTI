@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>{if $layout.page_title}{$layout.page_title|stripslashes}{else}campaign{/if}</title>
+<meta name="keywords" content="{if $layout.meta_tags}{$layout.meta_tags|stripslashes}{else}sitti{/if}">
+</meta>
+<meta name="description" content="{if $layout.meta_description}{$layout.meta_description|stripslashes}{else}sitti{/if}" />
+<meta name="author" content="{if $layout.meta_author}{$layout.meta_author|stripslashes}{else}SITTI{/if}" />
+<link rel="icon" type="image/gif" href="images/animated_favicon.gif">
+<link rel="stylesheet" href="css/colorpicker.css" type="text/css" />
+<link rel="stylesheet" media="screen" type="text/css" href="../css/layout.css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jscolor.js"></script>
+<script type="text/javascript" src="js/iepngfix_tilebg.js"></script>
+<link rel="stylesheet" media="screen" type="text/css" href="../css/landing.css" />
+</head>
+<body style="background-color:{if $layout.bgcolor} #{$layout.bgcolor} {else} #cccccc {/if}; color:#{if $layout.fontcolor}{$layout.fontcolor}{else}333{/if}; font-family:arial;">
+<div id="site-body-container">
+  <div id="site-body-content">
+    <form method="post" action="index.php?id={$layout.id}&send=1" style="margin:20px 0 0 0">
+      <table width="970" border="0" cellspacing="0" cellpadding="0" align="center">
+        <tr>
+          <td>
+          <div class="wrapper">
+          <table width="970" border="0" cellspacing="0" cellpadding="0" align="center">
+          <tr>
+            <td colspan="2">
+              <a href="#" class="logo"> {if $layout.logo_img} <img src="../contents/images/{$layout.logo_img}" /> {else} <img src="../images/logo_template.png" /> {/if} </a>
+                <div class="headerText">
+                  <h1 class="title"> {if $layout.header_title}
+                    {$layout.header_title|stripslashes}
+                    {else}
+                    Ini adalah contoh halaman muka untuk iklan SITTI,
+                    {/if} </h1>
+                  <h2 class="subtitle"> {if $layout.header_subtitle}
+                    {$layout.header_subtitle|stripslashes}
+                    {else}
+                    Halaman ini bisa menjadi halaman anda
+                    {/if} </h2>
+                </div>
+            </td>
+              </tr>
+              <tr>
+                <td valign="top">
+                <div class="contentText">
+                    {if $layout.content}
+                  <h2>{$layout.content|stripslashes}</h2>
+                  {else}
+                  
+                  <h1>Judul untuk "Landing Page"</h1>
+                  <br>
+                  <h2> Sebaiknya halaman "landing" Anda di optimalkan sehingga
+                    mendapatkan ranking iklan yang baik di
+                    Platform Iklan Kontekstual SITTI. </h2>
+                  {/if}
+                  
+                  <br>
+                  {if $layout.link_website} <a href="{$layout.link_website}" {if $layout.fontcolor}style="color:#{$layout.fontcolor};font-size:20px;"{/if} target="_BLANK">{if $layout.link_website eq 'http://'} {else}{$layout.link_website}{/if}</a> {/if}
+
+                  <br><br>
+                  
+
+                  {if $field.defaultField1 OR $field.defaultField2 OR $field.additional1 OR $field.additional2 OR $field.additional3}
+                  
+                  {if $field.defaultField1}
+                  <input type="text" name="{if $field.defaultField1}{$field.defaultField1}{/if}" value="{if $field.defaultField1}{$field.defaultField1}{/if}" />
+                  {/if}
+                  
+                  {if $field.defaultField2}
+                  <input type="text" name="{if $field.defaultField2}{$field.defaultField2}{/if}" value="{if $field.defaultField2}{$field.defaultField2}{/if}" />
+                  {/if}
+                  
+                  {if $field.additional1}
+                  <input type="text" name="{if $field.additional1}{$field.additional1}{/if}" value="{if $field.additional1}{$field.additional1}{/if}">
+                  {/if}
+                  
+                  {if $field.additional2}
+                  <input type="text" name="{if $field.additional2}{$field.additional2}{/if}" value="{if $field.additional2}{$field.additional2}{/if}">
+                  {/if}
+                  
+                  {if $field.additional3}
+                  <input type="text" name="{if $field.additional3}{$field.additional3}{/if}" value="{if $field.additional3}{$field.additional3}{/if}">
+                  {/if}
+                  
+                  {if $field.defaultField1 OR $filed.defaultField2 OR $field.additional1 OR $field.additional2 OR $field.additional3}
+                  <input type="submit" value="SUBMIT" />
+                  {/if}
+                  
+                  {/if} 
+
+                  </div>
+              </td>
+                <td>
+                <div class="banner"> {if $layout.banner_img} <img style="width:490px;" src="../contents/images/{$layout.banner_img}" /> {else} <img src="../images/banner.png" /> {/if} </div>
+                </td>
+                      </tr>
+                    </table>
+             
+              <div class="footer"> {if $layout.footer_text}
+                {$layout.footer_text|stripslashes}
+                {else}
+                Ini adalah halaman contoh. <br>
+                Dengan mendaftarkan iklan SITTI, Anda dapat merubah halaman ini.
+                {/if} 
+              </div>
+            </div></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,545 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title id="titleWindow">campaign</title>
+        <meta id="keywords" name="keywords" content="sitti"></meta>
+        <meta id="description" name="description" content="sitti" />
+        <meta id="author" name="author" content="SITTI" />
+        <link rel="icon" type="image/gif" href="images/animated_favicon.gif">
+        <link rel="stylesheet" href="css/colorpicker.css" type="text/css" />
+        <link rel="stylesheet" media="screen" type="text/css" href="css/layout.css" />
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jscolor.js"></script>
+        <script type="text/javascript" src="js/iepngfix_tilebg.js"></script>
+        <script type="text/javascript" src="js/landing.js"></script>
+        {literal}
+        <script>
+            var isIE=/*@cc_on!@*/false;//IE detector
+            if (isIE){
+                document.write("<link rel='stylesheet' media='screen' type='text/css' href='css/landingIE.css' />");
+            }else{
+                document.write("<link rel='stylesheet' media='screen' type='text/css' href='css/landing.css' />");
+            }
+        </script>
+        {/literal}
+    </head>
+    <body id="mybody" style="background-color:#cccccc; color:#333; font-family:arial;">
+        <!--[if IE]><table width="300" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><![endif]-->
+        <form style="margin:0" name="myform" method="post" action="landing.php" enctype="multipart/form-data">
+           <input type="hidden" name="action" id="action" value="">
+           <div class="formPanelIE">
+           <div id="tampilanPanel">
+                <div style="display: block;" class="tampilanContent">
+                  	<div align="right">
+                        	<a class="arrow" href="#" id="close">&nbsp;</a>
+                     </div>
+                    <div class="panelForm">
+                        <div class="row">
+                            <h3 class="titleForm">Tampilan Umum</h3>
+                            <p>Ubahlah halaman SITTI dengan warna latar belakang dan huruf sesuai dengan keinginan Anda.</p>
+                            <label style="float:left;">Warna Latar Belakang</label>
+                            <input type="text" class="color" name="colorPicker" id="colorPicker" value="FFFFFF" onChange="warnaBg(this.value);">
+
+                        </div>
+                        <div class="row">
+                            <label style="float:left;">Warna Teks</label>
+                            <input type="text" class="color" name="colorPickerText" id="colorPickerText" value="000000" onChange="warnaTeks(this.value);">
+                        </div>
+                        <div class="row">
+                            <h3 class="titleForm">Isi Halaman</h3>
+                            <label>Judul Utama</label>
+                            <input type="text" name="headerTitle" id="headerTitle" maxlength="50" onChange="judulUtama(this.value);"><br>
+                            <font color="#0099cc"><i>Maksimal 50 karakter</i></font>
+                        </div>
+                        <div class="row">
+                            <label>Keterangan Judul</label>
+                            <input type="text" name="headerSubTitle" id="headerSubTitle" maxlength="50" onChange="ketJudul(this.value);"><br>
+                            <font color="#0099cc"><i>Maksimal 50 karakter</i></font>
+                        </div>
+                        <div class="row">
+                            <label style="float:left;">Link Website Anda</label>
+                            <input type="text" name="link_website" id="link_website" value="http://" onChange="linkWebsite(this.value);"><br>
+                            <font color="#0099cc"><i>Tempatkan alamat situs Anda disini apabila Anda memiliki website. Contoh : http://www.websiteanda.com</i></font>
+                        </div>
+                        <div class="row">
+                            <label style="float:left;">Isi Halaman</label>
+                            <textarea name="content" id="content" cols="25" rows="10" onChange="isi(this.value);"></textarea><br><br>
+                            <font color="#0099cc"><i>Maksimal 150 karakter</i></font>
+                        </div>
+                        <div class="row">
+                            <label style="float:left;">Isi Footer</label>
+                            <textarea name="footerText" id="footer_text" cols="25" rows="10" onChange="footer(this.value);"></textarea><br>
+                            <font color="#0099cc"><i>Maksimal 150 karakter</i></font>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="metaPanel">
+                <div style="display: block;" class="metaContent">
+                  	<div align="right">
+                        	<a class="arrow" href="#" id="close">&nbsp;</a>
+                     </div>
+                    <div class="panelForm">
+                        <div class="row">
+                            <h3 class="titleForm">Meta Halaman</h3>
+                            <p>Isilah Halaman SITTI dengan produk atau jasa Anda. Unggah logo dan gambar produk atau jasa untuk membuat halaman Anda lebih menarik.</p>
+                            <label style="float:left;">Judul Halaman Situs</label>
+                            <input type="text" name="titlePage" id="titlePage" maxlength="50" size="50" value="" onChange="judulWindow(this.value);"><br>
+                            <font color="#0099cc"><i>Maksimal 50 karakter, contoh : Situsku - Jual Beli Kendaraan</i></font>
+                        </div>
+                        <div class="row">
+                            <label style="float:left;">Pemilik Halaman Situs</label>
+                            <input type="text" name="meta_author" id="meta_author" maxlength="50" size="50" value="" onChange="pemilikWeb(this.value);"><br>
+                            <font color="#0099cc"><i>Maksimal 50 karakter, contoh : Nama Anda/Nama Perusahaan</i></font>
+                        </div>
+                        <div class="row">
+                            <label style="float:left;">Kata Kunci Halaman Situs</label>
+                            <input type="text" name="meta" id="meta" size="50" value="" onChange="kataKunci(this.value);"><br>
+                            <font color="#0099cc"><i>Contoh : Mobil bekas, Motor bekas, Bursa mobil, Bursa motor.</i></font>
+                        </div>
+                        <div class="row">
+                            <label style="float:left;">Deskripsi Halaman Situs</label>
+                            <input type="text" name="meta_description" id="meta_description" size="50" value="" onChange="deskripsiHal(this.value);"><br>
+                            <font color="#0099cc"><i>Contoh : Mobil dan motor bekas, Iklan mobil dan motor bekas terlengkap.</i></font>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="imagePanel">
+                <div style="display: block;" class="imageContent">
+                  	<div align="right">
+                        	<a class="arrow" href="#" id="close">&nbsp;</a>
+                     </div>
+                    <div class="panelForm">
+                        <div class="row">
+                            <h3 class="titleForm">Unggah Gambar</h3>
+                            <img src="images/logo_template.png">
+                            <label style="width:200PX;">Logo Baru</label>
+                            <input type="file" name="logo" onChange="warningLogo()">
+                            <p style="color:green" id="warning_logo"></p>
+                            <font color="#0099cc"><i>lebar=235px, tinggi=150px , Logo Transparan</i></font>
+                        </div>
+                        <div class="row">
+                            <img src="images/banner.png" width="300" >
+                            <label>Banner Baru</label>
+                            <input type="file" name="banner" onChange="warningBanner()">
+                                <p style="color:green" id="warning_banner"></p>
+                            <font color="#0099cc"><i>lebar=490px, tinggi=600px</i></font>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="formulirPanel">
+                <div style="display: block;" class="formulirContent">
+                  	<div align="right">
+                        	<a class="arrow" href="#" id="close">&nbsp;</a>
+                     </div>
+                    <div class="panelForm">
+                        <div class="row">
+                            <h3 class="titleForm">Formulir</h3>
+                            <p>Ingin mendapatkan data pengunjung atau survei? Buatlah formulir itu sesuai dengan keinginan Anda. Isi dari formulir ini akan langsung dikirim melalui surat elektronik (email) ke "Tujuan Email"</p>
+                            <label style="width:130px;">Surat Elektronik Tujuan</label><br>
+                                <font color="#0099cc"><i>Masukkan alamat surat elektronik Anda jika ingin mengaktifkan masukan teks.</i></font>
+                            <input type="text" name="email" id="email" value="" onBlur="email(this.value);">
+                        </div>
+                        <div class="row">
+                            <label style="width:130px;">Masukan Teks 1</label>
+                            <input type="text" name="textDefault1" id="textDefault1" value="" onChange="text_default1(this.value);">
+                        </div>
+                        <div class="row">
+                            <label style="width:130px;">Masukan Teks 2</label>
+                            <input type="text" name="textDefault2" id="textDefault2" value="" onChange="text_default2(this.value);">
+                        </div>
+                        <div class="row">
+                            <label style="width:130px;">Masukan Teks 3</label>
+                            <input type="text" name="text1" id="text1" value="" onChange="text_1(this.value);">
+                        </div>
+                        <div class="row">
+                            <label style="width:130px;">Masukan Teks 4</label>
+                            <input type="text" name="text2" id="text2" value="" onChange="text_2(this.value);">
+                        </div>
+                        <div class="row">
+                            <label style="width:130px;">Masukan Teks 5</label>
+                            <input type="text" name="text3" id="text3" value="" onChange="text_3(this.value);">
+                        </div>
+                        <div class="row">
+                            <label style="width:130px"></label>
+                            <!--<a class="submitButton" href="modif_template_save.php?r=layout">EDIT HALAMAN</a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#" id="tampilan" onClick="return()"> &nbsp;</a>
+            <a href="#" id="metaBtn" onClick="return()">&nbsp;</a>
+                        <!--
+            <input id="saveBtn" type="submit" value="&nbsp;" name="save">
+            <input id="previewBtn" type="submit" value="&nbsp;" name="preview">
+            -->
+            <a href="#" id="image" onClick="return()">&nbsp;</a>
+            <a href="#" id="formulir" onClick="return()">&nbsp; </a>
+        </div>
+            <!--[if IE]>
+   </td>
+  </tr>
+</table><![endif]-->
+
+            <div id="site-body-container">
+                <div id="site-body-content">
+                    <div class="wrapper">
+                    <table width="970" border="0" cellspacing="0" cellpadding="0" align="center">
+                      <tr>
+                        <td colspan="2">
+                            <!--<a href="modif_template.php?r=edit_layout&id={$id}" class="logo">-->
+                            <a href="#" class="logo" style="margin:-20px 20px 0 0"><img src="images/logo_template.png" /></a>
+                            <!--</a>-->
+
+                            <div class="headerText">
+                                <h1 class="title" id="setJudul">
+                                    Ini adalah contoh halaman muka untuk iklan SITTI,
+                                </h1>
+                                <h2 class="subtitle" id="setKetJudul">
+                                    Halaman ini bisa menjadi halaman anda
+                                </h2>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td valign="top">
+                            <div class="contentText">
+                                <h2 id="setIsi">
+                                    Judul untuk "Landing Page"<br><br>
+                                    Klik disebelah kiri pada tombol  Tampilan Umum, Unggah Gambar, Formulir dan Meta Halaman untuk mengganti tampilan halaman ini.
+
+                                </h2>
+
+                                <!--
+                                <h1>Judul untuk "Landing Page"</h1>
+                                <br>
+                                <h2>
+                                    Sebaiknya halaman "landing" Anda di optimalkan sehingga
+                                    mendapatkan ranking iklan yang baik di
+                                    Platform Iklan Kontekstual SITTI.
+                                </h2>
+                                -->
+
+
+                                <a href="#" style="font-size:20px;" target="_BLANK" id="setLinkWeb"></a>
+                                
+                                <form class="campaignForm" name="campaign">
+
+                                    <p id="setTd1"></p>
+                                    <p id="setTd2"></p>
+                                    <p id="setT1"></p>
+                                    <p id="setT2"></p>
+                                    <p id="setT3"></p>
+
+                                    <p id="submitButton"></p>
+                                    <!--<input type="submit" value="SUBMIT" />-->
+                                </form>
+
+                            </div>
+                            </td>
+                        <td>
+                            <div class="banner">
+                                <img src="images/banner.png" />
+                            </div>
+                         </td>
+                      </tr>
+                    </table>  
+                        
+
+                        <div class="footer" id="setFooter">
+                            Ini adalah halaman contoh.
+                            Dengan mendaftarkan iklan SITTI, Anda dapat merubah halaman ini.
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="site-bottom-bar" class="fixed-position">
+                <div id="site-bottom-bar-frame">
+                    <div id="site-bottom-bar-content">
+                        
+                        <a id="menu-root" href="javascript:kembali()" style="color:white; text-decoration:none">KEMBALI</a>
+                        
+                        <a id="menu-root" href="javascript:submitSave()"style="color:white; text-decoration:none">SIMPAN </a>
+                        <a id="menu-root" href="javascript:submitPreview()"style="color:white; text-decoration:none">PRATAYANG</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </form>
+    </body>
+</html>
+
+{literal}
+<script type="text/javascript" language="JavaScript">
+    function kembali(){
+        //document.location = "modif_template_petunjuk.php?url=kembali";
+        document.location = "beranda.php?buat_iklan=1&step=2";
+    }
+
+    function submitPreview(){
+
+        //var field1 = document.getElementById('setTd1a');
+        //alert(field1);
+        document.getElementById('action').setAttribute("value", "preview");
+        document.myform.submit();
+    }
+
+    function submitSave(){
+        document.getElementById('action').setAttribute("value", "save");
+        document.myform.submit();
+    }
+
+
+    /*
+    function warnaBg(warna){ //set background layout color
+        //FF
+        document.getElementById("mybody").setAttribute("style","background-color:#"+warna+"; color:#333; font-family:arial;");
+        document.getElementById("colorPicker").setAttribute("value", warna);
+
+
+    }
+     */
+    function warnaBg(warna){ //set background layout color
+        var isIE=/*@cc_on!@*/false;//IE detector
+        if(isIE){
+            document.getElementById("mybody").style.backgroundColor='#'+warna; //bg color
+            document.getElementById("mybody").style.color='#333'; //font color
+            document.getElementById("mybody").style.fontFamily='arial'; //font style
+
+
+        }else{
+            //FF
+            document.getElementById("mybody").setAttribute("style","background-color:#"+warna+"; color:#333; font-family:arial;");
+            document.getElementById("colorPicker").setAttribute("value", warna);
+        }
+
+
+    }
+
+    /*
+    function warnaTeks(wt){//set semua warna teks
+        var bgColor = document.getElementById("colorPicker").getAttribute("value");
+        //alert(bgColor);
+        document.getElementById("mybody").setAttribute("style","background-color:#"+bgColor+"; color:#"+wt+"; font-family:arial;");
+        document.getElementById("colorPickerText").setAttribute("value", wt);
+    }
+     */
+    function warnaTeks(wt){//set semua warna teks
+        var isIE=/*@cc_on!@*/false;//IE detector
+        if(isIE){
+            var bgColor = document.getElementById("colorPicker").value;
+            //alert(bgColor);
+            document.getElementById("mybody").style.backgroundColor='#'+bgColor; //bg color
+            document.getElementById("mybody").style.color='#'+wt; // color
+            document.getElementById("mybody").style.fontFamily='arial'; //font family
+            document.getElementById("colorPickerText").value.wt; //set all text color
+
+        }else{
+            //FF
+            var bgColor = document.getElementById("colorPicker").getAttribute("value");
+            //alert(bgColor);
+            document.getElementById("mybody").setAttribute("style","background-color:#"+bgColor+"; color:#"+wt+"; font-family:arial;");
+            document.getElementById("colorPickerText").setAttribute("value", wt);
+        }
+    }
+    function judulWindow(judulWindow){ //judul halaman web
+        var isIE=/*@cc_on!@*/false;//IE detector
+        if(isIE){
+            //alert(document.title);
+            document.title = judulWindow;
+
+        }else{
+            // FF
+            //document.getElementsByTagName("title")[0].setAttribute("id", 'judulWindow');
+            //alert(document.getElementById('judulWindow').innerHTML= judulWindow);
+            document.getElementById('titleWindow').innerHTML= judulWindow;
+            document.getElementById("titlePage").setAttribute("value", judulWindow);
+        }
+
+    }
+
+    /*
+    function judulWindow(judulWindow){ //judul halaman web
+        // FF
+
+        document.getElementsByTagName("title")[0].setAttribute("id", 'judulWindow');
+        //alert(document.getElementById('judulWindow').innerHTML= judulWindow);
+        document.getElementById('judulWindow').innerHTML= judulWindow;
+
+        document.getElementById("titlePage").setAttribute("value", judulWindow);
+
+
+    }
+     */
+
+
+
+    function kataKunci(kataKunci){ //kata kunci halaman web
+        //alert(kataKunci);
+        //var key = document.getElementsByTagName("meta");
+        //document.getElementById('setKeywords').innerHTML = kataKunci;
+        document.getElementById("keywords").setAttribute("content", kataKunci);
+        document.getElementById("meta").setAttribute("value", kataKunci);
+        //alert(content);
+
+        /*
+        for(var i=0;i<key.length;i++){
+            //alert(i);
+            if(key[i].getAttribute("name")=='keywords'){
+                var content = key[i].getAttribute("content");
+               // alert(key[i].getAttribute("name"));
+               //alert(content);
+               key[i].setAttribute("id", value);
+            }else if(nm=='description'){
+
+            }else if(nm=='author'){
+
+            }
+        }
+         */
+
+    }
+
+    function deskripsiHal(deskripsiHal){ //deskripsi halaman web
+        document.getElementById("description").setAttribute("content", deskripsiHal);
+        document.getElementById("meta_description").setAttribute("value", deskripsiHal);
+    }
+
+    function linkWebsite(link){ //link ke website
+        document.getElementById("setLinkWeb").innerHTML = link;
+        document.getElementById("link_website").setAttribute("value", link);
+
+    }
+
+    function pemilikWeb(pemilik){ //pemilik halaman web
+        document.getElementById("author").setAttribute("content", pemilik);
+        document.getElementById("meta_author").setAttribute("value", pemilik);
+
+    }
+
+    function judulUtama(judul){ //membuat header (judul utama)
+        document.getElementById("setJudul").innerHTML = judul;
+        document.getElementById("headerTitle").setAttribute("value", judul);
+        //alert(titlePage);
+    }
+
+    function ketJudul(ketJudul){// membuat header (keterangan judul)
+        document.getElementById("setKetJudul").innerHTML = ketJudul;
+        document.getElementById("headerSubTitle").setAttribute("value", ketJudul);
+
+    }
+
+    function isi(isi){ //membuat isi/content
+        document.getElementById("content").setAttribute("textarea", isi);
+
+        if(isi.length > 450){
+            //alert(isi.length);
+            var i = isi.length-450;
+            alert("Teks yang anda masukkan sudah lebih dari 450 karakter. Harap kurangi "+i+" karakter yang anda masukkan termasuk spasi!");
+
+        }else{
+            var n = /\n/gi;
+            //alert(n.length);
+            document.getElementById("setIsi").innerHTML = isi.replace(n, '<br/>');
+        }
+
+    }
+
+    function footer(footer){ //membuat footer
+        document.getElementById("footer_text").setAttribute("textarea", footer);
+
+        if(footer.length > 150){
+            //alert(footer.length);
+            var i = footer.length-150;
+            alert("Teks yang anda masukkan sudah lebih dari 150 karakter. Harap kurangi "+i+" karakter yang anda masukkan termasuk spasi!");
+
+        }else{
+            document.getElementById("setFooter").innerHTML = footer;
+        }
+    }
+
+    function text_default1(td1){ //membuat form teks 1, jika field ini diisi, submit button akan keluar sebagai preview
+
+        if(td1){
+            var input = "<input type='text' id='setTd1a' name='' value=''/>";
+            var submitButton = "<input type='button' value='SUBMIT' />";
+
+        }else{
+            var input = '';
+            var submitButton = '';
+        }
+        document.getElementById("setTd1").innerHTML = input;
+        document.getElementById("submitButton").innerHTML = submitButton;
+
+        document.getElementById("setTd1a").setAttribute("name", td1);
+        document.getElementById("setTd1a").setAttribute("value", td1);
+
+        //alert(input);
+    }
+
+    function text_default2(td2){ //membuat form teks 2
+        if(td2){
+            var input = "<input type='text' id='setTd2a' name='' value=''/>";
+        }else{
+            var input = '';
+        }
+        document.getElementById("setTd2").innerHTML = input;
+        document.getElementById("setTd2a").setAttribute("name", td2);
+        document.getElementById("setTd2a").setAttribute("value", td2);
+    }
+
+    function text_1(t1){ //membuat form teks 3
+        if(t1){
+            var input = "<input type='text' id='setT1a' name='' value=''/>";
+
+        }else{
+            var input = '';
+        }
+        document.getElementById("setT1").innerHTML = input;
+        document.getElementById("setT1a").setAttribute("name", t1);
+        document.getElementById("setT1a").setAttribute("value", t1);
+    }
+    function text_2(t2){ //membuat form teks 4
+        if(t2){
+            var input = "<input type='text' id='setT2a' name='' value=''/>";
+        }else{
+            var input = '';
+        }
+        document.getElementById("setT2").innerHTML = input;
+        document.getElementById("setT2a").setAttribute("name", t2);
+        document.getElementById("setT2a").setAttribute("value", t2);
+    }
+    function text_3(t3){ //membuat form teks 5
+        if(t3){
+            var input = "<input type='text' id='setT3a' name='' value=''/>";
+        }else{
+            var input = '';
+        }
+        document.getElementById("setT3").innerHTML = input;
+        document.getElementById("setT3a").setAttribute("name", t3);
+        document.getElementById("setT3a").setAttribute("value", t3);
+    }
+    function email(email){ //membuat form teks email --> ke email nya advertiser (pembuat landing page)
+        document.getElementById("email").setAttribute("value", email);
+    }
+
+
+    function warningLogo(){
+        document.getElementById("warning_logo").innerHTML = "Silahkan tekan tombol '<strong>PRATAYANG</strong>' untuk melihat hasilnya";
+    }
+
+    function warningBanner(){
+        document.getElementById("warning_banner").innerHTML = "Silahkan tekan tombol '<strong>PRATAYANG</strong>' untuk melihat hasilnya";
+    }
+    
+
+
+</script>
+{/literal}

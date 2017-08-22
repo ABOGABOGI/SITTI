@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/sittiweb/!svn/ver/1097/branches/phase03-03/templates/SITTI/email
+END
+notifikasi_pendaftaran_api.html
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/sittiweb/!svn/ver/784/branches/phase03-03/templates/SITTI/email/notifikasi_pendaftaran_api.html
+END
+notifikasi_pendaftaran_downline.html
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/sittiweb/!svn/ver/1037/branches/phase03-03/templates/SITTI/email/notifikasi_pendaftaran_downline.html
+END
+konfirmasi_ubah_password.html
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/sittiweb/!svn/ver/67/branches/phase03-03/templates/SITTI/email/konfirmasi_ubah_password.html
+END
+notifikasi_pendaftaran.html
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/sittiweb/!svn/ver/808/branches/phase03-03/templates/SITTI/email/notifikasi_pendaftaran.html
+END
+iklan_ditolak.html
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/sittiweb/!svn/ver/67/branches/phase03-03/templates/SITTI/email/iklan_ditolak.html
+END
+iklan_baru.html
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/sittiweb/!svn/ver/75/branches/phase03-03/templates/SITTI/email/iklan_baru.html
+END
+promo_voucher.html
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/sittiweb/!svn/ver/1097/branches/phase03-03/templates/SITTI/email/promo_voucher.html
+END
+publisher_registration.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/sittiweb/!svn/ver/67/branches/phase03-03/templates/SITTI/email/publisher_registration.html
+END
+promo_voucher_text.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/sittiweb/!svn/ver/1084/branches/phase03-03/templates/SITTI/email/promo_voucher_text.html
+END

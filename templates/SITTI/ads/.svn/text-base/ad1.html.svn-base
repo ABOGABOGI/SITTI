@@ -1,0 +1,13 @@
+<div style="width:300px; padding:10px; display:table; border:solid 1px #cccccc;">
+{section name=i loop=$list}
+<h1 style="color:#0080ab; font-size:16px; margin:0;"> {$list[i].judul|stripslashes}</h1>
+<p style="color:#000; font-size:12px; margin:0;"> {$list[i].baris1|stripslashes} </p>
+{if $list[i].baris2}
+<p style="color:#000; font-size:12px; margin:0;"> {$list[i].baris2|stripslashes} </p>
+{/if}
+<div style="display:table; width:100%; clear:both; margin-bottom:20px;"> 
+<a style="color:#069;text-decoration:none;float:left;" href="{$list[i].linkURL}">{$list[i].linkName|stripslashes}</a> 
+</div>
+{/section}
+<a style="color:#0080ab; font-size:10px; float:right; display:table; margin-top:10px;" href="#">ads by SITTI</a> 
+</div>

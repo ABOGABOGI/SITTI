@@ -1,0 +1,250 @@
+<script type="text/javascript" src="js/jquery_swfobject.js"></script>
+{literal}
+<script>
+var f1 = [];
+$(document).ready(function() {
+		//kampanye
+       $.get('report.php',{t:101,cache:false}, function(data) {
+			f1 = eval(data);
+
+			if (f1 != null && f1[0].stats != null) { // just checking first stat, not so good
+                chart1(f1);
+            } else {
+                $("#akunChartKampanye").hide();
+            }
+		});
+	});
+function togglec1(){
+	try{
+		chart1(f1);
+	}catch(e){}
+}
+function chart1(feeds){
+	try{
+		
+		  // define the options
+		var nn = feeds.length;
+		var _series = [];
+		var _plots = [];
+		var _titles = {'imp':'Impression','click':'Click Count','ctr':'CTR Percentages'};
+		for(i=0;i<nn;i++){
+			_series.push({name:feeds[i].kampanye});
+			_plots.push(feeds[i].stats);
+		}
+
+        var options = {
+    		exporting:{enabled:false},
+            chart: {
+                renderTo: 'g1'
+            },
+            
+            title: {
+                text: 'Best campaign by ' + _titles[$("#cc1").val()]
+            },
+            
+            subtitle: {
+                text: ' '
+            },
+            
+            xAxis: {
+                type: 'datetime',
+                tickInterval: 7 * 24 * 3600 * 1000, // one week
+                tickWidth: 0,
+                gridLineWidth: 1,
+                labels: {
+                    align: 'left',
+                    x: 3,
+                    y: -3 
+                }
+            },
+            
+            yAxis: [{ // left y axis
+                title: {
+                    text: null
+                },
+                labels: {
+                    align: 'left',
+                    x: 3,
+                    y: 16,
+                    formatter: function() {
+                        return Highcharts.numberFormat(this.value, 0);
+                    }
+                },
+                showFirstLabel: false
+            }, { // right y axis
+                linkedTo: 0,
+                gridLineWidth: 0,
+                opposite: true,
+                title: {
+                    text: null
+                },
+                labels: {
+                    align: 'right',
+                    x: -3,
+                    y: 16,
+                    formatter: function() {
+                        return Highcharts.numberFormat(this.value, 0);
+                    }
+                },
+                showFirstLabel: false
+            }],
+            
+            legend: {
+                align: 'left',
+                verticalAlign: 'top',
+                y: 20,
+                floating: true,
+                borderWidth: 0
+            },
+            credits:{enabled:false},
+            tooltip: {
+                shared: true,
+                crosshairs: true
+            },
+            
+            plotOptions: {
+				exporting:{enabled:false},
+                series: {
+                    cursor: 'pointer',
+                    point: {
+                        events: {
+                            click: function() {
+                                hs.htmlExpand(null, {
+                                    pageOrigin: {
+                                        x: this.pageX, 
+                                        y: this.pageY
+                                    },
+                                    headingText: this.series.name,
+                                    maincontentText: Highcharts.dateFormat('%b %e, %Y', this.x) +':<br/> '+ 
+                                        this.y,
+                                    width: 200
+                                });
+                            }
+                        }
+                    },
+                    marker: {
+                        lineWidth: 1
+                    }
+                }
+            },
+            
+            series: _series
+        }
+        
+        var n_plots = _plots.length;
+		
+		for(i=0;i<n_plots;i++) {
+			
+            var dd = _plots[i];
+
+            if (dd != null) {
+    			var oo = [];
+    			for(j=0;j<dd.length;j++){
+    				if(dd[j][$('#cc1').val()]==null){
+    					dd[j][$('#cc1').val()]= 0.0;
+    				}
+    				var parts = dd[j].capture_date.match(/(\d+)/g);
+    				var dt = new Date(parts[0],parts[1]-1,parts[2],24);
+    		      		
+                    oo.push([
+                            //Date.parse(dd[j].capture_date), 
+    						Date.parse(dt),
+                            parseFloat(dd[j][$('#cc1').val()], 10)
+                        ]);
+    			}
+    			options.series[i].data = oo;
+            }		
+		}
+        
+        chart = new Highcharts.Chart(options);
+        
+	}catch(e){
+       console.log(e);
+	}
+ }
+</script>
+{/literal}
+
+<div>
+ <table border="0" cellspacing="0" cellpadding="0" class="list zebra">
+  <tr class="head2">
+    <td>Jumlah Kampanye Aktif</td>
+    <td>Total Impresi</td>
+    <td>Total CTR</td>
+  </tr>
+  <tr>
+    <td><span class="f18 bold green">{if $report.kampanye_aktif eq 0}-{else}{$report.kampanye_aktif|number_format} Kampanye{/if}</span></td>
+    <td> <span class="f18 bold green">{if $report.total_impresi eq 0}-{else}{$report.total_impresi|number_format} Impressi{/if}</span></td>
+    <td> <span class="f18 bold green">{if $report.total_ctr eq 0}-{else}{$report.total_ctr}%{/if}</span> </td>
+  </tr>
+</table>
+</div>
+
+<hr class="lineBeranda" />
+
+<div id="akunChartKampanye">
+    <div class="shortGrafik">
+    <span> Lihat berdasarkan : </span>
+        <select id='cc1' onchange="togglec1()">
+        <option value="imp">Impresi</option>
+        <option value="click">Klik</option>
+        <option value="ctr">CTR</option>
+        </select>
+    </div>
+    
+    <div id="grafikBlock">
+        <div id="g1"> </div>
+    </div>
+    
+	<hr class="lineBeranda" />
+</div>
+   <div class="titleBerandaZen">
+     <a class="tambahIcon" onmouseover="tooltip.show('Pindahkan ke Beranda');" onmouseout="tooltip.hide();"  href="#">&nbsp;</a>
+     <!--  sementara di hide <a class="pdf" onmouseover="tooltip.show('Export ke PDF');" onmouseout="tooltip.hide();"  href="#">&nbsp;</a>
+     --><!--a class="excel" onmouseover="tooltip.show('Export ke CSV');" onmouseout="tooltip.hide();"  href="report.php?t=2&csv=1&st={$start}" target="_blank">&nbsp;</a-->
+   </div>
+    <table border="0" cellspacing="0" cellpadding="0" class="list zebra">
+	<tr class="head2">
+		<td align="center">No.</td>
+		<td>Nama Kampanye/Program</td>
+		<td align="center">Status</td>
+		<td align="center">Pemutakhiran  Terakhir</td>
+		<td align="center"><a href="#" class="shortTitle">Impresi<img
+			class="shotIcon" src="images/short_up.png" /></a></td>
+		<td align="center"><a href="#" class="shortTitle">Klik<img
+			class="shotIcon" src="images/short_down.png" /></a></td>
+		<td align="center"><a href="#" class="shortTitle">CTR % <img
+			class="shotIcon" src="images/short_down.png" /></a></td>
+		
+		
+		
+	</tr>
+	{section name=i loop=$list}
+	<tr>
+		<td align="center">{$list[i].no}</td>
+		<td>
+		<div class="AdsNameList" style="float:left;">
+			<!--a class="namaCampaign"
+			href="beranda.php?detail=1&id={$list[i].campaign_id}">{$list[i].campaign_name|stripslashes|strip_tags}</a-->
+			<a class="namaCampaign" href="beranda.php?PerformaIklan">{$list[i].campaign_name|stripslashes|strip_tags}</a>
+		</div>
+        <div class="actionBtn" style="float:right;">
+        	<a onmouseover="tooltip.show('Ganti Kampanye');" onmouseout="tooltip.hide();"  class="editPage" href="{secureurl url='beranda.php' edit_kampanye=1 id=$list[i].campaign_id}">&nbsp;</a>
+        	<a onmouseover="tooltip.show('Hapus Kampanye');" onmouseout="tooltip.hide();"  class="deletePage" href="{secureurl url='beranda.php' delete_kampanye=1 id=$list[i].campaign_id}">&nbsp;</a> 
+        </div>
+			
+		</td>
+		<td align="center">{if $list[i].status eq '0'}<span class="green">Aktif</span><span class="scoreGreen"><img src="images/green.gif" /></span>{else}<span class="red">inactive</span><span class="scoreRed"><img src="images/red.gif" /></span>{/if}</td>
+		<td align="center">{$list[i].last_update|date_format:"%d-%m-%Y %H:%I:%S"}</td>
+		<td align="center">{$list[i].imp|number_format}</td>
+		<td align="center">{$list[i].click|number_format}</td>
+		<td align="center">{$list[i].ctr} %</td>
+		
+		
+		
+	</tr>
+	{/section}
+
+</table>
+{$paging}
+                   

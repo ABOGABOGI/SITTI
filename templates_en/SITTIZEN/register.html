@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>SITTI - Platform Iklan Kontekstual Berbahasa Indonesia, Iklan Kontekstual, Bahasa Indonesia</title>
+<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="icon" type="image/gif" href="images/animated_favicon.gif">
+<link href="css/sitti.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/iepngfix_tilebg.js"></script>
+<script type="text/javascript" src="js/drop_table.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="css/passwordStrengthMeter.css" />
+</head>
+
+<body onload="init()">
+{if $takeOut}<div class="cLabel"><a href="http://www.sitti.co.id/UtakAtik/index.html"></a></div>{/if}
+	<div class="wrapper">
+    	<div class="headerZen">
+        	<a class="logoZen" href="index.php">&nbsp;</a>
+            <a class="sloganZen" href="index.php">&nbsp;</a>
+        </div>
+	<div class="bodyZen">
+    	<div class="borderLeftzen">
+        </div>
+        <div class="contentZen">
+        	<div class="contentZenText" style="padding:10px 10px 0 20px;">
+            	<p><strong>Terima kasih atas minat Anda menjadi publisher SITTI.</strong> <br />
+Silahkan mengisi formulir singkat di bawah untuk mendaftarkan situs Anda.
+Saat ini SITTI masih dalam tahap BETA Testing. Dalam waktu dekat, SITTI akan memasuki masa komersialisasi dimana Publisher akan mendapat manfaat dari pemasangan iklan SITTI.
+</p>
+                <form action="daftar.php" method="post" enctype="application/x-www-form-urlencoded">
+                <div class="colLeftZen">
+                  <div class="formLeft">
+                  <div class="row noBorder" style="padding:10px 0 30px 0;">
+                    <label>Email :</label>
+                      <input name="email" type="text" class="inputZen" id="email" maxlength="50" autocomplete="off"/>
+                    </div>
+                  <div class="row noBorder" style="padding:10px 0;">
+                    <label>Password :</label>
+                    <input name="password" type="password" class="inputZen" id="password" maxlength="20" autocomplete="off"/>
+                    <div id="password-strength">
+                    <div class="colorbar" id="colorbar"></div>
+                        <span class="percent" id="percent" style="display:none;">
+                            0%
+                        </span>
+                        &nbsp;&nbsp;
+                        <span class="result" id="result"></span>
+					</div>
+                  </div>
+                  <div class="row noBorder" style="padding:10px 0;">
+                    <label>Alamat Situs :</label>
+                      <input name="website" type="text" class="inputZen" id="website" value="http://" />
+                  </div>
+                  </div>
+                    <div class="helpZen">                                              
+                       <strong> Bingung menggunakan SITTI?</strong><br />
+                            Silakan kirim pertanyaan, masukan atau masalah yang Anda <br />
+                            temukan pada saat mendaftarkan website Anda di SITTI ke:<br />
+                        <a href="mailto:support@sitti.zendesk.com"><strong>support@sitti.zendesk.com</strong></a>
+                    </div>  
+                </div>
+                <div class="colRightZen">
+                    <div class="row noBorder" style="padding:10px 0;">
+                        <label style="width:135px;">Jenis Situs :</label>
+                        <select name="jenis_situs" class="inputZen" id="jenis_situs">
+                          <option value="Blog" selected="selected">Blog</option>
+                          <option value="Website Pribadi">Website Pribadi</option>
+                          <option value="Perusahaan">Perusahaan</option>
+                          <option value="Portal">Portal</option>
+                          <option value="Situs Jual-Beli">Situs Jual-Beli</option>
+                          <option value="Lainnya">Bukan Salah Satu Diatas</option>
+                        </select>
+                    </div>
+                    <div class="row noBorder" style="padding:10px 0;">
+                      <label style="width:135px;">Aplikasi yang Digunakan :</label>
+                        <select name="jenis_app" class="inputZen" id="jenis_app">
+                          <option value="Wordpress" selected="selected">Wordpress</option>
+                          <option value="Blogger.com">Blogger.com</option>
+                          <option value="Drupal">Drupal</option>
+                          <option value="Joomla">Joomla</option>
+                          <option value="Mambo">Mambo</option>
+                          <option value="Aplikasi Sendiri">Aplikasi Sendiri</option>
+                          <option value="Tidak Tahu">Tidak Tahu</option>
+                        </select>
+                    </div>
+                    <div class="row noBorder" style="padding:10px 0;">
+                        <label style="width:135px;">Perkiraan Jumlah Pengunjung PerHari</label>
+                         <select name="jum_pengunjung" class="inputZen" id="jum_pengunjung">
+                           <option value="< 5000">&lt; 5000</option>
+                           <option value="> 5000">&gt; 5000</option>
+                           <option value="> 10000">&gt; 10000</option>
+                           <option value="> 50000">&gt; 50000</option>
+                           <option value="> 100000">&gt; 100000</option>
+                           <option value="Tidak Tahu">Tidak Tahu</option>
+                        </select>
+                    </div>
+                    <div class="row noBorder" style="padding:10px 0;">
+                    	 {$CAPTCHA}
+                        
+                    </div>
+                	<div class="row noBorder" style="padding:0">
+                    	
+                    	<input type="submit" class="submitZen" value="Kirim ke SITTI" style="margin:0;" />
+                        <span class="error"></span>
+                    </div>
+
+                </div>
+                
+                <input name="daftar" type="hidden" value="1" />
+                </form>
+            </div>
+        </div>
+        <div class="borderRightzen">
+        </div>
+    </div>
+    </div>
+	<div class="footer">
+        <div class="wrapper">
+            <ul class="navFoot">
+                <li><a href="term.html" target="_blank"> Syarat dan Ketentuan</a>|</li>
+                <li><a href="http://sittibelajar.com" target="_blank"> Beriklan di SITTI</a>|</li>
+                <li><a href="http://sitti.zendesk.com/anonymous_requests/new" target="_blank">Kontak Kami</a></li>
+            </ul>
+            <p class="copyRight">
+                Email: beriklan@sitti.zendesk.com<br />
+                © 2010 SITTI
+            </p>
+        </div>
+    </div>
+    <script language="javascript" src="js/passwordStrengthMeter.js"></script>
+{literal}
+<script language="javascript">
+	
+	
+	var bpos = "";
+	var perc = 0 ;
+	var minperc = 0 ;
+	$('#email').keyup(function(){
+		$('#result').html(passwordStrength($('#password').val(),$('#email').val())) ;
+		perc = passwordStrengthPercent($('#password').val(),$('#email').val());
+
+		bpos=" $('#colorbar').css( {backgroundPosition: \"0px -" ;
+		bpos = bpos + perc + "px";
+		bpos = bpos + "\" } );";
+		bpos=bpos +" $('#colorbar').css( {width: \"" ;
+		bpos = bpos + (perc * 2) + "px";
+		bpos = bpos + "\" } );";
+		eval(bpos);
+	    	$('#percent').html(" " + perc  + "% ");
+	              });
+	              
+	$('#password').css( {backgroundPosition: "0 0"} );
+	
+	$('#password').keyup(function(){
+		//alert($('#password').val()+","+$('#email').val());
+		$('#result').html(passwordStrength($('#password').val(),$('#email').val())) ; 
+		perc = passwordStrengthPercent($('#password').val(),$('#email').val());
+		
+		bpos=" $('#colorbar').css( {backgroundPosition: \"0px -" ;
+		bpos = bpos + perc + "px";
+		bpos = bpos + "\" } );";
+		bpos=bpos +" $('#colorbar').css( {width: \"" ;
+		bpos = bpos + (perc * 2) + "px";
+		bpos = bpos + "\" } );";
+		
+		eval(bpos);
+	    $('#percent').html(" " + perc  + "% ");
+	    if(perc>0){
+	    	$('#percent').show();
+	    }
+	    
+	});
+		
+	
+	
+</script>
+{/literal}
+       {literal}
+        <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18302010-11']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' :
+'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+{/literal}
+
+</body>
+</html>

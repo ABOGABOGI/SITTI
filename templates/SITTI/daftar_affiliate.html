@@ -1,0 +1,30 @@
+
+<div class="w915">
+	<h3 class="f18 blue">Program SITTI Affiliate</h3>
+    <div class="row">
+		<img style="margin-left:260px;" src="images/affiliate.png" />
+	</div>
+	<p style="font-size:15px;"><strong>Dapatkan pemasukan tambahan 10% dari jumlah Top Up dengan cara mengajak advertiser lain untuk menjadi Referral Anda. </strong></p>
+    <p>SITTI AFFILIATES, adalah sebuah program terbaru dari SITTI yang menawarkan kesempatan untuk Anda menambah penghasilan dengan mendaftarkan advertiser lainnya untuk beriklan di SITTI dan menjadi Referral Anda.</p>
+    <p>Setiap kali Referral dibawah Anda melakukan Top Up, maka Anda akan mendapatkan 10% bonus dari jumlah Top-Up tersebut..</p>
+	<div class="row">
+		<input type="checkbox" name="agree" class="inputCheckbox" id="agree"/>
+		<label class="labelChek"><a href="term2.html" target="_blank">Saya Setuju akan Syarat Ketentuan SITTI</a></label>
+	</div>
+	<div class="row">
+		<form action="refer_report.php" method="post">
+			<input type="hidden" name="reg" id="reg" value="1"/>
+			<input type="submit" value="Daftar SITTI Affiliate" class="submitButton" style="float:left;" id="daftar"/>
+		</form>
+	</div>
+</div> 
+{literal}
+<script>
+	 $("#daftar").click(function(event){
+		if(!$("#agree").attr("checked")){
+			event.preventDefault();
+			alert ("Anda Belum Menyetujui Syarat dan Ketentuan SITTI");
+			}	
+		 });
+         </script>
+{/literal}

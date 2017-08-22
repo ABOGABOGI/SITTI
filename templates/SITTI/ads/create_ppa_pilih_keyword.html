@@ -1,0 +1,223 @@
+<script>
+var jsondata = "{$jsondata|addslashes}";
+var keywords_per_page = parseInt({$per_page});
+</script>
+{literal}
+<script>
+	var n_page = 0;
+	var curr_page = 0;
+    // When the document loads do everything inside here ...
+    $(document).ready(function(){
+    	if(jsondata.length>0){
+        	var o = eval(jsondata);
+        	var k = o[1];
+        	var strInput = "";
+        	for(var i=0;i<k.length;i++){
+            	if(i>0){
+                	strInput+="\n";
+            	}
+            	strInput+=k[i];
+        	}
+        	$("#q").val(strInput);
+        	$("#hari").val(eval(o[0]));
+        	getPage(0);
+    	}
+        // When a link is clicked
+        $("a.tab").click(function () {
+
+
+            // switch all tabs off
+            $(".active").removeClass("active");
+
+            // switch this tab on
+            $(this).addClass("active");
+
+            // slide all content up
+            $(".contentTab").slideUp();
+
+            // slide this content up
+            var content_show = $(this).attr("title");
+            $("#"+content_show).slideDown();
+
+        });
+
+    });
+
+
+    function search_words(){
+        //alert("yey");
+        if(document.getElementById('q').value.length>0){
+            $("#content_1").html("<span style='text-align:center;'><img src='images/loader.gif'/></span>");
+            $("#content_1").load("uji_sitti2.php?q="+escape(document.getElementById('q').value)+"&t=1");
+        }
+    }
+	function open_tab(id,keyword){
+		hideAll();
+		//alert(id+" - "+keyword);
+		if(keyword.length>0){
+           /* $("#content_1").html("<span style='text-align:center;'><img src='images/loader.gif'/></span>");
+            $("#content_1").load("uji_sitti3.php?q="+escape(keyword)+"&t=1");
+			*/
+			$("#"+id).show();
+        }
+	}
+	function prepare_tabs(){
+		//we generate the tab based on the keywords input
+		var str = $('#q').val();
+		var arr = str.split('\n');
+		var n_len = arr.length;
+		if(n_len>10){
+			n_len = 10;
+		}
+		var strHTML = "";
+		for(var i=0;i<n_len;i++){
+			strHTML += "<li><a title='content_"+i+"' class='tab' onclick='open_tab(\"content_"+i+"\",\""+arr[i]+"\")'>"+escape($.trim(arr[i]))+"</a></li>";
+		}
+		$("ul.tabs").html(strHTML);
+		for(var i=0;i<10;i++){
+			$("#content_"+i).hide();
+			if(i<n_len){
+				$("#content_"+i).html("<span style='text-align:center;'><img src='images/loader.gif'/></span>");
+           	 	$("#content_"+i).load("uji_sitti3.php?q="+escape($.trim(arr[i]))+"&t=1&c="+i);
+			}
+		}
+		open_tab('content_0',escape($.trim(arr[0])));
+		//alert($("ul.tabs").html());
+	}
+	function sesudah(){
+		getPage(curr_page+1);	
+	}
+	function sebelum(){
+		getPage(curr_page-1);	
+	}
+	function getPage(n){
+		if($('#q').val().length==0){alert("Mohon tentukan kata kunci iklan anda terlebih dahulu !");return false;}
+		if(n==0){
+			$("#tabbed_box_1 div.tabbed_area").html("");	
+			n=1;
+			n_page=0;
+			curr_page=0;
+			first_page = true;
+		}
+		hideResults();
+		if(n>n_page){
+			var str = $('#q').val();
+			var arr = str.split('\n');
+			var n_len = arr.length;
+			var str = "";
+			for(var i=0;i<n_len;i++){
+				if(i>0){
+					str+=",";
+				}
+				str+=escape($.trim(arr[i]));
+			}
+			if ($.trim($("#brand").val()) != '') {
+				brand = $.trim($("#brand").val());	
+				str = str + "," + brand;
+			}
+			//alert($.param(arr));
+			//alert($("#tabbed_box_1 div.tabbed_area").html());
+			if(n_page>0){
+				$("#page_"+(n-1)).hide();
+			}
+			//var strHTML = $("#tabbed_box_1 div.tabbed_area").html()+'<div id="page_'+n+'" class="contentTab"></div>';
+			//$("#tabbed_box_1 div.tabbed_area").html(strHTML);
+			var strHTML = '<div id="page_'+n+'" class="contentTab"></div>';
+			$("#tabbed_box_1 div.tabbed_area").append(strHTML);
+			$("#page_"+n).html("<span style='text-align:center;'><img src='images/loader.gif'/></span>");
+        	$("#page_"+n).load("uji_sitti4.php?q="+escape(str)+"&t=1&ppa=1&per_page="+keywords_per_page+"&c="+i+"&start="+((n-1)*keywords_per_page));
+			n_page = n;
+			$("#sesudah").show();
+			if(n_page>1){
+				$("#sebelum").show();
+			}
+			$("#copysuggest").show();
+		}else{
+			//alert("yey");
+			if(n-1==0){
+				$("#sebelum").hide();
+			}else{
+				$("#sebelum").show();
+			}
+			
+			$("#page_"+n).show();
+			//alert($("#page_"+n).html());
+		}
+		curr_page = n;
+	}
+	function hideResults(){
+		for(var i=1;i<=n_page;i++){
+			//$("#content_"+i).hide();
+			$("#page_"+i).hide();
+		}
+	}
+	function hideAll(){
+		for(var i=0;i<10;i++){
+			//$("#content_"+i).hide();
+			$(".contentTab").hide();
+		}
+	}
+    function gotoRegister(){
+        document.location = "index.php?registration=1";
+    }
+	function Simulasi(){
+		document.location = "index.php?simulation=1";
+	}
+	function keywordClicked(obj){return false;}
+</script>
+{/literal}
+<h3 class="headTitle">Penghitung Kampanye Iklan SITTI</h3>
+<form action="buat.php?ad_ppa=true" method="post" enctype="application/x-www-form-urlencoded">
+ <input type="hidden" name="next" value="2" />
+
+<h3 class="blue">Product Brand</h3> 
+<div class="row">
+<input type="text" id="brand" name="brand" class="inputText" />
+</div>
+
+<h3 class="blue">Product Tags</h3>
+<!--p>Kini Anda dapat mensimulasikan kampanye dengan sarana perkiraan biaya iklan SITTI.<br />
+ Masukkan kata kunci yang paling sesuai dengan brand, merk dagang atau produk yang Anda ingin iklankan di SITTI. 
+ </p-->
+ 
+<div class="row">
+<textarea  name="q" rows="10"  id="q"></textarea> <br /><br />
+<a style="margin:0" class="submitButton" onclick="getPage(0)" >Tampilkan Saran Kata Kunci</a>
+</div>
+
+<div class="row" id="copysuggest">
+    
+    <div>
+
+        <div id="tabbed_box_1" class="tabbed_box">
+            <div class="tabbed_area">
+            </div>
+            <div id="sebelum"><a href="javascript:void(0);" onclick="sebelum();return false;">Kata-kata Sebelumnya &larr;</a></div>
+            <div id="sesudah"><a href="javascript:void(0);" onclick="sesudah();return false;">Kata-kata Selanjutnya &rarr;</a></div>
+            <div class="row noBorder">
+
+            	<label style="width:300px;"><strong>Berapa hari Anda ingin menjalankan kampanye ini?</strong></label>
+                <input type="text" name="hari" id="hari" value="1" class="inputText" style="width:50px"> hari.
+
+            </div>
+            <div class="row noBorder">
+
+            	<input type="submit" value="Hitung Perkiraan Biaya kampanye saya" class="submitButton"/>
+
+            </div>
+            <div>
+            <input type="hidden" name="simulation" id="simulation" value="1"/>
+            <input name="token" type="hidden" value="{token}">
+            </div>
+        </div>
+    </div>
+
+</div>
+</form>
+
+<script>
+$("#sesudah").hide();
+$("#sebelum").hide();
+$("#copysuggest").hide();
+hideAll();
+</script>

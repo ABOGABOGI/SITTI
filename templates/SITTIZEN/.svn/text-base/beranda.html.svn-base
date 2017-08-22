@@ -1,0 +1,690 @@
+{literal}
+<script type="text/javascript">
+$.query = { numbers: false, hash: true };
+</script>
+<script type="text/javascript" src="js/jquery.query.js"></script>
+<script type="text/javascript" src="js/jquery.timers.js"></script>
+<script type="text/javascript" src="js/charts/highcharts.js"></script>
+<!-- Additional files for the Highslide popup effect -->
+<script type="text/javascript" src="js/charts/highslide-full.min.js"></script>
+<script type="text/javascript" src="js/charts/highslide.config.js" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="js/charts/highslide.css" />
+<script>
+var f3 = [];
+var slotID = 0;
+$(document).ready(function(){
+	$("#custom").hide();
+  $("#tanggalAwalMutasi,#tanggalAkhirMutasi").datepicker({ dateFormat: 'yy-mm-dd' });
+
+  // generate chart
+  var jenis_data_default = 'imp';
+  generateHistoricalChart(jenis_data_default);
+
+});
+
+function onTab(activeTab,obj){
+	
+	   $("ul.tabjs li").removeClass("active"); //Remove any "active" class
+       $(this).addClass("active"); //Add "active" class to selected tab
+       $(".tab_content").hide(); //Hide all tab content
+       $(activeTab).fadeIn(); //Fade in the active ID content
+       if (activeTab == '#tab_mutasi')
+       {
+         $("#tanggalAwalMutasi,#tanggalAkhirMutasi").val('');
+         $("#tab_mutasi #content").html("<span style='text-align:center;' align='center'><img src='images/loader.gif'/></span>");
+         $("#tab_mutasi #content").load("report.php?t=4");
+       }
+       else
+       {
+         return false;   
+       }       
+   }
+function showDetail(slotid,type,startFrom,endTo){
+	slotID = slotid;
+	//alert(type);
+	//$("#slotname").html(slotid);
+	 $("ul.tabjs li").removeClass("active"); //Remove any "active" class
+     $(this).addClass("active"); //Add "active" class to selected tab
+     $(".tab_content").hide(); //Hide all tab content
+     $("#Detail").fadeIn(); //Fade in the active ID content
+	$("#slotDetail").html("<span style='text-align:center;' align='center'><img src='images/loader.gif'/></span>");
+	$("#slotDetail").load("report.php?t=1&id="+slotid+"&type="+type+"&startFrom="+startFrom+"&endTo="+endTo);
+
+}
+function updateCodeField(){
+     
+	if($('#stype').val() == 6){
+ 	 	$("#custom").show();
+	}else{
+    	  $("#custom").hide();
+      }
+ 	
+ }
+
+ function togglec1(){
+  try
+  {
+    generateHistoricalChart($("#cc1").val());
+  }
+  catch(e)
+  {}
+}
+
+function generateHistoricalChart(jenis_data){
+  try{
+
+    var chart_data;
+    $("#g1").html("<span style='text-align:center;' align='center'><img src='images/loader.gif'/></span>");
+    var judul_chart = {'imp':'Jumlah Impresi','click':'Jumlah Klik','ctr':'Persentase CTR','share':'Perkiraan Perolehan'};
+    $.get('report.php',{t:1, slotchart:1, jenis:jenis_data, cache:false}, function(data) {
+      chart_data = eval(data);
+      if (chart_data != null && chart_data.length > 0) {
+        feeds = chart_data;
+        // define the options
+        var nn = feeds.length;
+        var _series = [];
+        var _plots = [];
+        var _titles = judul_chart;
+        for(i=0;i<nn;i++){
+          var row_name = feeds[i].name + ' (' + feeds[i].slotid + ')';
+          _series.push({name:row_name});
+          _plots.push(feeds[i].stats);
+        }
+
+            var options = {
+            exporting:{enabled:false},
+                chart: {
+                    renderTo: 'g1'
+                },
+                
+                title: {
+                    text: _titles[$("#cc1").val()]+' Slot Iklan Terbaik'
+                },
+                
+                subtitle: {
+                    text: ' '
+                },
+                
+                xAxis: {
+                    type: 'datetime',
+                    tickInterval: 7 * 24 * 3600 * 1000, // one week
+                    tickWidth: 0,
+                    gridLineWidth: 1,
+                    labels: {
+                        align: 'left',
+                        x: 3,
+                        y: -3 
+                    }
+                },
+                
+                yAxis: [{ // left y axis
+                    title: {
+                        text: null
+                    },
+                    labels: {
+                        align: 'left',
+                        x: 3,
+                        y: 16,
+                        formatter: function() {
+                            return Highcharts.numberFormat(this.value, 0);
+                        }
+                    },
+                    showFirstLabel: false
+                }, { // right y axis
+                    linkedTo: 0,
+                    gridLineWidth: 0,
+                    opposite: true,
+                    title: {
+                        text: null
+                    },
+                    labels: {
+                        align: 'right',
+                        x: -3,
+                        y: 16,
+                        formatter: function() {
+                            return Highcharts.numberFormat(this.value, 0);
+                        }
+                    },
+                    showFirstLabel: false
+                }],
+                
+                legend: {
+                    align: 'left',
+                    verticalAlign: 'top',
+                    y: 20,
+                    floating: true,
+                    borderWidth: 0
+                },
+                credits:{enabled:false},
+                tooltip: {
+                    shared: true,
+                    crosshairs: true
+                },
+                
+                plotOptions: {
+            exporting:{enabled:false},
+                    series: {
+                        cursor: 'pointer',
+                        point: {
+                            events: {
+                                click: function() {
+                                    hs.htmlExpand(null, {
+                                        pageOrigin: {
+                                            x: this.pageX, 
+                                            y: this.pageY
+                                        },
+                                        headingText: this.series.name,
+                                        maincontentText: Highcharts.dateFormat('%b %e, %Y', this.x) +':<br/> '+ 
+                                            this.y,
+                                        width: 200
+                                    });
+                                }
+                            }
+                        },
+                        marker: {
+                            lineWidth: 1
+                        }
+                    }
+                },
+                
+                series: _series
+            }
+            
+            var n_plots = _plots.length;
+        
+        for(i=0;i<n_plots;i++) {
+          
+                var dd = _plots[i];
+
+                if (dd != null) {
+              var oo = [];
+              for(j=0;j<dd.length;j++){
+                if(dd[j][$('#cc1').val()]==null){
+                  dd[j][$('#cc1').val()]= 0.0;
+                }
+                var parts = dd[j].capture_date.match(/(\d+)/g);
+                var dt = new Date(parts[0],parts[1]-1,parts[2],24);
+                      
+                        oo.push([
+                                //Date.parse(dd[j].capture_date), 
+                                Date.parse(dt),
+                                parseFloat(dd[j][jenis_data], 10)
+                            ]);
+              }
+              options.series[i].data = oo;
+                }   
+        }
+            
+            chart = new Highcharts.Chart(options);
+
+      } else {
+        $("#g1").html("Tidak ada data " + judul_chart[$("#cc1").val()] + " untuk 7 hari terakhir."); 
+      }
+    });
+    
+    
+        
+  }catch(e){
+       console.log(e);
+  }
+ }
+
+
+ 
+</script>
+{/literal}
+    <ul class="tabjs">
+  <li class="nav3"><a href="javascript:;" onClick="onTab('#beranda');">Beranda</a></li>
+      <li class="nav1"><a href="javascript:;" onClick="onTab('#daftarSlot');">Daftar Slot</a></li>
+    <!--  <li class="nav2"><a href="javascript:;" onClick="onTab('#top10');">Top 10 Halaman</a></li> -->
+       <li class="nav_mutasi"><a href="javascript:;" onClick="onTab('#tab_mutasi');">Mutasi Rekening</a></li>
+    {*<li class="nav_referal"><a href="javascript:;" onClick="onTab('#tab_referal');">Program Referal</a></li>*}
+    </ul>
+<div class="tab_container">
+	<div id="beranda" class="tab_content">
+          <div class="shorter">
+          
+            <h1>Selamat Datang, {$profile_lengkap.nama_panjang|capitalize}</h1>
+            
+             <span style="float:right">Login terakhir anda: {$last_login|date_format:"%e/%m/%Y"}</span>
+           
+          </div>
+              <div class="tab_pad">
+                <div class="rangkuman">
+                	{*
+                     <div class="col_best_list">
+                         <p>
+                          <strong class="titleSukses">Perkiraan Perolehan Hari Lalu </strong> 
+                          <span class="f18 bold green">Rp. {$last_income|number_format}</span>
+                         </p>
+                     </div>
+                    *}
+                    <div class="col_best_list">
+                      <p><strong class="titleSukses">Perkiraan Perolehan Belum Terbayar</strong> 
+                      <span class="f18 bold green">Rp. {$unpaid_income|number_format}</span> 
+                      </p>
+                      
+                    </div>
+                    <div class="col_best_list">
+                      <p><strong class="titleSukses">Jumlah Slot Aktif</strong> 
+                      <span class="f18 bold green">{$active_slot|number_format}</span> 
+                      </p>
+                    </div>
+                </div>
+                <script type="text/javascript">
+{literal}
+    function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       	 
+       else
+          e.style.display = 'block';
+       	  
+    }
+    function toggle_image(id) {
+        var f = document.getElementById(id);
+        if(f.style.backgroundImage == 'url("images/images_sorter/plus.png")')
+            f.style.backgroundImage="url(images/images_sorter/minus.png)";
+         else
+            f.style.backgroundImage="url(images/images_sorter/plus.png)";
+     }
+    {/literal}
+</script>
+
+<div class="titleBerandaZen">
+<h1>Informasi Akun</h1>
+
+{if $notif}
+	<table cellspacing="0" cellpadding="0" border="0" class="list zebra">
+	 	<tr class="head2 oddRow" onclick="toggle_visibility('showhide1');toggle_image('tombol1');">
+			<td>
+				<span style="float:left">{$notif[0].posted_date|date_format:"%d/%m/%Y"}</span>
+				<span id="tombol1" style="background-image:url(images/images_sorter/minus.png);width:10px;height:10px;float:right;margin:4px;"></span>
+		    </td>
+		</tr>
+	</table>
+	<div id="showhide1" style="display:block;margin-bottom:10px;">
+		<table cellspacing="0" cellpadding="0" border="0" class="list zebra noMargin">   	
+				
+				{assign var="day" value=$notif[0].posted_date}
+				
+				{section name=i loop=$notif}
+				
+					{if $day != $notif[i].posted_date}
+    					{assign var="day" value=$notif[i].posted_date}
+    					</table>
+						</div>
+						<table cellspacing="0" cellpadding="0" border="0" class="list zebra">
+						 	<tr class="head2 oddRow" onclick="toggle_visibility('showhide2');toggle_image('tombol2');">
+								<td>
+									<span style="float:left">{$notif[i].posted_date|date_format:"%d/%m/%Y"}</span>
+									<span id="tombol2" style="background-image:url(images/images_sorter/minus.png);width:10px;height:10px;float:right;margin:4px;"></span>
+								</td>
+							</tr>
+						</table>
+						<div id="showhide2" style="display:block">
+							<table cellspacing="0" cellpadding="0" border="0" class="list zebra noMargin"> 
+					{/if}
+					
+					{if $notif[i].type_alert >= 0}
+						<tr class="evenRow">
+							<td>
+								<span class="circle_small">!</span>Anda memiliki {$notif[i].total} {$notif[i].alert_msg}
+				   			</td>
+				   		</tr>
+			   		{else}
+			   			<tr class="evenRow">
+							<td>
+								{if $notif[i].url != ''}
+									<span class="circle_small">!</span><a target="_blank" href="{$notif[i].url}">{$notif[i].message}</a>
+								{else}
+									<span class="circle_small">!</span>{$notif[i].message}
+								{/if}
+			   				</td>
+			   			</tr>
+			   		{/if}
+		   		{/section}
+		</table>
+	</div>
+{else}
+	<p>Tidak ada notifikasi untuk hari ini.</p>
+{/if}
+<a href="beranda.php?notifikasi=1">Lihat Semua Notifikasi</a>
+
+</div>
+<hr class="lineBeranda">
+<div id="iklanChartIklan">
+	<div class="shortGrafik">
+	<span> Lihat berdasarkan : </span>
+	<select onchange="togglec1();" id="cc1">
+	<option value="imp" selected="selected">Impresi</option>
+	<option value="click">Klik</option>
+	<option value="ctr">CTR</option>
+  <option value="share">Perkiraan Perolehan</option>
+	</select>
+	</div>
+
+	<div id="grafikBlock">
+		<div id="g1"></div>
+	</div>
+
+	
+</div>
+<hr class="lineBeranda">
+                <div class="titleBerandaZen">
+                	<h1>Ringkasan Akun Anda</h1>
+                </div>
+                <table width="650" border="0" cellspacing="0" cellpadding="0" class="list zebra" >
+                  <tr class="head2">
+                    <td width="18%">Tanggal</td>
+                    <td width="25%">Impressi</td>
+                    <td width="15%">Klik</td>
+                    <td width="12%">CTR Halaman</td>
+                    <td width="30%">Perkiraan Perolehan</td>
+                  </tr>
+                  {assign var='num' value=0}
+                  {section name=i loop=$ringkasan}
+    				{assign var='num' value=$num+1}
+    				{if $num < 7}
+    				<tr>
+		                <td>{$ringkasan[i].tgl}</td>
+		                <td>
+		                	{$ringkasan[i].jum_imp|number_format}
+		                	{if $ringkasan[i].jum_imp-$ringkasan[$num].jum_imp > 0}
+		                	<span style="padding-left:10px;">
+		                		<img src="images/ppc/arrow_up.png" />
+		                	</span>
+		                	{elseif $ringkasan[i].jum_imp-$ringkasan[$num].jum_imp < 0}
+		                	<span style="padding-left:10px;">
+		                		<img src="images/ppc/arrow_down.png" />
+		                	</span>
+		                	{/if}
+		                </td>
+		                <td>
+		                	{$ringkasan[i].jum_hit|number_format}
+		                	{if $ringkasan[i].jum_hit-$ringkasan[$num].jum_hit > 0}
+		                	<span style="padding-left:10px;">
+		                		<img src="images/ppc/arrow_up.png" />
+		                	</span>
+		                	{elseif $ringkasan[i].jum_hit-$ringkasan[$num].jum_hit < 0}
+		                	<span style="padding-left:10px;">
+		                		<img src="images/ppc/arrow_down.png" />
+		                	</span>
+		                	{/if}
+		                </td>
+		                <td>
+		                	{$ringkasan[i].ctr}%
+							{if $ringkasan[i].ctr-$ringkasan[$num].ctr > 0}
+		                	<span style="padding-left:10px;">
+		                		<img src="images/ppc/arrow_up.png" />
+		                	</span>
+		                	{elseif $ringkasan[i].ctr-$ringkasan[$num].ctr < 0}
+		                	<span style="padding-left:10px;">
+		                		<img src="images/ppc/arrow_down.png" />
+		                	</span>
+		                	{/if}
+						</td>
+		                <td>
+		                	Rp. {$ringkasan[i].pub_share|number_format}
+		                	{if $ringkasan[i].pub_share-$ringkasan[$num].pub_share > 0}
+		                	<span style="padding-left:10px;">
+		                		<img src="images/ppc/arrow_up.png" />
+		                	</span>
+		                	{elseif $ringkasan[i].pub_share-$ringkasan[$num].pub_share < 0}
+		                	<span style="padding-left:10px;">
+		                		<img src="images/ppc/arrow_down.png" />
+		                	</span>
+		                	{/if}
+		                </td>
+		              </tr>
+		              {else}
+		              <tr>
+		                <td>{$ringkasan[i].tgl}</td>
+		                <td>
+		                	{$ringkasan[i].jum_imp|number_format}
+		                </td>
+		                <td>
+		                	{$ringkasan[i].jum_hit|number_format}
+		                </td>
+		                <td>
+		                	{$ringkasan[i].ctr}%
+						</td>
+		                <td>
+		                	Rp. {$ringkasan[i].pub_share|number_format}
+		                </td>
+		              </tr>
+		              {/if}
+		       	{/section}
+                </table>
+                
+              </div>
+        </div>
+        <div id="daftarSlot" class="tab_content">
+          <div class="shorter">
+            <h1>Daftar Slot</h1>
+           
+          </div>
+              <div class="tab_pad">
+<!--                <div class="grafik"> </div>
+                <div class="titleBerandaZen">
+                  <a class="closeIcon" onmouseover="tooltip.show('Tutup tabel ini');" onmouseout="tooltip.hide();"  href="#">&nbsp;</a> </div>-->
+                <table width="650" border="0" cellspacing="0" cellpadding="0" class="list zebra" >
+                  <tr class="head2">
+                    <td>Website</td>
+                    <td>Slot Iklan</td>
+                    <td>Impressi</td>
+                    <td>Klik</td>
+                    <td>CTR</td>
+                    <td>Aksi</td>
+                  </tr>
+                  {section name=i loop=$list}
+                  {if $list[i].active_flag eq '1'}
+                  <tr {if $list[i].active_flag eq "0"}style="background-color:#cccccc;"{/if}>
+                    <td><a href="{$list[i].website}">{$list[i].website}</a></td>
+                    <td><a href="javascript:void(0);" onClick="showDetail('{$list[i].slotid}','0');">{$list[i].name|stripslashes|strip_tags}&nbsp;({$list[i].slotid|stripslashes|strip_tags})</a><br /></td>
+                    <td>{$list[i].jum_imp|number_format}
+                    
+                    {if $list[i].imp_change > 0}
+                    <span style="padding-left:10px;"><img src="images/ppc/arrow_up.png" onmouseout="tooltip.hide();" onmouseover="tooltip.show('{$list[i].imp_change|number_format:2}%');" /></span>
+                    {elseif $list[i].imp_change < 0}
+                    <span style="padding-left:10px;"><img src="images/ppc/arrow_down.png" onmouseout="tooltip.hide();" onmouseover="tooltip.show('{$list[i].imp_change|number_format:2}%');" /></span>
+                    {else}
+                    <span style="padding-left:10px;"><img src="images/ppc/green.gif" /></span>
+                    {/if}
+                    
+                    </td>
+                    <td>{$list[i].jum_klik|number_format}
+                    
+                    {if $list[i].klik_change > 0}
+                    <span style="padding-left:10px;"><img src="images/ppc/arrow_up.png" onmouseout="tooltip.hide();" onmouseover="tooltip.show('{$list[i].klik_change|number_format:2}%');" /></span>
+                    {elseif $list[i].klik_change < 0}
+                    <span style="padding-left:10px;"><img src="images/ppc/arrow_down.png" onmouseout="tooltip.hide();" onmouseover="tooltip.show('{$list[i].klik_change|number_format:2}%');" /></span>
+                    {else}
+                    <span style="padding-left:10px;"><img src="images/ppc/green.gif" /></span>
+                    {/if}
+
+                    </td>
+                    <td>{$list[i].ctr}%
+                    
+                    {if $list[i].ctr_change > 0}
+                    <span style="padding-left:10px;"><img src="images/ppc/arrow_up.png" onmouseout="tooltip.hide();" onmouseover="tooltip.show('{$list[i].ctr_change|number_format:2}%');" /></span>
+                    {elseif $list[i].ctr_change < 0}
+                    <span style="padding-left:10px;"><img src="images/ppc/arrow_down.png" onmouseout="tooltip.hide();" onmouseover="tooltip.show('{$list[i].ctr_change|number_format:2}%');" /></span>
+                    {else}
+                    <span style="padding-left:10px;"><img src="images/ppc/green.gif" /></span>
+                    {/if}
+
+                    </td>
+                    <td>
+                    {if $list[i].active_flag eq '1'}
+                    <a onmouseover="tooltip.show('Ganti Slot Iklan');" onmouseout="tooltip.hide();"  class="editPage" href="{secureurl url='beranda.php' edit=1 id=$list[i].slotid}">&nbsp;</a>
+                         <a onmouseover="tooltip.show('Dapatkan Kode HTML');" onmouseout="tooltip.hide();"  class="html" href="{secureurl url='beranda.php' snippet=1 id=$list[i].slotid}">&nbsp;</a>
+  						 <a onmouseover="tooltip.show('Hapus Slot Iklan');" onmouseout="tooltip.hide();"  class="deletePage" href="{secureurl url='beranda.php' delete=1 id=$list[i].slotid}">&nbsp;</a>
+					{else}
+					TIDAK AKTIF
+					{/if}
+                         </td>
+                  </tr>
+                  {/if}
+                  {/section}
+                </table>
+                {$PAGING} 
+              </div>
+        </div>
+        <div id="top10" class="tab_content">
+              <div class="shorter">
+                <h1>Top 10 Halaman</h1>
+               
+              </div>
+              <div class="tab_pad">
+<!--                <div class="grafik"> </div>
+                <div class="titleBerandaZen"> <a class="tambahIcon" onmouseover="tooltip.show('Pindahkan ke Beranda');" onmouseout="tooltip.hide();"  href="#">&nbsp;</a> <a class="pdf" onmouseover="tooltip.show('Export ke PDF');" onmouseout="tooltip.hide();"  href="#">&nbsp;</a> <a class="excel" onmouseover="tooltip.show('Export ke Excel');" onmouseout="tooltip.hide();"  href="#">&nbsp;</a> </div>-->
+                <table width="650" border="0" cellspacing="0" cellpadding="0" class="list zebra" >
+                  <tr class="head2">
+                    <td>No.</td>
+                    <td>Halaman</td>
+                    <!--<td>Impressi</td>
+                    <td>Klik</td>
+                    <td>CTR</td> -->
+                    
+                  </tr>
+                  {section name=i loop=$pages}
+                  <tr>
+                    <td>{$pages[i].no|number_format}</td>
+                    <td><a href="#">{$pages[i].web_name|stripslashes|strip_tags}</a><br /></td>
+                  </tr>
+                  {/section}
+                </table>
+              </div>
+        </div>
+        <div id="tab_mutasi" class="tab_content">
+          
+          <script type="text/javascript">
+          {literal}
+          $(document).ready( function() {
+
+            $("a#showMutasiByDate").click(function() { 
+              var billing_report_link = 'report.php?t=4';
+              if($('input#tanggalAwalMutasi').val() == '' || $('input#tanggalAkhirMutasi').val() == '') {
+                alert('Kedua kolom tanggal mutasi harus diisi!');
+              } else {
+                tglAwal = $('input#tanggalAwalMutasi').val();
+                tglAkhir = $('input#tanggalAkhirMutasi').val();
+                billing_report_link += "&from=" + tglAwal + "&to=" + tglAkhir;
+                $("#tab_mutasi #content").html("<span style='text-align:center;'><img src='images/loader.gif'/></span>");
+                $("#tab_mutasi #content").load(billing_report_link);
+              }
+            });
+          
+          });
+          {/literal}
+          </script>
+
+          <div class="shorter"><h1>Mutasi Rekening</h1></div>
+          <div class="tab_pad">
+            Lihat data mutasi dari <input type="text" id="tanggalAwalMutasi" value="" /> 
+            sampai <input type="text" id="tanggalAkhirMutasi" value="" />
+            <a href="javascript:void(0)" id="showMutasiByDate" style="text-decoration: none;" class="submitButton">Tampilkan</a>
+            <div id="content">
+            </div>
+          </div>
+        </div>
+          <div id="Detail" class="tab_content">
+             <!-- <div class="shorter">
+                
+                <form>
+                
+                  <div class="goSubmit">
+                    <input type="button" class="submitButton" value="GO" onClick="showDetail(slotID,document.getElementById('stype').value,document.getElementById('tanggalAwalSlot').value,document.getElementById('tanggalAkhirSlot').value);return false;"/>
+                  </div>
+                   <div id="custom">
+               	<div class="pilihHariSlot">
+                  <input id="tanggalAwalSlot" type="text">
+                  <span>s/d</span>
+                  <input id="tanggalAkhirSlot" type="text">
+                </div>
+              </div>
+                  <div class="pilihWaktu">
+                    <select name="stype" id="stype" onchange="updateCodeField()">
+                      <option value="0">Hari Ini</option>
+                      <option value="1">Kemarin</option>
+                      <option value="2">3 Hari Lalu</option>
+                      <option value="3">7 Hari Lalu</option>
+                      <option value="4">14 Hari Lalu</option>
+                      <option value="5">30 Hari Lalu</option>
+                      <option value="6">Custom</option>
+                    </select>
+                  </div>
+                </form>
+              </div>-->
+              <div id="slotDetail" class="tab_pad">
+                
+              </div>
+        </div>
+        
+        <!-- Tab Referal -->
+        <div id="tab_referal" class="tab_content">
+          <script type="text/javascript">
+          var referral_url = "http://{$host_uri}/{$publisher_id}";
+          {literal}
+          $(document).ready( function() {
+            $("input#join-referral").bind('click', function() {
+                $.ajax({
+                  type: "POST",
+                  url: "referral.php",
+                  data: "request_type=join_referral_program",
+                  cache: false,
+                  success: function() {
+                    $("input#join-referral").replaceWith("<strong>Your referral URL is </strong> <a href='" + referral_url + "'>" + referral_url + "</a>");
+                  }
+                });
+              });
+          });
+          {/literal}
+          </script>
+          <div class="shorter"><h1>Program Referal</h1></div>
+          <div class="tab_pad">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vitae tellus sem. Suspendisse sodales velit posuere tellus dignissim consectetur. Aliquam mi elit, consequat ac sodales nec, faucibus ac augue. Nullam at urna eget ligula tincidunt varius. Vestibulum augue orci, auctor in varius non, aliquet non velit. Quisque vehicula aliquet tristique. Aliquam ac laoreet lacus. Etiam suscipit elit nec ante aliquam et fringilla orci vulputate. Mauris in lectus odio. Sed convallis, sapien nec pharetra porttitor, lorem lacus egestas dui, id varius lorem ante sed ante. Morbi et sapien hendrerit lectus aliquet viverra. Sed rhoncus lacus non urna interdum eu egestas nulla pellentesque. Donec mollis posuere est, nec faucibus ligula tempus ac.</p>
+
+          <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed at orci in enim malesuada adipiscing porta in ante. Sed felis est, fringilla at viverra sit amet, semper non ante. Proin arcu metus, condimentum vel feugiat sit amet, sodales sit amet elit. Vivamus facilisis justo sed sapien iaculis euismod. Nullam et dui vel neque malesuada tempor vitae et nibh. Donec ultricies vehicula mattis. Mauris fermentum ante id dui iaculis at lacinia tellus congue. Nam faucibus tristique porta. Morbi id dui nec eros aliquet blandit. Vestibulum fermentum elit quis felis consequat laoreet vel vel metus. Nam eu vulputate quam. Suspendisse faucibus justo sit amet tellus tincidunt vitae faucibus leo placerat. Pellentesque placerat lorem nibh, tincidunt imperdiet purus. Integer imperdiet mattis lacinia.</p>
+
+          <p>Aliquam congue ante vitae nulla consectetur id tristique purus scelerisque. Nulla tempor placerat urna in fermentum. Integer turpis metus, euismod sed tempus quis, vulputate at massa. Quisque commodo pulvinar nisl, eget dictum est malesuada quis. Ut ac lacus nunc, sit amet facilisis purus. Praesent aliquam, mi nec mollis ultricies, lorem nisi feugiat massa, sed mattis massa est sed enim. Quisque auctor scelerisque massa, et posuere mauris accumsan nec. Sed egestas, turpis non porttitor fermentum, leo sapien dignissim massa, vel consectetur leo diam a quam. Sed luctus ultricies est vel convallis. Sed ac est vel arcu sodales placerat. Nunc in lectus odio, a blandit arcu.</p>
+
+          <p>Nam at turpis sit amet enim sollicitudin scelerisque id eget justo. Fusce massa nisi, euismod vel fringilla vitae, feugiat ut ipsum. Nunc lectus neque, pellentesque eu ullamcorper non, dictum sed libero. Aenean nec sapien lacus. Curabitur pellentesque sagittis iaculis. Nunc turpis nibh, interdum sed tempus ut, suscipit at purus. Vestibulum at sapien urna, eget dignissim tellus. Vivamus leo quam, sagittis vitae porttitor in, consectetur id nisi. Duis nec justo at eros dapibus pellentesque malesuada eu quam. Maecenas arcu tortor, accumsan sed ullamcorper sit amet, scelerisque at est. Mauris ut massa et metus tempor convallis. Praesent sit amet enim ligula. Sed gravida luctus tellus, vel rutrum arcu venenatis in. In adipiscing velit ac quam varius ultricies eu et augue. Nunc imperdiet aliquet egestas. Praesent laoreet tortor quis dui feugiat in congue dui bibendum. Fusce non turpis magna, vel elementum velit.</p>
+
+          <p>Aenean ipsum velit, sollicitudin in ullamcorper eu, porttitor quis magna. Aliquam vitae quam justo, at molestie ipsum. In tincidunt tristique justo, ac lobortis turpis consequat vel. Mauris cursus, ligula dignissim feugiat tristique, ligula massa pellentesque ligula, quis vestibulum neque massa ac libero. Quisque id magna purus. Cras convallis, dolor ut lobortis malesuada, ante velit dignissim nibh, nec viverra erat orci eu lectus. Sed mattis placerat risus, id porttitor erat malesuada eget. Ut in felis nisi, non ultrices lorem. Nullam vel felis at ipsum laoreet ornare. Proin dictum aliquam mollis. Cras et purus a ante bibendum pharetra. Duis blandit ornare felis, eu euismod erat bibendum at. Integer pharetra accumsan bibendum.</p>
+          {if not $is_joined_referral}
+          <input id="join-referral" type="button" class="submitButton" value="Join Program" />
+          {else}
+          <div style=" background: none repeat scroll 0 0 #F5F5F5;
+              border: 1px solid #EBEBEB;
+              border-radius: 7px 7px 7px 7px;
+              box-shadow: 1px 2px 4px -1px #CBCBCB;
+              float: left;
+              overflow: hidden;
+              padding: 10px 20px;">
+          <strong>Your referral URL is </strong> <a href="http://{$host_uri}/{$publisher_id}">http://{$host_uri}/{$publisher_id}</a>
+          </div>
+          {/if}
+      </div>
+          </div>
+        </div>
+        
+</div><!--
+      <script>
+      
+        {literal}
+        $(document).ready(function() {
+            var s = $.query;
+            if(s=="#top10"){
+            	onTab("#top10","nav2");
+            }else{
+            	onTab("#daftarSlot","nav1");
+            }
+        });
+        {/literal}
+          
+        </script>  -->
+               

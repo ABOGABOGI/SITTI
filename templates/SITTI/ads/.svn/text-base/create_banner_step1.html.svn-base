@@ -1,0 +1,176 @@
+<script type="text/javascript">
+
+var current_page = 0;
+
+{literal}
+
+$(function() {
+    
+    /*$("#sebelum, #sesudah, #bottom_options").hide();
+    $("#tglAwalKampanye,#tglAkhirKampanye").datepicker({ dateFormat: 'yy-mm-dd' });
+
+    $('input#q').keypress(function(event) {
+        if (event.which == '13') { // user click enter on search keyword
+            event.preventDefault();
+            if (jQuery.trim($(this).val()) != '') {
+                $("#tabbed_box_1 div.tabbed_area").empty();
+                getSuggestions($(this).val(), 1);
+                $("#sesudah, #bottom_options").show();
+            }
+        }
+    });
+
+    $("#bottom_options").toggle($("#page_1").length > 0);
+
+    $('input#q').focus(function() {
+        if ($(this).val() == 'Cari Kata Kunci') {
+            $(this).val('');
+        }
+    });
+
+    $('input#q').blur(function() {
+        if ($(this).val() == '') {
+            $(this).val('Cari Kata Kunci');
+        }
+    });
+
+    $('div#sebelum').click(function() {
+        getSuggestions($('input#q').val(), current_page - 1);    
+    });
+
+    $('div#sesudah').click(function() {
+        getSuggestions($('input#q').val(), current_page + 1);    
+    });*/
+
+    $('input#allcity').click(function () {
+        if ($(this).is(':checked')) {
+            $('input[name="tcity[]"]').attr('checked', false);
+        }
+    });
+
+    $('input[name="tcity[]"]').click(function () {
+        if ($(this).is(':checked')) {
+            $('input#allcity').attr('checked', false);
+        }
+    });
+
+});
+
+function getSuggestions(keyword, page)
+{
+    $("#tabbed_box_1 div.tabbed_area").children().hide();
+    if ($("#page_" + page).length) {
+        $("#page_" + page).show();
+    } else {        
+        var strHTML = "<div id=\"page_"+page+"\" class=\"contentTab\"></div>";
+        $("#tabbed_box_1 div.tabbed_area").append(strHTML);
+        $("#page_" + page).html("<span style='text-align:center;'><img src='images/loader.gif'/></span>");
+        $("#page_" + page).load("uji_sitti4.php?q="+escape(keyword)+"&t=1&banner=1&c="+page+"&start="+((page-1)*100));
+    }
+    var prev_page = page - 1;
+    $("#sebelum").toggle($("#page_" + prev_page).length > 0);
+    current_page = page;
+}
+
+{/literal}
+</script>
+<form action="buat.php?ad_banner=1" method="post">
+    <h1 class="blue">Tentukan Kategori Kata Kunci Iklan Anda</h1>
+    <!--p>Pilih kata kunci sesuai dengan iklan Anda.</p>
+    <br>
+    <table><tbody><tr><td width="300px">
+
+    <input value="Cari Kata Kunci" id="q" class="inputText" name="q" type="text">
+    </td><td valign="bottom">
+    <select id="category" class="kategoriIklan" name="category" style="width: 190px;">
+        <option selected="selected" value="none">Pilih Kategori</option>
+        {section name=i loop=$categories}
+        <option value="{$categories[i].kategori}">{$categories[i].kategori}</option>
+        {/section}
+    </select>
+    </td></tr>
+
+
+    </tbody></table-->
+
+    <table cellspacing="0" cellpadding="0" border="0" class="list">
+        <tr>
+            <td>
+            <table width="100%" class="list zebra" style="border-style:none;margin:0;">
+            {assign var=num value=0}
+            {section name=i loop=$categories}
+            <tr>
+            <td style="border: 1px solid #EAEAEA;">
+            <input type="checkbox" value="{$categories[i].kategori}" name="categories[]">{$categories[i].kategori|capitalize}
+            </td>
+            </tr>
+            {if $num == $categories_half}
+            </table>
+            </td>
+            <td valign="top" >
+            <table class="list zebra" style="border-style:none; margin:0;">
+            {/if}
+            {assign var=num value=$num+1}
+            {/section}    
+            </table>    
+            </td>
+        </tr> 
+    </table>
+        
+    <!--div id="tabbed_box_1" class="tabbed_box">
+        <div class="tabbed_area">
+        </div>
+    </div>
+    <div id="sebelum"><a href="javascript:;">100 Kata Sebelumnya &larr;</a></div>
+    <div id="sesudah"><a href="javascript:;">100 Kata Selanjutnya &rarr;</a></div-->
+
+    <!--div class="row noBorder">
+    <textarea rows="30" cols="60" style="margin-left: 3px;">Keyword Selection</textarea>
+    </div-->
+    <div id="bottom_options">
+
+        <div class="isiForm2">
+        <!--div style="padding: 0pt 0pt 15px;" class="row noBorder">
+        <label style="width: 100px;"><strong>Durasi Kampanye</strong></label>
+        <input name="tglAwalKampanye" id="tglAwalKampanye" class="inputText" style="width: 100px;" type="text">
+        <label style="width: 15px;"><strong>sd</strong></label>
+        <input name="tglAkhirKampanye" id="tglAkhirKampanye" class="inputText" style="width: 100px;" type="text">
+        </div-->
+         <table cellspacing="0" cellpadding="0" class="list zebra">
+        		 <tbody>
+        		 <tr class="head">
+        		 <td colspan="6">
+        		<h3 class="blue noMargin">Target Kota Iklan</h3>
+        		</td>
+        		</tr>
+        		<tr>
+        		<td colspan="6">
+        			<input checked="checked" value="ALLCITY" class="pilihKota" name="tcity" id="allcity" selected="selected" type="checkbox"><span class="kotaTujuan">Seluruh Kota</span>
+        		</td>
+        	</tr>
+        	<tr>
+        		<td>
+        			<input class="pilihKota" value="MEDAN" name="tcity[]" id="tcity[]" type="checkbox"><span class="kotaTujuan">Medan</span>
+        		</td>
+        		<td>
+        			<input class="pilihKota" value="JABODETABEKBAN" name="tcity[]" id="tcity[]" type="checkbox"><span class="kotaTujuan">Jabotabek &amp; Bandung</span>
+        		</td>
+        		<td>
+        			<input class="pilihKota" value="YOGYAKARTA" name="tcity[]" id="tcity[]" type="checkbox"><span class="kotaTujuan">Yogyakarta</span>
+        		</td>
+        		<td>
+        			<input class="pilihKota" value="BALI" name="tcity[]" id="tcity[]" type="checkbox"><span class="kotaTujuan">Bali</span>
+        		</td>
+        		<td>
+        			<input class="pilihKota" value="UJUNG PANDANG" name="tcity[]" id="tcity[]" type="checkbox"><span class="kotaTujuan">Ujung Pandang/Makasar</span>
+        		</td>
+        	</tr>
+        		</tbody></table>  
+    	</div>
+    	<div class="row">
+            <input type="hidden" name="next" value="2" />
+    		<input class="submitButton" name="hitungBiayaKampanye" value="Hitung Perkiraan Impresi & Biaya &gt;&gt;" type="submit">
+    	</div>
+
+    </div> <!-- bottom options end -->
+</form>

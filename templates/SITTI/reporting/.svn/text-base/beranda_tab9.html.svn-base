@@ -1,0 +1,73 @@
+<script type="text/javascript" src="js/jquery_swfobject.js"></script>
+
+{literal}
+<script>
+$(document).ready(
+		function() {
+			//$("#grafik1").flash({swf:'chart.swf',width:'100%',height:193});
+		}
+	);
+</script>
+{/literal}
+<!--<div id="grafik1" class="grafik"></div>-->
+<div class="w915">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td valign="top">
+      <h2 class="blue">Klik BCA</h2>
+      <p><img src="images/bank_klik_bca.jpg" />
+        <ol>
+        <li>Klik tombol &quot;Top Up&quot; di bawah;</li>
+        <li>Pilih metode pembayaran KlikBCA;</li>
+        <li>Isi field yang diperlukan, yaitu jumlah TOP UP dan ID KlikBCA;</li>
+        <li>Login di website KlikBCA;</li>
+        <li>Masuk ke menu "Pembayaran e-Commerce" lalu pilih kategori "Lain-lain" dan kemudian pilih "Indomog";</li>
+        <li>Konfirmasi transaksi top up SITTI yang tadi anda lakukan;</li>
+        <li>Anda akan mendapatkan SMS atau email konfirmasi dari KlikBCA;</li>
+        <li>Saldo akan muncul di akun Anda;</li>
+        <li>Jika belum melakukan langkah konfirmasi ini selama 60 menit ke website klikBCA, maka permintaan TOP UP dari website SITTI   akan dibatalkan;</li>
+        <li>Apabila top-up Anda bermasalah silahkan kirim email ke <a href="mailto:billing@sitti.co.id">billing@sitti.co.id</a> dengan mencantumkan kode transaksi Anda.</li>
+        </ol>
+      <p>&nbsp;</p>
+      <h2 class="blue">SMS Banking Mandiri</h2>   
+      <p><img src="images/bank_sms_mandiri.jpg" />
+      <ol>
+        <li>Klik tombol "Top Up" di bawah;</li>
+        <li>Pilih metode pembayaran SMS Banking Mandiri;</li>
+        <li>Isi field yang diperlukan, yaitu jumlah TOP UP dan nomor hanphone;</li>
+        <li>Selanjutnya, ikutilah petunjuk yang Anda dapatkan dari handphone untuk menyelesaikan proses top up.;</li>
+        <li>Apabila top-up Anda bermasalah silahkan kirim email ke <a href="mailto:billing@sitti.co.id">billing@sitti.co.id</a> dengan mencantumkan kode transaksi Anda.</li>
+      </ol>
+      
+      <p>&nbsp;</p>
+     
+
+      <h2 class="blue">Internet Banking Mandiri</h2>
+      <p><img src="images/internet_mandiri.jpg" />
+      <ol>
+        <li>Klik tombol "Top Up" di bawah;</li>
+        <li>Pilih metode pembayaran Internet Banking Mandiri;</li>
+        <li>Isi field yang diperlukan, yaitu jumlah TOP UP dan nomor Kartu ATM;</li>
+        <li>Untuk melanjutkan, gunakan token anda, lalu masukkan persyaratan berikut ke dalam token : 10 digit terahir dari nomor Kartu ATM dan jumlah TOP UP dengan minimal Rp 100.000,-;</li>
+        <li>Setelah memasukkan semua persyaratan ke dalam token, masukkan angka yang telah di-generate dari token, dan masukkan angka tersebut ke dalam field terakhir di web lalu tekan tombol "Lanjut";</li>
+        <li> Dana akan dimasukkan ke Akun SITTI Anda. Apabila dalam waktu 30 menit akun Anda belum ter-update, silahkan kontak <a href="mailto:billing@sitti.co.id">billing@sitti.co.id</a>.
+        </li>
+      </ol>
+      <p>&nbsp;</p>
+      
+       <h2 class="blue">Voucher Topup SITTI</h2>
+      <p><img src="images/voucher-kredit-icon.jpg" />
+      <ol>
+        <li>Masukkan Kode yang tertera di voucher SITTI</li>
+        <li>Akun Anda akan terisi sejumlah voucher tersebut ;</li>
+        <li>Voucher hanya dapat digunakan sekali.</li>
+        </li>
+      </ol>
+      <p>&nbsp;</p>
+      </td>
+  </tr>
+  <tr>
+    <td valign="bottom"><a class="submitButton" style="text-decoration:none;" href="pembayaran.php">Klik di sini untuk Top-Up Akun</a></td>
+  </tr>
+</table>
+</div>

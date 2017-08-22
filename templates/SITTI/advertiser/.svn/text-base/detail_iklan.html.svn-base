@@ -1,0 +1,102 @@
+<p>Pilihlah salah satu kampanye iklan dibawah ini untuk menampilkan daftar iklan</p>
+<div class="pilih_campaign">
+<form action="beranda.php" method="get" enctype="application/x-www-form-urlencoded">
+  <select id="id" name="id">
+  {section name=i loop=$campaign}
+  {if $campaign[i].camp_flag eq '0'}
+    <option value="{$campaign[i].ox_campaign_id|stripslashes|strip_tags}">{$campaign[i].name|stripslashes|strip_tags}</option>
+    {/if}
+    {/section}
+   </select>
+   <script>
+   document.getElementById('id').value="{$campaign_id}";
+   </script>
+   <input type="hidden" id="detail" name="detail" value='1'/>
+
+   <input type="submit" class="goSubmit2" value="GO" />
+</form>
+</div>
+{if $list}
+<h3 class="headTitle">Daftar Iklan</h3>
+{section name=i loop=$list}
+<table border="0" cellspacing="0" cellpadding="0" style="margin:0 10px 20px 0;">
+  <tr>
+    <td><div class="sampleIklan waitinglist" style="margin:0;">
+        <h1 class="titleAdv" id="setJudul">{$list[i].judul|stripslashes|strip_tags}</h1>
+        <p style="clear:both;margin:0;" id="setBaris1">{$list[i].baris1|stripslashes|strip_tags}</p>
+        <p style="clear:both; margin:0;" id="setBaris2">{$list[i].baris2|stripslashes|strip_tags}</p>
+        <a class="urlAdv" id="setUrl" href="#">{$list[i].urlLink|stripslashes|strip_tags}</a> <a class="adsby" href="#">ads by SITTI</a> </div>
+    </td>
+    <td><a onmouseover="tooltip.show('Ganti Iklan');" onmouseout="tooltip.hide();"  class="editPage2" href="{secureurl url='beranda.php' edit_iklan=1 id=$list[i].id c=$list[i].ox_campaign_id}">Ganti Iklan</a>
+    <a onmouseover="tooltip.show('Hapus Iklan');" onmouseout="tooltip.hide();"  class="deletePage2" href="{secureurl url='beranda.php' delete_iklan=1 id=$list[i].id c=$list[i].ox_campaign_id}">Hapus Iklan</a>
+        
+    </td>
+  </tr>
+</table>
+ {/section}
+ <div style="clear:both; display:block; padding:10px 0; width:100%;">
+  {$paging} 
+  </div>
+{/if}
+ <!--h3 class="headTitle">Daftar Banner</h3>
+ {*section name=i loop=$pending*}
+<table border="0" cellspacing="0" cellpadding="0" style="margin:0 10px 20px 0;">
+  <tr>
+    <td><div class="sampleIklan waitinglist" style="margin:0;">
+        <h1 class="titleAdv" id="setJudul">{$pending[i].judul|stripslashes|strip_tags}</h1>
+        <p style="clear:both;margin:0;" id="setBaris1">{$pending[i].baris1|stripslashes|strip_tags}</p>
+        <p style="clear:both; margin:0;" id="setBaris2">{$pending[i].baris2|stripslashes|strip_tags}</p>
+        <a class="urlAdv" id="setUrl" href="#">{$pending[i].urlLink|stripslashes|strip_tags}</a> <a class="adsby" href="#">ads by SITTI</a> </div>
+    </td>
+    <td><a onmouseover="tooltip.show('Ganti Iklan');" onmouseout="tooltip.hide();"  class="editPage2" href="beranda.php?edit_pending=1&id={$pending[i].id}&c={$pending[i].ox_campaign_id}">Ganti Iklan</a>
+     <a onmouseover="tooltip.show('Hapus Iklan');" onmouseout="tooltip.hide();"  class="deletePage2" href="{$list[i].id}&c={$pending[i].id}&c={$pending[i].ox_campaign_id}">Hapus Iklan</a>
+        
+    </td>
+  </tr>
+</table>
+ {*/section*}
+ <div style="clear:both; display:block; padding:10px 0; width:100%;">
+  {$paging2} 
+  </div-->
+
+{if $banner} 
+<h3 class="headTitle">Daftar Banner</h3>
+<table border="0" cellspacing="0" cellpadding="0" style="margin:0 10px 20px 0;" class="list zebra">
+<tr class="head">
+  <td>Judul</td>
+  <td>Ukuran</td>
+  <td>Mulai</td>
+  <td>Selesai</td>
+</tr>
+{section name=i loop=$banner}
+<tr>
+  <td>{$banner[i].judul}</td>
+  <td>
+  {if $banner[i].ad_type == '1'}
+    300 x 250
+  {elseif $banner[i].ad_type == '2'}
+    336 x 280
+  {elseif $banner[i].ad_type == '3'}
+    728 x 90
+  {elseif $banner[i].ad_type == '4'}
+    160 x 600
+  {elseif $banner[i].ad_type == '5'}
+    610 x 60
+  {elseif $banner[i].ad_type == '6'}
+    300 x 160
+  {elseif $banner[i].ad_type == '7'}
+    940 x 70
+  {elseif $banner[i].ad_type == '8'}
+    520 x 70
+  {elseif $banner[i].ad_type == '9'}
+    468 x 60
+  {elseif $banner[i].ad_type == '10'}
+    250 x 250
+  {/if}
+  </td>
+  <td>{$banner[i].tglmulai|date_format:"%e %b %Y"}</td>
+  <td>{$banner[i].tglselesai|date_format:"%e %b %Y"}</td>
+</tr>
+{/section}
+</table>
+{/if}
